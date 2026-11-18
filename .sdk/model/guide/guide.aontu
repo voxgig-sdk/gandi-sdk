@@ -17,9 +17,10 @@
 #   updated or removed as it stands: a domain's {domain} is its `fqdn`, a
 #   mailbox's {email} its `address`.
 # - The SDK tries the most specific route first. Operations that act on a
-#   whole collection at once (replacing or deleting every record of a zone,
-#   renewing every mailbox, purging a mailbox) are actions, selected with
-#   `$action`, so that leaving a parameter out can never select them.
+#   whole collection at once (renewing every mailbox, purging a mailbox,
+#   every record of one name) are actions, selected with `$action`, so that
+#   leaving a parameter out can never select them. Replacing or deleting
+#   every record of a zone is the entity `livedns_zone`.
 # - Verbs on a resource are actions on it: `domain.update({ fqdn, $action:
 #   'authinfo' })` resets a domain's authorization code.
 # - A POST to an item's own route that does not create the item (renew a
@@ -213,10 +214,12 @@ guide: entity: livedns_domain: path: "/livedns/domains/{fqdn}": {
 }
 
 # "Replace the whole zone with new records" and "Delete all records" are
-# actions on the domain, `records`, so that a record update or remove that
-# lacks a name or type can never reach them.
-guide: entity: livedns_domain: path: "/livedns/domains/{fqdn}/records": {
-  action: records: {}
+# the zone's own entity, so that a record update or remove that lacks a name
+# or type can never reach them, and its name says what they do. As actions on
+# the domain, the SDK sent "Delete all records" for a plain
+# `LivednsDomain().remove({ fqdn })`: an operation whose only route is an
+# action is chosen without the action (sdkgen 4.44.2).
+guide: entity: livedns_zone: path: "/livedns/domains/{fqdn}/records": {
   op: update: method: PUT
   op: remove: method: DELETE
 }

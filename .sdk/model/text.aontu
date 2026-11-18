@@ -65,14 +65,13 @@ named by \`fqdn\`, \`rrset_name\` and \`rrset_type\`, a mailbox by its \`address
 **Actions.** A verb on a resource is an action, selected with \`$action\` in the request data.
 Resetting a domain's authorization code is \`$action: 'authinfo'\` on a \`Domain\` update, and
 \`autorenew\`, \`status\` (the transfer lock), \`reachability\`, \`renew\`, \`restore\` and
-\`transferout\` work the same way. Operations on a whole collection are always actions, so that
-leaving a parameter out can never select them: replacing or deleting every record of a zone is
-\`$action: 'records'\` on \`LivednsDomain\`, every record of one name is \`$action: 'name'\` on
-\`LivednsRecord\`, and renewing every mailbox of a domain in the Email API is
-\`$action: 'renew_all'\`.
+\`transferout\` work the same way. An operation on a whole collection is never chosen by leaving
+a parameter out: every record of one name is \`$action: 'name'\` on \`LivednsRecord\`, renewing
+every mailbox of a domain in the Email API is \`$action: 'renew_all'\`, and replacing or deleting
+every record of a zone is \`LivednsZone().update()\` or \`.remove()\`, an entity of its own.
 
 **Scope.** Every one of the 221 operations in the twelve sections of Gandi's v5 documentation
-is here, as 60 entities named after Gandi's own resources. The Email API, which Gandi marks
+is here, as 61 entities named after Gandi's own resources. The Email API, which Gandi marks
 deprecated, is included as \`Email*\`; its replacement is \`Mailbox*\`. Some operations cost
 money (registering, renewing or transferring a domain, buying a mailbox or a certificate), as
 Gandi's documentation warns. For what each field means, follow the links to Gandi's
@@ -123,7 +122,8 @@ documentation was checked against it, but no request has yet been sent to Gandi'
     linked_zone_task: 'Linked zone tasks: list them or get one.'
     livedns_axfr_slave: "A zone's secondary servers, by IP address: list, add or remove one."
     livedns_axfr_tsig: "The TSIG keys a zone uses for transfers: list them, associate one or remove one."
-    livedns_domain: 'A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`).'
+    livedns_domain: 'A domain on LiveDNS, by fqdn: list, add, get or update one.'
+    livedns_zone: "A zone's whole record set, by fqdn: replace every record (update) or delete every record (remove)."
     livedns_key: "A zone's DNSSEC keys on LiveDNS: list, create, get, undelete (update) or delete one."
     livedns_nameserver: "A zone's nameservers, or the generic nameservers LiveDNS would give it (`generic`)."
     livedns_record: 'A DNS record set, by fqdn, rrset_name and rrset_type: list, create, get, replace, update or delete one; every record of one name (`name`); or a verification record (`verification`).'
