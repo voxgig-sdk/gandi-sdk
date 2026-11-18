@@ -1,0 +1,92 @@
+{
+  "existing": {
+    "hosting_vhost": {
+      "HOSTING_VHOST00": {
+        "application": {},
+        "created_at": "s5b",
+        "deployment": {},
+        "fqdn": "s5d",
+        "https_strategy": "s5e",
+        "is_a_test_vhost": false,
+        "linked_dns_zone": {},
+        "status": "s61",
+        "tls_validated_at": "s62",
+        "instance_id": "INSTANCE01",
+        "id": "HOSTING_VHOST00"
+      },
+      "HOSTING_VHOST01": {
+        "application": {},
+        "created_at": "sb5",
+        "deployment": {},
+        "fqdn": "sb7",
+        "https_strategy": "sb8",
+        "is_a_test_vhost": false,
+        "linked_dns_zone": {},
+        "status": "sbb",
+        "tls_validated_at": "sbc",
+        "instance_id": "INSTANCE01",
+        "id": "HOSTING_VHOST01"
+      },
+      "HOSTING_VHOST02": {
+        "application": {},
+        "created_at": "s10f",
+        "deployment": {},
+        "fqdn": "s111",
+        "https_strategy": "s112",
+        "is_a_test_vhost": false,
+        "linked_dns_zone": {},
+        "status": "s115",
+        "tls_validated_at": "s116",
+        "instance_id": "INSTANCE01",
+        "id": "HOSTING_VHOST02"
+      }
+    }
+  },
+  "new": {
+    "hosting_vhost": {
+      "hosting_vhost_ref01": {
+        "application": {},
+        "created_at": "s169",
+        "deployment": {},
+        "fqdn": "s16b",
+        "https_strategy": "s16c",
+        "is_a_test_vhost": false,
+        "linked_dns_zone": {},
+        "status": "s16f",
+        "tls_validated_at": "s170"
+      }
+    }
+  },
+  "requests": {
+    "POST /simplehosting/instances/{instance_id}/vhosts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /simplehosting/instances/{instance_id}/vhosts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}/cache": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

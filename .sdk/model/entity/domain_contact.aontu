@@ -1,0 +1,245 @@
+# Entity: domain_contact
+
+main: kit: entity: domain_contact: {
+
+  alias: field: {}
+
+  fields: {
+    admin: {
+      h: "Admin"
+      n: "admin"
+      r: true
+      t: "`$OBJECT`"
+    }
+    bill: {
+      h: "Bill"
+      n: "bill"
+      r: true
+      t: "`$OBJECT`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    owner: {
+      h: "Owner"
+      n: "owner"
+      r: true
+      t: "`$OBJECT`"
+    }
+    tech: {
+      h: "Tech"
+      n: "tech"
+      r: true
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "domain_contact"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /domain/domains/{domain}/contacts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/domains/{domain}/contacts"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "contacts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "admin"
+            "bill"
+            "tech"
+          ]
+          co: {
+            id: "PATCH /domain/domains/{domain}/contacts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/domain/domains/{domain}/contacts"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "contacts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "brand_number"
+            "city"
+            "country"
+            "data_obfuscated"
+            "email"
+            "extra_parameters"
+            "family"
+            "fax"
+            "given"
+            "icann_contract_accept"
+            "jo_announce_number"
+            "jo_announce_page"
+            "jo_declaration_date"
+            "jo_publication_date"
+            "lang"
+            "mail_obfuscated"
+            "mobile"
+            "phone"
+            "siren"
+            "state"
+            "streetaddr"
+            "validation"
+            "zip"
+          ]
+          co: {
+            id: "PUT /domain/domains/{domain}/contacts/owner"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/domain/domains/{domain}/contacts/owner"
+          q: {
+            "$action": "owner"
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "contacts"
+            }
+            {
+              lit: "owner"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

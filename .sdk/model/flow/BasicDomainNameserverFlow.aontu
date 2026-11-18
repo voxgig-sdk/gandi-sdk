@@ -1,0 +1,45 @@
+# BasicDomainNameserverFlow
+
+main: kit: flow: BasicDomainNameserverFlow:
+{
+  entity: "domain_nameserver",
+  kind: "basic",
+  name: "BasicDomainNameserverFlow",
+  step: [
+    {
+      m: {
+        domain: "domain01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "domain_nameserver_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "domain_nameserver_ref01",
+        srcdatavar: "domain_nameserver_ref01_data",
+        suffix: "_up0",
+        textfield: "message"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_nameserver_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainNameserverFlow"
+}

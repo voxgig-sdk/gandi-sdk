@@ -1,0 +1,118 @@
+# BasicOrganizationCustomerFlow
+
+main: kit: flow: BasicOrganizationCustomerFlow:
+{
+  entity: "organization_customer",
+  kind: "basic",
+  name: "BasicOrganizationCustomerFlow",
+  step: [
+    {
+      i: {
+        ref: "organization_customer_ref01"
+      }
+
+      m: {
+        org_id: "org01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        org_id: "org01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "organization_customer_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      d: {
+        org_id: "org01"
+      }
+
+      i: {
+        ref: "organization_customer_ref01",
+        srcdatavar: "organization_customer_ref01_data",
+        suffix: "_up0",
+        textfield: "city"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-organization_customer_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "organization_customer_ref01",
+        srcdatavar: "organization_customer_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "organization_customer01",
+        org_id: "org01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-organization_customer_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "organization_customer_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "organization_customer01",
+        org_id: "org01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        org_id: "org01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "organization_customer_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOrganizationCustomerFlow"
+}

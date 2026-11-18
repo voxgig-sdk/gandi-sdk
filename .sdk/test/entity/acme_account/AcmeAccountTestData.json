@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "acme_account": {
+      "ACME_ACCOUNT00": {
+        "created_at": "s50",
+        "deleted_at": "s51",
+        "external_id": "EXTERNAL01",
+        "id": "ACME_ACCOUNT00",
+        "ip": "s54",
+        "last_activity": "s55",
+        "status": "s56",
+        "subscription_id": "SUBSCRIPTION01"
+      },
+      "ACME_ACCOUNT01": {
+        "created_at": "sa0",
+        "deleted_at": "sa1",
+        "external_id": "EXTERNAL01",
+        "id": "ACME_ACCOUNT01",
+        "ip": "sa4",
+        "last_activity": "sa5",
+        "status": "sa6",
+        "subscription_id": "SUBSCRIPTION01"
+      },
+      "ACME_ACCOUNT02": {
+        "created_at": "sf0",
+        "deleted_at": "sf1",
+        "external_id": "EXTERNAL01",
+        "id": "ACME_ACCOUNT02",
+        "ip": "sf4",
+        "last_activity": "sf5",
+        "status": "sf6",
+        "subscription_id": "SUBSCRIPTION01"
+      }
+    }
+  },
+  "new": {
+    "acme_account": {
+      "acme_account_ref01": {
+        "created_at": "s140",
+        "deleted_at": "s141",
+        "external_id": "EXTERNAL01",
+        "ip": "s144",
+        "last_activity": "s145",
+        "status": "s146",
+        "subscription_id": "SUBSCRIPTION01"
+      }
+    }
+  },
+  "requests": {
+    "GET /acme/subscriptions/{subscription_id}/accounts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /acme/subscriptions/{subscription_id}/accounts/{account_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

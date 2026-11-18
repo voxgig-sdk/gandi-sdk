@@ -1,0 +1,378 @@
+# Entity: livedns_domain
+
+main: kit: entity: livedns_domain: {
+
+  alias: field: {}
+
+  fields: {
+    automatic_snapshots: {
+      h: "Automatic Snapshots"
+      n: "automatic_snapshots"
+      op: {
+        update: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    domain_href: {
+      h: "Domain Href"
+      n: "domain_href"
+      r: true
+      t: "`$STRING`"
+    }
+    domain_keys_href: {
+      h: "Domain Keys Href"
+      n: "domain_keys_href"
+      r: true
+      t: "`$STRING`"
+    }
+    domain_records_href: {
+      h: "Domain Records Href"
+      n: "domain_records_href"
+      r: true
+      t: "`$STRING`"
+    }
+    fqdn: {
+      h: "Fqdn"
+      n: "fqdn"
+      r: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    zone: {
+      h: "Zone"
+      n: "zone"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "livedns_domain"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "fqdn"
+            "zone"
+          ]
+          co: {
+            id: "POST /livedns/domains"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/livedns/domains"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /livedns/domains"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/livedns/domains"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /livedns/domains/{fqdn}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/livedns/domains/{fqdn}"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /livedns/domains/{fqdn}/records"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/livedns/domains/{fqdn}/records"
+          q: {
+            "$action": "records"
+            exist: [
+              "fqdn"
+            ]
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "automatic_snapshots"
+          ]
+          co: {
+            id: "PATCH /livedns/domains/{fqdn}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/livedns/domains/{fqdn}"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "items"
+            "remove_apex_ns"
+          ]
+          co: {
+            id: "PUT /livedns/domains/{fqdn}/records"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/livedns/domains/{fqdn}/records"
+          q: {
+            "$action": "records"
+            exist: [
+              "fqdn"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

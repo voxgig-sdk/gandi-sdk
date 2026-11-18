@@ -1,0 +1,22 @@
+# BasicLinkedZoneDeploymentFlow
+
+main: kit: flow: BasicLinkedZoneDeploymentFlow:
+{
+  entity: "linked_zone_deployment",
+  kind: "basic",
+  name: "BasicLinkedZoneDeploymentFlow",
+  step: [
+    {
+      i: {
+        ref: "linked_zone_deployment_ref01"
+      }
+
+      m: {
+        zone_id: "zone01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicLinkedZoneDeploymentFlow"
+}

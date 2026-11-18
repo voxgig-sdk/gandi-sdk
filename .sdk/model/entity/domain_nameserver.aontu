@@ -1,0 +1,138 @@
+# Entity: domain_nameserver
+
+main: kit: entity: domain_nameserver: {
+
+  alias: field: {}
+
+  fields: {
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    nameservers: {
+      h: "Nameservers"
+      n: "nameservers"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "domain_nameserver"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /domain/domains/{domain}/nameservers"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/domains/{domain}/nameservers"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "nameservers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "nameservers"
+          ]
+          co: {
+            id: "PUT /domain/domains/{domain}/nameservers"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/domain/domains/{domain}/nameservers"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "nameservers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

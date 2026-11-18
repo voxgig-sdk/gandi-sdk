@@ -1,0 +1,62 @@
+{
+  "existing": {
+    "livedns_tsig_key": {
+      "LIVEDNS_TSIG_KEY00": {
+        "config_samples": {},
+        "href": "s33",
+        "id": "LIVEDNS_TSIG_KEY00",
+        "key_name": "s35",
+        "secret": "s36",
+        "software": "SOFTWARE01"
+      },
+      "LIVEDNS_TSIG_KEY01": {
+        "config_samples": {},
+        "href": "s65",
+        "id": "LIVEDNS_TSIG_KEY01",
+        "key_name": "s67",
+        "secret": "s68",
+        "software": "SOFTWARE01"
+      },
+      "LIVEDNS_TSIG_KEY02": {
+        "config_samples": {},
+        "href": "s97",
+        "id": "LIVEDNS_TSIG_KEY02",
+        "key_name": "s99",
+        "secret": "s9a",
+        "software": "SOFTWARE01"
+      }
+    }
+  },
+  "new": {
+    "livedns_tsig_key": {
+      "livedns_tsig_key_ref01": {
+        "config_samples": {},
+        "href": "sc9",
+        "key_name": "scb",
+        "secret": "scc"
+      }
+    }
+  },
+  "requests": {
+    "POST /livedns/axfr/tsig": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/axfr/tsig": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/axfr/tsig/{id}/config/{software}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/axfr/tsig/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,187 @@
+# Entity: hosting_application
+
+main: kit: entity: hosting_application: {
+
+  alias: field: {}
+
+  fields: {
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$STRING`"
+    }
+    name_label: {
+      h: "Name Label"
+      n: "name_label"
+      r: true
+      t: "`$STRING`"
+    }
+    requirements: {
+      h: "Requirements"
+      n: "requirements"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "hosting_application"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /simplehosting/applications"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "database"
+                or: "database"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "language"
+                or: "language"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: "-created_at"
+                explode: true
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/simplehosting/applications"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "applications"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /simplehosting/applications/{application_name}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "name"
+                or: "application_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/simplehosting/applications/{application_name}"
+          q: {
+            exist: [
+              "name"
+            ]
+          }
+          r: {
+            param: {
+              application_name: "name"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "applications"
+            }
+            {
+              var: "name"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,69 @@
+{
+  "existing": {
+    "tld": {
+      "TLD00": {
+        "authinfo_for_transfer": true,
+        "category": "s5b",
+        "change_owner": true,
+        "corporate": false,
+        "ext_trade": true,
+        "full_tld": "s5f",
+        "href": "s60",
+        "lock": false,
+        "name": "s62",
+        "id": "TLD00"
+      },
+      "TLD01": {
+        "authinfo_for_transfer": true,
+        "category": "sb5",
+        "change_owner": true,
+        "corporate": false,
+        "ext_trade": true,
+        "full_tld": "sb9",
+        "href": "sba",
+        "lock": false,
+        "name": "sbc",
+        "id": "TLD01"
+      },
+      "TLD02": {
+        "authinfo_for_transfer": true,
+        "category": "s10f",
+        "change_owner": true,
+        "corporate": false,
+        "ext_trade": true,
+        "full_tld": "s113",
+        "href": "s114",
+        "lock": false,
+        "name": "s116",
+        "id": "TLD02"
+      }
+    }
+  },
+  "new": {
+    "tld": {
+      "tld_ref01": {
+        "authinfo_for_transfer": true,
+        "category": "s169",
+        "change_owner": true,
+        "corporate": false,
+        "ext_trade": true,
+        "full_tld": "s16d",
+        "href": "s16e",
+        "lock": false,
+        "name": "s170"
+      }
+    }
+  },
+  "requests": {
+    "GET /domain/tlds": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/tlds/{name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

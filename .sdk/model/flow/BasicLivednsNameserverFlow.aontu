@@ -1,0 +1,26 @@
+# BasicLivednsNameserverFlow
+
+main: kit: flow: BasicLivednsNameserverFlow:
+{
+  entity: "livedns_nameserver",
+  kind: "basic",
+  name: "BasicLivednsNameserverFlow",
+  step: [
+    {
+      m: {
+        fqdn: "fqdn01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "livedns_nameserver_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLivednsNameserverFlow"
+}

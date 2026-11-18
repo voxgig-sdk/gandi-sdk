@@ -1,0 +1,85 @@
+{
+  "existing": {
+    "mailbox_domain": {
+      "MAILBOX_DOMAIN00": {
+        "antispam": true,
+        "configuration": [],
+        "date_last_validation": "s70",
+        "dkim": false,
+        "fqdns": [],
+        "internal": false,
+        "is_livedns": true,
+        "mx": false,
+        "owner": {},
+        "spf": false,
+        "txt": true,
+        "domain": "DOMAIN01",
+        "id": "MAILBOX_DOMAIN00"
+      },
+      "MAILBOX_DOMAIN01": {
+        "antispam": true,
+        "configuration": [],
+        "date_last_validation": "sde",
+        "dkim": false,
+        "fqdns": [],
+        "internal": false,
+        "is_livedns": true,
+        "mx": false,
+        "owner": {},
+        "spf": false,
+        "txt": true,
+        "domain": "DOMAIN01",
+        "id": "MAILBOX_DOMAIN01"
+      },
+      "MAILBOX_DOMAIN02": {
+        "antispam": true,
+        "configuration": [],
+        "date_last_validation": "s14c",
+        "dkim": false,
+        "fqdns": [],
+        "internal": false,
+        "is_livedns": true,
+        "mx": false,
+        "owner": {},
+        "spf": false,
+        "txt": true,
+        "domain": "DOMAIN01",
+        "id": "MAILBOX_DOMAIN02"
+      }
+    }
+  },
+  "new": {
+    "mailbox_domain": {
+      "mailbox_domain_ref01": {
+        "antispam": true,
+        "configuration": [],
+        "date_last_validation": "s1ba",
+        "dkim": false,
+        "fqdns": [],
+        "internal": false,
+        "is_livedns": true,
+        "mx": false,
+        "owner": {},
+        "spf": false,
+        "txt": true
+      }
+    }
+  },
+  "requests": {
+    "POST /mailbox/domains/{domain}/validate": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /mailbox/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /mailbox/domains/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

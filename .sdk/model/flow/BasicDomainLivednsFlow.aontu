@@ -1,0 +1,44 @@
+# BasicDomainLivednsFlow
+
+main: kit: flow: BasicDomainLivednsFlow:
+{
+  entity: "domain_livedns",
+  kind: "basic",
+  name: "BasicDomainLivednsFlow",
+  step: [
+    {
+      i: {
+        ref: "domain_livedns_ref01"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "domain_livedns_ref01",
+        srcdatavar: "domain_livedns_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "domain_livedns01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_livedns_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainLivednsFlow"
+}

@@ -1,0 +1,49 @@
+# BasicLivednsAxfrSlaveFlow
+
+main: kit: flow: BasicLivednsAxfrSlaveFlow:
+{
+  entity: "livedns_axfr_slave",
+  kind: "basic",
+  name: "BasicLivednsAxfrSlaveFlow",
+  step: [
+    {
+      m: {
+        fqdn: "fqdn01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "livedns_axfr_slave_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      d: {
+        fqdn: "fqdn01"
+      }
+
+      i: {
+        ref: "livedns_axfr_slave_ref01",
+        srcdatavar: "livedns_axfr_slave_ref01_data",
+        suffix: "_up0",
+        textfield: "message"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-livedns_axfr_slave_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLivednsAxfrSlaveFlow"
+}

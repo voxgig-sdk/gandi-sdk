@@ -1,0 +1,605 @@
+{
+  "files": [
+    "SUMMARY.md",
+    "docs/api/access_token.html",
+    "docs/api/acme_account.html",
+    "docs/api/acme_domain.html",
+    "docs/api/acme_price.html",
+    "docs/api/acme_subscription.html",
+    "docs/api/billing_info.html",
+    "docs/api/billing_price.html",
+    "docs/api/certificate_dcv.html",
+    "docs/api/certificate_package.html",
+    "docs/api/certificate_pem.html",
+    "docs/api/certificate_renewal.html",
+    "docs/api/certificate_tag.html",
+    "docs/api/comment.html",
+    "docs/api/domain.html",
+    "docs/api/domain_availability.html",
+    "docs/api/domain_change_owner.html",
+    "docs/api/domain_claim.html",
+    "docs/api/domain_contact.html",
+    "docs/api/domain_dnskey.html",
+    "docs/api/domain_dnssec.html",
+    "docs/api/domain_host.html",
+    "docs/api/domain_livedns.html",
+    "docs/api/domain_nameserver.html",
+    "docs/api/domain_tag.html",
+    "docs/api/domain_transfer.html",
+    "docs/api/domain_webredir.html",
+    "docs/api/email_forward.html",
+    "docs/api/email_mailbox.html",
+    "docs/api/email_migration.html",
+    "docs/api/email_offer.html",
+    "docs/api/email_slot.html",
+    "docs/api/hosting_application.html",
+    "docs/api/hosting_instance.html",
+    "docs/api/hosting_vhost.html",
+    "docs/api/index.html",
+    "docs/api/issued_certificate.html",
+    "docs/api/linked_zone.html",
+    "docs/api/linked_zone_deployment.html",
+    "docs/api/linked_zone_domain.html",
+    "docs/api/linked_zone_task.html",
+    "docs/api/livedns_axfr_slave.html",
+    "docs/api/livedns_axfr_tsig.html",
+    "docs/api/livedns_domain.html",
+    "docs/api/livedns_key.html",
+    "docs/api/livedns_nameserver.html",
+    "docs/api/livedns_record.html",
+    "docs/api/livedns_rrtype.html",
+    "docs/api/livedns_snapshot.html",
+    "docs/api/livedns_tsig_key.html",
+    "docs/api/mailbox.html",
+    "docs/api/mailbox_domain.html",
+    "docs/api/mailbox_forward.html",
+    "docs/api/mailbox_product.html",
+    "docs/api/mailbox_quota.html",
+    "docs/api/mailbox_slot.html",
+    "docs/api/organization.html",
+    "docs/api/organization_customer.html",
+    "docs/api/template.html",
+    "docs/api/template_dispatch.html",
+    "docs/api/tld.html",
+    "docs/api/user.html",
+    "docs/features/debug.html",
+    "docs/features/idempotency.html",
+    "docs/features/metrics.html",
+    "docs/features/paging.html",
+    "docs/features/ratelimit.html",
+    "docs/features/retry.html",
+    "docs/features/secrets.html",
+    "docs/features/test.html",
+    "docs/features/timeout.html",
+    "docs/guides/authentication.html",
+    "docs/guides/concepts.html",
+    "docs/guides/errors.html",
+    "docs/guides/first-call.html",
+    "docs/index.html",
+    "docs/sdks/go.html",
+    "docs/sdks/lua.html",
+    "docs/sdks/php.html",
+    "docs/sdks/py.html",
+    "docs/sdks/rb.html",
+    "docs/sdks/ts.html",
+    "docs/tools/go-cli.html",
+    "docs/tools/go-mcp.html"
+  ],
+  "config": ".sdk/doc/qa/vale.ini",
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "A DNS record set, by fqdn, `rrset_name` and `rrset_type`: list, create, get, replace, update or delete one; every record of one name (`name`); or a verification record (`verification`).",
+      "A Personal Access Token (`pat_...`), created in the Organization tab of the Gandi Admin application (https://admin.gandi.net/organizations/), sent as `Authorization: Bearer &lt;token&gt;`. The legacy `Apikey &lt;key&gt;` scheme is deprecated.",
+      "A TSIG key for zone transfers: list, create or get one, or its configuration for a DNS server (`config`).",
+      "A Web Hosting instance&#39;s virtual hosts, by fqdn: list, create, get, update or delete one, or purge its cache (`cache`).",
+      "A Web Hosting instance: list, create, get, update or delete one, act on it (`action`) or get its usage (`usage`).",
+      "A certificate&#39;s domain control validation: resend it (update) or change its method (patch).",
+      "A certificate&#39;s tags: list, add, replace, change or remove them.",
+      "A change of a domain&#39;s owner: start it, follow it, or resend its emails (`foa`).",
+      "A configuration template: list, create, get, update or delete one.",
+      "A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`).",
+      "A domain&#39;s DNSSEC keys at the registry: list, add or delete one, or replace them all (update).",
+      "A domain&#39;s LiveDNS status, and switching the domain to LiveDNS (create).",
+      "A domain&#39;s contacts: get or update them, or change its owner (`owner`).",
+      "A domain&#39;s email offer in the deprecated Email API: get or update it.",
+      "A domain&#39;s glue records, by host name: list, create, get, update or delete one.",
+      "A domain&#39;s migration from the Email API to Mailbox: get its details or start it.",
+      "A domain&#39;s nameservers: list them or replace them.",
+      "A domain&#39;s tags: list, add, replace, change or remove them.",
+      "A domain&#39;s web redirections, by host: list, create, get, update or delete one.",
+      "A forwarding address in the deprecated Email API, per domain: list, create, update or delete one.",
+      "A forwarding address: list, create, update or delete one.",
+      "A linked zone: list, create, get, update or delete one.",
+      "A mailbox in the deprecated Email API, per domain: list, create, get, update or delete one, purge it (`purge`), renew it (`renew`) or renew them all (`renew_all`).",
+      "A mailbox slot in the deprecated Email API, per domain: list, create, get or refund one.",
+      "A mailbox slot: list them or get one.",
+      "A mailbox, by address: list, create, get, update or delete one, or renew it (`renew`).",
+      "A registered domain: list, register, get or delete one, and its actions authinfo, autorenew, status, reachability, createstatus, renew, restore and transferout.",
+      "A transfer of a domain to Gandi: start it, follow it, relaunch it, update its authorization code (`authinfo`), check it is possible (`available`) or resend its emails (`foa`).",
+      "A zone&#39;s DNSSEC keys on LiveDNS: list, create, get, undelete (update) or delete one.",
+      "A zone&#39;s nameservers, or the generic nameservers LiveDNS would give it (`generic`).",
+      "A zone&#39;s secondary servers, by IP address: list, add or remove one.",
+      "A zone&#39;s snapshots: list, take, get, rename or delete one.",
+      "ACME catalog prices, and a quote for a list of domains (create).",
+      "Accepted",
+      "An ACME subscription: list, create, get, rename or delete one, or change its domains (`domains`).",
+      "An SSL certificate: list, order, get, update or revoke one, retrieve it as PEM (`crt`), or get DCV parameters (`dcv_params`).",
+      "An intermediate certificate, as PEM text, by type or by file name.",
+      "An organization&#39;s customers: list, create, get, update or delete one.",
+      "An organization: list, create, get, update or delete one.",
+      "Applying a template (create), and the dispatch that results.",
+      "Billing information: prepaid balance and price grid, for your account or an organization.",
+      "Catalog prices for one product type.",
+      "Created",
+      "DNSSEC for a domain on LiveDNS: get its status, turn it on or turn it off.",
+      "Deploy or undeploy a linked zone.",
+      "Gandi&#39;s v5 API manages domain names, LiveDNS zones, SSL certificates, ACME subscriptions, mailboxes, web hosting and organizations at Gandi, the domain registrar and host.",
+      "Linked zone tasks: list them or get one.",
+      "Mailboxes available and in use, per offer.",
+      "No Content",
+      "OK",
+      "Renew an issued certificate.",
+      "Renew the Personal Access Token the call is made with.",
+      "The ACME accounts of a subscription: list them or get one.",
+      "The DNS record types LiveDNS supports.",
+      "The TSIG keys a zone uses for transfers: list them, associate one or remove one.",
+      "The applications Web Hosting can run: list them or get one.",
+      "The certificate packages on offer: list them or get one.",
+      "The comment on a Gandi product, by the product id: get, set or delete it.",
+      "The domains of an ACME subscription: list them or get one.",
+      "The domains used for mail: list them, get one&#39;s DNS configuration, or check it (`validate`).",
+      "The domains using linked zones: list them, get one, link domains to a zone (`link`) or unlink them (`unlink`).",
+      "The mailbox products on offer, and buying one (create).",
+      "The top-level domains on offer: list them or get one.",
+      "The user the token belongs to.",
+      "Trademark claims on a domain name: get them, or accept them.",
+      "Whether a domain name is available, with its products, prices and taxes."
+    ],
+    "docs/api/access_token.html": [
+      "Created",
+      "Forbidden",
+      "OK",
+      "Renew the Personal Access Token the call is made with.",
+      "Unauthorized"
+    ],
+    "docs/api/acme_account.html": [
+      "Forbidden",
+      "OK",
+      "The ACME accounts of a subscription: list them or get one.",
+      "Unauthorized"
+    ],
+    "docs/api/acme_domain.html": [
+      "Forbidden",
+      "OK",
+      "The domains of an ACME subscription: list them or get one.",
+      "Unauthorized"
+    ],
+    "docs/api/acme_price.html": [
+      "ACME catalog prices, and a quote for a list of domains (create).",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/acme_subscription.html": [
+      "An ACME subscription: list, create, get, rename or delete one, or change its domains (`domains`).",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/billing_info.html": [
+      "Billing information: prepaid balance and price grid, for your account or an organization.",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/billing_price.html": [
+      "Catalog prices for one product type.",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/certificate_dcv.html": [
+      "A certificate&#39;s domain control validation: resend it (update) or change its method (patch).",
+      "Accepted",
+      "Created",
+      "Forbidden",
+      "Unauthorized"
+    ],
+    "docs/api/certificate_package.html": [
+      "Forbidden",
+      "OK",
+      "The certificate packages on offer: list them or get one.",
+      "Unauthorized"
+    ],
+    "docs/api/certificate_pem.html": [
+      "An intermediate certificate, as PEM text, by type or by file name.",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/certificate_renewal.html": [
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Renew an issued certificate.",
+      "Unauthorized"
+    ],
+    "docs/api/certificate_tag.html": [
+      "A certificate&#39;s tags: list, add, replace, change or remove them.",
+      "Created",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/comment.html": [
+      "Accepted",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "The comment on a Gandi product, by the product id: get, set or delete it.",
+      "Unauthorized"
+    ],
+    "docs/api/domain.html": [
+      "A registered domain: list, register, get or delete one, and its actions authinfo, autorenew, status, reachability, createstatus, renew, restore and transferout.",
+      "Accepted",
+      "Created",
+      "Forbidden",
+      "OK",
+      "See Other",
+      "Unauthorized"
+    ],
+    "docs/api/domain_availability.html": [
+      "Forbidden",
+      "OK",
+      "Unauthorized",
+      "Whether a domain name is available, with its products, prices and taxes."
+    ],
+    "docs/api/domain_change_owner.html": [
+      "A change of a domain&#39;s owner: start it, follow it, or resend its emails (`foa`).",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_claim.html": [
+      "Created",
+      "Forbidden",
+      "Not Found",
+      "OK",
+      "Trademark claims on a domain name: get them, or accept them.",
+      "Unauthorized"
+    ],
+    "docs/api/domain_contact.html": [
+      "A domain&#39;s contacts: get or update them, or change its owner (`owner`).",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_dnskey.html": [
+      "A domain&#39;s DNSSEC keys at the registry: list, add or delete one, or replace them all (update).",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_dnssec.html": [
+      "Accepted",
+      "Bad Request",
+      "DNSSEC for a domain on LiveDNS: get its status, turn it on or turn it off.",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_host.html": [
+      "A domain&#39;s glue records, by host name: list, create, get, update or delete one.",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_livedns.html": [
+      "A domain&#39;s LiveDNS status, and switching the domain to LiveDNS (create).",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_nameserver.html": [
+      "A domain&#39;s nameservers: list them or replace them.",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_tag.html": [
+      "A domain&#39;s tags: list, add, replace, change or remove them.",
+      "Created",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_transfer.html": [
+      "A transfer of a domain to Gandi: start it, follow it, relaunch it, update its authorization code (`authinfo`), check it is possible (`available`) or resend its emails (`foa`).",
+      "Accepted",
+      "Forbidden",
+      "Not Found",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/domain_webredir.html": [
+      "A domain&#39;s web redirections, by host: list, create, get, update or delete one.",
+      "Created",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/email_forward.html": [
+      "A forwarding address in the deprecated Email API, per domain: list, create, update or delete one.",
+      "Accepted",
+      "Created",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/email_mailbox.html": [
+      "A mailbox in the deprecated Email API, per domain: list, create, get, update or delete one, purge it (`purge`), renew it (`renew`) or renew them all (`renew_all`).",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Payment Required",
+      "Unauthorized"
+    ],
+    "docs/api/email_migration.html": [
+      "A domain&#39;s migration from the Email API to Mailbox: get its details or start it.",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/email_offer.html": [
+      "A domain&#39;s email offer in the deprecated Email API: get or update it.",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/email_slot.html": [
+      "A mailbox slot in the deprecated Email API, per domain: list, create, get or refund one.",
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/hosting_application.html": [
+      "Forbidden",
+      "OK",
+      "The applications Web Hosting can run: list them or get one.",
+      "Unauthorized"
+    ],
+    "docs/api/hosting_instance.html": [
+      "A Web Hosting instance: list, create, get, update or delete one, act on it (`action`) or get its usage (`usage`).",
+      "Accepted",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/hosting_vhost.html": [
+      "A Web Hosting instance&#39;s virtual hosts, by fqdn: list, create, get, update or delete one, or purge its cache (`cache`).",
+      "Accepted",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized",
+      "Unprocessable Entity"
+    ],
+    "docs/api/index.html": [
+      "Gandi&#39;s v5 API manages domain names, LiveDNS zones, SSL certificates, ACME subscriptions, mailboxes, web hosting and organizations at Gandi, the domain registrar and host."
+    ],
+    "docs/api/issued_certificate.html": [
+      "Accepted",
+      "An SSL certificate: list, order, get, update or revoke one, retrieve it as PEM (`crt`), or get DCV parameters (`dcv_params`).",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/linked_zone.html": [
+      "A linked zone: list, create, get, update or delete one.",
+      "Created",
+      "Forbidden",
+      "No Content",
+      "Not Found",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/linked_zone_deployment.html": [
+      "Accepted",
+      "Conflict",
+      "Deploy or undeploy a linked zone.",
+      "Forbidden",
+      "Not Found",
+      "Unauthorized"
+    ],
+    "docs/api/linked_zone_domain.html": [
+      "Forbidden",
+      "Not Found",
+      "OK",
+      "The domains using linked zones: list them, get one, link domains to a zone (`link`) or unlink them (`unlink`).",
+      "Unauthorized"
+    ],
+    "docs/api/linked_zone_task.html": [
+      "Forbidden",
+      "Linked zone tasks: list them or get one.",
+      "Not Found",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_axfr_slave.html": [
+      "A zone&#39;s secondary servers, by IP address: list, add or remove one.",
+      "Accepted",
+      "Created",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_axfr_tsig.html": [
+      "Accepted",
+      "Created",
+      "Forbidden",
+      "OK",
+      "The TSIG keys a zone uses for transfers: list them, associate one or remove one.",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_domain.html": [
+      "A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`).",
+      "Created",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_key.html": [
+      "A zone&#39;s DNSSEC keys on LiveDNS: list, create, get, undelete (update) or delete one.",
+      "Created",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_nameserver.html": [
+      "A zone&#39;s nameservers, or the generic nameservers LiveDNS would give it (`generic`).",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_record.html": [
+      "A DNS record set, by fqdn, `rrset_name` and `rrset_type`: list, create, get, replace, update or delete one; every record of one name (`name`); or a verification record (`verification`).",
+      "Conflict",
+      "Created",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_rrtype.html": [
+      "Forbidden",
+      "OK",
+      "The DNS record types LiveDNS supports.",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_snapshot.html": [
+      "A zone&#39;s snapshots: list, take, get, rename or delete one.",
+      "Accepted",
+      "Created",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_tsig_key.html": [
+      "A TSIG key for zone transfers: list, create or get one, or its configuration for a DNS server (`config`).",
+      "Created",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/mailbox.html": [
+      "A mailbox, by address: list, create, get, update or delete one, or renew it (`renew`).",
+      "Accepted",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/mailbox_domain.html": [
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "The domains used for mail: list them, get one&#39;s DNS configuration, or check it (`validate`).",
+      "Unauthorized"
+    ],
+    "docs/api/mailbox_forward.html": [
+      "A forwarding address: list, create, update or delete one.",
+      "Conflict",
+      "Created",
+      "Forbidden",
+      "Not Found",
+      "OK",
+      "Too Many Requests",
+      "Unauthorized",
+      "Unprocessable Entity"
+    ],
+    "docs/api/mailbox_product.html": [
+      "Accepted",
+      "Forbidden",
+      "OK",
+      "The mailbox products on offer, and buying one (create).",
+      "Unauthorized"
+    ],
+    "docs/api/mailbox_quota.html": [
+      "Forbidden",
+      "Mailboxes available and in use, per offer.",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/mailbox_slot.html": [
+      "A mailbox slot: list them or get one.",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/organization.html": [
+      "Accepted",
+      "An organization: list, create, get, update or delete one.",
+      "Conflict",
+      "Created",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/organization_customer.html": [
+      "Accepted",
+      "An organization&#39;s customers: list, create, get, update or delete one.",
+      "Conflict",
+      "Created",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/template.html": [
+      "A configuration template: list, create, get, update or delete one.",
+      "Created",
+      "Forbidden",
+      "No Content",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/template_dispatch.html": [
+      "Accepted",
+      "Applying a template (create), and the dispatch that results.",
+      "Forbidden",
+      "OK",
+      "Unauthorized"
+    ],
+    "docs/api/tld.html": [
+      "Forbidden",
+      "OK",
+      "The top-level domains on offer: list them or get one.",
+      "Unauthorized"
+    ],
+    "docs/api/user.html": [
+      "Forbidden",
+      "OK",
+      "The user the token belongs to.",
+      "Unauthorized"
+    ],
+    "docs/index.html": [
+      "Gandi&#39;s v5 API manages domain names, LiveDNS zones, SSL certificates, ACME subscriptions, mailboxes, web hosting and organizations at Gandi, the domain registrar and host."
+    ]
+  }
+}

@@ -1,0 +1,397 @@
+# Entity: livedns_key
+
+main: kit: entity: livedns_key: {
+
+  alias: field: {}
+
+  fields: {
+    algorithm: {
+      h: "Algorithm"
+      n: "algorithm"
+      r: true
+      t: "`$INTEGER`"
+    }
+    algorithm_name: {
+      h: "Algorithm Name"
+      n: "algorithm_name"
+      r: true
+      t: "`$STRING`"
+    }
+    deleted: {
+      h: "Deleted"
+      n: "deleted"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    ds: {
+      h: "Ds"
+      n: "ds"
+      r: true
+      t: "`$STRING`"
+    }
+    fingerprint: {
+      h: "Fingerprint"
+      n: "fingerprint"
+      r: true
+      t: "`$STRING`"
+    }
+    flags: {
+      h: "Flags"
+      n: "flags"
+      r: true
+      t: "`$INTEGER`"
+    }
+    fqdn: {
+      h: "Fqdn"
+      n: "fqdn"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    key_href: {
+      h: "Key Href"
+      n: "key_href"
+      r: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    public_key: {
+      h: "Public Key"
+      n: "public_key"
+      r: true
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    tag: {
+      h: "Tag"
+      n: "tag"
+      r: true
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "livedns_key"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "flags"
+          ]
+          co: {
+            id: "POST /livedns/domains/{fqdn}/keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/livedns/domains/{fqdn}/keys"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /livedns/domains/{fqdn}/keys"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/livedns/domains/{fqdn}/keys"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "keys"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /livedns/domains/{fqdn}/keys/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/livedns/domains/{fqdn}/keys/{id}"
+          q: {
+            exist: [
+              "fqdn"
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /livedns/domains/{fqdn}/keys/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/livedns/domains/{fqdn}/keys/{id}"
+          q: {
+            exist: [
+              "fqdn"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "deleted"
+          ]
+          co: {
+            id: "PATCH /livedns/domains/{fqdn}/keys/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/livedns/domains/{fqdn}/keys/{id}"
+          q: {
+            exist: [
+              "fqdn"
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "keys"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

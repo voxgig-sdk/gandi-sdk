@@ -1,0 +1,606 @@
+# Guide
+
+@"@voxgig/apidef/model/guide.aontu"
+
+@"./base-guide.aontu"
+
+
+# GANDI'S OWN RESOURCES. The definition has no named schemas, so the
+# heuristic grouped the 221 operations by documentation section: one entity
+# per section, with each section's routes competing for the same few
+# selectors (26 warnings, and most routes unreachable). Below, each route is
+# declared on the resource it manages.
+#
+# Conventions:
+# - A route parameter keeps Gandi's name, or takes the name of the field that
+#   carries the same value in the answer, so that a loaded record can be
+#   updated or removed as it stands: a domain's {domain} is its `fqdn`, a
+#   mailbox's {email} its `address`.
+# - The SDK tries the most specific route first. Operations that act on a
+#   whole collection at once (replacing or deleting every record of a zone,
+#   renewing every mailbox, purging a mailbox) are actions, selected with
+#   `$action`, so that leaving a parameter out can never select them.
+# - Verbs on a resource are actions on it: `domain.update({ fqdn, $action:
+#   'authinfo' })` resets a domain's authorization code.
+# - A POST to an item's own route that does not create the item (renew a
+#   certificate, deploy a linked zone, apply a template) is its own entity,
+#   so that a create can never select it.
+
+
+# SECTIONS WHOSE ENTITY IS REPLACED WHOLE.
+guide: entity: acme: active: false
+guide: entity: billing: active: false
+guide: entity: certificate: active: false
+guide: entity: email: active: false
+guide: entity: live_dn: active: false
+guide: entity: nt: active: false
+guide: entity: web_hosting: active: false
+
+
+# DOMAIN. The domain itself: list, register, details, delete, and the verbs
+# Gandi documents on a domain. Its {domain} is the domain name, which the
+# answer carries as `fqdn`.
+guide: entity: domain: path: "/domain/domains/{domain}": rename: param: domain: fqdn
+guide: entity: domain: path: "/domain/domains/{domain}/authinfo": rename: param: domain: fqdn
+guide: entity: domain: path: "/domain/domains/{domain}/autorenew": rename: param: domain: fqdn
+guide: entity: domain: path: "/domain/domains/{domain}/createstatus": rename: param: domain: fqdn
+guide: entity: domain: path: "/domain/domains/{domain}/reachability": rename: param: domain: fqdn
+guide: entity: domain: path: "/domain/domains/{domain}/status": rename: param: domain: fqdn
+guide: entity: domain: path: "/domain/domains/{domain}/transferout": rename: param: domain: fqdn
+
+# "Domain renewal information" and "Domain restore information" answer with
+# one record each, not a list.
+guide: entity: domain: path: "/domain/domains/{domain}/renew": {
+  rename: param: domain: fqdn
+  op: list: active: false
+  op: load: method: GET
+}
+guide: entity: domain: path: "/domain/domains/{domain}/restore": {
+  rename: param: domain: fqdn
+  op: list: active: false
+  op: load: method: GET
+}
+
+# Routes below a domain that manage something of their own move to that
+# resource.
+guide: entity: domain: path: "/domain/changeowner/{domain}": active: false
+guide: entity: domain: path: "/domain/changeowner/{domain}/foa": active: false
+guide: entity: domain: path: "/domain/check": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/claims": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/contacts": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/contacts/owner": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/dnskeys": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/dnskeys/{id}": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/hosts": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/hosts/{name}": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/livedns": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/livedns/dnssec": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/nameservers": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/tags": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/webredirs": active: false
+guide: entity: domain: path: "/domain/domains/{domain}/webredirs/{host}": active: false
+guide: entity: domain: path: "/domain/tlds": active: false
+guide: entity: domain: path: "/domain/tlds/{name}": active: false
+guide: entity: domain: path: "/domain/transferin": active: false
+guide: entity: domain: path: "/domain/transferin/{domain}": active: false
+guide: entity: domain: path: "/domain/transferin/{domain}/authinfo": active: false
+guide: entity: domain: path: "/domain/transferin/{domain}/available": active: false
+guide: entity: domain: path: "/domain/transferin/{domain}/foa": active: false
+
+# "Domain availability": one answer with the products, prices and taxes.
+guide: entity: domain_availability: path: "/domain/check": op: load: method: GET
+
+# "List available TLD extensions" and "TLD Details".
+guide: entity: tld: path: "/domain/tlds": op: list: method: GET
+guide: entity: tld: path: "/domain/tlds/{name}": op: load: method: GET
+
+# "Retrieve potential trademark information" and "Accept a previously
+# retrieved claims".
+guide: entity: domain_claim: path: "/domain/domains/{domain}/claims": {
+  op: load: method: GET
+  op: create: method: POST
+}
+
+# "Domain contact list" and "Domain contact update": one record per domain.
+# "Edit domain owner" is an action on it.
+guide: entity: domain_contact: path: "/domain/domains/{domain}/contacts": {
+  op: load: method: GET
+  op: patch: method: PATCH
+}
+guide: entity: domain_contact: path: "/domain/domains/{domain}/contacts/owner": {
+  action: owner: {}
+  op: update: method: PUT
+}
+
+# DNSSEC keys at the registry. "Replace keys on this domain" is the only
+# update, and replaces the whole set.
+guide: entity: domain_dnskey: path: "/domain/domains/{domain}/dnskeys": {
+  op: list: method: GET
+  op: create: method: POST
+  op: update: method: PUT
+}
+guide: entity: domain_dnskey: path: "/domain/domains/{domain}/dnskeys/{id}": op: remove: method: DELETE
+
+# Glue records, named by host name.
+guide: entity: domain_host: path: "/domain/domains/{domain}/hosts": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: domain_host: path: "/domain/domains/{domain}/hosts/{name}": {
+  op: load: method: GET
+  op: update: method: PUT
+  op: remove: method: DELETE
+}
+
+# Web redirections, named by host.
+guide: entity: domain_webredir: path: "/domain/domains/{domain}/webredirs": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: domain_webredir: path: "/domain/domains/{domain}/webredirs/{host}": {
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+
+# The domain's nameservers: a list of host names, replaced as a whole.
+guide: entity: domain_nameserver: path: "/domain/domains/{domain}/nameservers": {
+  op: list: method: GET
+  op: update: method: PUT
+}
+
+# The domain's tags: a list of strings. Update replaces them all, patch
+# changes some, remove removes them all.
+guide: entity: domain_tag: path: "/domain/domains/{domain}/tags": {
+  op: list: method: GET
+  op: create: method: POST
+  op: update: method: PUT
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+
+# "Domain LiveDNS Information" and "Enable LiveDNS".
+guide: entity: domain_livedns: path: "/domain/domains/{domain}/livedns": {
+  op: load: method: GET
+  op: create: method: POST
+}
+
+# DNSSEC on LiveDNS: status, activate, disable.
+guide: entity: domain_dnssec: path: "/domain/domains/{domain}/livedns/dnssec": {
+  op: load: method: GET
+  op: create: method: POST
+  op: remove: method: DELETE
+}
+
+# Change of owner: start it, follow it, resend the FOA emails.
+guide: entity: domain_change_owner: path: "/domain/changeowner/{domain}": {
+  op: create: method: POST
+  op: load: method: GET
+}
+guide: entity: domain_change_owner: path: "/domain/changeowner/{domain}/foa": {
+  action: foa: {}
+  op: create: method: POST
+}
+
+# Transfer in: start it, follow it, relaunch it, and its verbs.
+guide: entity: domain_transfer: path: "/domain/transferin": op: create: method: POST
+guide: entity: domain_transfer: path: "/domain/transferin/{domain}": {
+  op: load: method: GET
+  op: update: method: PUT
+}
+guide: entity: domain_transfer: path: "/domain/transferin/{domain}/authinfo": {
+  action: authinfo: {}
+  op: update: method: PUT
+}
+guide: entity: domain_transfer: path: "/domain/transferin/{domain}/available": {
+  action: available: {}
+  op: create: method: POST
+}
+guide: entity: domain_transfer: path: "/domain/transferin/{domain}/foa": {
+  action: foa: {}
+  op: create: method: POST
+}
+
+
+# LIVEDNS. A domain on LiveDNS is named by its `fqdn`.
+guide: entity: livedns_domain: path: "/livedns/domains": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: livedns_domain: path: "/livedns/domains/{fqdn}": {
+  op: load: method: GET
+  op: patch: method: PATCH
+}
+
+# "Replace the whole zone with new records" and "Delete all records" are
+# actions on the domain, `records`, so that a record update or remove that
+# lacks a name or type can never reach them.
+guide: entity: livedns_domain: path: "/livedns/domains/{fqdn}/records": {
+  action: records: {}
+  op: update: method: PUT
+  op: remove: method: DELETE
+}
+
+# Records (RRsets), named by `rrset_name` and `rrset_type`. The routes that
+# act on every record of one name are the action `name`.
+guide: entity: livedns_record: path: "/livedns/domains/{fqdn}/records": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: livedns_record: path: "/livedns/domains/{fqdn}/records/{rrset_name}": {
+  action: name: {}
+  op: list: method: GET
+  op: create: method: POST
+  op: update: method: PUT
+  op: remove: method: DELETE
+}
+guide: entity: livedns_record: path: "/livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}": {
+  op: load: method: GET
+  op: create: method: POST
+  op: update: method: PUT
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+guide: entity: livedns_record: path: "/livedns/domains/{fqdn}/verification/{rrset_name}/{rrset_type}": {
+  action: verification: {}
+  op: create: method: POST
+}
+
+# DNSSEC keys on LiveDNS. Patch is "Undelete a key".
+guide: entity: livedns_key: path: "/livedns/domains/{fqdn}/keys": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: livedns_key: path: "/livedns/domains/{fqdn}/keys/{id}": {
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+
+# Zone snapshots.
+guide: entity: livedns_snapshot: path: "/livedns/domains/{fqdn}/snapshots": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: livedns_snapshot: path: "/livedns/domains/{fqdn}/snapshots/{id}": {
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+
+# The domain's nameservers, and the generic (hashed) nameservers Gandi would
+# give it: lists of host names.
+guide: entity: livedns_nameserver: path: "/livedns/domains/{fqdn}/nameservers": op: list: method: GET
+guide: entity: livedns_nameserver: path: "/livedns/nameservers/{fqdn}": {
+  action: generic: {}
+  op: list: method: GET
+}
+
+# Zone transfer (AXFR): secondary servers by IP address, TSIG keys, and the
+# keys associated with a domain.
+guide: entity: livedns_axfr_slave: path: "/livedns/domains/{fqdn}/axfr/slaves": op: list: method: GET
+guide: entity: livedns_axfr_slave: path: "/livedns/domains/{fqdn}/axfr/slaves/{ip}": {
+  op: update: method: PUT
+  op: remove: method: DELETE
+}
+guide: entity: livedns_tsig_key: path: "/livedns/axfr/tsig": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: livedns_tsig_key: path: "/livedns/axfr/tsig/{id}": op: load: method: GET
+guide: entity: livedns_tsig_key: path: "/livedns/axfr/tsig/{id}/config/{software}": {
+  action: config: {}
+  op: load: method: GET
+}
+guide: entity: livedns_axfr_tsig: path: "/livedns/domains/{fqdn}/axfr/tsig": op: list: method: GET
+guide: entity: livedns_axfr_tsig: path: "/livedns/domains/{fqdn}/axfr/tsig/{id}": {
+  op: update: method: PUT
+  op: remove: method: DELETE
+}
+
+# "List record types".
+guide: entity: livedns_rrtype: path: "/livedns/dns/rrtypes": op: list: method: GET
+
+
+# LINKED ZONE. The zone keeps the heuristic's entity. "Deploy or undeploy a
+# zone" posts to the zone's own route, so it is an entity of its own.
+guide: entity: linked_zone: path: "/linkedzone/zones/{zone_id}": op: create: active: false
+guide: entity: linked_zone: path: "/linkedzone/domains": active: false
+guide: entity: linked_zone: path: "/linkedzone/domains/{domain}": active: false
+guide: entity: linked_zone: path: "/linkedzone/tasks": active: false
+guide: entity: linked_zone: path: "/linkedzone/tasks/{task_id}": active: false
+guide: entity: linked_zone: path: "/linkedzone/unlink/domains": active: false
+guide: entity: linked_zone: path: "/linkedzone/zones/{zone_id}/link/domains": active: false
+
+guide: entity: linked_zone_deployment: path: "/linkedzone/zones/{zone_id}": op: create: method: POST
+
+# Domains, named by `name`, with linking and unlinking as actions.
+guide: entity: linked_zone_domain: path: "/linkedzone/domains": op: list: method: GET
+guide: entity: linked_zone_domain: path: "/linkedzone/domains/{domain}": {
+  rename: param: domain: name
+  op: load: method: GET
+}
+guide: entity: linked_zone_domain: path: "/linkedzone/zones/{zone_id}/link/domains": {
+  action: link: {}
+  op: patch: method: PATCH
+}
+guide: entity: linked_zone_domain: path: "/linkedzone/unlink/domains": {
+  action: unlink: {}
+  op: patch: method: PATCH
+}
+
+guide: entity: linked_zone_task: path: "/linkedzone/tasks": op: list: method: GET
+guide: entity: linked_zone_task: path: "/linkedzone/tasks/{task_id}": {
+  rename: param: task_id: id
+  op: load: method: GET
+}
+
+
+# CERTIFICATE. Issued certificates. "Renew a certificate" posts to the
+# certificate's own route, so it is an entity of its own.
+guide: entity: issued_certificate: path: "/certificate/issued-certs": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: issued_certificate: path: "/certificate/issued-certs/{id}": {
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+# "Retrieve certificate" answers with the PEM text.
+guide: entity: issued_certificate: path: "/certificate/issued-certs/{id}/crt": {
+  action: crt: {}
+  op: load: method: GET
+}
+# Domain control validation: "Resend the DCV" is the update, "Update the
+# DCV method" the patch. On the certificate both would be actions of one
+# route, and the SDK could only ever choose one of them.
+guide: entity: certificate_dcv: path: "/certificate/issued-certs/{id}/dcv": {
+  rename: param: id: certificate_id
+  op: update: method: PUT
+  op: patch: method: PATCH
+}
+# "Retrieve DCV parameters", for an issued certificate or before ordering.
+guide: entity: issued_certificate: path: "/certificate/issued-certs/{id}/dcv_params": {
+  action: dcv_params: {}
+  op: create: method: POST
+}
+guide: entity: issued_certificate: path: "/certificate/dcv_params": {
+  action: dcv_params: {}
+  op: create: method: POST
+}
+
+guide: entity: certificate_renewal: path: "/certificate/issued-certs/{id}": {
+  rename: param: id: certificate_id
+  op: create: method: POST
+}
+
+guide: entity: certificate_tag: path: "/certificate/issued-certs/{id}/tags": {
+  rename: param: id: certificate_id
+  op: list: method: GET
+  op: create: method: POST
+  op: update: method: PUT
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+
+guide: entity: certificate_package: path: "/certificate/packages": op: list: method: GET
+guide: entity: certificate_package: path: "/certificate/packages/{name}": op: load: method: GET
+
+# Intermediate certificates, by type or by file name, as PEM text.
+guide: entity: certificate_pem: path: "/certificate/pem/{type}": op: load: method: GET
+guide: entity: certificate_pem: path: "/certificate/pem/-/{filename}": op: load: method: GET
+
+
+# ACME subscriptions, named by `subscription_id` as the answer names them.
+# "Changes the domains of the subscription" is an action on it.
+guide: entity: acme_subscription: path: "/acme/subscriptions": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: acme_subscription: path: "/acme/subscriptions/{subscription_id}": {
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+guide: entity: acme_subscription: path: "/acme/subscriptions/{subscription_id}/domains": {
+  action: domains: {}
+  op: patch: method: PATCH
+}
+guide: entity: acme_account: path: "/acme/subscriptions/{subscription_id}/accounts": op: list: method: GET
+guide: entity: acme_account: path: "/acme/subscriptions/{subscription_id}/accounts/{account_id}": {
+  rename: param: account_id: id
+  op: load: method: GET
+}
+guide: entity: acme_domain: path: "/acme/subscriptions/{subscription_id}/domains": op: list: method: GET
+guide: entity: acme_domain: path: "/acme/subscriptions/{subscription_id}/domains/{domain_id}": op: load: method: GET
+
+# Catalog prices, and a quote for a list of domains (the create).
+guide: entity: acme_price: path: "/acme/catalog": op: list: method: GET
+guide: entity: acme_price: path: "/acme/quote": op: create: method: POST
+
+
+# MAILBOX. Mailboxes keep the heuristic's entity, named by their `address`.
+guide: entity: mailbox: path: "/mailbox/mailboxes/{email}": rename: param: email: address
+guide: entity: mailbox: path: "/mailbox/mailboxes/{email}/renew": rename: param: email: address
+guide: entity: mailbox: path: "/mailbox/domains": active: false
+guide: entity: mailbox: path: "/mailbox/domains/{domain}": active: false
+guide: entity: mailbox: path: "/mailbox/domains/{domain}/validate": active: false
+guide: entity: mailbox: path: "/mailbox/forwards": active: false
+guide: entity: mailbox: path: "/mailbox/forwards/{source}": active: false
+guide: entity: mailbox: path: "/mailbox/products": active: false
+guide: entity: mailbox: path: "/mailbox/quotas": active: false
+guide: entity: mailbox: path: "/mailbox/slots": active: false
+guide: entity: mailbox: path: "/mailbox/slots/{slot_id}": active: false
+
+guide: entity: mailbox_domain: path: "/mailbox/domains": op: list: method: GET
+guide: entity: mailbox_domain: path: "/mailbox/domains/{domain}": op: load: method: GET
+guide: entity: mailbox_domain: path: "/mailbox/domains/{domain}/validate": {
+  action: validate: {}
+  op: create: method: POST
+}
+guide: entity: mailbox_forward: path: "/mailbox/forwards": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: mailbox_forward: path: "/mailbox/forwards/{source}": {
+  op: update: method: PUT
+  op: remove: method: DELETE
+}
+# "Lists all buyable product" and "Buy new mailbox".
+guide: entity: mailbox_product: path: "/mailbox/products": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: mailbox_quota: path: "/mailbox/quotas": op: list: method: GET
+guide: entity: mailbox_slot: path: "/mailbox/slots": op: list: method: GET
+guide: entity: mailbox_slot: path: "/mailbox/slots/{slot_id}": {
+  rename: param: slot_id: uuid
+  op: load: method: GET
+}
+
+
+# EMAIL, the deprecated API, per domain. "Renew all mailboxes" is its own
+# action, `renew_all`, so that renewing one mailbox without its address can
+# never renew every one.
+guide: entity: email_forward: path: "/email/forwards/{domain}": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: email_forward: path: "/email/forwards/{domain}/{source}": {
+  op: update: method: PUT
+  op: remove: method: DELETE
+}
+guide: entity: email_mailbox: path: "/email/mailboxes/{domain}": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: email_mailbox: path: "/email/mailboxes/{domain}/{mailbox_id}": {
+  rename: param: mailbox_id: id
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+guide: entity: email_mailbox: path: "/email/mailboxes/{domain}/{mailbox_id}/contents": {
+  action: purge: {}
+  rename: param: mailbox_id: id
+  op: remove: method: DELETE
+}
+guide: entity: email_mailbox: path: "/email/mailboxes/{domain}/{email}/renew": {
+  action: renew: {}
+  rename: param: email: address
+  op: create: method: POST
+}
+guide: entity: email_mailbox: path: "/email/mailboxes/{domain}/renew": {
+  action: renew_all: {}
+  op: create: method: POST
+}
+guide: entity: email_migration: path: "/email/migration/{domain}": {
+  op: load: method: GET
+  op: create: method: POST
+}
+guide: entity: email_offer: path: "/email/offers/{domain}": {
+  op: load: method: GET
+  op: patch: method: PATCH
+}
+guide: entity: email_slot: path: "/email/slots/{domain}": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: email_slot: path: "/email/slots/{domain}/{slot_id}": {
+  rename: param: slot_id: id
+  op: load: method: GET
+  op: remove: method: DELETE
+}
+
+
+# BILLING. The account's information, the current user's or an
+# organization's, and catalog prices by product type.
+guide: entity: billing_info: path: "/billing/info": op: load: method: GET
+guide: entity: billing_info: path: "/billing/info/{sharing_id}": op: load: method: GET
+guide: entity: billing_price: path: "/billing/price/{type}": op: load: method: GET
+
+
+# COMMENT. The {id} names the Gandi product the comment is attached to, not
+# the comment, whose own `id` the answer carries.
+guide: entity: comment: path: "/comment/comments/{id}": rename: param: id: entity_id
+
+
+# ORGANIZATION. Organizations keep the heuristic's entity.
+guide: entity: organization: path: "/organization/access-tokens": active: false
+guide: entity: organization: path: "/organization/organizations/{org_id}/customers": active: false
+guide: entity: organization: path: "/organization/organizations/{org_id}/customers/{id}": active: false
+guide: entity: organization: path: "/organization/user-info": active: false
+
+guide: entity: organization_customer: path: "/organization/organizations/{org_id}/customers": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: organization_customer: path: "/organization/organizations/{org_id}/customers/{id}": {
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+# "Renew the current personal access token".
+guide: entity: access_token: path: "/organization/access-tokens": op: create: method: POST
+# "Get user information".
+guide: entity: user: path: "/organization/user-info": op: load: method: GET
+
+
+# TEMPLATE. Templates keep the heuristic's entity. "Apply a template" posts
+# to the template's own route and answers with a dispatch, so it is a create
+# on the dispatch.
+guide: entity: template: path: "/template/templates/{id}": op: create: active: false
+guide: entity: template: path: "/template/dispatch/{id}": active: false
+
+guide: entity: template_dispatch: path: "/template/templates/{id}": {
+  rename: param: id: template_id
+  op: create: method: POST
+}
+guide: entity: template_dispatch: path: "/template/dispatch/{id}": op: load: method: GET
+
+
+# WEB HOSTING (the /simplehosting routes).
+guide: entity: hosting_instance: path: "/simplehosting/instances": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: hosting_instance: path: "/simplehosting/instances/{instance_id}": {
+  rename: param: instance_id: id
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+# "Perform an action on the instance".
+guide: entity: hosting_instance: path: "/simplehosting/instances/{instance_id}/action": {
+  action: action: {}
+  rename: param: instance_id: id
+  op: create: method: POST
+}
+# "Usage metrics".
+guide: entity: hosting_instance: path: "/simplehosting/instances/{instance_id}/usage": {
+  action: usage: {}
+  rename: param: instance_id: id
+  op: load: method: GET
+}
+# Virtual hosts, named by `fqdn`. "Purge a vhost's cache" is an action.
+guide: entity: hosting_vhost: path: "/simplehosting/instances/{instance_id}/vhosts": {
+  op: list: method: GET
+  op: create: method: POST
+}
+guide: entity: hosting_vhost: path: "/simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}": {
+  rename: param: vhost_fqdn: fqdn
+  op: load: method: GET
+  op: patch: method: PATCH
+  op: remove: method: DELETE
+}
+guide: entity: hosting_vhost: path: "/simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}/cache": {
+  action: cache: {}
+  rename: param: vhost_fqdn: fqdn
+  op: remove: method: DELETE
+}
+guide: entity: hosting_application: path: "/simplehosting/applications": op: list: method: GET
+guide: entity: hosting_application: path: "/simplehosting/applications/{application_name}": {
+  rename: param: application_name: name
+  op: load: method: GET
+}

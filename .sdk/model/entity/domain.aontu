@@ -1,0 +1,1141 @@
+# Entity: domain
+
+main: kit: entity: domain: {
+
+  alias: field: {}
+
+  fields: {
+    admin: {
+      h: "Admin"
+      n: "admin"
+      r: true
+      t: "`$OBJECT`"
+    }
+    authinfo: {
+      h: "Authinfo"
+      n: "authinfo"
+      r: false
+      t: "`$STRING`"
+    }
+    autorenew: {
+      h: "Autorenew"
+      n: "autorenew"
+      r: true
+      t: "`$OBJECT`"
+    }
+    bill: {
+      h: "Bill"
+      n: "bill"
+      r: true
+      t: "`$OBJECT`"
+    }
+    can_tld_lock: {
+      h: "Can Tld Lock"
+      n: "can_tld_lock"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    claims: {
+      h: "Claims"
+      n: "claims"
+      r: false
+      t: "`$STRING`"
+    }
+    contacts: {
+      h: "Contacts"
+      n: "contacts"
+      r: true
+      t: "`$OBJECT`"
+    }
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: false
+      t: "`$STRING`"
+    }
+    dates: {
+      h: "Dates"
+      n: "dates"
+      r: true
+      t: "`$OBJECT`"
+    }
+    domain_owner: {
+      h: "Domain Owner"
+      n: "domain_owner"
+      r: true
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      t: "`$INTEGER`"
+    }
+    enforce_premium: {
+      h: "Enforce Premium"
+      n: "enforce_premium"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    errors: {
+      h: "Errors"
+      n: "errors"
+      r: false
+      t: "`$ARRAY`"
+    }
+    extra_parameters: {
+      h: "Extra Parameters"
+      n: "extra_parameters"
+      r: false
+      t: "`$OBJECT`"
+    }
+    fqdn: {
+      h: "Fqdn"
+      n: "fqdn"
+      r: true
+      t: "`$STRING`"
+    }
+    fqdn_unicode: {
+      h: "Fqdn Unicode"
+      n: "fqdn_unicode"
+      r: true
+      t: "`$STRING`"
+    }
+    href: {
+      h: "Href"
+      n: "href"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      op: {
+        list: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      t: "`$STRING`"
+    }
+    lang: {
+      h: "Lang"
+      n: "lang"
+      r: false
+      t: "`$STRING`"
+    }
+    mailbox_optin: {
+      h: "Mailbox Optin"
+      n: "mailbox_optin"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    nameserver: {
+      h: "Nameserver"
+      n: "nameserver"
+      r: true
+      t: "`$OBJECT`"
+    }
+    nameservers: {
+      h: "Nameservers"
+      n: "nameservers"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      r: true
+      t: "`$ARRAY`"
+    }
+    nameservers_ips: {
+      h: "Nameservers Ips"
+      n: "nameservers_ips"
+      r: false
+      t: "`$OBJECT`"
+    }
+    orga_owner: {
+      h: "Orga Owner"
+      n: "orga_owner"
+      r: true
+      t: "`$STRING`"
+    }
+    owner: {
+      h: "Owner"
+      n: "owner"
+      r: true
+      t: "`$OBJECT`"
+    }
+    price: {
+      h: "Price"
+      n: "price"
+      r: false
+      t: "`$NUMBER`"
+    }
+    reachability: {
+      h: "Reachability"
+      n: "reachability"
+      r: true
+      t: "`$STRING`"
+    }
+    resellee_id: {
+      h: "Resellee Id"
+      n: "resellee_id"
+      r: false
+      t: "`$STRING`"
+    }
+    services: {
+      h: "Services"
+      n: "services"
+      r: true
+      t: "`$ARRAY`"
+    }
+    sharing_id: {
+      h: "Sharing Id"
+      n: "sharing_id"
+      r: false
+      t: "`$STRING`"
+    }
+    sharing_space: {
+      h: "Sharing Space"
+      n: "sharing_space"
+      r: true
+      t: "`$OBJECT`"
+    }
+    smd: {
+      h: "Smd"
+      n: "smd"
+      r: false
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$ARRAY`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      t: "`$ARRAY`"
+    }
+    tech: {
+      h: "Tech"
+      n: "tech"
+      r: true
+      t: "`$OBJECT`"
+    }
+    template_id: {
+      h: "Template Id"
+      n: "template_id"
+      r: false
+      t: "`$STRING`"
+    }
+    tld: {
+      h: "Tld"
+      n: "tld"
+      r: true
+      t: "`$STRING`"
+    }
+    tld_period: {
+      h: "Tld Period"
+      n: "tld_period"
+      r: false
+      t: "`$STRING`"
+    }
+    trustee_roles: {
+      h: "Trustee Roles"
+      n: "trustee_roles"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "domain"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "duration"
+          ]
+          co: {
+            id: "POST /domain/domains/{domain}/renew"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/domains/{domain}/renew"
+          q: {
+            "$action": "renew"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "renew"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: false
+          co: {
+            id: "POST /domain/domains/{domain}/restore"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/domains/{domain}/restore"
+          q: {
+            "$action": "restore"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "restore"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "accept"
+            "authinfo"
+          ]
+          co: {
+            id: "POST /domain/domains/{domain}/transferout"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/domains/{domain}/transferout"
+          q: {
+            "$action": "transferout"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "transferout"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "admin"
+            "bill"
+            "claims"
+            "currency"
+            "duration"
+            "enforce_premium"
+            "extra_parameters"
+            "fqdn"
+            "lang"
+            "mailbox_optin"
+            "nameservers"
+            "nameservers_ips"
+            "owner"
+            "price"
+            "resellee_id"
+            "smd"
+            "tech"
+            "template_id"
+            "tld_period"
+          ]
+          co: {
+            id: "POST /domain/domains"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/domains"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /domain/domains"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "fqdn"
+                or: "fqdn"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "nameserver"
+                or: "nameserver"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "resellee_id"
+                or: "resellee_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: "fqdn"
+                explode: true
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "tld"
+                or: "tld"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/domains"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /domain/domains/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/domains/{domain}"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /domain/domains/{domain}/createstatus"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/domains/{domain}/createstatus"
+          q: {
+            "$action": "createstatus"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "createstatus"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /domain/domains/{domain}/renew"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/domains/{domain}/renew"
+          q: {
+            "$action": "renew"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "renew"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /domain/domains/{domain}/restore"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/domains/{domain}/restore"
+          q: {
+            "$action": "restore"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "restore"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /domain/domains/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/domain/domains/{domain}"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /domain/domains/{domain}/authinfo"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/domain/domains/{domain}/authinfo"
+          q: {
+            "$action": "authinfo"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "authinfo"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "duration"
+            "enabled"
+            "org_id"
+          ]
+          co: {
+            id: "PATCH /domain/domains/{domain}/autorenew"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/domain/domains/{domain}/autorenew"
+          q: {
+            "$action": "autorenew"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "autorenew"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "action"
+          ]
+          co: {
+            id: "PATCH /domain/domains/{domain}/reachability"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/domain/domains/{domain}/reachability"
+          q: {
+            "$action": "reachability"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "reachability"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "clientTransferProhibited"
+          ]
+          co: {
+            id: "PATCH /domain/domains/{domain}/status"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/domain/domains/{domain}/status"
+          q: {
+            "$action": "status"
+            exist: [
+              "fqdn"
+            ]
+          }
+          r: {
+            param: {
+              domain: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "status"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,768 @@
+# Entity: issued_certificate
+
+main: kit: entity: issued_certificate: {
+
+  alias: field: {}
+
+  fields: {
+    altnames: {
+      h: "Altnames"
+      n: "altnames"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+        update: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      r: true
+      t: "`$ARRAY`"
+    }
+    altnames_unicode: {
+      h: "Altnames Unicode"
+      n: "altnames_unicode"
+      r: true
+      t: "`$ARRAY`"
+    }
+    apex_only: {
+      h: "Apex Only"
+      n: "apex_only"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    assumed_name: {
+      h: "Assumed Name"
+      n: "assumed_name"
+      r: false
+      t: "`$STRING`"
+    }
+    business_category: {
+      h: "Business Category"
+      n: "business_category"
+      r: false
+      t: "`$STRING`"
+    }
+    card_pay_trustlogo: {
+      h: "Card Pay Trustlogo"
+      n: "card_pay_trustlogo"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    cert: {
+      h: "Cert"
+      n: "cert"
+      r: false
+      t: "`$STRING`"
+    }
+    cn: {
+      h: "Cn"
+      n: "cn"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    cn_unicode: {
+      h: "Cn Unicode"
+      n: "cn_unicode"
+      r: true
+      t: "`$STRING`"
+    }
+    contact: {
+      h: "Contact"
+      n: "contact"
+      r: true
+      t: "`$OBJECT`"
+    }
+    csr: {
+      h: "Csr"
+      n: "csr"
+      r: false
+      t: "`$STRING`"
+    }
+    dates: {
+      h: "Dates"
+      n: "dates"
+      r: true
+      t: "`$OBJECT`"
+    }
+    dcv_method: {
+      h: "Dcv Method"
+      n: "dcv_method"
+      r: false
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      t: "`$INTEGER`"
+    }
+    error_msg: {
+      h: "Error Msg"
+      n: "error_msg"
+      r: false
+      t: "`$STRING`"
+    }
+    errors: {
+      h: "Errors"
+      n: "errors"
+      r: false
+      t: "`$ARRAY`"
+    }
+    href: {
+      h: "Href"
+      n: "href"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    ida: {
+      h: "Ida"
+      n: "ida"
+      r: false
+      t: "`$OBJECT`"
+    }
+    intermediate: {
+      h: "Intermediate"
+      n: "intermediate"
+      r: false
+      t: "`$STRING`"
+    }
+    joi: {
+      h: "Joi"
+      n: "joi"
+      r: false
+      t: "`$OBJECT`"
+    }
+    middleman: {
+      h: "Middleman"
+      n: "middleman"
+      r: false
+      t: "`$OBJECT`"
+    }
+    owner: {
+      h: "Owner"
+      n: "owner"
+      r: false
+      t: "`$STRING`"
+    }
+    package: {
+      h: "Package"
+      n: "package"
+      r: true
+      t: "`$OBJECT`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: true
+      t: "`$STRING`"
+    }
+    reissuable: {
+      h: "Reissuable"
+      n: "reissuable"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    renewable: {
+      h: "Renewable"
+      n: "renewable"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    resellee_id: {
+      h: "Resellee Id"
+      n: "resellee_id"
+      r: false
+      t: "`$STRING`"
+    }
+    sha_version: {
+      h: "Sha Version"
+      n: "sha_version"
+      r: false
+      t: "`$INTEGER`"
+    }
+    sharing_id: {
+      h: "Sharing Id"
+      n: "sharing_id"
+      r: false
+      t: "`$STRING`"
+    }
+    software: {
+      h: "Software"
+      n: "software"
+      r: true
+      t: "`$INTEGER`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: false
+      t: "`$STRING`"
+    }
+    state_detail: {
+      h: "State Detail"
+      n: "state_detail"
+      r: false
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    step_nb: {
+      h: "Step Nb"
+      n: "step_nb"
+      r: false
+      t: "`$INTEGER`"
+    }
+    stored: {
+      h: "Stored"
+      n: "stored"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      t: "`$ARRAY`"
+    }
+    trustlogo: {
+      h: "Trustlogo"
+      n: "trustlogo"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    trustlogo_token: {
+      h: "Trustlogo Token"
+      n: "trustlogo_token"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "issued_certificate"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "csr"
+            "dcv_method"
+            "package"
+          ]
+          co: {
+            id: "POST /certificate/issued-certs/{id}/dcv_params"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/certificate/issued-certs/{id}/dcv_params"
+          q: {
+            "$action": "dcv_params"
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "dcv_params"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "altnames"
+            "csr"
+            "dcv_method"
+            "package"
+          ]
+          co: {
+            id: "POST /certificate/dcv_params"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/certificate/dcv_params"
+          q: {
+            "$action": "dcv_params"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "dcv_params"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "altnames"
+            "apex_only"
+            "cn"
+            "csr"
+            "dcv_method"
+            "duration"
+            "package"
+            "resellee_id"
+          ]
+          co: {
+            id: "POST /certificate/issued-certs"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/certificate/issued-certs"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /certificate/issued-certs"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "cn"
+                or: "cn"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "cn_eq"
+                or: "cn__eq"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "covered_cn"
+                or: "covered_cn"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "package"
+                or: "package"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: "ends_at"
+                explode: true
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/certificate/issued-certs"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /certificate/issued-certs/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/certificate/issued-certs/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /certificate/issued-certs/{id}/crt"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/certificate/issued-certs/{id}/crt"
+          q: {
+            "$action": "crt"
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "raw"
+            media: "text/plain"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "crt"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /certificate/issued-certs/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/certificate/issued-certs/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "altnames"
+            "csr"
+            "dcv_method"
+          ]
+          co: {
+            id: "PATCH /certificate/issued-certs/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/certificate/issued-certs/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

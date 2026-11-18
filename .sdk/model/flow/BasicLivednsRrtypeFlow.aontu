@@ -1,0 +1,22 @@
+# BasicLivednsRrtypeFlow
+
+main: kit: flow: BasicLivednsRrtypeFlow:
+{
+  entity: "livedns_rrtype",
+  kind: "basic",
+  name: "BasicLivednsRrtypeFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "livedns_rrtype_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLivednsRrtypeFlow"
+}

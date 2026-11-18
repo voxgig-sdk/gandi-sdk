@@ -1,0 +1,118 @@
+# BasicHostingVhostFlow
+
+main: kit: flow: BasicHostingVhostFlow:
+{
+  entity: "hosting_vhost",
+  kind: "basic",
+  name: "BasicHostingVhostFlow",
+  step: [
+    {
+      i: {
+        ref: "hosting_vhost_ref01"
+      }
+
+      m: {
+        instance_id: "instance01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        instance_id: "instance01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "hosting_vhost_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      d: {
+        instance_id: "instance01"
+      }
+
+      i: {
+        ref: "hosting_vhost_ref01",
+        srcdatavar: "hosting_vhost_ref01_data",
+        suffix: "_up0",
+        textfield: "created_at"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-hosting_vhost_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "hosting_vhost_ref01",
+        srcdatavar: "hosting_vhost_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "hosting_vhost01",
+        instance_id: "instance01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-hosting_vhost_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "hosting_vhost_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "hosting_vhost01",
+        instance_id: "instance01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        instance_id: "instance01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "hosting_vhost_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicHostingVhostFlow"
+}

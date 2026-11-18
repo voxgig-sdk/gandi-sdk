@@ -1,0 +1,171 @@
+# Entity: domain_claim
+
+main: kit: entity: domain_claim: {
+
+  alias: field: {}
+
+  fields: {
+    claims: {
+      h: "Claims"
+      n: "claims"
+      r: true
+      t: "`$ARRAY`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    expires_at: {
+      h: "Expires At"
+      n: "expires_at"
+      r: true
+      t: "`$STRING`"
+    }
+    fqdn: {
+      h: "Fqdn"
+      n: "fqdn"
+      r: true
+      t: "`$STRING`"
+    }
+    fqdn_alabel: {
+      h: "Fqdn Alabel"
+      n: "fqdn_alabel"
+      r: true
+      t: "`$STRING`"
+    }
+    fqdn_ulabel: {
+      h: "Fqdn Ulabel"
+      n: "fqdn_ulabel"
+      r: true
+      t: "`$STRING`"
+    }
+    notice_id: {
+      h: "Notice Id"
+      n: "notice_id"
+      r: true
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "domain_claim"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /domain/domains/{domain}/claims"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/domains/{domain}/claims"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "claims"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /domain/domains/{domain}/claims"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/domains/{domain}/claims"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "claims"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

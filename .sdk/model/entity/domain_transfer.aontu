@@ -1,0 +1,555 @@
+# Entity: domain_transfer
+
+main: kit: entity: domain_transfer: {
+
+  alias: field: {}
+
+  fields: {
+    admin: {
+      h: "Admin"
+      n: "admin"
+      r: true
+      t: "`$OBJECT`"
+    }
+    authinfo: {
+      h: "Authinfo"
+      n: "authinfo"
+      r: false
+      t: "`$STRING`"
+    }
+    bill: {
+      h: "Bill"
+      n: "bill"
+      r: true
+      t: "`$OBJECT`"
+    }
+    change_owner: {
+      h: "Change Owner"
+      n: "change_owner"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: false
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      t: "`$INTEGER`"
+    }
+    enforce_premium: {
+      h: "Enforce Premium"
+      n: "enforce_premium"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    errors: {
+      h: "Errors"
+      n: "errors"
+      r: false
+      t: "`$ARRAY`"
+    }
+    errortype: {
+      h: "Errortype"
+      n: "errortype"
+      r: false
+      t: "`$STRING`"
+    }
+    errortype_label: {
+      h: "Errortype Label"
+      n: "errortype_label"
+      r: false
+      t: "`$STRING`"
+    }
+    extra_parameters: {
+      h: "Extra Parameters"
+      n: "extra_parameters"
+      r: false
+      t: "`$OBJECT`"
+    }
+    foa: {
+      h: "Foa"
+      n: "foa"
+      r: false
+      t: "`$ARRAY`"
+    }
+    fqdn: {
+      h: "Fqdn"
+      n: "fqdn"
+      r: true
+      t: "`$STRING`"
+    }
+    inner_step: {
+      h: "Inner Step"
+      n: "inner_step"
+      r: false
+      t: "`$STRING`"
+    }
+    mailbox_optin: {
+      h: "Mailbox Optin"
+      n: "mailbox_optin"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    nameservers: {
+      h: "Nameservers"
+      n: "nameservers"
+      r: false
+      t: "`$ARRAY`"
+    }
+    nameservers_ips: {
+      h: "Nameservers Ips"
+      n: "nameservers_ips"
+      r: false
+      t: "`$OBJECT`"
+    }
+    owner: {
+      h: "Owner"
+      n: "owner"
+      r: true
+      t: "`$OBJECT`"
+    }
+    owner_contact: {
+      h: "Owner Contact"
+      n: "owner_contact"
+      r: true
+      t: "`$STRING`"
+    }
+    params: {
+      h: "Params"
+      n: "params"
+      r: true
+      t: "`$OBJECT`"
+    }
+    price: {
+      h: "Price"
+      n: "price"
+      r: false
+      t: "`$NUMBER`"
+    }
+    regac_at: {
+      h: "Regac At"
+      n: "regac_at"
+      r: false
+      t: "`$STRING`"
+    }
+    resellee_id: {
+      h: "Resellee Id"
+      n: "resellee_id"
+      r: false
+      t: "`$STRING`"
+    }
+    start_at: {
+      h: "Start At"
+      n: "start_at"
+      r: false
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    step: {
+      h: "Step"
+      n: "step"
+      r: true
+      t: "`$STRING`"
+    }
+    step_nb: {
+      h: "Step Nb"
+      n: "step_nb"
+      r: true
+      t: "`$INTEGER`"
+    }
+    tech: {
+      h: "Tech"
+      n: "tech"
+      r: true
+      t: "`$OBJECT`"
+    }
+    template_id: {
+      h: "Template Id"
+      n: "template_id"
+      r: false
+      t: "`$STRING`"
+    }
+    transfer_link: {
+      h: "Transfer Link"
+      n: "transfer_link"
+      r: false
+      t: "`$STRING`"
+    }
+    transfer_procedure: {
+      h: "Transfer Procedure"
+      n: "transfer_procedure"
+      r: false
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "domain_transfer"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "authinfo"
+          ]
+          co: {
+            id: "POST /domain/transferin/{domain}/available"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/transferin/{domain}/available"
+          q: {
+            "$action": "available"
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "transferin"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "available"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "email"
+          ]
+          co: {
+            id: "POST /domain/transferin/{domain}/foa"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/transferin/{domain}/foa"
+          q: {
+            "$action": "foa"
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "transferin"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "foa"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "admin"
+            "authinfo"
+            "bill"
+            "change_owner"
+            "currency"
+            "duration"
+            "enforce_premium"
+            "extra_parameters"
+            "fqdn"
+            "mailbox_optin"
+            "nameservers"
+            "nameservers_ips"
+            "owner"
+            "price"
+            "resellee_id"
+            "tech"
+            "template_id"
+          ]
+          co: {
+            id: "POST /domain/transferin"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/transferin"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "transferin"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /domain/transferin/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/transferin/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "transferin"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /domain/transferin/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/domain/transferin/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "transferin"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "authinfo"
+          ]
+          co: {
+            id: "PUT /domain/transferin/{domain}/authinfo"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/domain/transferin/{domain}/authinfo"
+          q: {
+            "$action": "authinfo"
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "transferin"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "authinfo"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

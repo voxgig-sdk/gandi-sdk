@@ -1,0 +1,56 @@
+{
+  "existing": {
+    "domain_livedns": {
+      "DOMAIN_LIVEDNS00": {
+        "current": "s32",
+        "dnssec_available": false,
+        "livednssec_available": true,
+        "message": "s35",
+        "nameservers": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_LIVEDNS00"
+      },
+      "DOMAIN_LIVEDNS01": {
+        "current": "s64",
+        "dnssec_available": false,
+        "livednssec_available": true,
+        "message": "s67",
+        "nameservers": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_LIVEDNS01"
+      },
+      "DOMAIN_LIVEDNS02": {
+        "current": "s96",
+        "dnssec_available": false,
+        "livednssec_available": true,
+        "message": "s99",
+        "nameservers": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_LIVEDNS02"
+      }
+    }
+  },
+  "new": {
+    "domain_livedns": {
+      "domain_livedns_ref01": {
+        "current": "sc8",
+        "dnssec_available": false,
+        "livednssec_available": true,
+        "message": "scb",
+        "nameservers": []
+      }
+    }
+  },
+  "requests": {
+    "POST /domain/domains/{domain}/livedns": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/livedns": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

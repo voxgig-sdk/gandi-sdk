@@ -1,0 +1,30 @@
+# BasicAcmePriceFlow
+
+main: kit: flow: BasicAcmePriceFlow:
+{
+  entity: "acme_price",
+  kind: "basic",
+  name: "BasicAcmePriceFlow",
+  step: [
+    {
+      i: {
+        ref: "acme_price_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "acme_price_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAcmePriceFlow"
+}

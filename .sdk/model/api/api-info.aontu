@@ -1,0 +1,34 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Gandi API documentation"
+        url: "https://api.gandi.net/docs/"
+      }
+      description: "Constructed by Voxgig from Gandi's public API documentation (https://api.gandi.net/docs/), retrieved 2026-11-18T12:39:33Z. Gandi publishes no OpenAPI definition, and this is not an official Gandi document. It aims at the whole documented v5 API: 221 operations on 126 paths across the 12 documented API sections. It carries interface facts only: paths, methods, parameter and property names, types, enums, defaults, constraints, media types, status codes and the bearer scheme. Gandi's descriptions and examples are not reproduced; each operation links to the section of Gandi's documentation that describes it. The operationIds are the documentation's own anchors. The Email API is marked deprecated, as the documentation marks it."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "bearerAuth"
+        type: "http"
+      }
+      servers: [
+        {
+          url: "https://api.gandi.net/v5"
+        }
+        {
+          url: "https://api.sandbox.gandi.net/v5"
+        }
+      ]
+      summary: "Constructed by Voxgig from Gandi's public API documentation (https://api.gandi.net/docs/), retrieved 2026-11-18T12:39:33Z."
+      title: "Gandi Public API v5"
+      version: "5.0.0"
+      website: "https://gandi.net"
+    }
+  }
+}
+

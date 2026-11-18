@@ -1,0 +1,96 @@
+{
+  "existing": {
+    "linked_zone": {
+      "LINKED_ZONE00": {
+        "created_at": "s82",
+        "default_records": false,
+        "domain_count": 132,
+        "domains": [],
+        "id": "LINKED_ZONE00",
+        "message": "s87",
+        "name": "s88",
+        "record_list": [],
+        "record_text": "s8a",
+        "records": [],
+        "sharing_space": {},
+        "status": "s8d",
+        "updated_at": "s8e"
+      },
+      "LINKED_ZONE01": {
+        "created_at": "s104",
+        "default_records": false,
+        "domain_count": 262,
+        "domains": [],
+        "id": "LINKED_ZONE01",
+        "message": "s109",
+        "name": "s10a",
+        "record_list": [],
+        "record_text": "s10c",
+        "records": [],
+        "sharing_space": {},
+        "status": "s10f",
+        "updated_at": "s110"
+      },
+      "LINKED_ZONE02": {
+        "created_at": "s186",
+        "default_records": false,
+        "domain_count": 392,
+        "domains": [],
+        "id": "LINKED_ZONE02",
+        "message": "s18b",
+        "name": "s18c",
+        "record_list": [],
+        "record_text": "s18e",
+        "records": [],
+        "sharing_space": {},
+        "status": "s191",
+        "updated_at": "s192"
+      }
+    }
+  },
+  "new": {
+    "linked_zone": {
+      "linked_zone_ref01": {
+        "created_at": "s208",
+        "default_records": false,
+        "domain_count": 522,
+        "domains": [],
+        "message": "s20d",
+        "name": "s20e",
+        "record_list": [],
+        "record_text": "s210",
+        "records": [],
+        "sharing_space": {},
+        "status": "s213",
+        "updated_at": "s214"
+      }
+    }
+  },
+  "requests": {
+    "POST /linkedzone/zones": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /linkedzone/zones": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /linkedzone/zones/{zone_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /linkedzone/zones/{zone_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /linkedzone/zones/{zone_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

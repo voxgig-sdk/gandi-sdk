@@ -1,0 +1,334 @@
+# Entity: email_forward
+
+main: kit: entity: email_forward: {
+
+  alias: field: {}
+
+  fields: {
+    destinations: {
+      h: "Destinations"
+      n: "destinations"
+      r: true
+      t: "`$ARRAY`"
+    }
+    href: {
+      h: "Href"
+      n: "href"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      syn: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    source: {
+      h: "Source"
+      n: "source"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    from: {
+      source: "source"
+    }
+    name: "id"
+    parts: [
+      "domain"
+      "source"
+    ]
+    sep: "/"
+  }
+
+  name: "email_forward"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "destinations"
+            "source"
+          ]
+          co: {
+            id: "POST /email/forwards/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/email/forwards/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "forwards"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /email/forwards/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "destination"
+                or: "destination"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "source"
+                explode: true
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "source"
+                or: "source"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/email/forwards/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "forwards"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /email/forwards/{domain}/{source}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "source"
+                or: "source"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/email/forwards/{domain}/{source}"
+          q: {
+            exist: [
+              "domain"
+              "source"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "forwards"
+            }
+            {
+              var: "domain"
+            }
+            {
+              var: "source"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "destinations"
+          ]
+          co: {
+            id: "PUT /email/forwards/{domain}/{source}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "source"
+                or: "source"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/email/forwards/{domain}/{source}"
+          q: {
+            exist: [
+              "domain"
+              "source"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "forwards"
+            }
+            {
+              var: "domain"
+            }
+            {
+              var: "source"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

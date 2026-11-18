@@ -1,0 +1,288 @@
+# Entity: acme_price
+
+main: kit: entity: acme_price: {
+
+  alias: field: {}
+
+  fields: {
+    country: {
+      h: "Country"
+      n: "country"
+      r: true
+      t: "`$STRING`"
+    }
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: true
+      t: "`$STRING`"
+    }
+    domains: {
+      h: "Domains"
+      n: "domains"
+      r: true
+      t: "`$ARRAY`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: true
+      t: "`$STRING`"
+    }
+    duration_unit: {
+      h: "Duration Unit"
+      n: "duration_unit"
+      r: true
+      t: "`$STRING`"
+    }
+    grid: {
+      h: "Grid"
+      n: "grid"
+      r: true
+      t: "`$STRING`"
+    }
+    max_duration: {
+      h: "Max Duration"
+      n: "max_duration"
+      r: true
+      t: "`$INTEGER`"
+    }
+    min_duration: {
+      h: "Min Duration"
+      n: "min_duration"
+      r: true
+      t: "`$INTEGER`"
+    }
+    price_after_taxes: {
+      h: "Price After Taxes"
+      n: "price_after_taxes"
+      r: true
+      t: "`$STRING`"
+    }
+    price_before_taxes: {
+      h: "Price Before Taxes"
+      n: "price_before_taxes"
+      r: true
+      t: "`$STRING`"
+    }
+    process: {
+      h: "Process"
+      n: "process"
+      r: true
+      t: "`$STRING`"
+    }
+    product: {
+      h: "Product"
+      n: "product"
+      r: true
+      t: "`$OBJECT`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: true
+      t: "`$STRING`"
+    }
+    tax_rate: {
+      h: "Tax Rate"
+      n: "tax_rate"
+      r: true
+      t: "`$STRING`"
+    }
+    taxes: {
+      h: "Taxes"
+      n: "taxes"
+      r: true
+      t: "`$ARRAY`"
+    }
+    validation_type: {
+      h: "Validation Type"
+      n: "validation_type"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "acme_price"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "country"
+            "currency"
+            "domains"
+            "duration"
+            "grid"
+            "process"
+            "provider"
+            "validation_type"
+          ]
+          co: {
+            id: "POST /acme/quote"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/acme/quote"
+          q: {
+            exist: [
+              "sharing_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "acme"
+            }
+            {
+              lit: "quote"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /acme/catalog"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "country"
+                or: "country"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "currency"
+                or: "currency"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "duration"
+                or: "duration"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "grid"
+                or: "grid"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "process"
+                or: "process"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "provider"
+                or: "provider"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "validation_type"
+                or: "validation_type"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/acme/catalog"
+          q: {
+            exist: [
+              "country"
+              "currency"
+              "duration"
+              "grid"
+              "process"
+              "provider"
+              "sharing_id"
+              "validation_type"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "acme"
+            }
+            {
+              lit: "catalog"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

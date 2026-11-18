@@ -1,0 +1,127 @@
+# Entity: certificate_renewal
+
+main: kit: entity: certificate_renewal: {
+
+  alias: field: {}
+
+  fields: {
+    csr: {
+      h: "Csr"
+      n: "csr"
+      r: false
+      t: "`$STRING`"
+    }
+    dcv_method: {
+      h: "Dcv Method"
+      n: "dcv_method"
+      r: false
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      t: "`$INTEGER`"
+    }
+    errors: {
+      h: "Errors"
+      n: "errors"
+      r: false
+      t: "`$ARRAY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "certificate_renewal"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "csr"
+            "dcv_method"
+            "duration"
+          ]
+          co: {
+            id: "POST /certificate/issued-certs/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "certificate_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/certificate/issued-certs/{id}"
+          q: {
+            exist: [
+              "certificate_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "certificate_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "certificate_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

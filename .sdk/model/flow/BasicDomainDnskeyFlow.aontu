@@ -1,0 +1,91 @@
+# BasicDomainDnskeyFlow
+
+main: kit: flow: BasicDomainDnskeyFlow:
+{
+  entity: "domain_dnskey",
+  kind: "basic",
+  name: "BasicDomainDnskeyFlow",
+  step: [
+    {
+      i: {
+        ref: "domain_dnskey_ref01"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        domain: "domain01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "domain_dnskey_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "domain_dnskey_ref01",
+        srcdatavar: "domain_dnskey_ref01_data",
+        suffix: "_up0",
+        textfield: "digest"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_dnskey_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "domain_dnskey_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        domain: "domain01",
+        id: "domain_dnskey01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "domain_dnskey_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainDnskeyFlow"
+}

@@ -1,0 +1,91 @@
+{
+  "existing": {
+    "domain_webredir": {
+      "DOMAIN_WEBREDIR00": {
+        "cert_status": "s64",
+        "cert_uuid": "s65",
+        "created_at": "s66",
+        "host": "s67",
+        "message": "s68",
+        "override": false,
+        "protocol": "s6a",
+        "type": "s6b",
+        "updated_at": "s6c",
+        "url": "s6d",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_WEBREDIR00"
+      },
+      "DOMAIN_WEBREDIR01": {
+        "cert_status": "sc8",
+        "cert_uuid": "sc9",
+        "created_at": "sca",
+        "host": "scb",
+        "message": "scc",
+        "override": false,
+        "protocol": "sce",
+        "type": "scf",
+        "updated_at": "sd0",
+        "url": "sd1",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_WEBREDIR01"
+      },
+      "DOMAIN_WEBREDIR02": {
+        "cert_status": "s12c",
+        "cert_uuid": "s12d",
+        "created_at": "s12e",
+        "host": "s12f",
+        "message": "s130",
+        "override": false,
+        "protocol": "s132",
+        "type": "s133",
+        "updated_at": "s134",
+        "url": "s135",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_WEBREDIR02"
+      }
+    }
+  },
+  "new": {
+    "domain_webredir": {
+      "domain_webredir_ref01": {
+        "cert_status": "s190",
+        "cert_uuid": "s191",
+        "created_at": "s192",
+        "host": "s193",
+        "message": "s194",
+        "override": false,
+        "protocol": "s196",
+        "type": "s197",
+        "updated_at": "s198",
+        "url": "s199"
+      }
+    }
+  },
+  "requests": {
+    "POST /domain/domains/{domain}/webredirs": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/webredirs": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/webredirs/{host}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /domain/domains/{domain}/webredirs/{host}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /domain/domains/{domain}/webredirs/{host}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

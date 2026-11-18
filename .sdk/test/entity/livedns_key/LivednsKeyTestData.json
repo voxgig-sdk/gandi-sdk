@@ -1,0 +1,96 @@
+{
+  "existing": {
+    "livedns_key": {
+      "LIVEDNS_KEY00": {
+        "algorithm": 130,
+        "algorithm_name": "s83",
+        "deleted": true,
+        "ds": "s85",
+        "fingerprint": "s86",
+        "flags": 135,
+        "fqdn": "s88",
+        "id": "LIVEDNS_KEY00",
+        "key_href": "s8a",
+        "message": "s8b",
+        "public_key": "s8c",
+        "status": "s8d",
+        "tag": 142
+      },
+      "LIVEDNS_KEY01": {
+        "algorithm": 260,
+        "algorithm_name": "s105",
+        "deleted": true,
+        "ds": "s107",
+        "fingerprint": "s108",
+        "flags": 265,
+        "fqdn": "s10a",
+        "id": "LIVEDNS_KEY01",
+        "key_href": "s10c",
+        "message": "s10d",
+        "public_key": "s10e",
+        "status": "s10f",
+        "tag": 272
+      },
+      "LIVEDNS_KEY02": {
+        "algorithm": 390,
+        "algorithm_name": "s187",
+        "deleted": true,
+        "ds": "s189",
+        "fingerprint": "s18a",
+        "flags": 395,
+        "fqdn": "s18c",
+        "id": "LIVEDNS_KEY02",
+        "key_href": "s18e",
+        "message": "s18f",
+        "public_key": "s190",
+        "status": "s191",
+        "tag": 402
+      }
+    }
+  },
+  "new": {
+    "livedns_key": {
+      "livedns_key_ref01": {
+        "algorithm": 520,
+        "algorithm_name": "s209",
+        "deleted": true,
+        "ds": "s20b",
+        "fingerprint": "s20c",
+        "flags": 525,
+        "fqdn": "s20e",
+        "key_href": "s210",
+        "message": "s211",
+        "public_key": "s212",
+        "status": "s213",
+        "tag": 532
+      }
+    }
+  },
+  "requests": {
+    "POST /livedns/domains/{fqdn}/keys": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains/{fqdn}/keys": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains/{fqdn}/keys/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /livedns/domains/{fqdn}/keys/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /livedns/domains/{fqdn}/keys/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

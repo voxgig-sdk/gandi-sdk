@@ -1,0 +1,51 @@
+{
+  "existing": {
+    "certificate_renewal": {
+      "CERTIFICATE_RENEWAL00": {
+        "csr": "s32",
+        "dcv_method": "s33",
+        "duration": 52,
+        "errors": [],
+        "status": "s36",
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_RENEWAL00"
+      },
+      "CERTIFICATE_RENEWAL01": {
+        "csr": "s64",
+        "dcv_method": "s65",
+        "duration": 102,
+        "errors": [],
+        "status": "s68",
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_RENEWAL01"
+      },
+      "CERTIFICATE_RENEWAL02": {
+        "csr": "s96",
+        "dcv_method": "s97",
+        "duration": 152,
+        "errors": [],
+        "status": "s9a",
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_RENEWAL02"
+      }
+    }
+  },
+  "new": {
+    "certificate_renewal": {
+      "certificate_renewal_ref01": {
+        "csr": "sc8",
+        "dcv_method": "sc9",
+        "duration": 202,
+        "errors": [],
+        "status": "scc"
+      }
+    }
+  },
+  "requests": {
+    "POST /certificate/issued-certs/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

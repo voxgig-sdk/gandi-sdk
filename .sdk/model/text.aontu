@@ -1,0 +1,146 @@
+# README wording — YOURS. The scaffold creates this file once and never
+# overwrites it.
+#
+# A slot set here words the generated README files over the same slot of
+# main.kit.info, where apidef puts the spec's metadata. A slot left out keeps
+# the spec's wording. Text edited into a generated README is lost on the next
+# generate; text here is not.
+#
+#   main: kit: text: {
+#     tagline: 'Payments, invoices and refunds from TypeScript, Go and Python.'
+#     summary: 'Acme Pay is a payments API for marketplaces.'
+#     entity_desc: { invoice: 'A bill sent to a customer.' }
+#   }
+#
+# The slots are title, summary, website, tagline, about_md, homepage,
+# docs_url, meta_source and entity_desc. Any other key fails the model build.
+
+# Gandi publishes no OpenAPI definition; this SDK's was constructed from
+# Gandi's documentation and carries interface facts only (.sdk/def/README.md).
+# Every description below is Voxgig's own wording, not Gandi's.
+main: kit: text: {
+  title: 'Gandi API'
+  tagline: "Gandi API client, generated from an OpenAPI definition constructed from Gandi's API documentation."
+  summary: "Gandi's v5 API manages domain names, LiveDNS zones, SSL certificates, ACME subscriptions, mailboxes, web hosting and organizations at Gandi, the domain registrar and host."
+  website: 'https://www.gandi.net'
+  docs_url: 'https://api.gandi.net/docs/'
+  about_md: `**Credentials.** Every call takes a Gandi Personal Access Token, which starts \`pat_\`.
+Create one in the Organizations section of Gandi's admin site (admin.gandi.net). Pass it as
+the \`apikey\` option and the SDK sends it as \`Authorization: Bearer <token>\`. The base URL
+is \`https://api.gandi.net/v5\`; to work against Gandi's sandbox, which has its own accounts
+and tokens, pass \`base: 'https://api.sandbox.gandi.net/v5'\`. The CLI and the MCP server read
+the token from \`GANDI_APIKEY\`, so an agent's MCP config sets it under \`env\`:
+\`"env": { "GANDI_APIKEY": "pat_..." }\`.
+
+\`\`\`ts
+import { GandiSDK } from '@voxgig-sdk/gandi-sdk'
+
+const client = new GandiSDK({ apikey: process.env.GANDI_APIKEY ?? '' })
+
+// Your domains.
+const domains = await client.Domain().list()
+for (const domain of domains) {
+  console.log(domain.data().fqdn)
+}
+
+// The DNS records of one of them, on LiveDNS.
+const records = await client.LivednsRecord().list({ fqdn: 'example.com' })
+console.log(records.length)
+
+// A new A record for www.
+await client.LivednsRecord().create({
+  fqdn: 'example.com',
+  rrset_name: 'www',
+  rrset_type: 'A',
+  rrset_ttl: 300,
+  rrset_values: ['192.0.2.1'],
+})
+\`\`\`
+
+**Names.** A domain is named by its \`fqdn\` throughout: \`Domain().load({ fqdn })\`,
+\`LivednsDomain().load({ fqdn })\`. The resources below a domain at the registry take
+Gandi's own \`domain\` parameter, as in \`DomainHost().list({ domain })\`. A DNS record is
+named by \`fqdn\`, \`rrset_name\` and \`rrset_type\`, a mailbox by its \`address\`.
+
+**Actions.** A verb on a resource is an action, selected with \`$action\` in the request data.
+Resetting a domain's authorization code is \`$action: 'authinfo'\` on a \`Domain\` update, and
+\`autorenew\`, \`status\` (the transfer lock), \`reachability\`, \`renew\`, \`restore\` and
+\`transferout\` work the same way. Operations on a whole collection are always actions, so that
+leaving a parameter out can never select them: replacing or deleting every record of a zone is
+\`$action: 'records'\` on \`LivednsDomain\`, every record of one name is \`$action: 'name'\` on
+\`LivednsRecord\`, and renewing every mailbox of a domain in the Email API is
+\`$action: 'renew_all'\`.
+
+**Scope.** Every one of the 221 operations in the twelve sections of Gandi's v5 documentation
+is here, as 60 entities named after Gandi's own resources. The Email API, which Gandi marks
+deprecated, is included as \`Email*\`; its replacement is \`Mailbox*\`. Some operations cost
+money (registering, renewing or transferring a domain, buying a mailbox or a certificate), as
+Gandi's documentation warns. For what each field means, follow the links to Gandi's
+documentation.
+
+**Not yet run against Gandi.** Gandi publishes no OpenAPI definition, so this SDK's was
+constructed from Gandi's API documentation (\`.sdk/def/README.md\`). Every example in that
+documentation was checked against it, but no request has yet been sent to Gandi's API.`
+  entity_desc: {
+    access_token: 'Renew the Personal Access Token the call is made with.'
+    acme_account: "The ACME accounts of a subscription: list them or get one."
+    acme_domain: "The domains of an ACME subscription: list them or get one."
+    acme_price: 'ACME catalog prices, and a quote for a list of domains (create).'
+    acme_subscription: "An ACME subscription: list, create, get, rename or delete one, or change its domains (`domains`)."
+    billing_info: "Billing information: prepaid balance and price grid, for your account or an organization."
+    billing_price: 'Catalog prices for one product type.'
+    certificate_dcv: "A certificate's domain control validation: resend it (update) or change its method (patch)."
+    certificate_package: 'The certificate packages on offer: list them or get one.'
+    certificate_pem: 'An intermediate certificate, as PEM text, by type or by file name.'
+    certificate_renewal: 'Renew an issued certificate.'
+    certificate_tag: "A certificate's tags: list, add, replace, change or remove them."
+    comment: 'The comment on a Gandi product, by the product id: get, set or delete it.'
+    domain: "A registered domain: list, register, get or delete one, and its actions authinfo, autorenew, status, reachability, createstatus, renew, restore and transferout."
+    domain_availability: 'Whether a domain name is available, with its products, prices and taxes.'
+    domain_change_owner: "A change of a domain's owner: start it, follow it, or resend its emails (`foa`)."
+    domain_claim: 'Trademark claims on a domain name: get them, or accept them.'
+    domain_contact: "A domain's contacts: get or update them, or change its owner (`owner`)."
+    domain_dnskey: "A domain's DNSSEC keys at the registry: list, add or delete one, or replace them all (update)."
+    domain_dnssec: "DNSSEC for a domain on LiveDNS: get its status, turn it on or turn it off."
+    domain_host: "A domain's glue records, by host name: list, create, get, update or delete one."
+    domain_livedns: "A domain's LiveDNS status, and switching the domain to LiveDNS (create)."
+    domain_nameserver: "A domain's nameservers: list them or replace them."
+    domain_tag: "A domain's tags: list, add, replace, change or remove them."
+    domain_transfer: 'A transfer of a domain to Gandi: start it, follow it, relaunch it, update its authorization code (`authinfo`), check it is possible (`available`) or resend its emails (`foa`).'
+    domain_webredir: "A domain's web redirections, by host: list, create, get, update or delete one."
+    email_forward: 'A forwarding address in the deprecated Email API, per domain: list, create, update or delete one.'
+    email_mailbox: 'A mailbox in the deprecated Email API, per domain: list, create, get, update or delete one, purge it (`purge`), renew it (`renew`) or renew them all (`renew_all`).'
+    email_migration: "A domain's migration from the Email API to Mailbox: get its details or start it."
+    email_offer: "A domain's email offer in the deprecated Email API: get or update it."
+    email_slot: 'A mailbox slot in the deprecated Email API, per domain: list, create, get or refund one.'
+    hosting_application: 'The applications Web Hosting can run: list them or get one.'
+    hosting_instance: 'A Web Hosting instance: list, create, get, update or delete one, act on it (`action`) or get its usage (`usage`).'
+    hosting_vhost: "A Web Hosting instance's virtual hosts, by fqdn: list, create, get, update or delete one, or purge its cache (`cache`)."
+    issued_certificate: 'An SSL certificate: list, order, get, update or revoke one, retrieve it as PEM (`crt`), or get DCV parameters (`dcv_params`).'
+    linked_zone: 'A linked zone: list, create, get, update or delete one.'
+    linked_zone_deployment: 'Deploy or undeploy a linked zone.'
+    linked_zone_domain: 'The domains using linked zones: list them, get one, link domains to a zone (`link`) or unlink them (`unlink`).'
+    linked_zone_task: 'Linked zone tasks: list them or get one.'
+    livedns_axfr_slave: "A zone's secondary servers, by IP address: list, add or remove one."
+    livedns_axfr_tsig: "The TSIG keys a zone uses for transfers: list them, associate one or remove one."
+    livedns_domain: 'A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`).'
+    livedns_key: "A zone's DNSSEC keys on LiveDNS: list, create, get, undelete (update) or delete one."
+    livedns_nameserver: "A zone's nameservers, or the generic nameservers LiveDNS would give it (`generic`)."
+    livedns_record: 'A DNS record set, by fqdn, rrset_name and rrset_type: list, create, get, replace, update or delete one; every record of one name (`name`); or a verification record (`verification`).'
+    livedns_rrtype: 'The DNS record types LiveDNS supports.'
+    livedns_snapshot: "A zone's snapshots: list, take, get, rename or delete one."
+    livedns_tsig_key: 'A TSIG key for zone transfers: list, create or get one, or its configuration for a DNS server (`config`).'
+    mailbox: 'A mailbox, by address: list, create, get, update or delete one, or renew it (`renew`).'
+    mailbox_domain: "The domains used for mail: list them, get one's DNS configuration, or check it (`validate`)."
+    mailbox_forward: 'A forwarding address: list, create, update or delete one.'
+    mailbox_product: 'The mailbox products on offer, and buying one (create).'
+    mailbox_quota: 'Mailboxes available and in use, per offer.'
+    mailbox_slot: 'A mailbox slot: list them or get one.'
+    organization: 'An organization: list, create, get, update or delete one.'
+    organization_customer: "An organization's customers: list, create, get, update or delete one."
+    template: 'A configuration template: list, create, get, update or delete one.'
+    template_dispatch: 'Applying a template (create), and the dispatch that results.'
+    tld: 'The top-level domains on offer: list them or get one.'
+    user: 'The user the token belongs to.'
+  }
+}

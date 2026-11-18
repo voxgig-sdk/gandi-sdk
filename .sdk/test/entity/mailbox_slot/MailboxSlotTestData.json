@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "mailbox_slot": {
+      "MAILBOX_SLOT00": {
+        "autorenew": {},
+        "config": {},
+        "expires_at": "s52",
+        "last_paid_duration": 83,
+        "refund_info": {},
+        "refundable": false,
+        "uuid": "s56",
+        "webhosting_pack": false,
+        "id": "MAILBOX_SLOT00"
+      },
+      "MAILBOX_SLOT01": {
+        "autorenew": {},
+        "config": {},
+        "expires_at": "sa2",
+        "last_paid_duration": 163,
+        "refund_info": {},
+        "refundable": false,
+        "uuid": "sa6",
+        "webhosting_pack": false,
+        "id": "MAILBOX_SLOT01"
+      },
+      "MAILBOX_SLOT02": {
+        "autorenew": {},
+        "config": {},
+        "expires_at": "sf2",
+        "last_paid_duration": 243,
+        "refund_info": {},
+        "refundable": false,
+        "uuid": "sf6",
+        "webhosting_pack": false,
+        "id": "MAILBOX_SLOT02"
+      }
+    }
+  },
+  "new": {
+    "mailbox_slot": {
+      "mailbox_slot_ref01": {
+        "autorenew": {},
+        "config": {},
+        "expires_at": "s142",
+        "last_paid_duration": 323,
+        "refund_info": {},
+        "refundable": false,
+        "uuid": "s146",
+        "webhosting_pack": false
+      }
+    }
+  },
+  "requests": {
+    "GET /mailbox/slots": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /mailbox/slots/{slot_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

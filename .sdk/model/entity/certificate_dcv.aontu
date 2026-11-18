@@ -1,0 +1,167 @@
+# Entity: certificate_dcv
+
+main: kit: entity: certificate_dcv: {
+
+  alias: field: {}
+
+  fields: {
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    method: {
+      h: "Method"
+      n: "method"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "certificate_dcv"
+  op: {
+    patch: {
+      name: "patch"
+      points: [
+        {
+          bf: [
+            "method"
+          ]
+          co: {
+            id: "PATCH /certificate/issued-certs/{id}/dcv"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "certificate_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/certificate/issued-certs/{id}/dcv"
+          q: {
+            exist: [
+              "certificate_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "certificate_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "certificate_id"
+            }
+            {
+              lit: "dcv"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /certificate/issued-certs/{id}/dcv"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "certificate_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/certificate/issued-certs/{id}/dcv"
+          q: {
+            exist: [
+              "certificate_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "certificate_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "certificate_id"
+            }
+            {
+              lit: "dcv"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,3067 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HostingInstance | Gandi API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Gandi API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/gandi-sdk">voxgig-sdk/gandi-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Gandi API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_token.html">AccessToken</a>
+<a href="../api/acme_account.html">AcmeAccount</a>
+<a href="../api/acme_domain.html">AcmeDomain</a>
+<a href="../api/acme_price.html">AcmePrice</a>
+<a href="../api/acme_subscription.html">AcmeSubscription</a>
+<a href="../api/billing_info.html">BillingInfo</a>
+<a href="../api/billing_price.html">BillingPrice</a>
+<a href="../api/certificate_dcv.html">CertificateDcv</a>
+<a href="../api/certificate_package.html">CertificatePackage</a>
+<a href="../api/certificate_pem.html">CertificatePem</a>
+<a href="../api/certificate_renewal.html">CertificateRenewal</a>
+<a href="../api/certificate_tag.html">CertificateTag</a>
+<a href="../api/comment.html">Comment</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domain_availability.html">DomainAvailability</a>
+<a href="../api/domain_change_owner.html">DomainChangeOwner</a>
+<a href="../api/domain_claim.html">DomainClaim</a>
+<a href="../api/domain_contact.html">DomainContact</a>
+<a href="../api/domain_dnskey.html">DomainDnskey</a>
+<a href="../api/domain_dnssec.html">DomainDnssec</a>
+<a href="../api/domain_host.html">DomainHost</a>
+<a href="../api/domain_livedns.html">DomainLivedns</a>
+<a href="../api/domain_nameserver.html">DomainNameserver</a>
+<a href="../api/domain_tag.html">DomainTag</a>
+<a href="../api/domain_transfer.html">DomainTransfer</a>
+<a href="../api/domain_webredir.html">DomainWebredir</a>
+<a href="../api/email_forward.html">EmailForward</a>
+<a href="../api/email_mailbox.html">EmailMailbox</a>
+<a href="../api/email_migration.html">EmailMigration</a>
+<a href="../api/email_offer.html">EmailOffer</a>
+<a href="../api/email_slot.html">EmailSlot</a>
+<a href="../api/hosting_application.html">HostingApplication</a>
+<a aria-current="page" href="../api/hosting_instance.html">HostingInstance</a><div class="nav-sections"><a class="nav-section" href="#post-simplehostinginstancesinstance_idaction">POST /simplehosting/instances/{instance_id}/action</a>
+<a class="nav-section" href="#post-simplehostinginstances">POST /simplehosting/instances</a>
+<a class="nav-section" href="#get-simplehostinginstances">GET /simplehosting/instances</a>
+<a class="nav-section" href="#get-simplehostinginstancesinstance_id">GET /simplehosting/instances/{instance_id}</a>
+<a class="nav-section" href="#get-simplehostinginstancesinstance_idusage">GET /simplehosting/instances/{instance_id}/usage</a>
+<a class="nav-section" href="#delete-simplehostinginstancesinstance_id">DELETE /simplehosting/instances/{instance_id}</a>
+<a class="nav-section" href="#patch-simplehostinginstancesinstance_id">PATCH /simplehosting/instances/{instance_id}</a></div>
+<a href="../api/hosting_vhost.html">HostingVhost</a>
+<a href="../api/issued_certificate.html">IssuedCertificate</a>
+<a href="../api/linked_zone.html">LinkedZone</a>
+<a href="../api/linked_zone_deployment.html">LinkedZoneDeployment</a>
+<a href="../api/linked_zone_domain.html">LinkedZoneDomain</a>
+<a href="../api/linked_zone_task.html">LinkedZoneTask</a>
+<a href="../api/livedns_axfr_slave.html">LivednsAxfrSlave</a>
+<a href="../api/livedns_axfr_tsig.html">LivednsAxfrTsig</a>
+<a href="../api/livedns_domain.html">LivednsDomain</a>
+<a href="../api/livedns_key.html">LivednsKey</a>
+<a href="../api/livedns_nameserver.html">LivednsNameserver</a>
+<a href="../api/livedns_record.html">LivednsRecord</a>
+<a href="../api/livedns_rrtype.html">LivednsRrtype</a>
+<a href="../api/livedns_snapshot.html">LivednsSnapshot</a>
+<a href="../api/livedns_tsig_key.html">LivednsTsigKey</a>
+<a href="../api/mailbox.html">Mailbox</a>
+<a href="../api/mailbox_domain.html">MailboxDomain</a>
+<a href="../api/mailbox_forward.html">MailboxForward</a>
+<a href="../api/mailbox_product.html">MailboxProduct</a>
+<a href="../api/mailbox_quota.html">MailboxQuota</a>
+<a href="../api/mailbox_slot.html">MailboxSlot</a>
+<a href="../api/organization.html">Organization</a>
+<a href="../api/organization_customer.html">OrganizationCustomer</a>
+<a href="../api/template.html">Template</a>
+<a href="../api/template_dispatch.html">TemplateDispatch</a>
+<a href="../api/tld.html">Tld</a>
+<a href="../api/user.html">User</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/rb.html">Ruby</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/secrets.html">Secrets</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="hostinginstance">HostingInstance</h1>
+<p>A Web Hosting instance: list, create, get, update or delete one, act on it (<code>action</code>) or get its usage (<code>usage</code>).</p>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-simplehostinginstancesinstance_idaction"><code>/simplehosting/instances/{instance_id}/action</code></a></td>
+<td><code>create</code></td>
+<td>Accepted</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-simplehostinginstances"><code>/simplehosting/instances</code></a></td>
+<td><code>create</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-simplehostinginstances"><code>/simplehosting/instances</code></a></td>
+<td><code>list</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-simplehostinginstancesinstance_id"><code>/simplehosting/instances/{instance_id}</code></a></td>
+<td><code>load</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-simplehostinginstancesinstance_idusage"><code>/simplehosting/instances/{instance_id}/usage</code></a></td>
+<td><code>load</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-simplehostinginstancesinstance_id"><code>/simplehosting/instances/{instance_id}</code></a></td>
+<td><code>remove</code></td>
+<td>No Content</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-simplehostinginstancesinstance_id"><code>/simplehosting/instances/{instance_id}</code></a></td>
+<td><code>update</code></td>
+<td>Accepted</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">hosting_instances, err := client.HostingInstance(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(hosting_instances)
+hosting_instance, err := client.HostingInstance(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(hosting_instance)
+created, err := client.HostingInstance(nil).Create(map[string]any{&quot;authentication&quot;: map[string]any{}, &quot;domain&quot;: &quot;example&quot;, &quot;location&quot;: &quot;example&quot;, &quot;size&quot;: &quot;example&quot;, &quot;type&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.HostingInstance(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;booster&quot;: map[string]any{}, &quot;booster_options&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.HostingInstance(nil).Remove(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local hosting_instances, err = client:HostingInstance():list()
+local hosting_instance, err = client:HostingInstance():load({ id = &quot;example_id&quot; })
+local created, err = client:HostingInstance():create({ authentication = {}, domain = &quot;example&quot;, location = &quot;example&quot;, size = &quot;example&quot;, type = {} })
+local updated, err = client:HostingInstance():update({ id = &quot;example_id&quot;, booster = {}, booster_options = {} })
+local removed, err = client:HostingInstance():remove({ id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$hosting_instances = $client-&gt;HostingInstance()-&gt;list();
+$hosting_instance = $client-&gt;HostingInstance()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;HostingInstance()-&gt;create([&quot;authentication&quot; =&gt; [], &quot;domain&quot; =&gt; &quot;example&quot;, &quot;location&quot; =&gt; &quot;example&quot;, &quot;size&quot; =&gt; &quot;example&quot;, &quot;type&quot; =&gt; []]);
+$updated = $client-&gt;HostingInstance()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;booster&quot; =&gt; [], &quot;booster_options&quot; =&gt; []]);
+$client-&gt;HostingInstance()-&gt;remove([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">hosting_instances = client.HostingInstance().list()
+hosting_instance = client.HostingInstance().load({&quot;id&quot;: &quot;example_id&quot;})
+created = client.HostingInstance().create({ &quot;authentication&quot;: {}, &quot;domain&quot;: &quot;example&quot;, &quot;location&quot;: &quot;example&quot;, &quot;size&quot;: &quot;example&quot;, &quot;type&quot;: {} })
+updated = client.HostingInstance().update({&quot;id&quot;: &quot;example_id&quot;, &quot;booster&quot;: {}, &quot;booster_options&quot;: {}})
+client.HostingInstance().remove({&quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="ruby">Ruby</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/rb.html#set-up-the-client">Ruby setup</a>, then call the operations:</p>
+<pre><code class="language-rb">hosting_instances = client.HostingInstance.list()
+hosting_instance = client.HostingInstance.load({ &quot;id&quot; =&gt; &quot;example_id&quot; })
+created = client.HostingInstance.create({ &quot;authentication&quot; =&gt; {}, &quot;domain&quot; =&gt; &quot;example&quot;, &quot;location&quot; =&gt; &quot;example&quot;, &quot;size&quot; =&gt; &quot;example&quot;, &quot;type&quot; =&gt; {} })
+updated = client.HostingInstance.update({ &quot;id&quot; =&gt; &quot;example_id&quot;, &quot;booster&quot; =&gt; {}, &quot;booster_options&quot; =&gt; {} })
+client.HostingInstance.remove({ &quot;id&quot; =&gt; &quot;example_id&quot; })
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const hosting_instances = await client.HostingInstance().list()
+const hosting_instance = await client.HostingInstance().load({ id: &quot;example_id&quot; })
+const created = await client.HostingInstance().create({ authentication: {}, domain: &quot;example&quot;, location: &quot;example&quot;, size: &quot;example&quot;, type: {} })
+const updated = await client.HostingInstance().update({ id: &quot;example_id&quot;, booster: {}, booster_options: {} })
+await client.HostingInstance().remove({ id: &quot;example_id&quot; })
+</code></pre>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>access_information</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Access Information</td>
+</tr>
+<tr>
+<td><code>authentication</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Authentication</td>
+</tr>
+<tr>
+<td><code>autorenew</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Autorenew</td>
+</tr>
+<tr>
+<td><code>available_upgrade</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Available Upgrade</td>
+</tr>
+<tr>
+<td><code>booster</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Booster</td>
+</tr>
+<tr>
+<td><code>booster_options</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Booster Options</td>
+</tr>
+<tr>
+<td><code>compatible_applications</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Compatible Applications</td>
+</tr>
+<tr>
+<td><code>console</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Console</td>
+</tr>
+<tr>
+<td><code>cpu</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td>Cpu</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Created At</td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Database</td>
+</tr>
+<tr>
+<td><code>datacenter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Datacenter</td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Domain</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Duration</td>
+</tr>
+<tr>
+<td><code>duration_unit</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Duration Unit</td>
+</tr>
+<tr>
+<td><code>errors</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Errors</td>
+</tr>
+<tr>
+<td><code>expire_at</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Expire At</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Id</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Language</td>
+</tr>
+<tr>
+<td><code>language_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Language Id</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Location</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Message</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Password</td>
+</tr>
+<tr>
+<td><code>password_updated_at</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Password Updated At</td>
+</tr>
+<tr>
+<td><code>ram</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Ram</td>
+</tr>
+<tr>
+<td><code>sharing_space</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Sharing Space</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Size</td>
+</tr>
+<tr>
+<td><code>snapshot_enabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Snapshot Enabled</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Status</td>
+</tr>
+<tr>
+<td><code>storage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Storage</td>
+</tr>
+<tr>
+<td><code>storage_additional_size</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Storage Additional Size</td>
+</tr>
+<tr>
+<td><code>subscription_cancelled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Subscription Cancelled</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Type</td>
+</tr>
+<tr>
+<td><code>upgrade_to</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Upgrade To</td>
+</tr>
+<tr>
+<td><code>vhosts</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Vhosts</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-simplehostinginstancesinstance_idaction" class="operation" data-method="post"><code>POST</code> /simplehosting/instances/{instance_id}/action</h3>
+<p>Operation ID: <code>postSimplehostingInstancesInstanceIdAction</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>enum: restart, console, reset_database_password</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="202-accepted" class="status" data-status="2xx">202: Accepted</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="204-no-content" class="status" data-status="2xx">204: No Content</h5>
+<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-simplehostinginstances" class="operation" data-method="post"><code>POST</code> /simplehosting/instances</h3>
+<p>Operation ID: <code>postSimplehostingInstances</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sharing_id</code></td>
+<td><code>query</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Dry-Run</code></td>
+<td><code>header</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>authentication</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>authentication.keys</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>authentication.password</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>authentication.ssh_keys</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>autorenew</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.brand_number</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.city</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.country</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.data_obfuscated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.extra_parameters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.family</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.fax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.given</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.jo_announce_number</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.jo_announce_page</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.jo_declaration_date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.jo_publication_date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.lang</code></td>
+<td><code>enum: en, es, fr, ja, zh-hans, zh-hant</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.mail_obfuscated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.mobile</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.orgname</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.phone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.siren</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.streetaddr</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.type</code></td>
+<td><code>enum: individual, company, association, publicbody</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.validation</code></td>
+<td><code>enum: pending, done, failed, deleted, none</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.admin.zip</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.brand_number</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.city</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.country</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.data_obfuscated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.extra_parameters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.family</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.fax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.given</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.jo_announce_number</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.jo_announce_page</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.jo_declaration_date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.jo_publication_date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.lang</code></td>
+<td><code>enum: en, es, fr, ja, zh-hans, zh-hant</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.mail_obfuscated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.mobile</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.orgname</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.phone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.siren</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.streetaddr</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.type</code></td>
+<td><code>enum: individual, company, association, publicbody</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.validation</code></td>
+<td><code>enum: pending, done, failed, deleted, none</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.bill.zip</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.extra_parameters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.fqdn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.lang</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.brand_number</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.city</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.country</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.data_obfuscated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.extra_parameters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.family</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.fax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.given</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.jo_announce_number</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.jo_announce_page</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.jo_declaration_date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.jo_publication_date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.lang</code></td>
+<td><code>enum: en, es, fr, ja, zh-hans, zh-hant</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.mail_obfuscated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.mobile</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.orgname</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.phone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.siren</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.streetaddr</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.type</code></td>
+<td><code>enum: individual, company, association, publicbody</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.validation</code></td>
+<td><code>enum: pending, done, failed, deleted, none</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.owner.zip</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.brand_number</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.city</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.country</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.data_obfuscated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.email</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.extra_parameters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.family</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.fax</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.given</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.jo_announce_number</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.jo_announce_page</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.jo_declaration_date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.jo_publication_date</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.lang</code></td>
+<td><code>enum: en, es, fr, ja, zh-hans, zh-hant</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.mail_obfuscated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.mobile</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.orgname</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.phone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.siren</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.streetaddr</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.type</code></td>
+<td><code>enum: individual, company, association, publicbody</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.validation</code></td>
+<td><code>enum: pending, done, failed, deleted, none</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain.tech.zip</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>duration_unit</code></td>
+<td><code>enum: m</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>enum: FR, LU</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>enum: starter, advanced, pro, business</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>snapshot_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage_additional_size</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type.database</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type.database.name</code></td>
+<td><code>enum: mysql, pgsql</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type.database.version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type.language</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type.language.name</code></td>
+<td><code>enum: php, python, nodejs, ruby</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type.language.version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].application</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].application.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].application.parameters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].fqdn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].https_strategy</code></td>
+<td><code>enum: HTTP_only, allow_HTTP_and_HTTPS, redirect_HTTP_to_HTTPS</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].linked_dns_zone</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].linked_dns_zone.allow_alteration</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].linked_dns_zone.allow_alteration_override</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].with_free_ssl</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-ok" class="status" data-status="2xx">200: OK</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].description</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].location</code></td>
+<td><code>enum: header, path, querystring, body</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: success, error</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="202-accepted-1" class="status" data-status="2xx">202: Accepted</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-1" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-1" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-simplehostinginstances" class="operation" data-method="get"><code>GET</code> /simplehosting/instances</h3>
+<p>Operation ID: <code>getSimplehostingInstances</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fqdn</code></td>
+<td><code>query</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>query</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><code>query</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td><code>query</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sharing_id</code></td>
+<td><code>query</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>query</code></td>
+<td><code>enum: s, s+, m, l, xl, xxl, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sort_by</code></td>
+<td><code>query</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>query</code></td>
+<td><code>enum: waiting_bill, being_created, active, paused, locked, being_deleted</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-ok-1" class="status" data-status="2xx">200: OK</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].autorenew</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].autorenew.duration</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].autorenew.duration_type</code></td>
+<td><code>enum: m</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].available_upgrade</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].created_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].database</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].database.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].database.status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].database.version</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].datacenter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].datacenter.code</code></td>
+<td><code>enum: FR-SD3, FR-SD5, FR-SD6, LU-BI1</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].datacenter.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].datacenter.region</code></td>
+<td><code>enum: FR, LU</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].expire_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].language</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].language.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].language.single_application</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].language.status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].language.version</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].password_updated_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].sharing_space</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].sharing_space.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].sharing_space.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].size</code></td>
+<td><code>enum: s, s+, m, l, xl, xxl, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].snapshot_enabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].status</code></td>
+<td><code>enum: waiting_bill, being_created, active, paused, locked, being_deleted</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.additional</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.additional.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.additional.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.base</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.base.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.base.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.total</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.total.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].storage.total.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].subscription_cancelled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-2" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-2" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-simplehostinginstancesinstance_id" class="operation" data-method="get"><code>GET</code> /simplehosting/instances/{instance_id}</h3>
+<p>Operation ID: <code>getSimplehostingInstancesInstanceId</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-ok-2" class="status" data-status="2xx">200: OK</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>access_information</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.admin_url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.database</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.database.admins</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.database.admins[].type</code></td>
+<td><code>enum: phpMyAdmin, phpPgAdmin, Adminer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.database.admins[].url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.database.admins[].username</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.database.host</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.database.port</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.database.socket</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.sftp</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.sftp.server</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.sftp.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access_information.user</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>autorenew</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>autorenew.duration</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>autorenew.duration_type</code></td>
+<td><code>enum: m</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>available_upgrade</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current.cpu_override</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current.created_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current.expires_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current.ram_override</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current.ram_override.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current.ram_override.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current.size_override</code></td>
+<td><code>enum: s, s+, m, l, xl, xxl, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.current.status</code></td>
+<td><code>enum: being_created, active, being_deleted</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next.available</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next.available_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next.cooldown_days</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next.default_cpu_override</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next.default_ram_override</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next.default_ram_override.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next.default_ram_override.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster.next.duration_days</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>compatible_applications</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>compatible_applications[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>compatible_applications[].parameters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>console</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>console.enabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>console.url</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>cpu</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>database.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>database.status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>database.version</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datacenter</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datacenter.code</code></td>
+<td><code>enum: FR-SD3, FR-SD5, FR-SD6, LU-BI1</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datacenter.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>datacenter.region</code></td>
+<td><code>enum: FR, LU</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>expire_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>language.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>language.single_application</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>language.status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>language.version</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>password_updated_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ram</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ram.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ram.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sharing_space</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sharing_space.id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sharing_space.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>enum: s, s+, m, l, xl, xxl, ...</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>snapshot_enabled</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum: waiting_bill, being_created, active, paused, locked, being_deleted</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.additional</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.additional.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.additional.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.base</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.base.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.base.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.total</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.total.unit</code></td>
+<td><code>enum: MB, GB</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage.total.value</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>subscription_cancelled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>upgrade_to</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>upgrade_to[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>upgrade_to[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>upgrade_to[].type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>upgrade_to[].version</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].fqdn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>vhosts[].href</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-3" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-3" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-simplehostinginstancesinstance_idusage" class="operation" data-method="get"><code>GET</code> /simplehosting/instances/{instance_id}/usage</h3>
+<p>Operation ID: <code>getSimplehostingInstancesInstanceIdUsage</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-ok-3" class="status" data-status="2xx">200: OK</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disk_size_bytes</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>disk_used_bytes</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-4" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-4" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="remove">remove</h2>
+<h3 id="delete-simplehostinginstancesinstance_id" class="operation" data-method="delete"><code>DELETE</code> /simplehosting/instances/{instance_id}</h3>
+<p>Operation ID: <code>deleteSimplehostingInstancesInstanceId</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="204-no-content-1" class="status" data-status="2xx">204: No Content</h5>
+<h5 id="401-unauthorized-5" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-5" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="update">update</h2>
+<h3 id="patch-simplehostinginstancesinstance_id" class="operation" data-method="patch"><code>PATCH</code> /simplehosting/instances/{instance_id}</h3>
+<p>Operation ID: <code>patchSimplehostingInstancesInstanceId</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>booster</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster_options</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>booster_options.size</code></td>
+<td><code>enum: s, s+, m, l, xl, xxl, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>language_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>enum: s+, m, l, xxl</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>snapshot_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>storage_additional_size</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-6">Responses</h4>
+<h5 id="202-accepted-2" class="status" data-status="2xx">202: Accepted</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-6" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-6" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

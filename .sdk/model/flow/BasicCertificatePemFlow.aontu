@@ -1,0 +1,32 @@
+# BasicCertificatePemFlow
+
+main: kit: flow: BasicCertificatePemFlow:
+{
+  entity: "certificate_pem",
+  kind: "basic",
+  name: "BasicCertificatePemFlow",
+  step: [
+    {
+      i: {
+        ref: "certificate_pem_ref01",
+        srcdatavar: "certificate_pem_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "certificate_pem01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-certificate_pem_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCertificatePemFlow"
+}

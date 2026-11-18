@@ -1,0 +1,49 @@
+# Entity: livedns_rrtype
+
+main: kit: entity: livedns_rrtype: {
+
+  alias: field: {}
+
+  name: "livedns_rrtype"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /livedns/dns/rrtypes"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/livedns/dns/rrtypes"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "dns"
+            }
+            {
+              lit: "rrtypes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

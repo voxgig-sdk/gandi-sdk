@@ -1,0 +1,62 @@
+{
+  "existing": {
+    "email_forward": {
+      "EMAIL_FORWARD00": {
+        "destinations": [],
+        "href": "s33",
+        "id": "EMAIL_FORWARD00",
+        "message": "s35",
+        "source": "s36",
+        "domain": "DOMAIN01"
+      },
+      "EMAIL_FORWARD01": {
+        "destinations": [],
+        "href": "s65",
+        "id": "EMAIL_FORWARD01",
+        "message": "s67",
+        "source": "s68",
+        "domain": "DOMAIN01"
+      },
+      "EMAIL_FORWARD02": {
+        "destinations": [],
+        "href": "s97",
+        "id": "EMAIL_FORWARD02",
+        "message": "s99",
+        "source": "s9a",
+        "domain": "DOMAIN01"
+      }
+    }
+  },
+  "new": {
+    "email_forward": {
+      "email_forward_ref01": {
+        "destinations": [],
+        "href": "sc9",
+        "message": "scb",
+        "source": "scc"
+      }
+    }
+  },
+  "requests": {
+    "POST /email/forwards/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /email/forwards/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /email/forwards/{domain}/{source}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /email/forwards/{domain}/{source}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

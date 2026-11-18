@@ -1,0 +1,100 @@
+# BasicAcmeSubscriptionFlow
+
+main: kit: flow: BasicAcmeSubscriptionFlow:
+{
+  entity: "acme_subscription",
+  kind: "basic",
+  name: "BasicAcmeSubscriptionFlow",
+  step: [
+    {
+      i: {
+        ref: "acme_subscription_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "acme_subscription_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "acme_subscription_ref01",
+        srcdatavar: "acme_subscription_ref01_data",
+        suffix: "_up0",
+        textfield: "country"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-acme_subscription_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "acme_subscription_ref01",
+        srcdatavar: "acme_subscription_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "acme_subscription01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-acme_subscription_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "acme_subscription_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "acme_subscription01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "acme_subscription_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAcmeSubscriptionFlow"
+}

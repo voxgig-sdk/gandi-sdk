@@ -1,0 +1,56 @@
+# BasicMailboxDomainFlow
+
+main: kit: flow: BasicMailboxDomainFlow:
+{
+  entity: "mailbox_domain",
+  kind: "basic",
+  name: "BasicMailboxDomainFlow",
+  step: [
+    {
+      i: {
+        ref: "mailbox_domain_ref01"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "mailbox_domain_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "mailbox_domain_ref01",
+        srcdatavar: "mailbox_domain_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "mailbox_domain01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-mailbox_domain_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMailboxDomainFlow"
+}

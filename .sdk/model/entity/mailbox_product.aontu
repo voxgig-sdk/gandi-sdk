@@ -1,0 +1,174 @@
+# Entity: mailbox_product
+
+main: kit: entity: mailbox_product: {
+
+  alias: field: {}
+
+  fields: {
+    autorenew: {
+      h: "Autorenew"
+      n: "autorenew"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    config: {
+      h: "Config"
+      n: "config"
+      r: true
+      t: "`$ARRAY`"
+    }
+    config_name: {
+      h: "Config Name"
+      n: "config_name"
+      r: true
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: true
+      t: "`$STRING`"
+    }
+    duration_month: {
+      h: "Duration Month"
+      n: "duration_month"
+      r: true
+      t: "`$INTEGER`"
+    }
+    label: {
+      h: "Label"
+      n: "label"
+      r: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    prices: {
+      h: "Prices"
+      n: "prices"
+      r: true
+      t: "`$ARRAY`"
+    }
+    quantity: {
+      h: "Quantity"
+      n: "quantity"
+      r: true
+      t: "`$INTEGER`"
+    }
+    taxes: {
+      h: "Taxes"
+      n: "taxes"
+      r: true
+      t: "`$ARRAY`"
+    }
+    uuid: {
+      h: "Uuid"
+      n: "uuid"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "mailbox_product"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "autorenew"
+            "config_name"
+            "duration_month"
+            "quantity"
+          ]
+          co: {
+            id: "POST /mailbox/products"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/mailbox/products"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "products"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /mailbox/products"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/mailbox/products"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "products"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

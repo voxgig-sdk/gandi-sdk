@@ -1,0 +1,149 @@
+{
+  "existing": {
+    "mailbox": {
+      "MAILBOX00": {
+        "address": "sf0",
+        "aliases": [],
+        "antispam": true,
+        "autorenew": {},
+        "config": {},
+        "config_name": "sf5",
+        "created_at": "sf6",
+        "data_access": false,
+        "domain_part": "sf8",
+        "duration_month": 249,
+        "email": "sfa",
+        "expires_at": "sfb",
+        "internal_domain": true,
+        "issues": [],
+        "last_paid_duration": 254,
+        "local_part": "sff",
+        "message": "s100",
+        "owner": {},
+        "password": "s102",
+        "quota": 259,
+        "quota_used": 260,
+        "responder": {},
+        "updated_at": "s106",
+        "uuid": "s107",
+        "id": "MAILBOX00"
+      },
+      "MAILBOX01": {
+        "address": "s1e0",
+        "aliases": [],
+        "antispam": true,
+        "autorenew": {},
+        "config": {},
+        "config_name": "s1e5",
+        "created_at": "s1e6",
+        "data_access": false,
+        "domain_part": "s1e8",
+        "duration_month": 489,
+        "email": "s1ea",
+        "expires_at": "s1eb",
+        "internal_domain": true,
+        "issues": [],
+        "last_paid_duration": 494,
+        "local_part": "s1ef",
+        "message": "s1f0",
+        "owner": {},
+        "password": "s1f2",
+        "quota": 499,
+        "quota_used": 500,
+        "responder": {},
+        "updated_at": "s1f6",
+        "uuid": "s1f7",
+        "id": "MAILBOX01"
+      },
+      "MAILBOX02": {
+        "address": "s2d0",
+        "aliases": [],
+        "antispam": true,
+        "autorenew": {},
+        "config": {},
+        "config_name": "s2d5",
+        "created_at": "s2d6",
+        "data_access": false,
+        "domain_part": "s2d8",
+        "duration_month": 729,
+        "email": "s2da",
+        "expires_at": "s2db",
+        "internal_domain": true,
+        "issues": [],
+        "last_paid_duration": 734,
+        "local_part": "s2df",
+        "message": "s2e0",
+        "owner": {},
+        "password": "s2e2",
+        "quota": 739,
+        "quota_used": 740,
+        "responder": {},
+        "updated_at": "s2e6",
+        "uuid": "s2e7",
+        "id": "MAILBOX02"
+      }
+    }
+  },
+  "new": {
+    "mailbox": {
+      "mailbox_ref01": {
+        "address": "s3c0",
+        "aliases": [],
+        "antispam": true,
+        "autorenew": {},
+        "config": {},
+        "config_name": "s3c5",
+        "created_at": "s3c6",
+        "data_access": false,
+        "domain_part": "s3c8",
+        "duration_month": 969,
+        "email": "s3ca",
+        "expires_at": "s3cb",
+        "internal_domain": true,
+        "issues": [],
+        "last_paid_duration": 974,
+        "local_part": "s3cf",
+        "message": "s3d0",
+        "owner": {},
+        "password": "s3d2",
+        "quota": 979,
+        "quota_used": 980,
+        "responder": {},
+        "updated_at": "s3d6",
+        "uuid": "s3d7"
+      }
+    }
+  },
+  "requests": {
+    "POST /mailbox/mailboxes/{email}/renew": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /mailbox/mailboxes": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /mailbox/mailboxes": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /mailbox/mailboxes/{email}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /mailbox/mailboxes/{email}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /mailbox/mailboxes/{email}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

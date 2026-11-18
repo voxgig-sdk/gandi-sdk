@@ -1,0 +1,75 @@
+{
+  "existing": {
+    "domain_host": {
+      "DOMAIN_HOST00": {
+        "fqdn": "s3c",
+        "fqdn_unicode": "s3d",
+        "href": "s3e",
+        "ips": [],
+        "message": "s40",
+        "name": "s41",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_HOST00"
+      },
+      "DOMAIN_HOST01": {
+        "fqdn": "s78",
+        "fqdn_unicode": "s79",
+        "href": "s7a",
+        "ips": [],
+        "message": "s7c",
+        "name": "s7d",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_HOST01"
+      },
+      "DOMAIN_HOST02": {
+        "fqdn": "sb4",
+        "fqdn_unicode": "sb5",
+        "href": "sb6",
+        "ips": [],
+        "message": "sb8",
+        "name": "sb9",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_HOST02"
+      }
+    }
+  },
+  "new": {
+    "domain_host": {
+      "domain_host_ref01": {
+        "fqdn": "sf0",
+        "fqdn_unicode": "sf1",
+        "href": "sf2",
+        "ips": [],
+        "message": "sf4",
+        "name": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "POST /domain/domains/{domain}/hosts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/hosts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/hosts/{name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /domain/domains/{domain}/hosts/{name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /domain/domains/{domain}/hosts/{name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

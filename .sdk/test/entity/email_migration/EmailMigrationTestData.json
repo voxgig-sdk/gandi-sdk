@@ -1,0 +1,88 @@
+{
+  "existing": {
+    "email_migration": {
+      "EMAIL_MIGRATION00": {
+        "available": true,
+        "currency": "s83",
+        "forward_count": 132,
+        "free_mailboxes": 133,
+        "included_mailboxes": 134,
+        "info": [],
+        "message": "s88",
+        "packmail": false,
+        "price_v1": 138,
+        "price_v2": 139,
+        "quota_v1": 140,
+        "token": "s8d",
+        "usage_v1": 142,
+        "domain": "DOMAIN01",
+        "id": "EMAIL_MIGRATION00"
+      },
+      "EMAIL_MIGRATION01": {
+        "available": true,
+        "currency": "s105",
+        "forward_count": 262,
+        "free_mailboxes": 263,
+        "included_mailboxes": 264,
+        "info": [],
+        "message": "s10a",
+        "packmail": false,
+        "price_v1": 268,
+        "price_v2": 269,
+        "quota_v1": 270,
+        "token": "s10f",
+        "usage_v1": 272,
+        "domain": "DOMAIN01",
+        "id": "EMAIL_MIGRATION01"
+      },
+      "EMAIL_MIGRATION02": {
+        "available": true,
+        "currency": "s187",
+        "forward_count": 392,
+        "free_mailboxes": 393,
+        "included_mailboxes": 394,
+        "info": [],
+        "message": "s18c",
+        "packmail": false,
+        "price_v1": 398,
+        "price_v2": 399,
+        "quota_v1": 400,
+        "token": "s191",
+        "usage_v1": 402,
+        "domain": "DOMAIN01",
+        "id": "EMAIL_MIGRATION02"
+      }
+    }
+  },
+  "new": {
+    "email_migration": {
+      "email_migration_ref01": {
+        "available": true,
+        "currency": "s209",
+        "forward_count": 522,
+        "free_mailboxes": 523,
+        "included_mailboxes": 524,
+        "info": [],
+        "message": "s20e",
+        "packmail": false,
+        "price_v1": 528,
+        "price_v2": 529,
+        "quota_v1": 530,
+        "token": "s213",
+        "usage_v1": 532
+      }
+    }
+  },
+  "requests": {
+    "POST /email/migration/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /email/migration/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

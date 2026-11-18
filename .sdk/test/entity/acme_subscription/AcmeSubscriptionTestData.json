@@ -1,0 +1,121 @@
+{
+  "existing": {
+    "acme_subscription": {
+      "ACME_SUBSCRIPTION00": {
+        "country": "saa",
+        "created_at": "sab",
+        "currency": "sac",
+        "domains": [],
+        "duration": 174,
+        "eab_hmac": "saf",
+        "eab_id": "EAB01",
+        "ends_at": "sb1",
+        "grid": "sb2",
+        "message": "sb3",
+        "name": "sb4",
+        "provider": "sb5",
+        "server_url": "sb6",
+        "status": "sb7",
+        "subscription_id": "SUBSCRIPTION01",
+        "validation_type": "sb9",
+        "years": "sba",
+        "id": "ACME_SUBSCRIPTION00"
+      },
+      "ACME_SUBSCRIPTION01": {
+        "country": "s154",
+        "created_at": "s155",
+        "currency": "s156",
+        "domains": [],
+        "duration": 344,
+        "eab_hmac": "s159",
+        "eab_id": "EAB01",
+        "ends_at": "s15b",
+        "grid": "s15c",
+        "message": "s15d",
+        "name": "s15e",
+        "provider": "s15f",
+        "server_url": "s160",
+        "status": "s161",
+        "subscription_id": "SUBSCRIPTION01",
+        "validation_type": "s163",
+        "years": "s164",
+        "id": "ACME_SUBSCRIPTION01"
+      },
+      "ACME_SUBSCRIPTION02": {
+        "country": "s1fe",
+        "created_at": "s1ff",
+        "currency": "s200",
+        "domains": [],
+        "duration": 514,
+        "eab_hmac": "s203",
+        "eab_id": "EAB01",
+        "ends_at": "s205",
+        "grid": "s206",
+        "message": "s207",
+        "name": "s208",
+        "provider": "s209",
+        "server_url": "s20a",
+        "status": "s20b",
+        "subscription_id": "SUBSCRIPTION01",
+        "validation_type": "s20d",
+        "years": "s20e",
+        "id": "ACME_SUBSCRIPTION02"
+      }
+    }
+  },
+  "new": {
+    "acme_subscription": {
+      "acme_subscription_ref01": {
+        "country": "s2a8",
+        "created_at": "s2a9",
+        "currency": "s2aa",
+        "domains": [],
+        "duration": 684,
+        "eab_hmac": "s2ad",
+        "eab_id": "EAB01",
+        "ends_at": "s2af",
+        "grid": "s2b0",
+        "message": "s2b1",
+        "name": "s2b2",
+        "provider": "s2b3",
+        "server_url": "s2b4",
+        "status": "s2b5",
+        "subscription_id": "SUBSCRIPTION01",
+        "validation_type": "s2b7",
+        "years": "s2b8"
+      }
+    }
+  },
+  "requests": {
+    "POST /acme/subscriptions": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /acme/subscriptions": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /acme/subscriptions/{subscription_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /acme/subscriptions/{subscription_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /acme/subscriptions/{subscription_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /acme/subscriptions/{subscription_id}/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

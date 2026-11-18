@@ -1,0 +1,504 @@
+# Entity: hosting_vhost
+
+main: kit: entity: hosting_vhost: {
+
+  alias: field: {}
+
+  fields: {
+    application: {
+      h: "Application"
+      n: "application"
+      r: true
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    deployment: {
+      h: "Deployment"
+      n: "deployment"
+      r: true
+      t: "`$OBJECT`"
+    }
+    fqdn: {
+      h: "Fqdn"
+      n: "fqdn"
+      r: true
+      t: "`$STRING`"
+    }
+    https_strategy: {
+      h: "Https Strategy"
+      n: "https_strategy"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      t: "`$STRING`"
+    }
+    is_a_test_vhost: {
+      h: "Is A Test Vhost"
+      n: "is_a_test_vhost"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    linked_dns_zone: {
+      h: "Linked Dns Zone"
+      n: "linked_dns_zone"
+      r: true
+      t: "`$OBJECT`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    tls_validated_at: {
+      fo: "date-time"
+      h: "Tls Validated At"
+      n: "tls_validated_at"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "hosting_vhost"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "application"
+            "fqdn"
+            "linked_dns_zone"
+          ]
+          co: {
+            id: "POST /simplehosting/instances/{instance_id}/vhosts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "instance_id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/simplehosting/instances/{instance_id}/vhosts"
+          q: {
+            exist: [
+              "instance_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "instance_id"
+            }
+            {
+              lit: "vhosts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /simplehosting/instances/{instance_id}/vhosts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "instance_id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "fqdn"
+                or: "fqdn"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "-created_at"
+                explode: true
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/simplehosting/instances/{instance_id}/vhosts"
+          q: {
+            exist: [
+              "instance_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "instance_id"
+            }
+            {
+              lit: "vhosts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "vhost_fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "instance_id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}"
+          q: {
+            exist: [
+              "fqdn"
+              "instance_id"
+            ]
+          }
+          r: {
+            param: {
+              vhost_fqdn: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "instance_id"
+            }
+            {
+              lit: "vhosts"
+            }
+            {
+              var: "fqdn"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "vhost_fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "instance_id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}"
+          q: {
+            exist: [
+              "fqdn"
+              "instance_id"
+            ]
+          }
+          r: {
+            param: {
+              vhost_fqdn: "fqdn"
+            }
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "instance_id"
+            }
+            {
+              lit: "vhosts"
+            }
+            {
+              var: "fqdn"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}/cache"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "vhost_fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "instance_id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}/cache"
+          q: {
+            "$action": "cache"
+            exist: [
+              "fqdn"
+              "instance_id"
+            ]
+          }
+          r: {
+            param: {
+              vhost_fqdn: "fqdn"
+            }
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "instance_id"
+            }
+            {
+              lit: "vhosts"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "cache"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "application"
+            "https_strategy"
+            "linked_dns_zone"
+          ]
+          co: {
+            id: "PATCH /simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "vhost_fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "instance_id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}"
+          q: {
+            exist: [
+              "fqdn"
+              "instance_id"
+            ]
+          }
+          r: {
+            param: {
+              vhost_fqdn: "fqdn"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "instance_id"
+            }
+            {
+              lit: "vhosts"
+            }
+            {
+              var: "fqdn"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

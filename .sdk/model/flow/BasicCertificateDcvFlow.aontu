@@ -1,0 +1,29 @@
+# BasicCertificateDcvFlow
+
+main: kit: flow: BasicCertificateDcvFlow:
+{
+  entity: "certificate_dcv",
+  kind: "basic",
+  name: "BasicCertificateDcvFlow",
+  step: [
+    {
+      i: {
+        ref: "certificate_dcv_ref01",
+        srcdatavar: "certificate_dcv_ref01_data",
+        suffix: "_up0",
+        textfield: "message"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-certificate_dcv_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCertificateDcvFlow"
+}

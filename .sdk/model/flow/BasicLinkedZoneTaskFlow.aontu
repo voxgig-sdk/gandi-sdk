@@ -1,0 +1,44 @@
+# BasicLinkedZoneTaskFlow
+
+main: kit: flow: BasicLinkedZoneTaskFlow:
+{
+  entity: "linked_zone_task",
+  kind: "basic",
+  name: "BasicLinkedZoneTaskFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "linked_zone_task_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "linked_zone_task_ref01",
+        srcdatavar: "linked_zone_task_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "linked_zone_task01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-linked_zone_task_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLinkedZoneTaskFlow"
+}

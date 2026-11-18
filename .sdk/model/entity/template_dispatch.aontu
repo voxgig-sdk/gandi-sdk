@@ -1,0 +1,245 @@
+# Entity: template_dispatch
+
+main: kit: entity: template_dispatch: {
+
+  alias: field: {}
+
+  fields: {
+    attempt: {
+      h: "Attempt"
+      n: "attempt"
+      r: true
+      t: "`$INTEGER`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    dispatch_href: {
+      h: "Dispatch Href"
+      n: "dispatch_href"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    object_id: {
+      h: "Object Id"
+      n: "object_id"
+      r: true
+      t: "`$STRING`"
+    }
+    object_type: {
+      h: "Object Type"
+      n: "object_type"
+      r: true
+      t: "`$STRING`"
+    }
+    payload: {
+      h: "Payload"
+      n: "payload"
+      r: true
+      t: "`$OBJECT`"
+    }
+    sharing_id: {
+      h: "Sharing Id"
+      n: "sharing_id"
+      r: true
+      t: "`$STRING`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: true
+      t: "`$INTEGER`"
+    }
+    state_msg: {
+      h: "State Msg"
+      n: "state_msg"
+      r: false
+      t: "`$STRING`"
+    }
+    target: {
+      h: "Target"
+      n: "target"
+      r: true
+      t: "`$OBJECT`"
+    }
+    target_id: {
+      h: "Target Id"
+      n: "target_id"
+      r: true
+      t: "`$STRING`"
+    }
+    target_type: {
+      h: "Target Type"
+      n: "target_type"
+      r: true
+      t: "`$STRING`"
+    }
+    task_history: {
+      h: "Task History"
+      n: "task_history"
+      r: true
+      t: "`$ARRAY`"
+    }
+    task_status: {
+      h: "Task Status"
+      n: "task_status"
+      r: true
+      t: "`$OBJECT`"
+    }
+    task_updated_at: {
+      h: "Task Updated At"
+      n: "task_updated_at"
+      r: false
+      t: "`$STRING`"
+    }
+    template_id: {
+      h: "Template Id"
+      n: "template_id"
+      r: false
+      t: "`$STRING`"
+    }
+    template_name: {
+      h: "Template Name"
+      n: "template_name"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "template_dispatch"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "object_id"
+            "object_type"
+          ]
+          co: {
+            id: "POST /template/templates/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "template_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/template/templates/{id}"
+          q: {
+            exist: [
+              "template_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "template_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "template"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              var: "template_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /template/dispatch/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/template/dispatch/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "template"
+            }
+            {
+              lit: "dispatch"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.template")]
+  ]
+
+}

@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "linked_zone_task": {
+      "LINKED_ZONE_TASK00": {
+        "created_at": "s50",
+        "ending_at": "s51",
+        "id": "LINKED_ZONE_TASK00",
+        "result": {},
+        "status": "s54",
+        "type": "s55",
+        "updated_at": "s56",
+        "zone_id": "ZONE01"
+      },
+      "LINKED_ZONE_TASK01": {
+        "created_at": "sa0",
+        "ending_at": "sa1",
+        "id": "LINKED_ZONE_TASK01",
+        "result": {},
+        "status": "sa4",
+        "type": "sa5",
+        "updated_at": "sa6",
+        "zone_id": "ZONE01"
+      },
+      "LINKED_ZONE_TASK02": {
+        "created_at": "sf0",
+        "ending_at": "sf1",
+        "id": "LINKED_ZONE_TASK02",
+        "result": {},
+        "status": "sf4",
+        "type": "sf5",
+        "updated_at": "sf6",
+        "zone_id": "ZONE01"
+      }
+    }
+  },
+  "new": {
+    "linked_zone_task": {
+      "linked_zone_task_ref01": {
+        "created_at": "s140",
+        "ending_at": "s141",
+        "result": {},
+        "status": "s144",
+        "type": "s145",
+        "updated_at": "s146",
+        "zone_id": "ZONE01"
+      }
+    }
+  },
+  "requests": {
+    "GET /linkedzone/tasks": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /linkedzone/tasks/{task_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "livedns_axfr_tsig": {
+      "LIVEDNS_AXFR_TSIG00": {
+        "href": "s28",
+        "id": "LIVEDNS_AXFR_TSIG00",
+        "key_name": "s2a",
+        "message": "s2b",
+        "fqdn": "FQDN01"
+      },
+      "LIVEDNS_AXFR_TSIG01": {
+        "href": "s50",
+        "id": "LIVEDNS_AXFR_TSIG01",
+        "key_name": "s52",
+        "message": "s53",
+        "fqdn": "FQDN01"
+      },
+      "LIVEDNS_AXFR_TSIG02": {
+        "href": "s78",
+        "id": "LIVEDNS_AXFR_TSIG02",
+        "key_name": "s7a",
+        "message": "s7b",
+        "fqdn": "FQDN01"
+      }
+    }
+  },
+  "new": {
+    "livedns_axfr_tsig": {
+      "livedns_axfr_tsig_ref01": {
+        "href": "sa0",
+        "key_name": "sa2",
+        "message": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /livedns/domains/{fqdn}/axfr/tsig": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /livedns/domains/{fqdn}/axfr/tsig/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /livedns/domains/{fqdn}/axfr/tsig/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

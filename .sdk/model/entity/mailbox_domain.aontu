@@ -1,0 +1,244 @@
+# Entity: mailbox_domain
+
+main: kit: entity: mailbox_domain: {
+
+  alias: field: {}
+
+  fields: {
+    antispam: {
+      h: "Antispam"
+      n: "antispam"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    configuration: {
+      h: "Configuration"
+      n: "configuration"
+      r: true
+      t: "`$ARRAY`"
+    }
+    date_last_validation: {
+      fo: "date-time"
+      h: "Date Last Validation"
+      n: "date_last_validation"
+      r: false
+      t: "`$STRING`"
+    }
+    dkim: {
+      h: "Dkim"
+      n: "dkim"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    fqdns: {
+      h: "Fqdns"
+      n: "fqdns"
+      r: true
+      t: "`$ARRAY`"
+    }
+    internal: {
+      h: "Internal"
+      n: "internal"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    is_livedns: {
+      h: "Is Livedns"
+      n: "is_livedns"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    mx: {
+      h: "Mx"
+      n: "mx"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    owner: {
+      h: "Owner"
+      n: "owner"
+      r: true
+      t: "`$OBJECT`"
+    }
+    spf: {
+      h: "Spf"
+      n: "spf"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    txt: {
+      h: "Txt"
+      n: "txt"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "mailbox_domain"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "records_to_validate"
+          ]
+          co: {
+            id: "POST /mailbox/domains/{domain}/validate"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/mailbox/domains/{domain}/validate"
+          q: {
+            "$action": "validate"
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "validate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /mailbox/domains"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/mailbox/domains"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "domains"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /mailbox/domains/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/mailbox/domains/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

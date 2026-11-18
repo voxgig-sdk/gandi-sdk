@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "livedns_axfr_slave": {
+      "LIVEDNS_AXFR_SLAVE00": {
+        "message": "sa",
+        "fqdn": "FQDN01",
+        "ip": "IP01",
+        "id": "LIVEDNS_AXFR_SLAVE00"
+      },
+      "LIVEDNS_AXFR_SLAVE01": {
+        "message": "s14",
+        "fqdn": "FQDN01",
+        "ip": "IP01",
+        "id": "LIVEDNS_AXFR_SLAVE01"
+      },
+      "LIVEDNS_AXFR_SLAVE02": {
+        "message": "s1e",
+        "fqdn": "FQDN01",
+        "ip": "IP01",
+        "id": "LIVEDNS_AXFR_SLAVE02"
+      }
+    }
+  },
+  "new": {
+    "livedns_axfr_slave": {
+      "livedns_axfr_slave_ref01": {
+        "message": "s28"
+      }
+    }
+  },
+  "requests": {
+    "GET /livedns/domains/{fqdn}/axfr/slaves": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /livedns/domains/{fqdn}/axfr/slaves/{ip}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /livedns/domains/{fqdn}/axfr/slaves/{ip}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+# BasicDomainDnssecFlow
+
+main: kit: flow: BasicDomainDnssecFlow:
+{
+  entity: "domain_dnssec",
+  kind: "basic",
+  name: "BasicDomainDnssecFlow",
+  step: [
+    {
+      i: {
+        ref: "domain_dnssec_ref01"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "domain_dnssec_ref01",
+        srcdatavar: "domain_dnssec_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "domain_dnssec01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_dnssec_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "domain_dnssec_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "domain_dnssec01"
+      }
+
+      o: "remove"
+    }
+  ],
+  "key$": "BasicDomainDnssecFlow"
+}

@@ -1,0 +1,135 @@
+{
+  "existing": {
+    "email_mailbox": {
+      "EMAIL_MAILBOX00": {
+        "address": "sbe",
+        "alias_count": 191,
+        "aliases": [],
+        "antispam": false,
+        "autorenew": {},
+        "domain": "sc3",
+        "errors": [],
+        "expires_at": "sc5",
+        "fallback_email": "sc6",
+        "href": "sc7",
+        "id": "EMAIL_MAILBOX00",
+        "login": "sc9",
+        "mailbox_type": "sca",
+        "message": "scb",
+        "password": "scc",
+        "quota_used": 205,
+        "responder": {},
+        "status": "scf",
+        "to_convert": true
+      },
+      "EMAIL_MAILBOX01": {
+        "address": "s17c",
+        "alias_count": 381,
+        "aliases": [],
+        "antispam": false,
+        "autorenew": {},
+        "domain": "s181",
+        "errors": [],
+        "expires_at": "s183",
+        "fallback_email": "s184",
+        "href": "s185",
+        "id": "EMAIL_MAILBOX01",
+        "login": "s187",
+        "mailbox_type": "s188",
+        "message": "s189",
+        "password": "s18a",
+        "quota_used": 395,
+        "responder": {},
+        "status": "s18d",
+        "to_convert": true
+      },
+      "EMAIL_MAILBOX02": {
+        "address": "s23a",
+        "alias_count": 571,
+        "aliases": [],
+        "antispam": false,
+        "autorenew": {},
+        "domain": "s23f",
+        "errors": [],
+        "expires_at": "s241",
+        "fallback_email": "s242",
+        "href": "s243",
+        "id": "EMAIL_MAILBOX02",
+        "login": "s245",
+        "mailbox_type": "s246",
+        "message": "s247",
+        "password": "s248",
+        "quota_used": 585,
+        "responder": {},
+        "status": "s24b",
+        "to_convert": true
+      }
+    }
+  },
+  "new": {
+    "email_mailbox": {
+      "email_mailbox_ref01": {
+        "address": "s2f8",
+        "alias_count": 761,
+        "aliases": [],
+        "antispam": false,
+        "autorenew": {},
+        "domain": "s2fd",
+        "errors": [],
+        "expires_at": "s2ff",
+        "fallback_email": "s300",
+        "href": "s301",
+        "login": "s303",
+        "mailbox_type": "s304",
+        "message": "s305",
+        "password": "s306",
+        "quota_used": 775,
+        "responder": {},
+        "status": "s309",
+        "to_convert": true
+      }
+    }
+  },
+  "requests": {
+    "POST /email/mailboxes/{domain}/{email}/renew": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /email/mailboxes/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /email/mailboxes/{domain}/renew": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /email/mailboxes/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /email/mailboxes/{domain}/{mailbox_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /email/mailboxes/{domain}/{mailbox_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /email/mailboxes/{domain}/{mailbox_id}/contents": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /email/mailboxes/{domain}/{mailbox_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

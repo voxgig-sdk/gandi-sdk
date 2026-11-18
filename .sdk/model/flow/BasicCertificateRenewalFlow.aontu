@@ -1,0 +1,22 @@
+# BasicCertificateRenewalFlow
+
+main: kit: flow: BasicCertificateRenewalFlow:
+{
+  entity: "certificate_renewal",
+  kind: "basic",
+  name: "BasicCertificateRenewalFlow",
+  step: [
+    {
+      i: {
+        ref: "certificate_renewal_ref01"
+      }
+
+      m: {
+        certificate_id: "certificate01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicCertificateRenewalFlow"
+}

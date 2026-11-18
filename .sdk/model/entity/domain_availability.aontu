@@ -1,0 +1,181 @@
+# Entity: domain_availability
+
+main: kit: entity: domain_availability: {
+
+  alias: field: {}
+
+  fields: {
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: true
+      t: "`$STRING`"
+    }
+    grid: {
+      h: "Grid"
+      n: "grid"
+      r: true
+      t: "`$STRING`"
+    }
+    products: {
+      h: "Products"
+      n: "products"
+      r: true
+      t: "`$ARRAY`"
+    }
+    taxes: {
+      h: "Taxes"
+      n: "taxes"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "domain_availability"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /domain/check"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "country"
+                or: "country"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "currency"
+                or: "currency"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "duration_unit"
+                or: "duration_unit"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "extension"
+                or: "extension"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "grid"
+                or: "grid"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "lang"
+                or: "lang"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "max_duration"
+                or: "max_duration"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "name"
+                or: "name"
+                r: true
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "period"
+                or: "period"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: [
+                  "create"
+                ]
+                explode: true
+                k: "query"
+                n: "process"
+                or: "processes"
+                r: false
+                style: "form"
+                t: "`$ARRAY`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/check"
+          q: {
+            exist: [
+              "name"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "check"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,123 @@
+# Entity: certificate_pem
+
+main: kit: entity: certificate_pem: {
+
+  alias: field: {}
+
+  name: "certificate_pem"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /certificate/pem/-/{filename}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "filename"
+                or: "filename"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/certificate/pem/-/{filename}"
+          q: {
+            exist: [
+              "filename"
+            ]
+          }
+          rs: {
+            kind: "raw"
+            media: "text/plain"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "pem"
+            }
+            {
+              lit: "-"
+            }
+            {
+              var: "filename"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /certificate/pem/{type}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "type"
+                or: "type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "provider"
+                or: "provider"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/certificate/pem/{type}"
+          q: {
+            exist: [
+              "type"
+            ]
+          }
+          rs: {
+            kind: "raw"
+            media: "text/plain"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "pem"
+            }
+            {
+              var: "type"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

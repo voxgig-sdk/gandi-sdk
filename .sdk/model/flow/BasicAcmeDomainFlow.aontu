@@ -1,0 +1,49 @@
+# BasicAcmeDomainFlow
+
+main: kit: flow: BasicAcmeDomainFlow:
+{
+  entity: "acme_domain",
+  kind: "basic",
+  name: "BasicAcmeDomainFlow",
+  step: [
+    {
+      m: {
+        subscription_id: "subscription01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "acme_domain_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "acme_domain_ref01",
+        srcdatavar: "acme_domain_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "acme_domain01",
+        subscription_id: "subscription01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-acme_domain_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAcmeDomainFlow"
+}

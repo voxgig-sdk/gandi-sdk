@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "livedns_nameserver": {
+      "LIVEDNS_NAMESERVER00": {
+        "fqdn": "FQDN01"
+      },
+      "LIVEDNS_NAMESERVER01": {
+        "fqdn": "FQDN01"
+      },
+      "LIVEDNS_NAMESERVER02": {
+        "fqdn": "FQDN01"
+      }
+    }
+  },
+  "new": {
+    "livedns_nameserver": {
+      "livedns_nameserver_ref01": {}
+    }
+  },
+  "requests": {
+    "GET /livedns/domains/{fqdn}/nameservers": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/nameservers/{fqdn}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

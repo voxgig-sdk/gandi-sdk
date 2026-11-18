@@ -1,0 +1,183 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { GandiSDK, BaseFeature, config, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('TemplateDispatchEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when GANDI_TEST_LIVE=TRUE.
+  afterEach(liveDelay('GANDI_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = GandiSDK.test()
+    const ent = testsdk.TemplateDispatch()
+    assert(null != ent)
+  })
+
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = GandiSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.TemplateDispatch().load({"id":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.GANDI_TEST_LIVE
+    for (const op of ['create', 'load']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'template_dispatch.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"attempt":{"a":true,"h":"Attempt","n":"attempt","r":true,"t":"`$INTEGER`","key$":"attempt","index$":0},"created_at":{"a":true,"h":"Created At","n":"created_at","r":true,"t":"`$STRING`","key$":"created_at","index$":1},"dispatch_href":{"a":true,"h":"Dispatch Href","n":"dispatch_href","r":true,"t":"`$STRING`","key$":"dispatch_href","index$":2},"id":{"a":true,"h":"Id","n":"id","r":true,"t":"`$STRING`","key$":"id","index$":3},"message":{"a":true,"h":"Message","n":"message","r":true,"t":"`$STRING`","key$":"message","index$":4},"object_id":{"a":true,"h":"Object Id","n":"object_id","r":true,"t":"`$STRING`","key$":"object_id","index$":5},"object_type":{"a":true,"h":"Object Type","n":"object_type","r":true,"t":"`$STRING`","key$":"object_type","index$":6},"payload":{"a":true,"h":"Payload","n":"payload","r":true,"t":"`$OBJECT`","key$":"payload","index$":7},"sharing_id":{"a":true,"h":"Sharing Id","n":"sharing_id","r":true,"t":"`$STRING`","key$":"sharing_id","index$":8},"state":{"a":true,"h":"State","n":"state","r":true,"t":"`$INTEGER`","key$":"state","index$":9},"state_msg":{"a":true,"h":"State Msg","n":"state_msg","r":false,"t":"`$STRING`","key$":"state_msg","index$":10},"target":{"a":true,"h":"Target","n":"target","r":true,"t":"`$OBJECT`","key$":"target","index$":11},"target_id":{"a":true,"h":"Target Id","n":"target_id","r":true,"t":"`$STRING`","key$":"target_id","index$":12},"target_type":{"a":true,"h":"Target Type","n":"target_type","r":true,"t":"`$STRING`","key$":"target_type","index$":13},"task_history":{"a":true,"h":"Task History","n":"task_history","r":true,"t":"`$ARRAY`","key$":"task_history","index$":14},"task_status":{"a":true,"h":"Task Status","n":"task_status","r":true,"t":"`$OBJECT`","key$":"task_status","index$":15},"task_updated_at":{"a":true,"h":"Task Updated At","n":"task_updated_at","r":false,"t":"`$STRING`","key$":"task_updated_at","index$":16},"template_id":{"a":true,"h":"Template Id","n":"template_id","r":false,"t":"`$STRING`","key$":"template_id","index$":17},"template_name":{"a":true,"h":"Template Name","n":"template_name","r":false,"t":"`$STRING`","key$":"template_name","index$":18}},"id":{"field":"id","name":"id"},"name":"template_dispatch","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["object_id","object_type"],"co":{"id":"POST /template/templates/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"template_id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"POST","o":"/template/templates/{id}","q":{"exist":["template_id"]},"r":{"param":{"id":"template_id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"template"},{"lit":"templates"},{"var":"template_id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /template/dispatch/{id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/template/dispatch/{id}","q":{"exist":["id"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"template"},{"lit":"dispatch"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[["$.main.kit.entity.template"]]},"key$":"template_dispatch","name__orig":"template_dispatch","Name":"TemplateDispatch","name_":"template_dispatch","name-":"template-dispatch","NAME":"TEMPLATE_DISPATCH","index$":57}, {"active":true,"entity":"template_dispatch","key$":"BasicTemplateDispatchFlow","kind":"basic","name":"BasicTemplateDispatchFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"template_dispatch_ref01"},"m":{"template_id":"template01"},"o":"create","s":[],"v":[],"index$":0},{"a":true,"d":{},"i":{"ref":"template_dispatch_ref01","srcdatavar":"template_dispatch_ref01_data","suffix":"_dt0"},"m":{"id":"template_dispatch01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-template_dispatch_ref01"}}],"index$":1,"route":"GET /template/dispatch/{id}","record":{}}]}, 'TemplateDispatch', {"POST /template/templates/{id}":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"object_id":{"type":"string","key$":"object_id"},"object_type":{"type":"string","enum":["domain"],"key$":"object_type"}},"required":["object_id","object_type"]}}}},"parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"string"},"index$":0}]},"GET /template/dispatch/{id}":{"protocol":"http","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t }, 'TRUE' === process.env.VOXGIG_GETONLY_GUARD ? {"template_dispatch.create.0":"GET-only live run: needs POST /template/templates/{id}","template_dispatch.load.1":"GET-only live run: reads a record only template_dispatch.create.0 gives"} : {})
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+
+    // CREATE
+    const template_dispatch_ref01_ent = client.TemplateDispatch()
+    let template_dispatch_ref01_data = setup.data.new.template_dispatch['template_dispatch_ref01']
+    template_dispatch_ref01_data['template_id'] = setup.idmap['template01']
+
+    template_dispatch_ref01_data = (await template_dispatch_ref01_ent.create(template_dispatch_ref01_data)).data()
+    assert(null != template_dispatch_ref01_data.id)
+
+
+    // LOAD
+    const template_dispatch_ref01_match_dt0: any = {}
+    template_dispatch_ref01_match_dt0.id = template_dispatch_ref01_data.id
+    const template_dispatch_ref01_data_dt0 = (await template_dispatch_ref01_ent.load(template_dispatch_ref01_match_dt0)).data()
+    assert(template_dispatch_ref01_data_dt0.id === template_dispatch_ref01_data.id)
+
+
+  })
+})
+
+
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/template_dispatch/TemplateDispatchTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = GandiSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['template_dispatch01','template_dispatch02','template_dispatch03','template01','template02','template03'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'GANDI_TEST_TEMPLATE_DISPATCH_ENTID': idmap,
+    'GANDI_TEST_LIVE': 'FALSE',
+    'GANDI_TEST_EXPLAIN': 'FALSE',
+    'GANDI_APIKEY': '',
+  })
+
+  idmap = env['GANDI_TEST_TEMPLATE_DISPATCH_ENTID']
+
+  const live = 'TRUE' === env.GANDI_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['GANDI_TEST_TEMPLATE_DISPATCH_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new GandiSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+        apikey: env.GANDI_APIKEY,
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.GANDI_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

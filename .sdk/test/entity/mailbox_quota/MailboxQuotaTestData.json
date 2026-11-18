@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "mailbox_quota": {
+      "MAILBOX_QUOTA00": {
+        "annually": {},
+        "config_name": "s33",
+        "label": "s34",
+        "monthly": {},
+        "quota": "s36"
+      },
+      "MAILBOX_QUOTA01": {
+        "annually": {},
+        "config_name": "s65",
+        "label": "s66",
+        "monthly": {},
+        "quota": "s68"
+      },
+      "MAILBOX_QUOTA02": {
+        "annually": {},
+        "config_name": "s97",
+        "label": "s98",
+        "monthly": {},
+        "quota": "s9a"
+      }
+    }
+  },
+  "new": {
+    "mailbox_quota": {
+      "mailbox_quota_ref01": {
+        "annually": {},
+        "config_name": "sc9",
+        "label": "sca",
+        "monthly": {},
+        "quota": "scc"
+      }
+    }
+  },
+  "requests": {
+    "GET /mailbox/quotas": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "existing": {
+    "template": {
+      "TEMPLATE00": {
+        "description": "s64",
+        "editable": false,
+        "href": "s66",
+        "id": "TEMPLATE00",
+        "name": "s68",
+        "namespaces": [],
+        "orgname": "s6a",
+        "payload": {},
+        "sharing_space": {},
+        "variables": []
+      },
+      "TEMPLATE01": {
+        "description": "sc8",
+        "editable": false,
+        "href": "sca",
+        "id": "TEMPLATE01",
+        "name": "scc",
+        "namespaces": [],
+        "orgname": "sce",
+        "payload": {},
+        "sharing_space": {},
+        "variables": []
+      },
+      "TEMPLATE02": {
+        "description": "s12c",
+        "editable": false,
+        "href": "s12e",
+        "id": "TEMPLATE02",
+        "name": "s130",
+        "namespaces": [],
+        "orgname": "s132",
+        "payload": {},
+        "sharing_space": {},
+        "variables": []
+      }
+    }
+  },
+  "new": {
+    "template": {
+      "template_ref01": {
+        "description": "s190",
+        "editable": false,
+        "href": "s192",
+        "name": "s194",
+        "namespaces": [],
+        "orgname": "s196",
+        "payload": {},
+        "sharing_space": {},
+        "variables": []
+      }
+    }
+  },
+  "requests": {
+    "POST /template/templates": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /template/templates": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /template/templates/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /template/templates/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /template/templates/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

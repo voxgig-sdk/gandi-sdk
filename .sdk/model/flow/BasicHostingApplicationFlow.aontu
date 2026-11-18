@@ -1,0 +1,44 @@
+# BasicHostingApplicationFlow
+
+main: kit: flow: BasicHostingApplicationFlow:
+{
+  entity: "hosting_application",
+  kind: "basic",
+  name: "BasicHostingApplicationFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "hosting_application_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "hosting_application_ref01",
+        srcdatavar: "hosting_application_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "hosting_application01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-hosting_application_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicHostingApplicationFlow"
+}

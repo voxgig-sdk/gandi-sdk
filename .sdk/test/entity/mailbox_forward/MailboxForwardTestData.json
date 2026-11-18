@@ -1,0 +1,55 @@
+{
+  "existing": {
+    "mailbox_forward": {
+      "MAILBOX_FORWARD00": {
+        "destinations": [],
+        "message": "s1f",
+        "source": "s20",
+        "id": "MAILBOX_FORWARD00"
+      },
+      "MAILBOX_FORWARD01": {
+        "destinations": [],
+        "message": "s3d",
+        "source": "s3e",
+        "id": "MAILBOX_FORWARD01"
+      },
+      "MAILBOX_FORWARD02": {
+        "destinations": [],
+        "message": "s5b",
+        "source": "s5c",
+        "id": "MAILBOX_FORWARD02"
+      }
+    }
+  },
+  "new": {
+    "mailbox_forward": {
+      "mailbox_forward_ref01": {
+        "destinations": [],
+        "message": "s79",
+        "source": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "POST /mailbox/forwards": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /mailbox/forwards": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /mailbox/forwards/{source}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /mailbox/forwards/{source}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

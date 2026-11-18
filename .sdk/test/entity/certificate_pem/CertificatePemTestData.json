@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "certificate_pem": {
+      "CERTIFICATE_PEM00": {
+        "filename": "FILENAME01",
+        "type": "TYPE01",
+        "id": "CERTIFICATE_PEM00"
+      },
+      "CERTIFICATE_PEM01": {
+        "filename": "FILENAME01",
+        "type": "TYPE01",
+        "id": "CERTIFICATE_PEM01"
+      },
+      "CERTIFICATE_PEM02": {
+        "filename": "FILENAME01",
+        "type": "TYPE01",
+        "id": "CERTIFICATE_PEM02"
+      }
+    }
+  },
+  "new": {
+    "certificate_pem": {
+      "certificate_pem_ref01": {}
+    }
+  },
+  "requests": {
+    "GET /certificate/pem/-/{filename}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /certificate/pem/{type}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+# BasicTldFlow
+
+main: kit: flow: BasicTldFlow:
+{
+  entity: "tld",
+  kind: "basic",
+  name: "BasicTldFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "tld_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "tld_ref01",
+        srcdatavar: "tld_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "tld01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-tld_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTldFlow"
+}

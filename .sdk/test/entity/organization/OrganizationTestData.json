@@ -1,0 +1,137 @@
+{
+  "existing": {
+    "organization": {
+      "ORGANIZATION00": {
+        "city": "sdc",
+        "corporate": false,
+        "country": "sde",
+        "email": "sdf",
+        "fax": "se0",
+        "firstname": "se1",
+        "id": "ORGANIZATION00",
+        "lang": "se3",
+        "lastname": "se4",
+        "message": "se5",
+        "name": "se6",
+        "orgname": "se7",
+        "phone": "se8",
+        "reference": "se9",
+        "reseller": true,
+        "siren": "seb",
+        "state": "sec",
+        "streetaddr": "sed",
+        "streetaddr2": "see",
+        "type": "sef",
+        "vat_number": "sf0",
+        "zip": "sf1"
+      },
+      "ORGANIZATION01": {
+        "city": "s1b8",
+        "corporate": false,
+        "country": "s1ba",
+        "email": "s1bb",
+        "fax": "s1bc",
+        "firstname": "s1bd",
+        "id": "ORGANIZATION01",
+        "lang": "s1bf",
+        "lastname": "s1c0",
+        "message": "s1c1",
+        "name": "s1c2",
+        "orgname": "s1c3",
+        "phone": "s1c4",
+        "reference": "s1c5",
+        "reseller": true,
+        "siren": "s1c7",
+        "state": "s1c8",
+        "streetaddr": "s1c9",
+        "streetaddr2": "s1ca",
+        "type": "s1cb",
+        "vat_number": "s1cc",
+        "zip": "s1cd"
+      },
+      "ORGANIZATION02": {
+        "city": "s294",
+        "corporate": false,
+        "country": "s296",
+        "email": "s297",
+        "fax": "s298",
+        "firstname": "s299",
+        "id": "ORGANIZATION02",
+        "lang": "s29b",
+        "lastname": "s29c",
+        "message": "s29d",
+        "name": "s29e",
+        "orgname": "s29f",
+        "phone": "s2a0",
+        "reference": "s2a1",
+        "reseller": true,
+        "siren": "s2a3",
+        "state": "s2a4",
+        "streetaddr": "s2a5",
+        "streetaddr2": "s2a6",
+        "type": "s2a7",
+        "vat_number": "s2a8",
+        "zip": "s2a9"
+      }
+    }
+  },
+  "new": {
+    "organization": {
+      "organization_ref01": {
+        "city": "s370",
+        "corporate": false,
+        "country": "s372",
+        "email": "s373",
+        "fax": "s374",
+        "firstname": "s375",
+        "lang": "s377",
+        "lastname": "s378",
+        "message": "s379",
+        "name": "s37a",
+        "orgname": "s37b",
+        "phone": "s37c",
+        "reference": "s37d",
+        "reseller": true,
+        "siren": "s37f",
+        "state": "s380",
+        "streetaddr": "s381",
+        "streetaddr2": "s382",
+        "type": "s383",
+        "vat_number": "s384",
+        "zip": "s385"
+      }
+    }
+  },
+  "requests": {
+    "POST /organization/organizations/{org_id}/action": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /organization/organizations": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /organization/organizations": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /organization/organizations/{org_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /organization/organizations/{org_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /organization/organizations/{org_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Python | Gandi API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Gandi API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/gandi-sdk">voxgig-sdk/gandi-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Gandi API</a></details>
+<details><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_token.html">AccessToken</a>
+<a href="../api/acme_account.html">AcmeAccount</a>
+<a href="../api/acme_domain.html">AcmeDomain</a>
+<a href="../api/acme_price.html">AcmePrice</a>
+<a href="../api/acme_subscription.html">AcmeSubscription</a>
+<a href="../api/billing_info.html">BillingInfo</a>
+<a href="../api/billing_price.html">BillingPrice</a>
+<a href="../api/certificate_dcv.html">CertificateDcv</a>
+<a href="../api/certificate_package.html">CertificatePackage</a>
+<a href="../api/certificate_pem.html">CertificatePem</a>
+<a href="../api/certificate_renewal.html">CertificateRenewal</a>
+<a href="../api/certificate_tag.html">CertificateTag</a>
+<a href="../api/comment.html">Comment</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domain_availability.html">DomainAvailability</a>
+<a href="../api/domain_change_owner.html">DomainChangeOwner</a>
+<a href="../api/domain_claim.html">DomainClaim</a>
+<a href="../api/domain_contact.html">DomainContact</a>
+<a href="../api/domain_dnskey.html">DomainDnskey</a>
+<a href="../api/domain_dnssec.html">DomainDnssec</a>
+<a href="../api/domain_host.html">DomainHost</a>
+<a href="../api/domain_livedns.html">DomainLivedns</a>
+<a href="../api/domain_nameserver.html">DomainNameserver</a>
+<a href="../api/domain_tag.html">DomainTag</a>
+<a href="../api/domain_transfer.html">DomainTransfer</a>
+<a href="../api/domain_webredir.html">DomainWebredir</a>
+<a href="../api/email_forward.html">EmailForward</a>
+<a href="../api/email_mailbox.html">EmailMailbox</a>
+<a href="../api/email_migration.html">EmailMigration</a>
+<a href="../api/email_offer.html">EmailOffer</a>
+<a href="../api/email_slot.html">EmailSlot</a>
+<a href="../api/hosting_application.html">HostingApplication</a>
+<a href="../api/hosting_instance.html">HostingInstance</a>
+<a href="../api/hosting_vhost.html">HostingVhost</a>
+<a href="../api/issued_certificate.html">IssuedCertificate</a>
+<a href="../api/linked_zone.html">LinkedZone</a>
+<a href="../api/linked_zone_deployment.html">LinkedZoneDeployment</a>
+<a href="../api/linked_zone_domain.html">LinkedZoneDomain</a>
+<a href="../api/linked_zone_task.html">LinkedZoneTask</a>
+<a href="../api/livedns_axfr_slave.html">LivednsAxfrSlave</a>
+<a href="../api/livedns_axfr_tsig.html">LivednsAxfrTsig</a>
+<a href="../api/livedns_domain.html">LivednsDomain</a>
+<a href="../api/livedns_key.html">LivednsKey</a>
+<a href="../api/livedns_nameserver.html">LivednsNameserver</a>
+<a href="../api/livedns_record.html">LivednsRecord</a>
+<a href="../api/livedns_rrtype.html">LivednsRrtype</a>
+<a href="../api/livedns_snapshot.html">LivednsSnapshot</a>
+<a href="../api/livedns_tsig_key.html">LivednsTsigKey</a>
+<a href="../api/mailbox.html">Mailbox</a>
+<a href="../api/mailbox_domain.html">MailboxDomain</a>
+<a href="../api/mailbox_forward.html">MailboxForward</a>
+<a href="../api/mailbox_product.html">MailboxProduct</a>
+<a href="../api/mailbox_quota.html">MailboxQuota</a>
+<a href="../api/mailbox_slot.html">MailboxSlot</a>
+<a href="../api/organization.html">Organization</a>
+<a href="../api/organization_customer.html">OrganizationCustomer</a>
+<a href="../api/template.html">Template</a>
+<a href="../api/template_dispatch.html">TemplateDispatch</a>
+<a href="../api/tld.html">Tld</a>
+<a href="../api/user.html">User</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details open><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a aria-current="page" href="../sdks/py.html">Python</a>
+<a href="../sdks/rb.html">Ruby</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/secrets.html">Secrets</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>SDKs</div><h1 id="python">Python</h1>
+<p>Python</p>
+<h2 id="install">Install</h2>
+<p>Not published. Build from the py directory.</p>
+<h2 id="package">Package</h2>
+<p><code>voxgig-sdk-gandi-sdk</code></p>
+<h2 id="api-reference">API reference</h2>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Operations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/access_token.html">AccessToken</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/acme_account.html">AcmeAccount</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/acme_domain.html">AcmeDomain</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/acme_price.html">AcmePrice</a></td>
+<td><code>create</code>, <code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/acme_subscription.html">AcmeSubscription</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/billing_info.html">BillingInfo</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/billing_price.html">BillingPrice</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/certificate_dcv.html">CertificateDcv</a></td>
+<td><code>patch</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/certificate_package.html">CertificatePackage</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/certificate_pem.html">CertificatePem</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/certificate_renewal.html">CertificateRenewal</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/certificate_tag.html">CertificateTag</a></td>
+<td><code>create</code>, <code>list</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/comment.html">Comment</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain.html">Domain</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_availability.html">DomainAvailability</a></td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_change_owner.html">DomainChangeOwner</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_claim.html">DomainClaim</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_contact.html">DomainContact</a></td>
+<td><code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_dnskey.html">DomainDnskey</a></td>
+<td><code>create</code>, <code>list</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_dnssec.html">DomainDnssec</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_host.html">DomainHost</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_livedns.html">DomainLivedns</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_nameserver.html">DomainNameserver</a></td>
+<td><code>list</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_tag.html">DomainTag</a></td>
+<td><code>create</code>, <code>list</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_transfer.html">DomainTransfer</a></td>
+<td><code>create</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/domain_webredir.html">DomainWebredir</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/email_forward.html">EmailForward</a></td>
+<td><code>create</code>, <code>list</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/email_mailbox.html">EmailMailbox</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/email_migration.html">EmailMigration</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/email_offer.html">EmailOffer</a></td>
+<td><code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/email_slot.html">EmailSlot</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/hosting_application.html">HostingApplication</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/hosting_instance.html">HostingInstance</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/hosting_vhost.html">HostingVhost</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/issued_certificate.html">IssuedCertificate</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/linked_zone.html">LinkedZone</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/linked_zone_deployment.html">LinkedZoneDeployment</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/linked_zone_domain.html">LinkedZoneDomain</a></td>
+<td><code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/linked_zone_task.html">LinkedZoneTask</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_axfr_slave.html">LivednsAxfrSlave</a></td>
+<td><code>list</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_axfr_tsig.html">LivednsAxfrTsig</a></td>
+<td><code>list</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_domain.html">LivednsDomain</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_key.html">LivednsKey</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_nameserver.html">LivednsNameserver</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_record.html">LivednsRecord</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>patch</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_rrtype.html">LivednsRrtype</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_snapshot.html">LivednsSnapshot</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_tsig_key.html">LivednsTsigKey</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/mailbox.html">Mailbox</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/mailbox_domain.html">MailboxDomain</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/mailbox_forward.html">MailboxForward</a></td>
+<td><code>create</code>, <code>list</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/mailbox_product.html">MailboxProduct</a></td>
+<td><code>create</code>, <code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/mailbox_quota.html">MailboxQuota</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/mailbox_slot.html">MailboxSlot</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/organization.html">Organization</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/organization_customer.html">OrganizationCustomer</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/template.html">Template</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/template_dispatch.html">TemplateDispatch</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/tld.html">Tld</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/user.html">User</a></td>
+<td><code>load</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration</h2>
+<p>Set the server URL and credentials for your environment. Enable only the features your application needs.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><a href="../features/debug.html">Debug capture</a></li>
+<li><a href="../features/idempotency.html">Idempotency</a></li>
+<li><a href="../features/metrics.html">Metrics</a></li>
+<li><a href="../features/paging.html">Paging</a></li>
+<li><a href="../features/ratelimit.html">Rate limiting</a></li>
+<li><a href="../features/retry.html">Retry</a></li>
+<li><a href="../features/secrets.html">Secrets</a></li>
+<li><a href="../features/test.html">Test transport</a></li>
+<li><a href="../features/timeout.html">Timeout</a></li>
+</ul>
+<h2 id="set-up-the-client">Set up the client</h2>
+<p>This setup fragment reads credentials from the environment. Use the API operation reference to supply input for each call.</p>
+<pre><code class="language-py">import os
+from gandi_sdk import GandiSDK
+
+client = GandiSDK({&quot;apikey&quot;: os.environ.get(&quot;GANDI_APIKEY&quot;)})
+</code></pre>
+<h2 id="client-defaults">Client defaults</h2>
+<pre><code class="language-json">{
+  &quot;base&quot;: &quot;https://api.gandi.net/v5&quot;,
+  &quot;auth&quot;: {
+    &quot;prefix&quot;: &quot;Bearer&quot;
+  },
+  &quot;headers&quot;: {
+    &quot;content-type&quot;: &quot;application/json&quot;
+  },
+  &quot;entity&quot;: {
+    &quot;access_token&quot;: {},
+    &quot;acme_account&quot;: {},
+    &quot;acme_domain&quot;: {},
+    &quot;acme_price&quot;: {},
+    &quot;acme_subscription&quot;: {},
+    &quot;billing_info&quot;: {},
+    &quot;billing_price&quot;: {},
+    &quot;certificate_dcv&quot;: {},
+    &quot;certificate_package&quot;: {},
+    &quot;certificate_pem&quot;: {},
+    &quot;certificate_renewal&quot;: {},
+    &quot;certificate_tag&quot;: {},
+    &quot;comment&quot;: {},
+    &quot;domain&quot;: {},
+    &quot;domain_availability&quot;: {},
+    &quot;domain_change_owner&quot;: {},
+    &quot;domain_claim&quot;: {},
+    &quot;domain_contact&quot;: {},
+    &quot;domain_dnskey&quot;: {},
+    &quot;domain_dnssec&quot;: {},
+    &quot;domain_host&quot;: {},
+    &quot;domain_livedns&quot;: {},
+    &quot;domain_nameserver&quot;: {},
+    &quot;domain_tag&quot;: {},
+    &quot;domain_transfer&quot;: {},
+    &quot;domain_webredir&quot;: {},
+    &quot;email_forward&quot;: {},
+    &quot;email_mailbox&quot;: {},
+    &quot;email_migration&quot;: {},
+    &quot;email_offer&quot;: {},
+    &quot;email_slot&quot;: {},
+    &quot;hosting_application&quot;: {},
+    &quot;hosting_instance&quot;: {},
+    &quot;hosting_vhost&quot;: {},
+    &quot;issued_certificate&quot;: {},
+    &quot;linked_zone&quot;: {},
+    &quot;linked_zone_deployment&quot;: {},
+    &quot;linked_zone_domain&quot;: {},
+    &quot;linked_zone_task&quot;: {},
+    &quot;livedns_axfr_slave&quot;: {},
+    &quot;livedns_axfr_tsig&quot;: {},
+    &quot;livedns_domain&quot;: {},
+    &quot;livedns_key&quot;: {},
+    &quot;livedns_nameserver&quot;: {},
+    &quot;livedns_record&quot;: {},
+    &quot;livedns_rrtype&quot;: {},
+    &quot;livedns_snapshot&quot;: {},
+    &quot;livedns_tsig_key&quot;: {},
+    &quot;mailbox&quot;: {},
+    &quot;mailbox_domain&quot;: {},
+    &quot;mailbox_forward&quot;: {},
+    &quot;mailbox_product&quot;: {},
+    &quot;mailbox_quota&quot;: {},
+    &quot;mailbox_slot&quot;: {},
+    &quot;organization&quot;: {},
+    &quot;organization_customer&quot;: {},
+    &quot;template&quot;: {},
+    &quot;template_dispatch&quot;: {},
+    &quot;tld&quot;: {},
+    &quot;user&quot;: {}
+  }
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

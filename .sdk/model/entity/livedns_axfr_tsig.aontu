@@ -1,0 +1,253 @@
+# Entity: livedns_axfr_tsig
+
+main: kit: entity: livedns_axfr_tsig: {
+
+  alias: field: {}
+
+  fields: {
+    href: {
+      h: "Href"
+      n: "href"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    key_name: {
+      h: "Key Name"
+      n: "key_name"
+      r: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "livedns_axfr_tsig"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /livedns/domains/{fqdn}/axfr/tsig"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/livedns/domains/{fqdn}/axfr/tsig"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "axfr"
+            }
+            {
+              lit: "tsig"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /livedns/domains/{fqdn}/axfr/tsig/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/livedns/domains/{fqdn}/axfr/tsig/{id}"
+          q: {
+            exist: [
+              "fqdn"
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "axfr"
+            }
+            {
+              lit: "tsig"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /livedns/domains/{fqdn}/axfr/tsig/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/livedns/domains/{fqdn}/axfr/tsig/{id}"
+          q: {
+            exist: [
+              "fqdn"
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "axfr"
+            }
+            {
+              lit: "tsig"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

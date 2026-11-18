@@ -1,0 +1,49 @@
+# BasicAcmeAccountFlow
+
+main: kit: flow: BasicAcmeAccountFlow:
+{
+  entity: "acme_account",
+  kind: "basic",
+  name: "BasicAcmeAccountFlow",
+  step: [
+    {
+      m: {
+        subscription_id: "subscription01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "acme_account_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "acme_account_ref01",
+        srcdatavar: "acme_account_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "acme_account01",
+        subscription_id: "subscription01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-acme_account_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAcmeAccountFlow"
+}

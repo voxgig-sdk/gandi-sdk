@@ -1,0 +1,44 @@
+# BasicDomainChangeOwnerFlow
+
+main: kit: flow: BasicDomainChangeOwnerFlow:
+{
+  entity: "domain_change_owner",
+  kind: "basic",
+  name: "BasicDomainChangeOwnerFlow",
+  step: [
+    {
+      i: {
+        ref: "domain_change_owner_ref01"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "domain_change_owner_ref01",
+        srcdatavar: "domain_change_owner_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "domain_change_owner01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_change_owner_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainChangeOwnerFlow"
+}

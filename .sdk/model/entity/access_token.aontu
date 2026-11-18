@@ -1,0 +1,104 @@
+# Entity: access_token
+
+main: kit: entity: access_token: {
+
+  alias: field: {}
+
+  fields: {
+    access_token: {
+      h: "Access Token"
+      n: "access_token"
+      r: true
+      t: "`$STRING`"
+    }
+    entities: {
+      h: "Entities"
+      n: "entities"
+      r: true
+      t: "`$ARRAY`"
+    }
+    expires_at: {
+      fo: "date-time"
+      h: "Expires At"
+      n: "expires_at"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    scopes: {
+      h: "Scopes"
+      n: "scopes"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "access_token"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "expires_at"
+            "name"
+          ]
+          co: {
+            id: "POST /organization/access-tokens"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/organization/access-tokens"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "organization"
+            }
+            {
+              lit: "access-tokens"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

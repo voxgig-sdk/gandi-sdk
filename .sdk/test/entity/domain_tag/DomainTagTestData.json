@@ -1,0 +1,71 @@
+{
+  "existing": {
+    "domain_tag": {
+      "DOMAIN_TAG00": {
+        "add": [],
+        "message": "s33",
+        "remove": [],
+        "tag": "s35",
+        "tags": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_TAG00"
+      },
+      "DOMAIN_TAG01": {
+        "add": [],
+        "message": "s65",
+        "remove": [],
+        "tag": "s67",
+        "tags": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_TAG01"
+      },
+      "DOMAIN_TAG02": {
+        "add": [],
+        "message": "s97",
+        "remove": [],
+        "tag": "s99",
+        "tags": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_TAG02"
+      }
+    }
+  },
+  "new": {
+    "domain_tag": {
+      "domain_tag_ref01": {
+        "add": [],
+        "message": "sc9",
+        "remove": [],
+        "tag": "scb",
+        "tags": []
+      }
+    }
+  },
+  "requests": {
+    "POST /domain/domains/{domain}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /domain/domains/{domain}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /domain/domains/{domain}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /domain/domains/{domain}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

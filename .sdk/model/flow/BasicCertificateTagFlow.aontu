@@ -1,0 +1,90 @@
+# BasicCertificateTagFlow
+
+main: kit: flow: BasicCertificateTagFlow:
+{
+  entity: "certificate_tag",
+  kind: "basic",
+  name: "BasicCertificateTagFlow",
+  step: [
+    {
+      i: {
+        ref: "certificate_tag_ref01"
+      }
+
+      m: {
+        certificate_id: "certificate01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        certificate_id: "certificate01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "certificate_tag_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "certificate_tag_ref01",
+        srcdatavar: "certificate_tag_ref01_data",
+        suffix: "_up0",
+        textfield: "message"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-certificate_tag_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "certificate_tag_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "certificate_tag01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        certificate_id: "certificate01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "certificate_tag_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCertificateTagFlow"
+}

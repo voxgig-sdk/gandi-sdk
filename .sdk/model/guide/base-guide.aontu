@@ -1,0 +1,609 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 13
+  metrics: count: path: 126
+  metrics: count: method: 221
+
+  entity: acme: {
+    path: "/acme/catalog": {
+      action: "catalog": {}
+      op: list: method: *GET
+    }
+    path: "/acme/quote": {
+      action: "quote": {}
+      op: create: method: *POST
+    }
+    path: "/acme/subscriptions": {
+      action: "subscription": {}
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/acme/subscriptions/{subscription_id}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/acme/subscriptions/{subscription_id}/accounts": {
+      op: list: method: *GET
+    }
+    path: "/acme/subscriptions/{subscription_id}/accounts/{account_id}": {
+      op: load: method: *GET
+    }
+    path: "/acme/subscriptions/{subscription_id}/domains": {
+      op: list: method: *GET
+      op: patch: method: *PATCH
+    }
+    path: "/acme/subscriptions/{subscription_id}/domains/{domain_id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: billing: {
+    path: "/billing/info": {
+      action: "info": {}
+      op: load: method: *GET
+    }
+    path: "/billing/info/{sharing_id}": {
+      op: load: method: *GET
+    }
+    path: "/billing/price/{type}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: certificate: {
+    path: "/certificate/dcv_params": {
+      action: "dcv_param": {}
+      op: create: method: *POST
+    }
+    path: "/certificate/issued-certs": {
+      action: "issued_cert": {}
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/certificate/issued-certs/{id}": {
+      op: create: method: *POST
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/certificate/issued-certs/{id}/crt": {
+      rename: param: "id": *"issued_cert_id"
+      op: load: method: *GET
+    }
+    path: "/certificate/issued-certs/{id}/dcv": {
+      action: "dcv": {}
+      rename: param: "id": *"issued_cert_id"
+      op: patch: method: *PATCH
+      op: update: method: *PUT
+    }
+    path: "/certificate/issued-certs/{id}/dcv_params": {
+      rename: param: "id": *"issued_cert_id"
+      op: create: method: *POST
+    }
+    path: "/certificate/issued-certs/{id}/tags": {
+      rename: param: "id": *"issued_cert_id"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/certificate/packages": {
+      action: "package": {}
+      op: list: method: *GET
+    }
+    path: "/certificate/packages/{name}": {
+      op: load: method: *GET
+    }
+    path: "/certificate/pem/{type}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: comment: {
+    path: "/comment/comments/{id}": {
+      op: create: method: *POST
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: domain: {
+    path: "/domain/changeowner/{domain}": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/domain/changeowner/{domain}/foa": {
+      action: "foa": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+    }
+    path: "/domain/check": {
+      action: "check": {}
+      op: list: method: *GET
+      op: list: transform: res: *("`body.products`")|top
+    }
+    path: "/domain/domains": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/domain/domains/{domain}": {
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/domain/domains/{domain}/authinfo": {
+      action: "authinfo": {}
+      rename: param: "domain": *"id"
+      op: update: method: *PUT
+    }
+    path: "/domain/domains/{domain}/autorenew": {
+      action: "autorenew": {}
+      rename: param: "domain": *"id"
+      op: patch: method: *PATCH
+    }
+    path: "/domain/domains/{domain}/claims": {
+      action: "claim": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.claims`")|top
+    }
+    path: "/domain/domains/{domain}/contacts": {
+      action: "contact": {}
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+    }
+    path: "/domain/domains/{domain}/contacts/owner": {
+      rename: param: "domain": *"id"
+      op: update: method: *PUT
+    }
+    path: "/domain/domains/{domain}/createstatus": {
+      action: "createstatus": {}
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+    }
+    path: "/domain/domains/{domain}/dnskeys": {
+      action: "dnskey": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/domain/domains/{domain}/dnskeys/{id}": {
+      op: remove: method: *DELETE
+    }
+    path: "/domain/domains/{domain}/hosts": {
+      action: "host": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/domain/domains/{domain}/hosts/{name}": {
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/domain/domains/{domain}/livedns": {
+      action: "livedn": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.nameservers`")|top
+    }
+    path: "/domain/domains/{domain}/livedns/dnssec": {
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/domain/domains/{domain}/nameservers": {
+      action: "nameserver": {}
+      rename: param: "domain": *"id"
+      op: list: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/domain/domains/{domain}/reachability": {
+      action: "reachability": {}
+      rename: param: "domain": *"id"
+      op: patch: method: *PATCH
+    }
+    path: "/domain/domains/{domain}/renew": {
+      action: "renew": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.durations`")|top
+    }
+    path: "/domain/domains/{domain}/restore": {
+      action: "restore": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.contracts`")|top
+    }
+    path: "/domain/domains/{domain}/status": {
+      action: "status": {}
+      rename: param: "domain": *"id"
+      op: patch: method: *PATCH
+    }
+    path: "/domain/domains/{domain}/tags": {
+      action: "tag": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/domain/domains/{domain}/transferout": {
+      action: "transferout": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+    }
+    path: "/domain/domains/{domain}/webredirs": {
+      action: "webredir": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/domain/domains/{domain}/webredirs/{host}": {
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/domain/tlds": {
+      action: "tld": {}
+      op: list: method: *GET
+    }
+    path: "/domain/tlds/{name}": {
+      op: load: method: *GET
+    }
+    path: "/domain/transferin": {
+      action: "transferin": {}
+      op: create: method: *POST
+    }
+    path: "/domain/transferin/{domain}": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/domain/transferin/{domain}/authinfo": {
+      action: "authinfo": {}
+      rename: param: "domain": *"id"
+      op: update: method: *PUT
+    }
+    path: "/domain/transferin/{domain}/available": {
+      action: "available": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+    }
+    path: "/domain/transferin/{domain}/foa": {
+      action: "foa": {}
+      rename: param: "domain": *"id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: email: {
+    path: "/email/forwards/{domain}": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/email/forwards/{domain}/{source}": {
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/email/mailboxes/{domain}": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/email/mailboxes/{domain}/renew": {
+      action: "renew": {}
+      op: create: method: *POST
+    }
+    path: "/email/mailboxes/{domain}/{email}/renew": {
+      action: "renew": {}
+      op: create: method: *POST
+    }
+    path: "/email/mailboxes/{domain}/{mailbox_id}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/email/mailboxes/{domain}/{mailbox_id}/contents": {
+      op: remove: method: *DELETE
+    }
+    path: "/email/migration/{domain}": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+    path: "/email/offers/{domain}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+    }
+    path: "/email/slots/{domain}": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/email/slots/{domain}/{slot_id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: linked_zone: {
+    path: "/linkedzone/domains": {
+      op: list: method: *GET
+    }
+    path: "/linkedzone/domains/{domain}": {
+      op: load: method: *GET
+    }
+    path: "/linkedzone/tasks": {
+      op: list: method: *GET
+    }
+    path: "/linkedzone/tasks/{task_id}": {
+      op: load: method: *GET
+    }
+    path: "/linkedzone/unlink/domains": {
+      op: patch: method: *PATCH
+    }
+    path: "/linkedzone/zones": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/linkedzone/zones/{zone_id}": {
+      rename: param: "zone_id": *"id"
+      op: create: method: *POST
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/linkedzone/zones/{zone_id}/link/domains": {
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: live_dn: {
+    path: "/livedns/axfr/tsig": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/livedns/axfr/tsig/{id}": {
+      op: load: method: *GET
+    }
+    path: "/livedns/axfr/tsig/{id}/config/{software}": {
+      rename: param: "id": *"tsig_id"
+      op: load: method: *GET
+    }
+    path: "/livedns/dns/rrtypes": {
+      op: list: method: *GET
+    }
+    path: "/livedns/domains": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/livedns/domains/{fqdn}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+    }
+    path: "/livedns/domains/{fqdn}/axfr/slaves": {
+      op: list: method: *GET
+    }
+    path: "/livedns/domains/{fqdn}/axfr/slaves/{ip}": {
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/livedns/domains/{fqdn}/axfr/tsig": {
+      op: list: method: *GET
+    }
+    path: "/livedns/domains/{fqdn}/axfr/tsig/{id}": {
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/livedns/domains/{fqdn}/keys": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/livedns/domains/{fqdn}/keys/{id}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/livedns/domains/{fqdn}/nameservers": {
+      op: list: method: *GET
+    }
+    path: "/livedns/domains/{fqdn}/records": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/livedns/domains/{fqdn}/records/{rrset_name}": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}": {
+      op: create: method: *POST
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/livedns/domains/{fqdn}/snapshots": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/livedns/domains/{fqdn}/snapshots/{id}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/livedns/domains/{fqdn}/verification/{rrset_name}/{rrset_type}": {
+      op: create: method: *POST
+    }
+    path: "/livedns/nameservers/{fqdn}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: mailbox: {
+    path: "/mailbox/domains": {
+      action: "domain": {}
+      op: list: method: *GET
+    }
+    path: "/mailbox/domains/{domain}": {
+      op: load: method: *GET
+    }
+    path: "/mailbox/domains/{domain}/validate": {
+      action: "validate": {}
+      op: create: method: *POST
+    }
+    path: "/mailbox/forwards": {
+      action: "forward": {}
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/mailbox/forwards/{source}": {
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/mailbox/mailboxes": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/mailbox/mailboxes/{email}": {
+      rename: param: "email": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/mailbox/mailboxes/{email}/renew": {
+      action: "renew": {}
+      op: create: method: *POST
+    }
+    path: "/mailbox/products": {
+      action: "product": {}
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/mailbox/quotas": {
+      action: "quota": {}
+      op: list: method: *GET
+    }
+    path: "/mailbox/slots": {
+      action: "slot": {}
+      op: list: method: *GET
+    }
+    path: "/mailbox/slots/{slot_id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: nt: {
+    path: "/certificate/pem/-/{filename}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: organization: {
+    path: "/organization/access-tokens": {
+      action: "access_token": {}
+      op: create: method: *POST
+    }
+    path: "/organization/organizations": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/organization/organizations/{org_id}": {
+      rename: param: "org_id": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/organization/organizations/{org_id}/action": {
+      action: "action": {}
+      rename: param: "org_id": *"id"
+      op: create: method: *POST
+    }
+    path: "/organization/organizations/{org_id}/customers": {
+      action: "customer": {}
+      rename: param: "org_id": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/organization/organizations/{org_id}/customers/{id}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/organization/user-info": {
+      action: "user_info": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: template: {
+    path: "/template/dispatch/{id}": {
+      op: load: method: *GET
+    }
+    path: "/template/templates": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/template/templates/{id}": {
+      op: create: method: *POST
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: web_hosting: {
+    path: "/simplehosting/applications": {
+      op: list: method: *GET
+    }
+    path: "/simplehosting/applications/{application_name}": {
+      op: load: method: *GET
+    }
+    path: "/simplehosting/instances": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/simplehosting/instances/{instance_id}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/simplehosting/instances/{instance_id}/action": {
+      action: "action": {}
+      op: create: method: *POST
+    }
+    path: "/simplehosting/instances/{instance_id}/usage": {
+      op: load: method: *GET
+    }
+    path: "/simplehosting/instances/{instance_id}/vhosts": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/simplehosting/instances/{instance_id}/vhosts/{vhost_fqdn}/cache": {
+      action: "cache": {}
+      op: remove: method: *DELETE
+    }
+  }
+
+}

@@ -1,0 +1,80 @@
+# Entity: linked_zone_deployment
+
+main: kit: entity: linked_zone_deployment: {
+
+  alias: field: {}
+
+  fields: {
+    deploy: {
+      h: "Deploy"
+      n: "deploy"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "linked_zone_deployment"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "deploy"
+          ]
+          co: {
+            id: "POST /linkedzone/zones/{zone_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "zone_id"
+                or: "zone_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/linkedzone/zones/{zone_id}"
+          q: {
+            exist: [
+              "zone_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "linkedzone"
+            }
+            {
+              lit: "zones"
+            }
+            {
+              var: "zone_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

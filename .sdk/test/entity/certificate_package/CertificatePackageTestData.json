@@ -1,0 +1,73 @@
+{
+  "existing": {
+    "certificate_package": {
+      "CERTIFICATE_PACKAGE00": {
+        "category": {},
+        "href": "s65",
+        "max_domains": 102,
+        "min_domains": 103,
+        "name": "s68",
+        "provider": "s69",
+        "sgc": true,
+        "trustlogo": false,
+        "warranty": 108,
+        "wildcard": false,
+        "id": "CERTIFICATE_PACKAGE00"
+      },
+      "CERTIFICATE_PACKAGE01": {
+        "category": {},
+        "href": "sc9",
+        "max_domains": 202,
+        "min_domains": 203,
+        "name": "scc",
+        "provider": "scd",
+        "sgc": true,
+        "trustlogo": false,
+        "warranty": 208,
+        "wildcard": false,
+        "id": "CERTIFICATE_PACKAGE01"
+      },
+      "CERTIFICATE_PACKAGE02": {
+        "category": {},
+        "href": "s12d",
+        "max_domains": 302,
+        "min_domains": 303,
+        "name": "s130",
+        "provider": "s131",
+        "sgc": true,
+        "trustlogo": false,
+        "warranty": 308,
+        "wildcard": false,
+        "id": "CERTIFICATE_PACKAGE02"
+      }
+    }
+  },
+  "new": {
+    "certificate_package": {
+      "certificate_package_ref01": {
+        "category": {},
+        "href": "s191",
+        "max_domains": 402,
+        "min_domains": 403,
+        "name": "s194",
+        "provider": "s195",
+        "sgc": true,
+        "trustlogo": false,
+        "warranty": 408,
+        "wildcard": false
+      }
+    }
+  },
+  "requests": {
+    "GET /certificate/packages": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /certificate/packages/{name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

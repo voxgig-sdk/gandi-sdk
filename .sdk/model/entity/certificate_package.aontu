@@ -1,0 +1,232 @@
+# Entity: certificate_package
+
+main: kit: entity: certificate_package: {
+
+  alias: field: {}
+
+  fields: {
+    category: {
+      h: "Category"
+      n: "category"
+      r: true
+      t: "`$OBJECT`"
+    }
+    href: {
+      h: "Href"
+      n: "href"
+      r: true
+      t: "`$STRING`"
+    }
+    max_domains: {
+      h: "Max Domains"
+      n: "max_domains"
+      r: true
+      t: "`$INTEGER`"
+    }
+    min_domains: {
+      h: "Min Domains"
+      n: "min_domains"
+      r: true
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$STRING`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: true
+      t: "`$STRING`"
+    }
+    sgc: {
+      h: "Sgc"
+      n: "sgc"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    trustlogo: {
+      h: "Trustlogo"
+      n: "trustlogo"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    warranty: {
+      h: "Warranty"
+      n: "warranty"
+      r: true
+      t: "`$INTEGER`"
+    }
+    wildcard: {
+      h: "Wildcard"
+      n: "wildcard"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "certificate_package"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /certificate/packages"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "category"
+                or: "category"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "max_domain"
+                or: "max_domains"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "min_domain"
+                or: "min_domains"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "trustlogo"
+                or: "trustlogo"
+                r: false
+                style: "form"
+                t: "`$BOOLEAN`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "warranty"
+                or: "warranty"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "wildcard"
+                or: "wildcard"
+                r: false
+                style: "form"
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/certificate/packages"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "packages"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /certificate/packages/{name}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "name"
+                or: "name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/certificate/packages/{name}"
+          q: {
+            exist: [
+              "name"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "packages"
+            }
+            {
+              var: "name"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,120 @@
+# Entity: billing_info
+
+main: kit: entity: billing_info: {
+
+  alias: field: {}
+
+  fields: {
+    annual_balance: {
+      h: "Annual Balance"
+      n: "annual_balance"
+      r: true
+      t: "`$NUMBER`"
+    }
+    grid: {
+      h: "Grid"
+      n: "grid"
+      r: true
+      t: "`$STRING`"
+    }
+    outstanding_amount: {
+      h: "Outstanding Amount"
+      n: "outstanding_amount"
+      r: true
+      t: "`$NUMBER`"
+    }
+    prepaid: {
+      h: "Prepaid"
+      n: "prepaid"
+      r: true
+      t: "`$OBJECT`"
+    }
+    prepaid_monthly_invoice: {
+      h: "Prepaid Monthly Invoice"
+      n: "prepaid_monthly_invoice"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "billing_info"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /billing/info/{sharing_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/billing/info/{sharing_id}"
+          q: {
+            exist: [
+              "sharing_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "billing"
+            }
+            {
+              lit: "info"
+            }
+            {
+              var: "sharing_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /billing/info"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/billing/info"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "billing"
+            }
+            {
+              lit: "info"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

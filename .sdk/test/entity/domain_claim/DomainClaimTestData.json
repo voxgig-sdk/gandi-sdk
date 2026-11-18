@@ -1,0 +1,68 @@
+{
+  "existing": {
+    "domain_claim": {
+      "DOMAIN_CLAIM00": {
+        "claims": [],
+        "created_at": "s51",
+        "expires_at": "s52",
+        "fqdn": "s53",
+        "fqdn_alabel": "s54",
+        "fqdn_ulabel": "s55",
+        "notice_id": "NOTICE01",
+        "status": "s57",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CLAIM00"
+      },
+      "DOMAIN_CLAIM01": {
+        "claims": [],
+        "created_at": "sa1",
+        "expires_at": "sa2",
+        "fqdn": "sa3",
+        "fqdn_alabel": "sa4",
+        "fqdn_ulabel": "sa5",
+        "notice_id": "NOTICE01",
+        "status": "sa7",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CLAIM01"
+      },
+      "DOMAIN_CLAIM02": {
+        "claims": [],
+        "created_at": "sf1",
+        "expires_at": "sf2",
+        "fqdn": "sf3",
+        "fqdn_alabel": "sf4",
+        "fqdn_ulabel": "sf5",
+        "notice_id": "NOTICE01",
+        "status": "sf7",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CLAIM02"
+      }
+    }
+  },
+  "new": {
+    "domain_claim": {
+      "domain_claim_ref01": {
+        "claims": [],
+        "created_at": "s141",
+        "expires_at": "s142",
+        "fqdn": "s143",
+        "fqdn_alabel": "s144",
+        "fqdn_ulabel": "s145",
+        "notice_id": "NOTICE01",
+        "status": "s147"
+      }
+    }
+  },
+  "requests": {
+    "POST /domain/domains/{domain}/claims": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/claims": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

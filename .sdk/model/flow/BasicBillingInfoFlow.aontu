@@ -1,0 +1,28 @@
+# BasicBillingInfoFlow
+
+main: kit: flow: BasicBillingInfoFlow:
+{
+  entity: "billing_info",
+  kind: "basic",
+  name: "BasicBillingInfoFlow",
+  step: [
+    {
+      i: {
+        ref: "billing_info_ref01",
+        srcdatavar: "billing_info_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-billing_info_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBillingInfoFlow"
+}

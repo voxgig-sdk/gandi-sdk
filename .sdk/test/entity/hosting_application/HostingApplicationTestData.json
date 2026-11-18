@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "hosting_application": {
+      "HOSTING_APPLICATION00": {
+        "name": "s1e",
+        "name_label": "s1f",
+        "requirements": [],
+        "id": "HOSTING_APPLICATION00"
+      },
+      "HOSTING_APPLICATION01": {
+        "name": "s3c",
+        "name_label": "s3d",
+        "requirements": [],
+        "id": "HOSTING_APPLICATION01"
+      },
+      "HOSTING_APPLICATION02": {
+        "name": "s5a",
+        "name_label": "s5b",
+        "requirements": [],
+        "id": "HOSTING_APPLICATION02"
+      }
+    }
+  },
+  "new": {
+    "hosting_application": {
+      "hosting_application_ref01": {
+        "name": "s78",
+        "name_label": "s79",
+        "requirements": []
+      }
+    }
+  },
+  "requests": {
+    "GET /simplehosting/applications": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /simplehosting/applications/{application_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

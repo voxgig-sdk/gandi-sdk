@@ -1,0 +1,47 @@
+{
+  "existing": {
+    "billing_price": {
+      "BILLING_PRICE00": {
+        "currency": "s28",
+        "grid": "s29",
+        "products": [],
+        "taxes": [],
+        "type": "TYPE01",
+        "id": "BILLING_PRICE00"
+      },
+      "BILLING_PRICE01": {
+        "currency": "s50",
+        "grid": "s51",
+        "products": [],
+        "taxes": [],
+        "type": "TYPE01",
+        "id": "BILLING_PRICE01"
+      },
+      "BILLING_PRICE02": {
+        "currency": "s78",
+        "grid": "s79",
+        "products": [],
+        "taxes": [],
+        "type": "TYPE01",
+        "id": "BILLING_PRICE02"
+      }
+    }
+  },
+  "new": {
+    "billing_price": {
+      "billing_price_ref01": {
+        "currency": "sa0",
+        "grid": "sa1",
+        "products": [],
+        "taxes": []
+      }
+    }
+  },
+  "requests": {
+    "GET /billing/price/{type}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

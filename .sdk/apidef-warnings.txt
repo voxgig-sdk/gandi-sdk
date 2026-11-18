@@ -1,0 +1,12 @@
+{
+  point: "warning"
+  note: "list GET /domain/check reads `body.products` and drops `taxes`: declare the one it reads in guide.aontu"
+}
+
+
+{
+  point: "warning"
+  note: "Create on entity=mailbox_domain has no route of its own, only the action validate, so a plain create sends it. Set the route's op in the guide if it should not."
+  entity: "mailbox_domain"
+  op: "create"
+}

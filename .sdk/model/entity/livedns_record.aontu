@@ -1,0 +1,927 @@
+# Entity: livedns_record
+
+main: kit: entity: livedns_record: {
+
+  alias: field: {}
+
+  fields: {
+    add_rrset_values: {
+      h: "Add Rrset Values"
+      n: "add_rrset_values"
+      r: false
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      syn: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    remove_rrset_values: {
+      h: "Remove Rrset Values"
+      n: "remove_rrset_values"
+      r: false
+      t: "`$ARRAY`"
+    }
+    rrset_href: {
+      h: "Rrset Href"
+      n: "rrset_href"
+      r: true
+      t: "`$STRING`"
+    }
+    rrset_name: {
+      h: "Rrset Name"
+      n: "rrset_name"
+      r: true
+      t: "`$STRING`"
+    }
+    rrset_ttl: {
+      h: "Rrset Ttl"
+      n: "rrset_ttl"
+      r: false
+      t: "`$INTEGER`"
+    }
+    rrset_type: {
+      h: "Rrset Type"
+      n: "rrset_type"
+      r: true
+      t: "`$STRING`"
+    }
+    rrset_values: {
+      h: "Rrset Values"
+      n: "rrset_values"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    from: {
+      rrset_name: "rrset_name"
+      rrset_type: "rrset_type"
+    }
+    name: "id"
+    parts: [
+      "rrset_name"
+      "rrset_type"
+    ]
+    sep: "/"
+  }
+
+  name: "livedns_record"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "rrset_ttl"
+            "rrset_values"
+          ]
+          co: {
+            id: "POST /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_type"
+                or: "rrset_type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+          q: {
+            exist: [
+              "fqdn"
+              "rrset_name"
+              "rrset_type"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+            {
+              var: "rrset_type"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "rrset_values"
+          ]
+          co: {
+            id: "POST /livedns/domains/{fqdn}/verification/{rrset_name}/{rrset_type}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_type"
+                or: "rrset_type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/livedns/domains/{fqdn}/verification/{rrset_name}/{rrset_type}"
+          q: {
+            "$action": "verification"
+            exist: [
+              "fqdn"
+              "rrset_name"
+              "rrset_type"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "verification"
+            }
+            {
+              var: "rrset_name"
+            }
+            {
+              var: "rrset_type"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "rrset_ttl"
+            "rrset_type"
+            "rrset_values"
+          ]
+          co: {
+            id: "POST /livedns/domains/{fqdn}/records/{rrset_name}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}"
+          q: {
+            "$action": "name"
+            exist: [
+              "fqdn"
+              "rrset_name"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "rrset_name"
+            "rrset_ttl"
+            "rrset_type"
+            "rrset_values"
+          ]
+          co: {
+            id: "POST /livedns/domains/{fqdn}/records"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/livedns/domains/{fqdn}/records"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /livedns/domains/{fqdn}/records/{rrset_name}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}"
+          q: {
+            "$action": "name"
+            exist: [
+              "fqdn"
+              "rrset_name"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /livedns/domains/{fqdn}/records"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "rrset_type"
+                or: "rrset_type"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: "rrset_name"
+                explode: true
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/livedns/domains/{fqdn}/records"
+          q: {
+            exist: [
+              "fqdn"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_type"
+                or: "rrset_type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+          q: {
+            exist: [
+              "fqdn"
+              "rrset_name"
+              "rrset_type"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+            {
+              var: "rrset_type"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    patch: {
+      name: "patch"
+      points: [
+        {
+          bf: [
+            "add_rrset_values"
+            "remove_rrset_values"
+            "rrset_ttl"
+          ]
+          co: {
+            id: "PATCH /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_type"
+                or: "rrset_type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+          q: {
+            exist: [
+              "fqdn"
+              "rrset_name"
+              "rrset_type"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+            {
+              var: "rrset_type"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_type"
+                or: "rrset_type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+          q: {
+            exist: [
+              "fqdn"
+              "rrset_name"
+              "rrset_type"
+            ]
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+            {
+              var: "rrset_type"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /livedns/domains/{fqdn}/records/{rrset_name}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}"
+          q: {
+            "$action": "name"
+            exist: [
+              "fqdn"
+              "rrset_name"
+            ]
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "rrset_ttl"
+            "rrset_values"
+          ]
+          co: {
+            id: "PUT /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_type"
+                or: "rrset_type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}"
+          q: {
+            exist: [
+              "fqdn"
+              "rrset_name"
+              "rrset_type"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+            {
+              var: "rrset_type"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "items"
+          ]
+          co: {
+            id: "PUT /livedns/domains/{fqdn}/records/{rrset_name}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "fqdn"
+                or: "fqdn"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "rrset_name"
+                or: "rrset_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/livedns/domains/{fqdn}/records/{rrset_name}"
+          q: {
+            "$action": "name"
+            exist: [
+              "fqdn"
+              "rrset_name"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "livedns"
+            }
+            {
+              lit: "domains"
+            }
+            {
+              var: "fqdn"
+            }
+            {
+              lit: "records"
+            }
+            {
+              var: "rrset_name"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+    [path("$.main.kit.entity.domain")]
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

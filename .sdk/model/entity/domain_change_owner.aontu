@@ -1,0 +1,302 @@
+# Entity: domain_change_owner
+
+main: kit: entity: domain_change_owner: {
+
+  alias: field: {}
+
+  fields: {
+    admin: {
+      h: "Admin"
+      n: "admin"
+      r: true
+      t: "`$OBJECT`"
+    }
+    bill: {
+      h: "Bill"
+      n: "bill"
+      r: true
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    date_start: {
+      h: "Date Start"
+      n: "date_start"
+      r: false
+      t: "`$STRING`"
+    }
+    errors: {
+      h: "Errors"
+      n: "errors"
+      r: false
+      t: "`$ARRAY`"
+    }
+    errortype: {
+      h: "Errortype"
+      n: "errortype"
+      r: false
+      t: "`$STRING`"
+    }
+    errortype_label: {
+      h: "Errortype Label"
+      n: "errortype_label"
+      r: false
+      t: "`$STRING`"
+    }
+    foa: {
+      h: "Foa"
+      n: "foa"
+      r: false
+      t: "`$ARRAY`"
+    }
+    inner_step: {
+      h: "Inner Step"
+      n: "inner_step"
+      r: false
+      t: "`$STRING`"
+    }
+    owner: {
+      h: "Owner"
+      n: "owner"
+      r: true
+      t: "`$OBJECT`"
+    }
+    params: {
+      h: "Params"
+      n: "params"
+      r: true
+      t: "`$OBJECT`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    step: {
+      h: "Step"
+      n: "step"
+      r: true
+      t: "`$STRING`"
+    }
+    step_nb: {
+      h: "Step Nb"
+      n: "step_nb"
+      r: true
+      t: "`$INTEGER`"
+    }
+    tech: {
+      h: "Tech"
+      n: "tech"
+      r: true
+      t: "`$OBJECT`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "domain_change_owner"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "admin"
+            "bill"
+            "owner"
+            "tech"
+          ]
+          co: {
+            id: "POST /domain/changeowner/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/changeowner/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "changeowner"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "email"
+          ]
+          co: {
+            id: "POST /domain/changeowner/{domain}/foa"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domain/changeowner/{domain}/foa"
+          q: {
+            "$action": "foa"
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "changeowner"
+            }
+            {
+              var: "domain"
+            }
+            {
+              lit: "foa"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /domain/changeowner/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domain/changeowner/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "domain"
+            }
+            {
+              lit: "changeowner"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

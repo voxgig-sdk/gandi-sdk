@@ -1,0 +1,245 @@
+{
+  "existing": {
+    "domain": {
+      "DOMAIN00": {
+        "admin": {},
+        "authinfo": "s187",
+        "autorenew": {},
+        "bill": {},
+        "can_tld_lock": true,
+        "claims": "s18b",
+        "contacts": {},
+        "currency": "s18d",
+        "dates": {},
+        "domain_owner": "s18f",
+        "duration": 400,
+        "enforce_premium": false,
+        "errors": [],
+        "extra_parameters": {},
+        "fqdn": "s194",
+        "fqdn_unicode": "s195",
+        "href": "s196",
+        "id": "DOMAIN00",
+        "lang": "s198",
+        "mailbox_optin": false,
+        "nameserver": {},
+        "nameservers": [],
+        "nameservers_ips": {},
+        "orga_owner": "s19d",
+        "owner": {},
+        "price": 415,
+        "reachability": "s1a0",
+        "resellee_id": "RESELLEE01",
+        "services": [],
+        "sharing_id": "SHARING01",
+        "sharing_space": {},
+        "smd": "s1a5",
+        "status": [],
+        "tags": [],
+        "tech": {},
+        "template_id": "TEMPLATE01",
+        "tld": "s1aa",
+        "tld_period": "s1ab",
+        "trustee_roles": []
+      },
+      "DOMAIN01": {
+        "admin": {},
+        "authinfo": "s30d",
+        "autorenew": {},
+        "bill": {},
+        "can_tld_lock": true,
+        "claims": "s311",
+        "contacts": {},
+        "currency": "s313",
+        "dates": {},
+        "domain_owner": "s315",
+        "duration": 790,
+        "enforce_premium": false,
+        "errors": [],
+        "extra_parameters": {},
+        "fqdn": "s31a",
+        "fqdn_unicode": "s31b",
+        "href": "s31c",
+        "id": "DOMAIN01",
+        "lang": "s31e",
+        "mailbox_optin": false,
+        "nameserver": {},
+        "nameservers": [],
+        "nameservers_ips": {},
+        "orga_owner": "s323",
+        "owner": {},
+        "price": 805,
+        "reachability": "s326",
+        "resellee_id": "RESELLEE01",
+        "services": [],
+        "sharing_id": "SHARING01",
+        "sharing_space": {},
+        "smd": "s32b",
+        "status": [],
+        "tags": [],
+        "tech": {},
+        "template_id": "TEMPLATE01",
+        "tld": "s330",
+        "tld_period": "s331",
+        "trustee_roles": []
+      },
+      "DOMAIN02": {
+        "admin": {},
+        "authinfo": "s493",
+        "autorenew": {},
+        "bill": {},
+        "can_tld_lock": true,
+        "claims": "s497",
+        "contacts": {},
+        "currency": "s499",
+        "dates": {},
+        "domain_owner": "s49b",
+        "duration": 1180,
+        "enforce_premium": false,
+        "errors": [],
+        "extra_parameters": {},
+        "fqdn": "s4a0",
+        "fqdn_unicode": "s4a1",
+        "href": "s4a2",
+        "id": "DOMAIN02",
+        "lang": "s4a4",
+        "mailbox_optin": false,
+        "nameserver": {},
+        "nameservers": [],
+        "nameservers_ips": {},
+        "orga_owner": "s4a9",
+        "owner": {},
+        "price": 1195,
+        "reachability": "s4ac",
+        "resellee_id": "RESELLEE01",
+        "services": [],
+        "sharing_id": "SHARING01",
+        "sharing_space": {},
+        "smd": "s4b1",
+        "status": [],
+        "tags": [],
+        "tech": {},
+        "template_id": "TEMPLATE01",
+        "tld": "s4b6",
+        "tld_period": "s4b7",
+        "trustee_roles": []
+      }
+    }
+  },
+  "new": {
+    "domain": {
+      "domain_ref01": {
+        "admin": {},
+        "authinfo": "s619",
+        "autorenew": {},
+        "bill": {},
+        "can_tld_lock": true,
+        "claims": "s61d",
+        "contacts": {},
+        "currency": "s61f",
+        "dates": {},
+        "domain_owner": "s621",
+        "duration": 1570,
+        "enforce_premium": false,
+        "errors": [],
+        "extra_parameters": {},
+        "fqdn": "s626",
+        "fqdn_unicode": "s627",
+        "href": "s628",
+        "lang": "s62a",
+        "mailbox_optin": false,
+        "nameserver": {},
+        "nameservers": [],
+        "nameservers_ips": {},
+        "orga_owner": "s62f",
+        "owner": {},
+        "price": 1585,
+        "reachability": "s632",
+        "resellee_id": "RESELLEE01",
+        "services": [],
+        "sharing_id": "SHARING01",
+        "sharing_space": {},
+        "smd": "s637",
+        "status": [],
+        "tags": [],
+        "tech": {},
+        "template_id": "TEMPLATE01",
+        "tld": "s63c",
+        "tld_period": "s63d",
+        "trustee_roles": []
+      }
+    }
+  },
+  "requests": {
+    "POST /domain/domains/{domain}/renew": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /domain/domains/{domain}/restore": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /domain/domains/{domain}/transferout": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /domain/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/createstatus": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/renew": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/restore": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /domain/domains/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /domain/domains/{domain}/authinfo": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /domain/domains/{domain}/autorenew": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /domain/domains/{domain}/reachability": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /domain/domains/{domain}/status": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

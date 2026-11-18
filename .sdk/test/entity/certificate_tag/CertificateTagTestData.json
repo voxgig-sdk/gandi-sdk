@@ -1,0 +1,71 @@
+{
+  "existing": {
+    "certificate_tag": {
+      "CERTIFICATE_TAG00": {
+        "add": [],
+        "message": "s33",
+        "remove": [],
+        "tag": "s35",
+        "tags": [],
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_TAG00"
+      },
+      "CERTIFICATE_TAG01": {
+        "add": [],
+        "message": "s65",
+        "remove": [],
+        "tag": "s67",
+        "tags": [],
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_TAG01"
+      },
+      "CERTIFICATE_TAG02": {
+        "add": [],
+        "message": "s97",
+        "remove": [],
+        "tag": "s99",
+        "tags": [],
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_TAG02"
+      }
+    }
+  },
+  "new": {
+    "certificate_tag": {
+      "certificate_tag_ref01": {
+        "add": [],
+        "message": "sc9",
+        "remove": [],
+        "tag": "scb",
+        "tags": []
+      }
+    }
+  },
+  "requests": {
+    "POST /certificate/issued-certs/{id}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /certificate/issued-certs/{id}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /certificate/issued-certs/{id}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /certificate/issued-certs/{id}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /certificate/issued-certs/{id}/tags": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

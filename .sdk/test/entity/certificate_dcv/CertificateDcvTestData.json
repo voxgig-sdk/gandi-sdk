@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "certificate_dcv": {
+      "CERTIFICATE_DCV00": {
+        "message": "s14",
+        "method": "s15",
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_DCV00"
+      },
+      "CERTIFICATE_DCV01": {
+        "message": "s28",
+        "method": "s29",
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_DCV01"
+      },
+      "CERTIFICATE_DCV02": {
+        "message": "s3c",
+        "method": "s3d",
+        "certificate_id": "CERTIFICATE01",
+        "id": "CERTIFICATE_DCV02"
+      }
+    }
+  },
+  "new": {
+    "certificate_dcv": {
+      "certificate_dcv_ref01": {
+        "message": "s50",
+        "method": "s51"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /certificate/issued-certs/{id}/dcv": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /certificate/issued-certs/{id}/dcv": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

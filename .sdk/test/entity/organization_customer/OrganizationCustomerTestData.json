@@ -1,0 +1,131 @@
+{
+  "existing": {
+    "organization_customer": {
+      "ORGANIZATION_CUSTOMER00": {
+        "city": "sd2",
+        "country": "sd3",
+        "email": "sd4",
+        "fax": "sd5",
+        "firstname": "sd6",
+        "id": "ORGANIZATION_CUSTOMER00",
+        "lang": "sd8",
+        "lastname": "sd9",
+        "message": "sda",
+        "name": "sdb",
+        "orgname": "sdc",
+        "phone": "sdd",
+        "reference": "sde",
+        "siren": "sdf",
+        "state": "se0",
+        "streetaddr": "se1",
+        "streetaddr2": "se2",
+        "sync_contact_email": "se3",
+        "type": "se4",
+        "vat_number": "se5",
+        "zip": "se6",
+        "org_id": "ORG01"
+      },
+      "ORGANIZATION_CUSTOMER01": {
+        "city": "s1a4",
+        "country": "s1a5",
+        "email": "s1a6",
+        "fax": "s1a7",
+        "firstname": "s1a8",
+        "id": "ORGANIZATION_CUSTOMER01",
+        "lang": "s1aa",
+        "lastname": "s1ab",
+        "message": "s1ac",
+        "name": "s1ad",
+        "orgname": "s1ae",
+        "phone": "s1af",
+        "reference": "s1b0",
+        "siren": "s1b1",
+        "state": "s1b2",
+        "streetaddr": "s1b3",
+        "streetaddr2": "s1b4",
+        "sync_contact_email": "s1b5",
+        "type": "s1b6",
+        "vat_number": "s1b7",
+        "zip": "s1b8",
+        "org_id": "ORG01"
+      },
+      "ORGANIZATION_CUSTOMER02": {
+        "city": "s276",
+        "country": "s277",
+        "email": "s278",
+        "fax": "s279",
+        "firstname": "s27a",
+        "id": "ORGANIZATION_CUSTOMER02",
+        "lang": "s27c",
+        "lastname": "s27d",
+        "message": "s27e",
+        "name": "s27f",
+        "orgname": "s280",
+        "phone": "s281",
+        "reference": "s282",
+        "siren": "s283",
+        "state": "s284",
+        "streetaddr": "s285",
+        "streetaddr2": "s286",
+        "sync_contact_email": "s287",
+        "type": "s288",
+        "vat_number": "s289",
+        "zip": "s28a",
+        "org_id": "ORG01"
+      }
+    }
+  },
+  "new": {
+    "organization_customer": {
+      "organization_customer_ref01": {
+        "city": "s348",
+        "country": "s349",
+        "email": "s34a",
+        "fax": "s34b",
+        "firstname": "s34c",
+        "lang": "s34e",
+        "lastname": "s34f",
+        "message": "s350",
+        "name": "s351",
+        "orgname": "s352",
+        "phone": "s353",
+        "reference": "s354",
+        "siren": "s355",
+        "state": "s356",
+        "streetaddr": "s357",
+        "streetaddr2": "s358",
+        "sync_contact_email": "s359",
+        "type": "s35a",
+        "vat_number": "s35b",
+        "zip": "s35c"
+      }
+    }
+  },
+  "requests": {
+    "POST /organization/organizations/{org_id}/customers": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /organization/organizations/{org_id}/customers": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /organization/organizations/{org_id}/customers/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /organization/organizations/{org_id}/customers/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /organization/organizations/{org_id}/customers/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

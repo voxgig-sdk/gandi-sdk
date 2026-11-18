@@ -1,0 +1,22 @@
+# BasicMailboxQuotaFlow
+
+main: kit: flow: BasicMailboxQuotaFlow:
+{
+  entity: "mailbox_quota",
+  kind: "basic",
+  name: "BasicMailboxQuotaFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "mailbox_quota_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMailboxQuotaFlow"
+}

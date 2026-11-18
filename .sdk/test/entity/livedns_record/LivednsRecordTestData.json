@@ -1,0 +1,118 @@
+{
+  "existing": {
+    "livedns_record": {
+      "LIVEDNS_RECORD00": {
+        "add_rrset_values": [],
+        "id": "LIVEDNS_RECORD00",
+        "message": "s5c",
+        "remove_rrset_values": [],
+        "rrset_href": "s5e",
+        "rrset_name": "s5f",
+        "rrset_ttl": 96,
+        "rrset_type": "s61",
+        "rrset_values": [],
+        "fqdn": "FQDN01"
+      },
+      "LIVEDNS_RECORD01": {
+        "add_rrset_values": [],
+        "id": "LIVEDNS_RECORD01",
+        "message": "sb6",
+        "remove_rrset_values": [],
+        "rrset_href": "sb8",
+        "rrset_name": "sb9",
+        "rrset_ttl": 186,
+        "rrset_type": "sbb",
+        "rrset_values": [],
+        "fqdn": "FQDN01"
+      },
+      "LIVEDNS_RECORD02": {
+        "add_rrset_values": [],
+        "id": "LIVEDNS_RECORD02",
+        "message": "s110",
+        "remove_rrset_values": [],
+        "rrset_href": "s112",
+        "rrset_name": "s113",
+        "rrset_ttl": 276,
+        "rrset_type": "s115",
+        "rrset_values": [],
+        "fqdn": "FQDN01"
+      }
+    }
+  },
+  "new": {
+    "livedns_record": {
+      "livedns_record_ref01": {
+        "add_rrset_values": [],
+        "message": "s16a",
+        "remove_rrset_values": [],
+        "rrset_href": "s16c",
+        "rrset_name": "s16d",
+        "rrset_ttl": 366,
+        "rrset_type": "s16f",
+        "rrset_values": []
+      }
+    }
+  },
+  "requests": {
+    "POST /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /livedns/domains/{fqdn}/verification/{rrset_name}/{rrset_type}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /livedns/domains/{fqdn}/records/{rrset_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /livedns/domains/{fqdn}/records": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains/{fqdn}/records/{rrset_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains/{fqdn}/records": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /livedns/domains/{fqdn}/records/{rrset_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /livedns/domains/{fqdn}/records/{rrset_name}/{rrset_type}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /livedns/domains/{fqdn}/records/{rrset_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

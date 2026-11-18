@@ -1,0 +1,49 @@
+# BasicLivednsAxfrTsigFlow
+
+main: kit: flow: BasicLivednsAxfrTsigFlow:
+{
+  entity: "livedns_axfr_tsig",
+  kind: "basic",
+  name: "BasicLivednsAxfrTsigFlow",
+  step: [
+    {
+      m: {
+        fqdn: "fqdn01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "livedns_axfr_tsig_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      d: {
+        fqdn: "fqdn01"
+      }
+
+      i: {
+        ref: "livedns_axfr_tsig_ref01",
+        srcdatavar: "livedns_axfr_tsig_ref01_data",
+        suffix: "_up0",
+        textfield: "href"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-livedns_axfr_tsig_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLivednsAxfrTsigFlow"
+}

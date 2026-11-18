@@ -1,0 +1,341 @@
+# Entity: certificate_tag
+
+main: kit: entity: certificate_tag: {
+
+  alias: field: {}
+
+  fields: {
+    add: {
+      h: "Add"
+      n: "add"
+      r: true
+      t: "`$ARRAY`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    remove: {
+      h: "Remove"
+      n: "remove"
+      r: true
+      t: "`$ARRAY`"
+    }
+    tag: {
+      h: "Tag"
+      n: "tag"
+      r: true
+      t: "`$STRING`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "certificate_tag"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "tag"
+          ]
+          co: {
+            id: "POST /certificate/issued-certs/{id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "certificate_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/certificate/issued-certs/{id}/tags"
+          q: {
+            exist: [
+              "certificate_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "certificate_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "certificate_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /certificate/issued-certs/{id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "certificate_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/certificate/issued-certs/{id}/tags"
+          q: {
+            exist: [
+              "certificate_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "certificate_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "certificate_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    patch: {
+      name: "patch"
+      points: [
+        {
+          bf: [
+            "add"
+            "remove"
+          ]
+          co: {
+            id: "PATCH /certificate/issued-certs/{id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "certificate_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/certificate/issued-certs/{id}/tags"
+          q: {
+            exist: [
+              "certificate_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "certificate_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "certificate_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /certificate/issued-certs/{id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "certificate_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/certificate/issued-certs/{id}/tags"
+          q: {
+            exist: [
+              "certificate_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "certificate_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "certificate_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "tags"
+          ]
+          co: {
+            id: "PUT /certificate/issued-certs/{id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "certificate_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/certificate/issued-certs/{id}/tags"
+          q: {
+            exist: [
+              "certificate_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "certificate_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "certificate"
+            }
+            {
+              lit: "issued-certs"
+            }
+            {
+              var: "certificate_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

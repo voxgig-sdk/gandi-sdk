@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "domain_nameserver": {
+      "DOMAIN_NAMESERVER00": {
+        "message": "s14",
+        "nameservers": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_NAMESERVER00"
+      },
+      "DOMAIN_NAMESERVER01": {
+        "message": "s28",
+        "nameservers": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_NAMESERVER01"
+      },
+      "DOMAIN_NAMESERVER02": {
+        "message": "s3c",
+        "nameservers": [],
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_NAMESERVER02"
+      }
+    }
+  },
+  "new": {
+    "domain_nameserver": {
+      "domain_nameserver_ref01": {
+        "message": "s50",
+        "nameservers": []
+      }
+    }
+  },
+  "requests": {
+    "GET /domain/domains/{domain}/nameservers": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /domain/domains/{domain}/nameservers": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

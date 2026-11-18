@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>DomainHost | Gandi API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Gandi API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/gandi-sdk">voxgig-sdk/gandi-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Gandi API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/access_token.html">AccessToken</a>
+<a href="../api/acme_account.html">AcmeAccount</a>
+<a href="../api/acme_domain.html">AcmeDomain</a>
+<a href="../api/acme_price.html">AcmePrice</a>
+<a href="../api/acme_subscription.html">AcmeSubscription</a>
+<a href="../api/billing_info.html">BillingInfo</a>
+<a href="../api/billing_price.html">BillingPrice</a>
+<a href="../api/certificate_dcv.html">CertificateDcv</a>
+<a href="../api/certificate_package.html">CertificatePackage</a>
+<a href="../api/certificate_pem.html">CertificatePem</a>
+<a href="../api/certificate_renewal.html">CertificateRenewal</a>
+<a href="../api/certificate_tag.html">CertificateTag</a>
+<a href="../api/comment.html">Comment</a>
+<a href="../api/domain.html">Domain</a>
+<a href="../api/domain_availability.html">DomainAvailability</a>
+<a href="../api/domain_change_owner.html">DomainChangeOwner</a>
+<a href="../api/domain_claim.html">DomainClaim</a>
+<a href="../api/domain_contact.html">DomainContact</a>
+<a href="../api/domain_dnskey.html">DomainDnskey</a>
+<a href="../api/domain_dnssec.html">DomainDnssec</a>
+<a aria-current="page" href="../api/domain_host.html">DomainHost</a><div class="nav-sections"><a class="nav-section" href="#post-domaindomainsdomainhosts">POST /domain/domains/{domain}/hosts</a>
+<a class="nav-section" href="#get-domaindomainsdomainhosts">GET /domain/domains/{domain}/hosts</a>
+<a class="nav-section" href="#get-domaindomainsdomainhostsname">GET /domain/domains/{domain}/hosts/{name}</a>
+<a class="nav-section" href="#delete-domaindomainsdomainhostsname">DELETE /domain/domains/{domain}/hosts/{name}</a>
+<a class="nav-section" href="#put-domaindomainsdomainhostsname">PUT /domain/domains/{domain}/hosts/{name}</a></div>
+<a href="../api/domain_livedns.html">DomainLivedns</a>
+<a href="../api/domain_nameserver.html">DomainNameserver</a>
+<a href="../api/domain_tag.html">DomainTag</a>
+<a href="../api/domain_transfer.html">DomainTransfer</a>
+<a href="../api/domain_webredir.html">DomainWebredir</a>
+<a href="../api/email_forward.html">EmailForward</a>
+<a href="../api/email_mailbox.html">EmailMailbox</a>
+<a href="../api/email_migration.html">EmailMigration</a>
+<a href="../api/email_offer.html">EmailOffer</a>
+<a href="../api/email_slot.html">EmailSlot</a>
+<a href="../api/hosting_application.html">HostingApplication</a>
+<a href="../api/hosting_instance.html">HostingInstance</a>
+<a href="../api/hosting_vhost.html">HostingVhost</a>
+<a href="../api/issued_certificate.html">IssuedCertificate</a>
+<a href="../api/linked_zone.html">LinkedZone</a>
+<a href="../api/linked_zone_deployment.html">LinkedZoneDeployment</a>
+<a href="../api/linked_zone_domain.html">LinkedZoneDomain</a>
+<a href="../api/linked_zone_task.html">LinkedZoneTask</a>
+<a href="../api/livedns_axfr_slave.html">LivednsAxfrSlave</a>
+<a href="../api/livedns_axfr_tsig.html">LivednsAxfrTsig</a>
+<a href="../api/livedns_domain.html">LivednsDomain</a>
+<a href="../api/livedns_key.html">LivednsKey</a>
+<a href="../api/livedns_nameserver.html">LivednsNameserver</a>
+<a href="../api/livedns_record.html">LivednsRecord</a>
+<a href="../api/livedns_rrtype.html">LivednsRrtype</a>
+<a href="../api/livedns_snapshot.html">LivednsSnapshot</a>
+<a href="../api/livedns_tsig_key.html">LivednsTsigKey</a>
+<a href="../api/mailbox.html">Mailbox</a>
+<a href="../api/mailbox_domain.html">MailboxDomain</a>
+<a href="../api/mailbox_forward.html">MailboxForward</a>
+<a href="../api/mailbox_product.html">MailboxProduct</a>
+<a href="../api/mailbox_quota.html">MailboxQuota</a>
+<a href="../api/mailbox_slot.html">MailboxSlot</a>
+<a href="../api/organization.html">Organization</a>
+<a href="../api/organization_customer.html">OrganizationCustomer</a>
+<a href="../api/template.html">Template</a>
+<a href="../api/template_dispatch.html">TemplateDispatch</a>
+<a href="../api/tld.html">Tld</a>
+<a href="../api/user.html">User</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/rb.html">Ruby</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/secrets.html">Secrets</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="domainhost">DomainHost</h1>
+<p>A domain's glue records, by host name: list, create, get, update or delete one.</p>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-domaindomainsdomainhosts"><code>/domain/domains/{domain}/hosts</code></a></td>
+<td><code>create</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-domaindomainsdomainhosts"><code>/domain/domains/{domain}/hosts</code></a></td>
+<td><code>list</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-domaindomainsdomainhostsname"><code>/domain/domains/{domain}/hosts/{name}</code></a></td>
+<td><code>load</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-domaindomainsdomainhostsname"><code>/domain/domains/{domain}/hosts/{name}</code></a></td>
+<td><code>remove</code></td>
+<td>Accepted</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-domaindomainsdomainhostsname"><code>/domain/domains/{domain}/hosts/{name}</code></a></td>
+<td><code>update</code></td>
+<td>Accepted</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">domain_hosts, err := client.DomainHost(nil).List(map[string]any{&quot;domain&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(domain_hosts)
+domain_host, err := client.DomainHost(nil).Load(map[string]any{&quot;domain&quot;: &quot;example&quot;, &quot;name&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(domain_host)
+created, err := client.DomainHost(nil).Create(map[string]any{&quot;domain&quot;: &quot;example&quot;, &quot;ips&quot;: []any{}, &quot;name&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.DomainHost(nil).Update(map[string]any{&quot;domain&quot;: &quot;example&quot;, &quot;name&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.DomainHost(nil).Remove(map[string]any{&quot;domain&quot;: &quot;example&quot;, &quot;name&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local domain_hosts, err = client:DomainHost():list({ domain = &quot;example&quot; })
+local domain_host, err = client:DomainHost():load({ domain = &quot;example&quot;, name = &quot;example&quot; })
+local created, err = client:DomainHost():create({ domain = &quot;example&quot;, ips = {}, name = &quot;example&quot; })
+local updated, err = client:DomainHost():update({ domain = &quot;example&quot;, name = &quot;example&quot; })
+local removed, err = client:DomainHost():remove({ domain = &quot;example&quot;, name = &quot;example&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$domain_hosts = $client-&gt;DomainHost()-&gt;list([&quot;domain&quot; =&gt; &quot;example&quot;]);
+$domain_host = $client-&gt;DomainHost()-&gt;load([&quot;domain&quot; =&gt; &quot;example&quot;, &quot;name&quot; =&gt; &quot;example&quot;]);
+$created = $client-&gt;DomainHost()-&gt;create([&quot;domain&quot; =&gt; &quot;example&quot;, &quot;ips&quot; =&gt; [], &quot;name&quot; =&gt; &quot;example&quot;]);
+$updated = $client-&gt;DomainHost()-&gt;update([&quot;domain&quot; =&gt; &quot;example&quot;, &quot;name&quot; =&gt; &quot;example&quot;]);
+$client-&gt;DomainHost()-&gt;remove([&quot;domain&quot; =&gt; &quot;example&quot;, &quot;name&quot; =&gt; &quot;example&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">domain_hosts = client.DomainHost().list({&quot;domain&quot;: &quot;example&quot;})
+domain_host = client.DomainHost().load({&quot;domain&quot;: &quot;example&quot;, &quot;name&quot;: &quot;example&quot;})
+created = client.DomainHost().create({ &quot;domain&quot;: &quot;example&quot;, &quot;ips&quot;: [], &quot;name&quot;: &quot;example&quot; })
+updated = client.DomainHost().update({&quot;domain&quot;: &quot;example&quot;, &quot;name&quot;: &quot;example&quot;})
+client.DomainHost().remove({&quot;domain&quot;: &quot;example&quot;, &quot;name&quot;: &quot;example&quot;})
+</code></pre>
+<h3 id="ruby">Ruby</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/rb.html#set-up-the-client">Ruby setup</a>, then call the operations:</p>
+<pre><code class="language-rb">domain_hosts = client.DomainHost.list({ &quot;domain&quot; =&gt; &quot;example&quot; })
+domain_host = client.DomainHost.load({ &quot;domain&quot; =&gt; &quot;example&quot;, &quot;name&quot; =&gt; &quot;example&quot; })
+created = client.DomainHost.create({ &quot;domain&quot; =&gt; &quot;example&quot;, &quot;ips&quot; =&gt; [], &quot;name&quot; =&gt; &quot;example&quot; })
+updated = client.DomainHost.update({ &quot;domain&quot; =&gt; &quot;example&quot;, &quot;name&quot; =&gt; &quot;example&quot; })
+client.DomainHost.remove({ &quot;domain&quot; =&gt; &quot;example&quot;, &quot;name&quot; =&gt; &quot;example&quot; })
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const domain_hosts = await client.DomainHost().list({ domain: &quot;example&quot; })
+const domain_host = await client.DomainHost().load({ domain: &quot;example&quot;, name: &quot;example&quot; })
+const created = await client.DomainHost().create({ domain: &quot;example&quot;, ips: [], name: &quot;example&quot; })
+const updated = await client.DomainHost().update({ domain: &quot;example&quot;, name: &quot;example&quot; })
+await client.DomainHost().remove({ domain: &quot;example&quot;, name: &quot;example&quot; })
+</code></pre>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fqdn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Fqdn</td>
+</tr>
+<tr>
+<td><code>fqdn_unicode</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Fqdn Unicode</td>
+</tr>
+<tr>
+<td><code>href</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Href</td>
+</tr>
+<tr>
+<td><code>ips</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Ips</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Message</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-domaindomainsdomainhosts" class="operation" data-method="post"><code>POST</code> /domain/domains/{domain}/hosts</h3>
+<p>Operation ID: <code>postDomainDomainsDomainHosts</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><code>query</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td><code>query</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ips</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-ok" class="status" data-status="2xx">200: OK</h5>
+<h5 id="202-accepted" class="status" data-status="2xx">202: Accepted</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-domaindomainsdomainhosts" class="operation" data-method="get"><code>GET</code> /domain/domains/{domain}/hosts</h3>
+<p>Operation ID: <code>getDomainDomainsDomainHosts</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><code>query</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td><code>query</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-ok-1" class="status" data-status="2xx">200: OK</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[].fqdn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].fqdn_unicode</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].href</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].ips</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[].name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-1" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-1" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-domaindomainsdomainhostsname" class="operation" data-method="get"><code>GET</code> /domain/domains/{domain}/hosts/{name}</h3>
+<p>Operation ID: <code>getDomainDomainsDomainHostsName</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-ok-2" class="status" data-status="2xx">200: OK</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fqdn</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fqdn_unicode</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>href</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-2" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-2" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="remove">remove</h2>
+<h3 id="delete-domaindomainsdomainhostsname" class="operation" data-method="delete"><code>DELETE</code> /domain/domains/{domain}/hosts/{name}</h3>
+<p>Operation ID: <code>deleteDomainDomainsDomainHostsName</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="202-accepted-1" class="status" data-status="2xx">202: Accepted</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-3" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-3" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="update">update</h2>
+<h3 id="put-domaindomainsdomainhostsname" class="operation" data-method="put"><code>PUT</code> /domain/domains/{domain}/hosts/{name}</h3>
+<p>Operation ID: <code>putDomainDomainsDomainHostsName</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ips</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-4">Responses</h4>
+<h5 id="202-accepted-2" class="status" data-status="2xx">202: Accepted</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-4" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-forbidden-4" class="status" data-status="4xx">403: Forbidden</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cause</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

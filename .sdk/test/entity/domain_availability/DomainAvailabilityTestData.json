@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "domain_availability": {
+      "DOMAIN_AVAILABILITY00": {
+        "currency": "s28",
+        "grid": "s29",
+        "products": [],
+        "taxes": [],
+        "id": "DOMAIN_AVAILABILITY00"
+      },
+      "DOMAIN_AVAILABILITY01": {
+        "currency": "s50",
+        "grid": "s51",
+        "products": [],
+        "taxes": [],
+        "id": "DOMAIN_AVAILABILITY01"
+      },
+      "DOMAIN_AVAILABILITY02": {
+        "currency": "s78",
+        "grid": "s79",
+        "products": [],
+        "taxes": [],
+        "id": "DOMAIN_AVAILABILITY02"
+      }
+    }
+  },
+  "new": {
+    "domain_availability": {
+      "domain_availability_ref01": {
+        "currency": "sa0",
+        "grid": "sa1",
+        "products": [],
+        "taxes": []
+      }
+    }
+  },
+  "requests": {
+    "GET /domain/check": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

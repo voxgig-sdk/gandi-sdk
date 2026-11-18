@@ -1,0 +1,737 @@
+# Entity: hosting_instance
+
+main: kit: entity: hosting_instance: {
+
+  alias: field: {}
+
+  fields: {
+    access_information: {
+      h: "Access Information"
+      n: "access_information"
+      r: true
+      t: "`$OBJECT`"
+    }
+    authentication: {
+      h: "Authentication"
+      n: "authentication"
+      r: true
+      t: "`$OBJECT`"
+    }
+    autorenew: {
+      h: "Autorenew"
+      n: "autorenew"
+      op: {
+        create: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      t: "`$OBJECT`"
+    }
+    available_upgrade: {
+      h: "Available Upgrade"
+      n: "available_upgrade"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    booster: {
+      h: "Booster"
+      n: "booster"
+      r: false
+      t: "`$OBJECT`"
+    }
+    booster_options: {
+      h: "Booster Options"
+      n: "booster_options"
+      r: false
+      t: "`$OBJECT`"
+    }
+    compatible_applications: {
+      h: "Compatible Applications"
+      n: "compatible_applications"
+      r: false
+      t: "`$ARRAY`"
+    }
+    console: {
+      h: "Console"
+      n: "console"
+      r: true
+      t: "`$OBJECT`"
+    }
+    cpu: {
+      h: "Cpu"
+      n: "cpu"
+      r: true
+      t: "`$INTEGER`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    database: {
+      h: "Database"
+      n: "database"
+      r: true
+      t: "`$OBJECT`"
+    }
+    datacenter: {
+      h: "Datacenter"
+      n: "datacenter"
+      r: true
+      t: "`$OBJECT`"
+    }
+    domain: {
+      h: "Domain"
+      n: "domain"
+      op: {
+        create: {
+          req: true
+          type: "`$OBJECT`"
+        }
+      }
+      r: false
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      t: "`$INTEGER`"
+    }
+    duration_unit: {
+      h: "Duration Unit"
+      n: "duration_unit"
+      r: false
+      t: "`$STRING`"
+    }
+    errors: {
+      h: "Errors"
+      n: "errors"
+      r: false
+      t: "`$ARRAY`"
+    }
+    expire_at: {
+      fo: "date-time"
+      h: "Expire At"
+      n: "expire_at"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    language: {
+      h: "Language"
+      n: "language"
+      r: true
+      t: "`$OBJECT`"
+    }
+    language_id: {
+      h: "Language Id"
+      n: "language_id"
+      r: false
+      t: "`$STRING`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    password: {
+      h: "Password"
+      n: "password"
+      r: false
+      t: "`$STRING`"
+    }
+    password_updated_at: {
+      fo: "date-time"
+      h: "Password Updated At"
+      n: "password_updated_at"
+      r: false
+      t: "`$STRING`"
+    }
+    ram: {
+      h: "Ram"
+      n: "ram"
+      r: true
+      t: "`$OBJECT`"
+    }
+    sharing_space: {
+      h: "Sharing Space"
+      n: "sharing_space"
+      r: true
+      t: "`$OBJECT`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    snapshot_enabled: {
+      h: "Snapshot Enabled"
+      n: "snapshot_enabled"
+      op: {
+        create: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+        update: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+    storage: {
+      h: "Storage"
+      n: "storage"
+      r: true
+      t: "`$OBJECT`"
+    }
+    storage_additional_size: {
+      h: "Storage Additional Size"
+      n: "storage_additional_size"
+      r: false
+      t: "`$INTEGER`"
+    }
+    subscription_cancelled: {
+      h: "Subscription Cancelled"
+      n: "subscription_cancelled"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      t: "`$OBJECT`"
+    }
+    upgrade_to: {
+      h: "Upgrade To"
+      n: "upgrade_to"
+      r: false
+      t: "`$ARRAY`"
+    }
+    vhosts: {
+      h: "Vhosts"
+      n: "vhosts"
+      op: {
+        create: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "hosting_instance"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "action"
+          ]
+          co: {
+            id: "POST /simplehosting/instances/{instance_id}/action"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/simplehosting/instances/{instance_id}/action"
+          q: {
+            "$action": "action"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              instance_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "action"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "authentication"
+            "autorenew"
+            "domain"
+            "duration"
+            "duration_unit"
+            "location"
+            "name"
+            "size"
+            "snapshot_enabled"
+            "storage_additional_size"
+            "type"
+            "vhosts"
+          ]
+          co: {
+            id: "POST /simplehosting/instances"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/simplehosting/instances"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /simplehosting/instances"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "fqdn"
+                or: "fqdn"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "size"
+                or: "size"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: "-created_at"
+                explode: true
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/simplehosting/instances"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /simplehosting/instances/{instance_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/simplehosting/instances/{instance_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              instance_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /simplehosting/instances/{instance_id}/usage"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/simplehosting/instances/{instance_id}/usage"
+          q: {
+            "$action": "usage"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              instance_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "usage"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /simplehosting/instances/{instance_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/simplehosting/instances/{instance_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              instance_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "booster"
+            "booster_options"
+            "language_id"
+            "name"
+            "password"
+            "size"
+            "snapshot_enabled"
+            "storage_additional_size"
+          ]
+          co: {
+            id: "PATCH /simplehosting/instances/{instance_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/simplehosting/instances/{instance_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              instance_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "simplehosting"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

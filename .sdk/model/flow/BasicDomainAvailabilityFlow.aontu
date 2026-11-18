@@ -1,0 +1,28 @@
+# BasicDomainAvailabilityFlow
+
+main: kit: flow: BasicDomainAvailabilityFlow:
+{
+  entity: "domain_availability",
+  kind: "basic",
+  name: "BasicDomainAvailabilityFlow",
+  step: [
+    {
+      i: {
+        ref: "domain_availability_ref01",
+        srcdatavar: "domain_availability_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_availability_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainAvailabilityFlow"
+}

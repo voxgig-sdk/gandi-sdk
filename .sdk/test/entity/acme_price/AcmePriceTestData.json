@@ -1,0 +1,97 @@
+{
+  "existing": {
+    "acme_price": {
+      "ACME_PRICE00": {
+        "country": "sa0",
+        "currency": "sa1",
+        "domains": [],
+        "duration": "sa3",
+        "duration_unit": "sa4",
+        "grid": "sa5",
+        "max_duration": 166,
+        "min_duration": 167,
+        "price_after_taxes": "sa8",
+        "price_before_taxes": "sa9",
+        "process": "saa",
+        "product": {},
+        "provider": "sac",
+        "tax_rate": "sad",
+        "taxes": [],
+        "validation_type": "saf",
+        "id": "ACME_PRICE00"
+      },
+      "ACME_PRICE01": {
+        "country": "s140",
+        "currency": "s141",
+        "domains": [],
+        "duration": "s143",
+        "duration_unit": "s144",
+        "grid": "s145",
+        "max_duration": 326,
+        "min_duration": 327,
+        "price_after_taxes": "s148",
+        "price_before_taxes": "s149",
+        "process": "s14a",
+        "product": {},
+        "provider": "s14c",
+        "tax_rate": "s14d",
+        "taxes": [],
+        "validation_type": "s14f",
+        "id": "ACME_PRICE01"
+      },
+      "ACME_PRICE02": {
+        "country": "s1e0",
+        "currency": "s1e1",
+        "domains": [],
+        "duration": "s1e3",
+        "duration_unit": "s1e4",
+        "grid": "s1e5",
+        "max_duration": 486,
+        "min_duration": 487,
+        "price_after_taxes": "s1e8",
+        "price_before_taxes": "s1e9",
+        "process": "s1ea",
+        "product": {},
+        "provider": "s1ec",
+        "tax_rate": "s1ed",
+        "taxes": [],
+        "validation_type": "s1ef",
+        "id": "ACME_PRICE02"
+      }
+    }
+  },
+  "new": {
+    "acme_price": {
+      "acme_price_ref01": {
+        "country": "s280",
+        "currency": "s281",
+        "domains": [],
+        "duration": "s283",
+        "duration_unit": "s284",
+        "grid": "s285",
+        "max_duration": 646,
+        "min_duration": 647,
+        "price_after_taxes": "s288",
+        "price_before_taxes": "s289",
+        "process": "s28a",
+        "product": {},
+        "provider": "s28c",
+        "tax_rate": "s28d",
+        "taxes": [],
+        "validation_type": "s28f"
+      }
+    }
+  },
+  "requests": {
+    "POST /acme/quote": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /acme/catalog": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

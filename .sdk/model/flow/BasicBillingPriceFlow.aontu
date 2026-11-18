@@ -1,0 +1,32 @@
+# BasicBillingPriceFlow
+
+main: kit: flow: BasicBillingPriceFlow:
+{
+  entity: "billing_price",
+  kind: "basic",
+  name: "BasicBillingPriceFlow",
+  step: [
+    {
+      i: {
+        ref: "billing_price_ref01",
+        srcdatavar: "billing_price_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "billing_price01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-billing_price_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBillingPriceFlow"
+}

@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "mailbox_product": {
+      "MAILBOX_PRODUCT00": {
+        "autorenew": true,
+        "config": [],
+        "config_name": "s70",
+        "description": "s71",
+        "duration_month": 114,
+        "label": "s73",
+        "message": "s74",
+        "prices": [],
+        "quantity": 118,
+        "taxes": [],
+        "uuid": "s78",
+        "id": "MAILBOX_PRODUCT00"
+      },
+      "MAILBOX_PRODUCT01": {
+        "autorenew": true,
+        "config": [],
+        "config_name": "sde",
+        "description": "sdf",
+        "duration_month": 224,
+        "label": "se1",
+        "message": "se2",
+        "prices": [],
+        "quantity": 228,
+        "taxes": [],
+        "uuid": "se6",
+        "id": "MAILBOX_PRODUCT01"
+      },
+      "MAILBOX_PRODUCT02": {
+        "autorenew": true,
+        "config": [],
+        "config_name": "s14c",
+        "description": "s14d",
+        "duration_month": 334,
+        "label": "s14f",
+        "message": "s150",
+        "prices": [],
+        "quantity": 338,
+        "taxes": [],
+        "uuid": "s154",
+        "id": "MAILBOX_PRODUCT02"
+      }
+    }
+  },
+  "new": {
+    "mailbox_product": {
+      "mailbox_product_ref01": {
+        "autorenew": true,
+        "config": [],
+        "config_name": "s1ba",
+        "description": "s1bb",
+        "duration_month": 444,
+        "label": "s1bd",
+        "message": "s1be",
+        "prices": [],
+        "quantity": 448,
+        "taxes": [],
+        "uuid": "s1c2"
+      }
+    }
+  },
+  "requests": {
+    "POST /mailbox/products": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /mailbox/products": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

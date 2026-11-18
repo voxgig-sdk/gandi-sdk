@@ -1,0 +1,62 @@
+{
+  "existing": {
+    "linked_zone_domain": {
+      "LINKED_ZONE_DOMAIN00": {
+        "deployed": true,
+        "id": "LINKED_ZONE_DOMAIN00",
+        "name": "s34",
+        "owner": "s35",
+        "zone": {},
+        "zone_id": "ZONE01"
+      },
+      "LINKED_ZONE_DOMAIN01": {
+        "deployed": true,
+        "id": "LINKED_ZONE_DOMAIN01",
+        "name": "s66",
+        "owner": "s67",
+        "zone": {},
+        "zone_id": "ZONE01"
+      },
+      "LINKED_ZONE_DOMAIN02": {
+        "deployed": true,
+        "id": "LINKED_ZONE_DOMAIN02",
+        "name": "s98",
+        "owner": "s99",
+        "zone": {},
+        "zone_id": "ZONE01"
+      }
+    }
+  },
+  "new": {
+    "linked_zone_domain": {
+      "linked_zone_domain_ref01": {
+        "deployed": true,
+        "name": "sca",
+        "owner": "scb",
+        "zone": {}
+      }
+    }
+  },
+  "requests": {
+    "GET /linkedzone/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /linkedzone/domains/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /linkedzone/zones/{zone_id}/link/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /linkedzone/unlink/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

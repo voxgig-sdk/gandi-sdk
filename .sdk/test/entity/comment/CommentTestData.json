@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "comment": {
+      "COMMENT00": {
+        "content": "s46",
+        "created_at": "s47",
+        "errors": [],
+        "id": "COMMENT00",
+        "status": "s4a",
+        "updated_at": "s4b",
+        "user": {},
+        "entity_id": "ENTITY01"
+      },
+      "COMMENT01": {
+        "content": "s8c",
+        "created_at": "s8d",
+        "errors": [],
+        "id": "COMMENT01",
+        "status": "s90",
+        "updated_at": "s91",
+        "user": {},
+        "entity_id": "ENTITY01"
+      },
+      "COMMENT02": {
+        "content": "sd2",
+        "created_at": "sd3",
+        "errors": [],
+        "id": "COMMENT02",
+        "status": "sd6",
+        "updated_at": "sd7",
+        "user": {},
+        "entity_id": "ENTITY01"
+      }
+    }
+  },
+  "new": {
+    "comment": {
+      "comment_ref01": {
+        "content": "s118",
+        "created_at": "s119",
+        "errors": [],
+        "status": "s11c",
+        "updated_at": "s11d",
+        "user": {}
+      }
+    }
+  },
+  "requests": {
+    "POST /comment/comments/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /comment/comments/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /comment/comments/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

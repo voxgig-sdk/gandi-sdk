@@ -1,0 +1,21 @@
+{
+  "existing": {
+    "livedns_rrtype": {
+      "LIVEDNS_RRTYPE00": {},
+      "LIVEDNS_RRTYPE01": {},
+      "LIVEDNS_RRTYPE02": {}
+    }
+  },
+  "new": {
+    "livedns_rrtype": {
+      "livedns_rrtype_ref01": {}
+    }
+  },
+  "requests": {
+    "GET /livedns/dns/rrtypes": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

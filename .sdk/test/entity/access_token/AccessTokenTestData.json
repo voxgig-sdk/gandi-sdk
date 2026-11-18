@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "access_token": {
+      "ACCESS_TOKEN00": {
+        "access_token": "s3c",
+        "entities": [],
+        "expires_at": "s3e",
+        "id": "ACCESS_TOKEN00",
+        "name": "s40",
+        "scopes": []
+      },
+      "ACCESS_TOKEN01": {
+        "access_token": "s78",
+        "entities": [],
+        "expires_at": "s7a",
+        "id": "ACCESS_TOKEN01",
+        "name": "s7c",
+        "scopes": []
+      },
+      "ACCESS_TOKEN02": {
+        "access_token": "sb4",
+        "entities": [],
+        "expires_at": "sb6",
+        "id": "ACCESS_TOKEN02",
+        "name": "sb8",
+        "scopes": []
+      }
+    }
+  },
+  "new": {
+    "access_token": {
+      "access_token_ref01": {
+        "access_token": "sf0",
+        "entities": [],
+        "expires_at": "sf2",
+        "name": "sf4",
+        "scopes": []
+      }
+    }
+  },
+  "requests": {
+    "POST /organization/access-tokens": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+# BasicTemplateDispatchFlow
+
+main: kit: flow: BasicTemplateDispatchFlow:
+{
+  entity: "template_dispatch",
+  kind: "basic",
+  name: "BasicTemplateDispatchFlow",
+  step: [
+    {
+      i: {
+        ref: "template_dispatch_ref01"
+      }
+
+      m: {
+        template_id: "template01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "template_dispatch_ref01",
+        srcdatavar: "template_dispatch_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "template_dispatch01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-template_dispatch_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTemplateDispatchFlow"
+}

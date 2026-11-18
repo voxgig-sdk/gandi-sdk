@@ -1,0 +1,56 @@
+{
+  "existing": {
+    "billing_info": {
+      "BILLING_INFO00": {
+        "annual_balance": 50,
+        "grid": "s33",
+        "outstanding_amount": 52,
+        "prepaid": {},
+        "prepaid_monthly_invoice": true,
+        "sharing_id": "SHARING01",
+        "id": "BILLING_INFO00"
+      },
+      "BILLING_INFO01": {
+        "annual_balance": 100,
+        "grid": "s65",
+        "outstanding_amount": 102,
+        "prepaid": {},
+        "prepaid_monthly_invoice": true,
+        "sharing_id": "SHARING01",
+        "id": "BILLING_INFO01"
+      },
+      "BILLING_INFO02": {
+        "annual_balance": 150,
+        "grid": "s97",
+        "outstanding_amount": 152,
+        "prepaid": {},
+        "prepaid_monthly_invoice": true,
+        "sharing_id": "SHARING01",
+        "id": "BILLING_INFO02"
+      }
+    }
+  },
+  "new": {
+    "billing_info": {
+      "billing_info_ref01": {
+        "annual_balance": 200,
+        "grid": "sc9",
+        "outstanding_amount": 202,
+        "prepaid": {},
+        "prepaid_monthly_invoice": true
+      }
+    }
+  },
+  "requests": {
+    "GET /billing/info/{sharing_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /billing/info": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "existing": {
+    "acme_domain": {
+      "ACME_DOMAIN00": {
+        "created_at": "s46",
+        "deleted_at": "s47",
+        "hostname": "s48",
+        "hostname_ulabel": "s49",
+        "is_wildcard": true,
+        "status": "s4b",
+        "subscription_id": "SUBSCRIPTION01",
+        "domain_id": "DOMAIN01",
+        "id": "ACME_DOMAIN00"
+      },
+      "ACME_DOMAIN01": {
+        "created_at": "s8c",
+        "deleted_at": "s8d",
+        "hostname": "s8e",
+        "hostname_ulabel": "s8f",
+        "is_wildcard": true,
+        "status": "s91",
+        "subscription_id": "SUBSCRIPTION01",
+        "domain_id": "DOMAIN01",
+        "id": "ACME_DOMAIN01"
+      },
+      "ACME_DOMAIN02": {
+        "created_at": "sd2",
+        "deleted_at": "sd3",
+        "hostname": "sd4",
+        "hostname_ulabel": "sd5",
+        "is_wildcard": true,
+        "status": "sd7",
+        "subscription_id": "SUBSCRIPTION01",
+        "domain_id": "DOMAIN01",
+        "id": "ACME_DOMAIN02"
+      }
+    }
+  },
+  "new": {
+    "acme_domain": {
+      "acme_domain_ref01": {
+        "created_at": "s118",
+        "deleted_at": "s119",
+        "hostname": "s11a",
+        "hostname_ulabel": "s11b",
+        "is_wildcard": true,
+        "status": "s11d",
+        "subscription_id": "SUBSCRIPTION01"
+      }
+    }
+  },
+  "requests": {
+    "GET /acme/subscriptions/{subscription_id}/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /acme/subscriptions/{subscription_id}/domains/{domain_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

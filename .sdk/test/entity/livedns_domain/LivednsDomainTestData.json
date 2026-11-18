@@ -1,0 +1,81 @@
+{
+  "existing": {
+    "livedns_domain": {
+      "LIVEDNS_DOMAIN00": {
+        "automatic_snapshots": true,
+        "domain_href": "s47",
+        "domain_keys_href": "s48",
+        "domain_records_href": "s49",
+        "fqdn": "s4a",
+        "message": "s4b",
+        "zone": {},
+        "id": "LIVEDNS_DOMAIN00"
+      },
+      "LIVEDNS_DOMAIN01": {
+        "automatic_snapshots": true,
+        "domain_href": "s8d",
+        "domain_keys_href": "s8e",
+        "domain_records_href": "s8f",
+        "fqdn": "s90",
+        "message": "s91",
+        "zone": {},
+        "id": "LIVEDNS_DOMAIN01"
+      },
+      "LIVEDNS_DOMAIN02": {
+        "automatic_snapshots": true,
+        "domain_href": "sd3",
+        "domain_keys_href": "sd4",
+        "domain_records_href": "sd5",
+        "fqdn": "sd6",
+        "message": "sd7",
+        "zone": {},
+        "id": "LIVEDNS_DOMAIN02"
+      }
+    }
+  },
+  "new": {
+    "livedns_domain": {
+      "livedns_domain_ref01": {
+        "automatic_snapshots": true,
+        "domain_href": "s119",
+        "domain_keys_href": "s11a",
+        "domain_records_href": "s11b",
+        "fqdn": "s11c",
+        "message": "s11d",
+        "zone": {}
+      }
+    }
+  },
+  "requests": {
+    "POST /livedns/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains/{fqdn}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /livedns/domains/{fqdn}/records": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /livedns/domains/{fqdn}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /livedns/domains/{fqdn}/records": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

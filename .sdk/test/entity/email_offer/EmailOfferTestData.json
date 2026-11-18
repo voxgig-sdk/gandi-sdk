@@ -1,0 +1,56 @@
+{
+  "existing": {
+    "email_offer": {
+      "EMAIL_OFFER00": {
+        "antispam": "s32",
+        "dkim": "s33",
+        "message": "s34",
+        "status": "s35",
+        "version": 54,
+        "domain": "DOMAIN01",
+        "id": "EMAIL_OFFER00"
+      },
+      "EMAIL_OFFER01": {
+        "antispam": "s64",
+        "dkim": "s65",
+        "message": "s66",
+        "status": "s67",
+        "version": 104,
+        "domain": "DOMAIN01",
+        "id": "EMAIL_OFFER01"
+      },
+      "EMAIL_OFFER02": {
+        "antispam": "s96",
+        "dkim": "s97",
+        "message": "s98",
+        "status": "s99",
+        "version": 154,
+        "domain": "DOMAIN01",
+        "id": "EMAIL_OFFER02"
+      }
+    }
+  },
+  "new": {
+    "email_offer": {
+      "email_offer_ref01": {
+        "antispam": "sc8",
+        "dkim": "sc9",
+        "message": "sca",
+        "status": "scb",
+        "version": 204
+      }
+    }
+  },
+  "requests": {
+    "GET /email/offers/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /email/offers/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

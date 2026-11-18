@@ -1,0 +1,117 @@
+# BasicEmailFlow
+
+main: kit: flow: BasicEmailFlow:
+{
+  entity: "email",
+  kind: "basic",
+  name: "BasicEmailFlow",
+  step: [
+    {
+      i: {
+        ref: "email_ref01"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        domain: "domain01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "email_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      d: {
+        domain: "domain01"
+      }
+
+      i: {
+        ref: "email_ref01",
+        srcdatavar: "email_ref01_data",
+        suffix: "_up0",
+        textfield: "address"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-email_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "email_ref01",
+        srcdatavar: "email_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "email01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-email_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "email_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        domain: "domain01",
+        id: "email01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "email_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailFlow"
+}

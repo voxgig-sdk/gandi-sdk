@@ -1,0 +1,601 @@
+# Entity: mailbox
+
+main: kit: entity: mailbox: {
+
+  alias: field: {}
+
+  fields: {
+    address: {
+      h: "Address"
+      n: "address"
+      r: true
+      t: "`$STRING`"
+    }
+    aliases: {
+      h: "Aliases"
+      n: "aliases"
+      r: false
+      t: "`$ARRAY`"
+    }
+    antispam: {
+      h: "Antispam"
+      n: "antispam"
+      op: {
+        update: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    autorenew: {
+      h: "Autorenew"
+      n: "autorenew"
+      r: true
+      t: "`$OBJECT`"
+    }
+    config: {
+      h: "Config"
+      n: "config"
+      r: true
+      t: "`$OBJECT`"
+    }
+    config_name: {
+      h: "Config Name"
+      n: "config_name"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    data_access: {
+      h: "Data Access"
+      n: "data_access"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    domain_part: {
+      h: "Domain Part"
+      n: "domain_part"
+      r: true
+      t: "`$STRING`"
+    }
+    duration_month: {
+      h: "Duration Month"
+      n: "duration_month"
+      r: false
+      t: "`$INTEGER`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: true
+      t: "`$STRING`"
+    }
+    expires_at: {
+      fo: "date-time"
+      h: "Expires At"
+      n: "expires_at"
+      r: true
+      t: "`$STRING`"
+    }
+    internal_domain: {
+      h: "Internal Domain"
+      n: "internal_domain"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    issues: {
+      h: "Issues"
+      n: "issues"
+      r: false
+      t: "`$ARRAY`"
+    }
+    last_paid_duration: {
+      h: "Last Paid Duration"
+      n: "last_paid_duration"
+      r: true
+      t: "`$INTEGER`"
+    }
+    local_part: {
+      h: "Local Part"
+      n: "local_part"
+      r: true
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    owner: {
+      h: "Owner"
+      n: "owner"
+      r: true
+      t: "`$OBJECT`"
+    }
+    password: {
+      h: "Password"
+      n: "password"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      t: "`$STRING`"
+    }
+    quota: {
+      h: "Quota"
+      n: "quota"
+      r: true
+      t: "`$INTEGER`"
+    }
+    quota_used: {
+      h: "Quota Used"
+      n: "quota_used"
+      r: true
+      t: "`$INTEGER`"
+    }
+    responder: {
+      h: "Responder"
+      n: "responder"
+      r: true
+      t: "`$OBJECT`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      t: "`$STRING`"
+    }
+    uuid: {
+      h: "Uuid"
+      n: "uuid"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  name: "mailbox"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "duration"
+          ]
+          co: {
+            id: "POST /mailbox/mailboxes/{email}/renew"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                explode: false
+                k: "header"
+                n: "dry_run"
+                or: "Dry-Run"
+                r: false
+                style: "simple"
+                t: "`$INTEGER`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "address"
+                or: "email"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/mailbox/mailboxes/{email}/renew"
+          q: {
+            "$action": "renew"
+            exist: [
+              "address"
+            ]
+          }
+          r: {
+            param: {
+              email: "address"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "mailboxes"
+            }
+            {
+              var: "address"
+            }
+            {
+              lit: "renew"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "aliases"
+            "config_name"
+            "duration_month"
+            "email"
+            "password"
+          ]
+          co: {
+            id: "POST /mailbox/mailboxes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/mailbox/mailboxes"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "mailboxes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /mailbox/mailboxes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "address"
+                or: "address"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "domain_part"
+                or: "domain_part"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "local_part"
+                or: "local_part"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                explode: true
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                style: "form"
+                t: "`$INTEGER`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "search"
+                or: "search"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+              {
+                ex: "id"
+                explode: true
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/mailbox/mailboxes"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "mailboxes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /mailbox/mailboxes/{email}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "address"
+                or: "email"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/mailbox/mailboxes/{email}"
+          q: {
+            exist: [
+              "address"
+            ]
+          }
+          r: {
+            param: {
+              email: "address"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "mailboxes"
+            }
+            {
+              var: "address"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /mailbox/mailboxes/{email}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "address"
+                or: "email"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/mailbox/mailboxes/{email}"
+          q: {
+            exist: [
+              "address"
+            ]
+          }
+          r: {
+            param: {
+              email: "address"
+            }
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "mailboxes"
+            }
+            {
+              var: "address"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "aliases"
+            "antispam"
+            "autorenew"
+            "config_name"
+            "password"
+            "responder"
+          ]
+          co: {
+            id: "PATCH /mailbox/mailboxes/{email}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "address"
+                or: "email"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/mailbox/mailboxes/{email}"
+          q: {
+            exist: [
+              "address"
+            ]
+          }
+          r: {
+            param: {
+              email: "address"
+            }
+          }
+          s: [
+            {
+              lit: "mailbox"
+            }
+            {
+              lit: "mailboxes"
+            }
+            {
+              var: "address"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

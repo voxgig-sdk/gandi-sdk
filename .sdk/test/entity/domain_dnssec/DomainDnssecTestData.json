@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "domain_dnssec": {
+      "DOMAIN_DNSSEC00": {
+        "error": "s14",
+        "state": "s15",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_DNSSEC00"
+      },
+      "DOMAIN_DNSSEC01": {
+        "error": "s28",
+        "state": "s29",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_DNSSEC01"
+      },
+      "DOMAIN_DNSSEC02": {
+        "error": "s3c",
+        "state": "s3d",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_DNSSEC02"
+      }
+    }
+  },
+  "new": {
+    "domain_dnssec": {
+      "domain_dnssec_ref01": {
+        "error": "s50",
+        "state": "s51"
+      }
+    }
+  },
+  "requests": {
+    "POST /domain/domains/{domain}/livedns/dnssec": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/domains/{domain}/livedns/dnssec": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /domain/domains/{domain}/livedns/dnssec": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

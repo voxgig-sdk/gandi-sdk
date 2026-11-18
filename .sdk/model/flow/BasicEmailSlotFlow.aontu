@@ -1,0 +1,95 @@
+# BasicEmailSlotFlow
+
+main: kit: flow: BasicEmailSlotFlow:
+{
+  entity: "email_slot",
+  kind: "basic",
+  name: "BasicEmailSlotFlow",
+  step: [
+    {
+      i: {
+        ref: "email_slot_ref01"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        domain: "domain01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "email_slot_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "email_slot_ref01",
+        srcdatavar: "email_slot_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        domain: "domain01",
+        id: "email_slot01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-email_slot_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "email_slot_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        domain: "domain01",
+        id: "email_slot01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        domain: "domain01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "email_slot_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailSlotFlow"
+}

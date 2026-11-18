@@ -1,0 +1,75 @@
+{
+  "existing": {
+    "livedns_snapshot": {
+      "LIVEDNS_SNAPSHOT00": {
+        "automatic": true,
+        "created_at": "s47",
+        "href": "s48",
+        "id": "LIVEDNS_SNAPSHOT00",
+        "message": "s4a",
+        "name": "s4b",
+        "zone_data": [],
+        "fqdn": "FQDN01"
+      },
+      "LIVEDNS_SNAPSHOT01": {
+        "automatic": true,
+        "created_at": "s8d",
+        "href": "s8e",
+        "id": "LIVEDNS_SNAPSHOT01",
+        "message": "s90",
+        "name": "s91",
+        "zone_data": [],
+        "fqdn": "FQDN01"
+      },
+      "LIVEDNS_SNAPSHOT02": {
+        "automatic": true,
+        "created_at": "sd3",
+        "href": "sd4",
+        "id": "LIVEDNS_SNAPSHOT02",
+        "message": "sd6",
+        "name": "sd7",
+        "zone_data": [],
+        "fqdn": "FQDN01"
+      }
+    }
+  },
+  "new": {
+    "livedns_snapshot": {
+      "livedns_snapshot_ref01": {
+        "automatic": true,
+        "created_at": "s119",
+        "href": "s11a",
+        "message": "s11c",
+        "name": "s11d",
+        "zone_data": []
+      }
+    }
+  },
+  "requests": {
+    "POST /livedns/domains/{fqdn}/snapshots": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains/{fqdn}/snapshots": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /livedns/domains/{fqdn}/snapshots/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /livedns/domains/{fqdn}/snapshots/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /livedns/domains/{fqdn}/snapshots/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

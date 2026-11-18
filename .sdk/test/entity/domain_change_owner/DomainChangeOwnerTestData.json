@@ -1,0 +1,105 @@
+{
+  "existing": {
+    "domain_change_owner": {
+      "DOMAIN_CHANGE_OWNER00": {
+        "admin": {},
+        "bill": {},
+        "created_at": "sa2",
+        "date_start": "sa3",
+        "errors": [],
+        "errortype": "sa5",
+        "errortype_label": "sa6",
+        "foa": [],
+        "inner_step": "sa8",
+        "owner": {},
+        "params": {},
+        "status": "sab",
+        "step": "sac",
+        "step_nb": 173,
+        "tech": {},
+        "updated_at": "saf",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CHANGE_OWNER00"
+      },
+      "DOMAIN_CHANGE_OWNER01": {
+        "admin": {},
+        "bill": {},
+        "created_at": "s142",
+        "date_start": "s143",
+        "errors": [],
+        "errortype": "s145",
+        "errortype_label": "s146",
+        "foa": [],
+        "inner_step": "s148",
+        "owner": {},
+        "params": {},
+        "status": "s14b",
+        "step": "s14c",
+        "step_nb": 333,
+        "tech": {},
+        "updated_at": "s14f",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CHANGE_OWNER01"
+      },
+      "DOMAIN_CHANGE_OWNER02": {
+        "admin": {},
+        "bill": {},
+        "created_at": "s1e2",
+        "date_start": "s1e3",
+        "errors": [],
+        "errortype": "s1e5",
+        "errortype_label": "s1e6",
+        "foa": [],
+        "inner_step": "s1e8",
+        "owner": {},
+        "params": {},
+        "status": "s1eb",
+        "step": "s1ec",
+        "step_nb": 493,
+        "tech": {},
+        "updated_at": "s1ef",
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CHANGE_OWNER02"
+      }
+    }
+  },
+  "new": {
+    "domain_change_owner": {
+      "domain_change_owner_ref01": {
+        "admin": {},
+        "bill": {},
+        "created_at": "s282",
+        "date_start": "s283",
+        "errors": [],
+        "errortype": "s285",
+        "errortype_label": "s286",
+        "foa": [],
+        "inner_step": "s288",
+        "owner": {},
+        "params": {},
+        "status": "s28b",
+        "step": "s28c",
+        "step_nb": 653,
+        "tech": {},
+        "updated_at": "s28f"
+      }
+    }
+  },
+  "requests": {
+    "POST /domain/changeowner/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /domain/changeowner/{domain}/foa": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domain/changeowner/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

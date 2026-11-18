@@ -1,0 +1,84 @@
+{
+  "existing": {
+    "user": {
+      "USER00": {
+        "city": "s96",
+        "country": "s97",
+        "email": "s98",
+        "fax": "s99",
+        "firstname": "s9a",
+        "id": "USER00",
+        "lang": "s9c",
+        "lastname": "s9d",
+        "name": "s9e",
+        "phone": "s9f",
+        "state": "sa0",
+        "streetaddr": "sa1",
+        "streetaddr2": "sa2",
+        "username": "sa3",
+        "zip": "sa4"
+      },
+      "USER01": {
+        "city": "s12c",
+        "country": "s12d",
+        "email": "s12e",
+        "fax": "s12f",
+        "firstname": "s130",
+        "id": "USER01",
+        "lang": "s132",
+        "lastname": "s133",
+        "name": "s134",
+        "phone": "s135",
+        "state": "s136",
+        "streetaddr": "s137",
+        "streetaddr2": "s138",
+        "username": "s139",
+        "zip": "s13a"
+      },
+      "USER02": {
+        "city": "s1c2",
+        "country": "s1c3",
+        "email": "s1c4",
+        "fax": "s1c5",
+        "firstname": "s1c6",
+        "id": "USER02",
+        "lang": "s1c8",
+        "lastname": "s1c9",
+        "name": "s1ca",
+        "phone": "s1cb",
+        "state": "s1cc",
+        "streetaddr": "s1cd",
+        "streetaddr2": "s1ce",
+        "username": "s1cf",
+        "zip": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "user": {
+      "user_ref01": {
+        "city": "s258",
+        "country": "s259",
+        "email": "s25a",
+        "fax": "s25b",
+        "firstname": "s25c",
+        "lang": "s25e",
+        "lastname": "s25f",
+        "name": "s260",
+        "phone": "s261",
+        "state": "s262",
+        "streetaddr": "s263",
+        "streetaddr2": "s264",
+        "username": "s265",
+        "zip": "s266"
+      }
+    }
+  },
+  "requests": {
+    "GET /organization/user-info": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

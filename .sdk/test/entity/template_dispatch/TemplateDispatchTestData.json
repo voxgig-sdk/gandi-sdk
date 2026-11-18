@@ -1,0 +1,105 @@
+{
+  "existing": {
+    "template_dispatch": {
+      "TEMPLATE_DISPATCH00": {
+        "attempt": 190,
+        "created_at": "sbf",
+        "dispatch_href": "sc0",
+        "id": "TEMPLATE_DISPATCH00",
+        "message": "sc2",
+        "object_id": "OBJECT01",
+        "object_type": "sc4",
+        "payload": {},
+        "sharing_id": "SHARING01",
+        "state": 199,
+        "state_msg": "sc8",
+        "target": {},
+        "target_id": "TARGET01",
+        "target_type": "scb",
+        "task_history": [],
+        "task_status": {},
+        "task_updated_at": "sce",
+        "template_id": "TEMPLATE01",
+        "template_name": "sd0"
+      },
+      "TEMPLATE_DISPATCH01": {
+        "attempt": 380,
+        "created_at": "s17d",
+        "dispatch_href": "s17e",
+        "id": "TEMPLATE_DISPATCH01",
+        "message": "s180",
+        "object_id": "OBJECT01",
+        "object_type": "s182",
+        "payload": {},
+        "sharing_id": "SHARING01",
+        "state": 389,
+        "state_msg": "s186",
+        "target": {},
+        "target_id": "TARGET01",
+        "target_type": "s189",
+        "task_history": [],
+        "task_status": {},
+        "task_updated_at": "s18c",
+        "template_id": "TEMPLATE01",
+        "template_name": "s18e"
+      },
+      "TEMPLATE_DISPATCH02": {
+        "attempt": 570,
+        "created_at": "s23b",
+        "dispatch_href": "s23c",
+        "id": "TEMPLATE_DISPATCH02",
+        "message": "s23e",
+        "object_id": "OBJECT01",
+        "object_type": "s240",
+        "payload": {},
+        "sharing_id": "SHARING01",
+        "state": 579,
+        "state_msg": "s244",
+        "target": {},
+        "target_id": "TARGET01",
+        "target_type": "s247",
+        "task_history": [],
+        "task_status": {},
+        "task_updated_at": "s24a",
+        "template_id": "TEMPLATE01",
+        "template_name": "s24c"
+      }
+    }
+  },
+  "new": {
+    "template_dispatch": {
+      "template_dispatch_ref01": {
+        "attempt": 760,
+        "created_at": "s2f9",
+        "dispatch_href": "s2fa",
+        "message": "s2fc",
+        "object_id": "OBJECT01",
+        "object_type": "s2fe",
+        "payload": {},
+        "sharing_id": "SHARING01",
+        "state": 769,
+        "state_msg": "s302",
+        "target": {},
+        "target_id": "TARGET01",
+        "target_type": "s305",
+        "task_history": [],
+        "task_status": {},
+        "task_updated_at": "s308",
+        "template_id": "TEMPLATE01",
+        "template_name": "s30a"
+      }
+    }
+  },
+  "requests": {
+    "POST /template/templates/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /template/dispatch/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

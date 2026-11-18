@@ -1,0 +1,90 @@
+{
+  "existing": {
+    "email_slot": {
+      "EMAIL_SLOT00": {
+        "autorenew": true,
+        "capacity": 121,
+        "created_at": "s7a",
+        "duration": 123,
+        "gandi_id": "GANDI01",
+        "href": "s7d",
+        "id": "EMAIL_SLOT00",
+        "mailbox_type": "s7f",
+        "refund_amount": 128,
+        "refund_currency": "s81",
+        "refundable": true,
+        "status": "s83",
+        "domain": "DOMAIN01"
+      },
+      "EMAIL_SLOT01": {
+        "autorenew": true,
+        "capacity": 241,
+        "created_at": "sf2",
+        "duration": 243,
+        "gandi_id": "GANDI01",
+        "href": "sf5",
+        "id": "EMAIL_SLOT01",
+        "mailbox_type": "sf7",
+        "refund_amount": 248,
+        "refund_currency": "sf9",
+        "refundable": true,
+        "status": "sfb",
+        "domain": "DOMAIN01"
+      },
+      "EMAIL_SLOT02": {
+        "autorenew": true,
+        "capacity": 361,
+        "created_at": "s16a",
+        "duration": 363,
+        "gandi_id": "GANDI01",
+        "href": "s16d",
+        "id": "EMAIL_SLOT02",
+        "mailbox_type": "s16f",
+        "refund_amount": 368,
+        "refund_currency": "s171",
+        "refundable": true,
+        "status": "s173",
+        "domain": "DOMAIN01"
+      }
+    }
+  },
+  "new": {
+    "email_slot": {
+      "email_slot_ref01": {
+        "autorenew": true,
+        "capacity": 481,
+        "created_at": "s1e2",
+        "duration": 483,
+        "gandi_id": "GANDI01",
+        "href": "s1e5",
+        "mailbox_type": "s1e7",
+        "refund_amount": 488,
+        "refund_currency": "s1e9",
+        "refundable": true,
+        "status": "s1eb"
+      }
+    }
+  },
+  "requests": {
+    "POST /email/slots/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /email/slots/{domain}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /email/slots/{domain}/{slot_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /email/slots/{domain}/{slot_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,217 @@
+# Entity: email_migration
+
+main: kit: entity: email_migration: {
+
+  alias: field: {}
+
+  fields: {
+    available: {
+      h: "Available"
+      n: "available"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: true
+      t: "`$STRING`"
+    }
+    forward_count: {
+      h: "Forward Count"
+      n: "forward_count"
+      r: true
+      t: "`$INTEGER`"
+    }
+    free_mailboxes: {
+      h: "Free Mailboxes"
+      n: "free_mailboxes"
+      r: true
+      t: "`$INTEGER`"
+    }
+    included_mailboxes: {
+      h: "Included Mailboxes"
+      n: "included_mailboxes"
+      r: true
+      t: "`$INTEGER`"
+    }
+    info: {
+      h: "Info"
+      n: "info"
+      r: true
+      t: "`$ARRAY`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      t: "`$STRING`"
+    }
+    packmail: {
+      h: "Packmail"
+      n: "packmail"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    price_v1: {
+      h: "Price V1"
+      n: "price_v1"
+      r: true
+      t: "`$NUMBER`"
+    }
+    price_v2: {
+      h: "Price V2"
+      n: "price_v2"
+      r: true
+      t: "`$NUMBER`"
+    }
+    quota_v1: {
+      h: "Quota V1"
+      n: "quota_v1"
+      r: true
+      t: "`$NUMBER`"
+    }
+    token: {
+      h: "Token"
+      n: "token"
+      r: true
+      t: "`$STRING`"
+    }
+    usage_v1: {
+      h: "Usage V1"
+      n: "usage_v1"
+      r: true
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "email_migration"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "token"
+          ]
+          co: {
+            id: "POST /email/migration/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/email/migration/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "migration"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /email/migration/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/email/migration/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "migration"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

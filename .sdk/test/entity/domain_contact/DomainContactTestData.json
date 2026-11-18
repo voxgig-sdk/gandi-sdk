@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "domain_contact": {
+      "DOMAIN_CONTACT00": {
+        "admin": {},
+        "bill": {},
+        "message": "s34",
+        "owner": {},
+        "tech": {},
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CONTACT00"
+      },
+      "DOMAIN_CONTACT01": {
+        "admin": {},
+        "bill": {},
+        "message": "s66",
+        "owner": {},
+        "tech": {},
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CONTACT01"
+      },
+      "DOMAIN_CONTACT02": {
+        "admin": {},
+        "bill": {},
+        "message": "s98",
+        "owner": {},
+        "tech": {},
+        "domain": "DOMAIN01",
+        "id": "DOMAIN_CONTACT02"
+      }
+    }
+  },
+  "new": {
+    "domain_contact": {
+      "domain_contact_ref01": {
+        "admin": {},
+        "bill": {},
+        "message": "sca",
+        "owner": {},
+        "tech": {}
+      }
+    }
+  },
+  "requests": {
+    "GET /domain/domains/{domain}/contacts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /domain/domains/{domain}/contacts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /domain/domains/{domain}/contacts/owner": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

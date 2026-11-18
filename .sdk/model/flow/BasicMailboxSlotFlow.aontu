@@ -1,0 +1,44 @@
+# BasicMailboxSlotFlow
+
+main: kit: flow: BasicMailboxSlotFlow:
+{
+  entity: "mailbox_slot",
+  kind: "basic",
+  name: "BasicMailboxSlotFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "mailbox_slot_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "mailbox_slot_ref01",
+        srcdatavar: "mailbox_slot_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "mailbox_slot01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-mailbox_slot_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMailboxSlotFlow"
+}

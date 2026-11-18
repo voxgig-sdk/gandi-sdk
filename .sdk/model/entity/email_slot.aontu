@@ -1,0 +1,364 @@
+# Entity: email_slot
+
+main: kit: entity: email_slot: {
+
+  alias: field: {}
+
+  alias: {
+    field: {
+      gandi_id: "id"
+    }
+  }
+
+  fields: {
+    autorenew: {
+      h: "Autorenew"
+      n: "autorenew"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    capacity: {
+      h: "Capacity"
+      n: "capacity"
+      r: true
+      t: "`$INTEGER`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: true
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: true
+      t: "`$INTEGER`"
+    }
+    gandi_id: {
+      h: "Gandi Id"
+      n: "gandi_id"
+      r: true
+      t: "`$INTEGER`"
+    }
+    href: {
+      h: "Href"
+      n: "href"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    mailbox_type: {
+      h: "Mailbox Type"
+      n: "mailbox_type"
+      r: true
+      t: "`$STRING`"
+    }
+    refund_amount: {
+      h: "Refund Amount"
+      n: "refund_amount"
+      r: false
+      t: "`$NUMBER`"
+    }
+    refund_currency: {
+      h: "Refund Currency"
+      n: "refund_currency"
+      r: false
+      t: "`$STRING`"
+    }
+    refundable: {
+      h: "Refundable"
+      n: "refundable"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    from: {
+      id: "id"
+    }
+    name: "id"
+    parts: [
+      "domain"
+      "id"
+    ]
+    sep: "/"
+  }
+
+  name: "email_slot"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "autorenew"
+            "duration"
+            "mailbox_type"
+          ]
+          co: {
+            id: "POST /email/slots/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                explode: true
+                k: "query"
+                n: "sharing_id"
+                or: "sharing_id"
+                r: false
+                style: "form"
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/email/slots/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "slots"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /email/slots/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                explode: true
+                k: "query"
+                n: "display_not_expired_and_inactive"
+                or: "display_not_expired_and_inactive"
+                r: false
+                style: "form"
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/email/slots/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "slots"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /email/slots/{domain}/{slot_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "slot_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/email/slots/{domain}/{slot_id}"
+          q: {
+            exist: [
+              "domain"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              slot_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "slots"
+            }
+            {
+              var: "domain"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /email/slots/{domain}/{slot_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "slot_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/email/slots/{domain}/{slot_id}"
+          q: {
+            exist: [
+              "domain"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              slot_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "email"
+            }
+            {
+              lit: "slots"
+            }
+            {
+              var: "domain"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

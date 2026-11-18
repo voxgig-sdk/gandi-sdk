@@ -1,0 +1,39 @@
+{
+  "existing": {
+    "linked_zone_deployment": {
+      "LINKED_ZONE_DEPLOYMENT00": {
+        "deploy": true,
+        "message": "s15",
+        "zone_id": "ZONE01",
+        "id": "LINKED_ZONE_DEPLOYMENT00"
+      },
+      "LINKED_ZONE_DEPLOYMENT01": {
+        "deploy": true,
+        "message": "s29",
+        "zone_id": "ZONE01",
+        "id": "LINKED_ZONE_DEPLOYMENT01"
+      },
+      "LINKED_ZONE_DEPLOYMENT02": {
+        "deploy": true,
+        "message": "s3d",
+        "zone_id": "ZONE01",
+        "id": "LINKED_ZONE_DEPLOYMENT02"
+      }
+    }
+  },
+  "new": {
+    "linked_zone_deployment": {
+      "linked_zone_deployment_ref01": {
+        "deploy": true,
+        "message": "s51"
+      }
+    }
+  },
+  "requests": {
+    "POST /linkedzone/zones/{zone_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}
