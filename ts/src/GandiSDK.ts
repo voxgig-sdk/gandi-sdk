@@ -48,6 +48,7 @@ import { LivednsRecordEntity } from './entity/LivednsRecordEntity'
 import { LivednsRrtypeEntity } from './entity/LivednsRrtypeEntity'
 import { LivednsSnapshotEntity } from './entity/LivednsSnapshotEntity'
 import { LivednsTsigKeyEntity } from './entity/LivednsTsigKeyEntity'
+import { LivednsZoneEntity } from './entity/LivednsZoneEntity'
 import { MailboxEntity } from './entity/MailboxEntity'
 import { MailboxDomainEntity } from './entity/MailboxDomainEntity'
 import { MailboxForwardEntity } from './entity/MailboxForwardEntity'
@@ -829,6 +830,15 @@ if (null != this._secrets) {
   LivednsTsigKey(entopts?: Record<string, any>) {
     const self = this
     return new LivednsTsigKeyEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.LivednsZone().list()` / `client.LivednsZone().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  LivednsZone(entopts?: Record<string, any>) {
+    const self = this
+    return new LivednsZoneEntity(self, entopts)
   }
 
 

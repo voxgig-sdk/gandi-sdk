@@ -66,35 +66,6 @@ main: kit: flow: BasicLivednsDomainFlow:
         }
       ]
     }
-
-    {
-      i: {
-        ref: "livedns_domain_ref01",
-        suffix: "_rm0"
-      }
-
-      m: {
-        id: "livedns_domain01"
-      }
-
-      o: "remove"
-    }
-
-    {
-      i: {
-        suffix: "_rt0"
-      }
-
-      o: "list",
-      v: [
-        {
-          apply: "ItemNotExists",
-          def: {
-            ref: "livedns_domain_ref01"
-          }
-        }
-      ]
-    }
   ],
   "key$": "BasicLivednsDomainFlow"
 }

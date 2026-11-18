@@ -253,6 +253,7 @@ def make_config():
                 "livedns_rrtype": {},
                 "livedns_snapshot": {},
                 "livedns_tsig_key": {},
+                "livedns_zone": {},
                 "mailbox": {},
                 "mailbox_domain": {},
                 "mailbox_forward": {},
@@ -12813,59 +12814,6 @@ def make_config():
               },
             ],
           },
-          "remove": {
-            "input": "data",
-            "name": "remove",
-            "points": [
-              {
-                "kind": "http",
-                "method": "DELETE",
-                "orig": "/livedns/domains/{fqdn}/records",
-                "segments": [
-                  {
-                    "lit": "livedns",
-                  },
-                  {
-                    "lit": "domains",
-                  },
-                  {
-                    "var": "fqdn",
-                  },
-                  {
-                    "lit": "records",
-                  },
-                ],
-                "parts": [
-                  "livedns",
-                  "domains",
-                  "{fqdn}",
-                  "records",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "fqdn",
-                      "orig": "fqdn",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "$action": "records",
-                  "exist": [
-                    "fqdn",
-                  ],
-                },
-              },
-            ],
-          },
           "update": {
             "input": "data",
             "name": "update",
@@ -12907,57 +12855,6 @@ def make_config():
                   ],
                 },
                 "select": {
-                  "exist": [
-                    "fqdn",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "PUT",
-                "orig": "/livedns/domains/{fqdn}/records",
-                "segments": [
-                  {
-                    "lit": "livedns",
-                  },
-                  {
-                    "lit": "domains",
-                  },
-                  {
-                    "var": "fqdn",
-                  },
-                  {
-                    "lit": "records",
-                  },
-                ],
-                "parts": [
-                  "livedns",
-                  "domains",
-                  "{fqdn}",
-                  "records",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "fqdn",
-                      "orig": "fqdn",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "$action": "records",
                   "exist": [
                     "fqdn",
                   ],
@@ -15167,6 +15064,145 @@ def make_config():
         },
         "relations": {
           "ancestors": [],
+        },
+      },
+      "livedns_zone": {
+        "fields": [
+          {
+            "name": "items",
+            "title": "Items",
+            "type": "`$ARRAY`",
+            "req": True,
+          },
+          {
+            "name": "message",
+            "title": "Message",
+            "type": "`$STRING`",
+            "req": True,
+          },
+          {
+            "name": "remove_apex_ns",
+            "title": "Remove Apex Ns",
+            "type": "`$BOOLEAN`",
+          },
+        ],
+        "name": "livedns_zone",
+        "op": {
+          "remove": {
+            "input": "data",
+            "name": "remove",
+            "points": [
+              {
+                "kind": "http",
+                "method": "DELETE",
+                "orig": "/livedns/domains/{fqdn}/records",
+                "segments": [
+                  {
+                    "lit": "livedns",
+                  },
+                  {
+                    "lit": "domains",
+                  },
+                  {
+                    "var": "fqdn",
+                  },
+                  {
+                    "lit": "records",
+                  },
+                ],
+                "parts": [
+                  "livedns",
+                  "domains",
+                  "{fqdn}",
+                  "records",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "fqdn",
+                      "orig": "fqdn",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "fqdn",
+                  ],
+                },
+              },
+            ],
+          },
+          "update": {
+            "input": "data",
+            "name": "update",
+            "points": [
+              {
+                "kind": "http",
+                "method": "PUT",
+                "orig": "/livedns/domains/{fqdn}/records",
+                "segments": [
+                  {
+                    "lit": "livedns",
+                  },
+                  {
+                    "lit": "domains",
+                  },
+                  {
+                    "var": "fqdn",
+                  },
+                  {
+                    "lit": "records",
+                  },
+                ],
+                "parts": [
+                  "livedns",
+                  "domains",
+                  "{fqdn}",
+                  "records",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "fqdn",
+                      "orig": "fqdn",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "fqdn",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [
+            [
+              "$.main.kit.entity.domain",
+            ],
+          ],
         },
       },
       "mailbox": {

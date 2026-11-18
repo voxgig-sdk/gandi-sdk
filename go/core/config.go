@@ -228,6 +228,7 @@ func MakeConfig() map[string]any {
 				"livedns_rrtype": map[string]any{},
 				"livedns_snapshot": map[string]any{},
 				"livedns_tsig_key": map[string]any{},
+				"livedns_zone": map[string]any{},
 				"mailbox": map[string]any{},
 				"mailbox_domain": map[string]any{},
 				"mailbox_forward": map[string]any{},
@@ -12788,59 +12789,6 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
-					"remove": map[string]any{
-						"input": "data",
-						"name": "remove",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "DELETE",
-								"orig": "/livedns/domains/{fqdn}/records",
-								"segments": []any{
-									map[string]any{
-										"lit": "livedns",
-									},
-									map[string]any{
-										"lit": "domains",
-									},
-									map[string]any{
-										"var": "fqdn",
-									},
-									map[string]any{
-										"lit": "records",
-									},
-								},
-								"parts": []any{
-									"livedns",
-									"domains",
-									"{fqdn}",
-									"records",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "fqdn",
-											"orig": "fqdn",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "records",
-									"exist": []any{
-										"fqdn",
-									},
-								},
-							},
-						},
-					},
 					"update": map[string]any{
 						"input": "data",
 						"name": "update",
@@ -12882,57 +12830,6 @@ func MakeConfig() map[string]any {
 									},
 								},
 								"select": map[string]any{
-									"exist": []any{
-										"fqdn",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "PUT",
-								"orig": "/livedns/domains/{fqdn}/records",
-								"segments": []any{
-									map[string]any{
-										"lit": "livedns",
-									},
-									map[string]any{
-										"lit": "domains",
-									},
-									map[string]any{
-										"var": "fqdn",
-									},
-									map[string]any{
-										"lit": "records",
-									},
-								},
-								"parts": []any{
-									"livedns",
-									"domains",
-									"{fqdn}",
-									"records",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "fqdn",
-											"orig": "fqdn",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "records",
 									"exist": []any{
 										"fqdn",
 									},
@@ -15142,6 +15039,145 @@ func MakeConfig() map[string]any {
 				},
 				"relations": map[string]any{
 					"ancestors": []any{},
+				},
+			},
+			"livedns_zone": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "items",
+						"title": "Items",
+						"type": "`$ARRAY`",
+						"req": true,
+					},
+					map[string]any{
+						"name": "message",
+						"title": "Message",
+						"type": "`$STRING`",
+						"req": true,
+					},
+					map[string]any{
+						"name": "remove_apex_ns",
+						"title": "Remove Apex Ns",
+						"type": "`$BOOLEAN`",
+					},
+				},
+				"name": "livedns_zone",
+				"op": map[string]any{
+					"remove": map[string]any{
+						"input": "data",
+						"name": "remove",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "DELETE",
+								"orig": "/livedns/domains/{fqdn}/records",
+								"segments": []any{
+									map[string]any{
+										"lit": "livedns",
+									},
+									map[string]any{
+										"lit": "domains",
+									},
+									map[string]any{
+										"var": "fqdn",
+									},
+									map[string]any{
+										"lit": "records",
+									},
+								},
+								"parts": []any{
+									"livedns",
+									"domains",
+									"{fqdn}",
+									"records",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "fqdn",
+											"orig": "fqdn",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"fqdn",
+									},
+								},
+							},
+						},
+					},
+					"update": map[string]any{
+						"input": "data",
+						"name": "update",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "PUT",
+								"orig": "/livedns/domains/{fqdn}/records",
+								"segments": []any{
+									map[string]any{
+										"lit": "livedns",
+									},
+									map[string]any{
+										"lit": "domains",
+									},
+									map[string]any{
+										"var": "fqdn",
+									},
+									map[string]any{
+										"lit": "records",
+									},
+								},
+								"parts": []any{
+									"livedns",
+									"domains",
+									"{fqdn}",
+									"records",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "fqdn",
+											"orig": "fqdn",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"fqdn",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{
+						[]any{
+							"$.main.kit.entity.domain",
+						},
+					},
 				},
 			},
 			"mailbox": map[string]any{

@@ -173,6 +173,8 @@ func entityFor(client *sdk.GandiSDK, name string) (sdk.GandiEntityBase, error) {
 		return client.LivednsSnapshot(nil), nil
 	case "livedns_tsig_key":
 		return client.LivednsTsigKey(nil), nil
+	case "livedns_zone":
+		return client.LivednsZone(nil), nil
 	case "mailbox":
 		return client.Mailbox(nil), nil
 	case "mailbox_domain":

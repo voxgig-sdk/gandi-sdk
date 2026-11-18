@@ -1321,13 +1321,6 @@ export interface LivednsDomainCreateData {
 export interface LivednsDomainUpdateData {
     fqdn: string;
     automatic_snapshots?: boolean;
-    $action?: string;
-    [action: string]: any;
-}
-export interface LivednsDomainRemoveMatch {
-    fqdn: string;
-    $action?: string;
-    [action: string]: any;
 }
 export interface LivednsKey {
     algorithm: number;
@@ -1489,6 +1482,19 @@ export interface LivednsTsigKeyCreateData {
     id: string;
     key_name: string;
     secret: string;
+}
+export interface LivednsZone {
+    items: any[];
+    message: string;
+    remove_apex_ns?: boolean;
+}
+export interface LivednsZoneUpdateData {
+    fqdn: string;
+    items?: any[];
+    remove_apex_ns?: boolean;
+}
+export interface LivednsZoneRemoveMatch {
+    fqdn: string;
 }
 export interface Mailbox {
     address: string;

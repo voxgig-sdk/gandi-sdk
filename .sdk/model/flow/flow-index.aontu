@@ -48,6 +48,7 @@
 @"./BasicLivednsRrtypeFlow.aontu"
 @"./BasicLivednsSnapshotFlow.aontu"
 @"./BasicLivednsTsigKeyFlow.aontu"
+@"./BasicLivednsZoneFlow.aontu"
 @"./BasicMailboxDomainFlow.aontu"
 @"./BasicMailboxFlow.aontu"
 @"./BasicMailboxForwardFlow.aontu"

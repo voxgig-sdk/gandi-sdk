@@ -8012,38 +8012,6 @@ const PLAN: any[] = [
   {
     "entity": "livedns_domain",
     "accessor": "LivednsDomain",
-    "op": "remove",
-    "method": "DELETE",
-    "path": "/livedns/domains/{fqdn}/records",
-    "action": "records",
-    "args": [
-      {
-        "name": "fqdn",
-        "wire": "fqdn",
-        "value": "p1"
-      }
-    ],
-    "select": {},
-    "headers": [],
-    "cookies": [],
-    "query": [],
-    "queryArgs": [],
-    "auth": [
-      [
-        {
-          "in": "header",
-          "name": "authorization",
-          "scheme": "bearer"
-        }
-      ]
-    ],
-    "status": 204,
-    "sample": null,
-    "idField": "id"
-  },
-  {
-    "entity": "livedns_domain",
-    "accessor": "LivednsDomain",
     "op": "update",
     "method": "PATCH",
     "path": "/livedns/domains/{fqdn}",
@@ -8072,43 +8040,6 @@ const PLAN: any[] = [
       ]
     ],
     "status": 200,
-    "sample": {
-      "message": "x"
-    },
-    "idField": "id"
-  },
-  {
-    "entity": "livedns_domain",
-    "accessor": "LivednsDomain",
-    "op": "update",
-    "method": "PUT",
-    "path": "/livedns/domains/{fqdn}/records",
-    "action": "records",
-    "args": [
-      {
-        "name": "fqdn",
-        "wire": "fqdn",
-        "value": "p1"
-      }
-    ],
-    "select": {},
-    "headers": [],
-    "cookies": [],
-    "responseMedia": [
-      "application/json"
-    ],
-    "query": [],
-    "queryArgs": [],
-    "auth": [
-      [
-        {
-          "in": "header",
-          "name": "authorization",
-          "scheme": "bearer"
-        }
-      ]
-    ],
-    "status": 201,
     "sample": {
       "message": "x"
     },
@@ -9413,6 +9344,73 @@ const PLAN: any[] = [
       "id": "x",
       "key_name": "x",
       "secret": "x"
+    },
+    "idField": "id"
+  },
+  {
+    "entity": "livedns_zone",
+    "accessor": "LivednsZone",
+    "op": "remove",
+    "method": "DELETE",
+    "path": "/livedns/domains/{fqdn}/records",
+    "args": [
+      {
+        "name": "fqdn",
+        "wire": "fqdn",
+        "value": "p1"
+      }
+    ],
+    "select": {},
+    "headers": [],
+    "cookies": [],
+    "query": [],
+    "queryArgs": [],
+    "auth": [
+      [
+        {
+          "in": "header",
+          "name": "authorization",
+          "scheme": "bearer"
+        }
+      ]
+    ],
+    "status": 204,
+    "sample": null,
+    "idField": "id"
+  },
+  {
+    "entity": "livedns_zone",
+    "accessor": "LivednsZone",
+    "op": "update",
+    "method": "PUT",
+    "path": "/livedns/domains/{fqdn}/records",
+    "args": [
+      {
+        "name": "fqdn",
+        "wire": "fqdn",
+        "value": "p1"
+      }
+    ],
+    "select": {},
+    "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
+    "query": [],
+    "queryArgs": [],
+    "auth": [
+      [
+        {
+          "in": "header",
+          "name": "authorization",
+          "scheme": "bearer"
+        }
+      ]
+    ],
+    "status": 201,
+    "sample": {
+      "message": "x"
     },
     "idField": "id"
   },

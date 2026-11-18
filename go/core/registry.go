@@ -118,6 +118,8 @@ var NewLivednsSnapshotEntityFunc func(client *GandiSDK, entopts map[string]any) 
 
 var NewLivednsTsigKeyEntityFunc func(client *GandiSDK, entopts map[string]any) GandiEntityBase
 
+var NewLivednsZoneEntityFunc func(client *GandiSDK, entopts map[string]any) GandiEntityBase
+
 var NewMailboxEntityFunc func(client *GandiSDK, entopts map[string]any) GandiEntityBase
 
 var NewMailboxDomainEntityFunc func(client *GandiSDK, entopts map[string]any) GandiEntityBase

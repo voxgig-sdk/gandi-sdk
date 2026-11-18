@@ -124,6 +124,7 @@ _ENTITIES = {
     "LivednsRrtype": "livedns_rrtype",
     "LivednsSnapshot": "livedns_snapshot",
     "LivednsTsigKey": "livedns_tsig_key",
+    "LivednsZone": "livedns_zone",
     "Mailbox": "mailbox",
     "MailboxDomain": "mailbox_domain",
     "MailboxForward": "mailbox_forward",

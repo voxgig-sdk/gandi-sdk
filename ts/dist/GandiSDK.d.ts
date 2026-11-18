@@ -46,6 +46,7 @@ import { LivednsRecordEntity } from './entity/LivednsRecordEntity';
 import { LivednsRrtypeEntity } from './entity/LivednsRrtypeEntity';
 import { LivednsSnapshotEntity } from './entity/LivednsSnapshotEntity';
 import { LivednsTsigKeyEntity } from './entity/LivednsTsigKeyEntity';
+import { LivednsZoneEntity } from './entity/LivednsZoneEntity';
 import { MailboxEntity } from './entity/MailboxEntity';
 import { MailboxDomainEntity } from './entity/MailboxDomainEntity';
 import { MailboxForwardEntity } from './entity/MailboxForwardEntity';
@@ -143,6 +144,7 @@ declare class GandiSDK {
     LivednsRrtype(entopts?: Record<string, any>): LivednsRrtypeEntity;
     LivednsSnapshot(entopts?: Record<string, any>): LivednsSnapshotEntity;
     LivednsTsigKey(entopts?: Record<string, any>): LivednsTsigKeyEntity;
+    LivednsZone(entopts?: Record<string, any>): LivednsZoneEntity;
     Mailbox(entopts?: Record<string, any>): MailboxEntity;
     MailboxDomain(entopts?: Record<string, any>): MailboxDomainEntity;
     MailboxForward(entopts?: Record<string, any>): MailboxForwardEntity;

@@ -657,6 +657,13 @@ class GandiSDK
   end
 
 
+  # Canonical facade: client.LivednsZone.list / client.LivednsZone.load({ "id" => ... })
+  def LivednsZone(data = nil)
+    require_relative 'entity/livedns_zone_entity'
+    LivednsZoneEntity.new(self, data)
+  end
+
+
   # Canonical facade: client.Mailbox.list / client.Mailbox.load({ "id" => ... })
   def Mailbox(data = nil)
     require_relative 'entity/mailbox_entity'

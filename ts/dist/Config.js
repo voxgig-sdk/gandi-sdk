@@ -254,6 +254,7 @@ class Config {
             livedns_rrtype: {},
             livedns_snapshot: {},
             livedns_tsig_key: {},
+            livedns_zone: {},
             mailbox: {},
             mailbox_domain: {},
             mailbox_forward: {},
@@ -12814,59 +12815,6 @@ class Config {
                         }
                     ]
                 },
-                "remove": {
-                    "input": "data",
-                    "name": "remove",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "DELETE",
-                            "orig": "/livedns/domains/{fqdn}/records",
-                            "segments": [
-                                {
-                                    "lit": "livedns"
-                                },
-                                {
-                                    "lit": "domains"
-                                },
-                                {
-                                    "var": "fqdn"
-                                },
-                                {
-                                    "lit": "records"
-                                }
-                            ],
-                            "parts": [
-                                "livedns",
-                                "domains",
-                                "{fqdn}",
-                                "records"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "fqdn",
-                                        "orig": "fqdn",
-                                        "type": "`$STRING`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "$action": "records",
-                                "exist": [
-                                    "fqdn"
-                                ]
-                            }
-                        }
-                    ]
-                },
                 "update": {
                     "input": "data",
                     "name": "update",
@@ -12908,57 +12856,6 @@ class Config {
                                 ]
                             },
                             "select": {
-                                "exist": [
-                                    "fqdn"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        },
-                        {
-                            "kind": "http",
-                            "method": "PUT",
-                            "orig": "/livedns/domains/{fqdn}/records",
-                            "segments": [
-                                {
-                                    "lit": "livedns"
-                                },
-                                {
-                                    "lit": "domains"
-                                },
-                                {
-                                    "var": "fqdn"
-                                },
-                                {
-                                    "lit": "records"
-                                }
-                            ],
-                            "parts": [
-                                "livedns",
-                                "domains",
-                                "{fqdn}",
-                                "records"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "fqdn",
-                                        "orig": "fqdn",
-                                        "type": "`$STRING`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "$action": "records",
                                 "exist": [
                                     "fqdn"
                                 ]
@@ -15168,6 +15065,145 @@ class Config {
             },
             "relations": {
                 "ancestors": []
+            }
+        },
+        "livedns_zone": {
+            "fields": [
+                {
+                    "name": "items",
+                    "title": "Items",
+                    "type": "`$ARRAY`",
+                    "req": true
+                },
+                {
+                    "name": "message",
+                    "title": "Message",
+                    "type": "`$STRING`",
+                    "req": true
+                },
+                {
+                    "name": "remove_apex_ns",
+                    "title": "Remove Apex Ns",
+                    "type": "`$BOOLEAN`"
+                }
+            ],
+            "name": "livedns_zone",
+            "op": {
+                "remove": {
+                    "input": "data",
+                    "name": "remove",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "DELETE",
+                            "orig": "/livedns/domains/{fqdn}/records",
+                            "segments": [
+                                {
+                                    "lit": "livedns"
+                                },
+                                {
+                                    "lit": "domains"
+                                },
+                                {
+                                    "var": "fqdn"
+                                },
+                                {
+                                    "lit": "records"
+                                }
+                            ],
+                            "parts": [
+                                "livedns",
+                                "domains",
+                                "{fqdn}",
+                                "records"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "fqdn",
+                                        "orig": "fqdn",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "fqdn"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "update": {
+                    "input": "data",
+                    "name": "update",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "PUT",
+                            "orig": "/livedns/domains/{fqdn}/records",
+                            "segments": [
+                                {
+                                    "lit": "livedns"
+                                },
+                                {
+                                    "lit": "domains"
+                                },
+                                {
+                                    "var": "fqdn"
+                                },
+                                {
+                                    "lit": "records"
+                                }
+                            ],
+                            "parts": [
+                                "livedns",
+                                "domains",
+                                "{fqdn}",
+                                "records"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "fqdn",
+                                        "orig": "fqdn",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "fqdn"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": [
+                    [
+                        "$.main.kit.entity.domain"
+                    ]
+                ]
             }
         },
         "mailbox": {

@@ -147,7 +147,7 @@ describe("LivednsDomainEntity", function()
     local setup = livedns_domain_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"create", "list", "update", "load", "remove"}) do
+    for _, _op in ipairs({"create", "list", "update", "load"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "livedns_domain." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -157,7 +157,6 @@ describe("LivednsDomainEntity", function()
     if setup.live and os.getenv("VOXGIG_GETONLY_GUARD") == "TRUE" then
       print("LIVE STEP {\"id\":\"livedns_domain.create.0\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs POST /livedns/domains\"}")
       print("LIVE STEP {\"id\":\"livedns_domain.update.2\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs PATCH /livedns/domains/{fqdn}\"}")
-      print("LIVE STEP {\"id\":\"livedns_domain.remove.4\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs DELETE /livedns/domains/{fqdn}/records\"}")
     local client = setup.client
 
     -- Bootstrap entity data from existing test data.
@@ -241,20 +240,6 @@ describe("LivednsDomainEntity", function()
     local livedns_domain_ref01_data_dt0_loaded, err = livedns_domain_ref01_ent:load(livedns_domain_ref01_match_dt0, nil)
     assert.is_nil(err)
     assert.is_not_nil(livedns_domain_ref01_data_dt0_loaded)
-
-    if setup.live then
-      runner.live_pace()
-    end
-
-    if setup.live then
-      runner.live_pace()
-    end
-    -- LIST
-    local livedns_domain_ref01_match_rt0 = {}
-
-    local livedns_domain_ref01_list_rt0_result, err = livedns_domain_ref01_ent:list(livedns_domain_ref01_match_rt0, nil)
-    assert.is_nil(err)
-    assert.is_table(livedns_domain_ref01_list_rt0_result)
 
   end)
 end)

@@ -240,6 +240,10 @@ Create a new `LivednsSnapshot` entity instance. Pass `nil` for no initial data.
 
 Create a new `LivednsTsigKey` entity instance. Pass `nil` for no initial data.
 
+#### `LivednsZone(data map[string]any) GandiEntityBase`
+
+Create a new `LivednsZone` entity instance. Pass `nil` for no initial data.
+
 #### `Mailbox(data map[string]any) GandiEntityBase`
 
 Create a new `Mailbox` entity instance. Pass `nil` for no initial data.
@@ -4520,15 +4524,15 @@ fmt.Println(livednsDomain.GetName()) // "livedns_domain"
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `automatic_snapshots` | - | - | - | Yes | - |
-| `domain_href` | - | - | - | - | - |
-| `domain_keys_href` | - | - | - | - | - |
-| `domain_records_href` | - | - | - | - | - |
-| `fqdn` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `zone` | - | - | - | - | - |
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `automatic_snapshots` | - | - | - | Yes |
+| `domain_href` | - | - | - | - |
+| `domain_keys_href` | - | - | - | - |
+| `domain_records_href` | - | - | - | - |
+| `fqdn` | - | - | - | - |
+| `message` | - | - | - | - |
+| `zone` | - | - | - | - |
 
 ### Operations
 
@@ -4581,18 +4585,6 @@ result, err := client.LivednsDomain(nil).Update(map[string]any{
     "fqdn": "fqdn",
     // Fields to update
 }, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
-
-```go
-result, err := client.LivednsDomain(nil).Remove(map[string]any{"fqdn": "fqdn"}, nil)
 if err != nil {
     panic(err)
 }
@@ -5222,6 +5214,82 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `LivednsTsigKeyEntity` instance with the same client and
+options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## LivednsZoneEntity
+
+```go
+livednsZone := client.LivednsZone(nil)
+fmt.Println(livednsZone.GetName()) // "livedns_zone"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `items` | `[]any` | Yes |  |
+| `message` | `string` | Yes |  |
+| `remove_apex_ns` | `bool` | No |  |
+
+### Operations
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.LivednsZone(nil).Update(map[string]any{
+    "fqdn": "fqdn",
+    // Fields to update
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
+
+```go
+result, err := client.LivednsZone(nil).Remove(map[string]any{"fqdn": "fqdn"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `LivednsZoneEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`

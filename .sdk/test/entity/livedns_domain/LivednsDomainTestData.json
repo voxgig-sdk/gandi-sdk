@@ -62,17 +62,7 @@
       "version": 2,
       "source": "openapi3"
     },
-    "DELETE /livedns/domains/{fqdn}/records": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
     "PATCH /livedns/domains/{fqdn}": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "PUT /livedns/domains/{fqdn}/records": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

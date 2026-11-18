@@ -1699,10 +1699,6 @@ class LivednsDomainUpdateData(LivednsDomainUpdateDataRequired, total=False):
     automatic_snapshots: bool
 
 
-class LivednsDomainRemoveMatch(TypedDict):
-    fqdn: str
-
-
 class LivednsKey(TypedDict):
     algorithm: int
     algorithm_name: str
@@ -1913,6 +1909,28 @@ class LivednsTsigKeyCreateDataRequired(TypedDict):
 
 class LivednsTsigKeyCreateData(LivednsTsigKeyCreateDataRequired, total=False):
     sharing_id: str
+
+
+class LivednsZoneRequired(TypedDict):
+    items: list
+    message: str
+
+
+class LivednsZone(LivednsZoneRequired, total=False):
+    remove_apex_ns: bool
+
+
+class LivednsZoneUpdateDataRequired(TypedDict):
+    fqdn: str
+
+
+class LivednsZoneUpdateData(LivednsZoneUpdateDataRequired, total=False):
+    items: list
+    remove_apex_ns: bool
+
+
+class LivednsZoneRemoveMatch(TypedDict):
+    fqdn: str
 
 
 class MailboxRequired(TypedDict):

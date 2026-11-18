@@ -642,6 +642,12 @@ class GandiSDK:
         return LivednsTsigKeyEntity(self, data)
 
 
+    def LivednsZone(self, data=None) -> "LivednsZoneEntity":
+        """Entity factory: client.LivednsZone().list() / client.LivednsZone().load({"id": ...})."""
+        from gandi_sdk.entity.livedns_zone_entity import LivednsZoneEntity
+        return LivednsZoneEntity(self, data)
+
+
     def Mailbox(self, data=None) -> "MailboxEntity":
         """Entity factory: client.Mailbox().list() / client.Mailbox().load({"id": ...})."""
         from gandi_sdk.entity.mailbox_entity import MailboxEntity
@@ -789,6 +795,7 @@ if TYPE_CHECKING:
     from gandi_sdk.entity.livedns_rrtype_entity import LivednsRrtypeEntity
     from gandi_sdk.entity.livedns_snapshot_entity import LivednsSnapshotEntity
     from gandi_sdk.entity.livedns_tsig_key_entity import LivednsTsigKeyEntity
+    from gandi_sdk.entity.livedns_zone_entity import LivednsZoneEntity
     from gandi_sdk.entity.mailbox_entity import MailboxEntity
     from gandi_sdk.entity.mailbox_domain_entity import MailboxDomainEntity
     from gandi_sdk.entity.mailbox_forward_entity import MailboxForwardEntity

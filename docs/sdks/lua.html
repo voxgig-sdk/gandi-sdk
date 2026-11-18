@@ -54,6 +54,7 @@
 <a href="../api/livedns_rrtype.html">LivednsRrtype</a>
 <a href="../api/livedns_snapshot.html">LivednsSnapshot</a>
 <a href="../api/livedns_tsig_key.html">LivednsTsigKey</a>
+<a href="../api/livedns_zone.html">LivednsZone</a>
 <a href="../api/mailbox.html">Mailbox</a>
 <a href="../api/mailbox_domain.html">MailboxDomain</a>
 <a href="../api/mailbox_forward.html">MailboxForward</a>
@@ -267,7 +268,7 @@
 </tr>
 <tr>
 <td><a href="../api/livedns_domain.html">LivednsDomain</a></td>
-<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>update</code></td>
 </tr>
 <tr>
 <td><a href="../api/livedns_key.html">LivednsKey</a></td>
@@ -292,6 +293,10 @@
 <tr>
 <td><a href="../api/livedns_tsig_key.html">LivednsTsigKey</a></td>
 <td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_zone.html">LivednsZone</a></td>
+<td><code>remove</code>, <code>update</code></td>
 </tr>
 <tr>
 <td><a href="../api/mailbox.html">Mailbox</a></td>
@@ -420,6 +425,7 @@ local client = sdk.new({apikey = os.getenv(&quot;GANDI_APIKEY&quot;)})
     &quot;livedns_rrtype&quot;: {},
     &quot;livedns_snapshot&quot;: {},
     &quot;livedns_tsig_key&quot;: {},
+    &quot;livedns_zone&quot;: {},
     &quot;mailbox&quot;: {},
     &quot;mailbox_domain&quot;: {},
     &quot;mailbox_forward&quot;: {},

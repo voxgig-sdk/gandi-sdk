@@ -50,15 +50,14 @@
 <a aria-current="page" href="../api/livedns_domain.html">LivednsDomain</a><div class="nav-sections"><a class="nav-section" href="#post-livednsdomains">POST /livedns/domains</a>
 <a class="nav-section" href="#get-livednsdomains">GET /livedns/domains</a>
 <a class="nav-section" href="#get-livednsdomainsfqdn">GET /livedns/domains/{fqdn}</a>
-<a class="nav-section" href="#delete-livednsdomainsfqdnrecords">DELETE /livedns/domains/{fqdn}/records</a>
-<a class="nav-section" href="#patch-livednsdomainsfqdn">PATCH /livedns/domains/{fqdn}</a>
-<a class="nav-section" href="#put-livednsdomainsfqdnrecords">PUT /livedns/domains/{fqdn}/records</a></div>
+<a class="nav-section" href="#patch-livednsdomainsfqdn">PATCH /livedns/domains/{fqdn}</a></div>
 <a href="../api/livedns_key.html">LivednsKey</a>
 <a href="../api/livedns_nameserver.html">LivednsNameserver</a>
 <a href="../api/livedns_record.html">LivednsRecord</a>
 <a href="../api/livedns_rrtype.html">LivednsRrtype</a>
 <a href="../api/livedns_snapshot.html">LivednsSnapshot</a>
 <a href="../api/livedns_tsig_key.html">LivednsTsigKey</a>
+<a href="../api/livedns_zone.html">LivednsZone</a>
 <a href="../api/mailbox.html">Mailbox</a>
 <a href="../api/mailbox_domain.html">MailboxDomain</a>
 <a href="../api/mailbox_forward.html">MailboxForward</a>
@@ -92,7 +91,7 @@
 <a href="../features/secrets.html">Secrets</a>
 <a href="../features/test.html">Test transport</a>
 <a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="livednsdomain">LivednsDomain</h1>
-<p>A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (<code>records</code>).</p>
+<p>A domain on LiveDNS, by fqdn: list, add, get or update one.</p>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -124,22 +123,10 @@
 <td>OK</td>
 </tr>
 <tr>
-<td><code>DELETE</code></td>
-<td><a href="#delete-livednsdomainsfqdnrecords"><code>/livedns/domains/{fqdn}/records</code></a></td>
-<td><code>remove</code></td>
-<td>No Content</td>
-</tr>
-<tr>
 <td><code>PATCH</code></td>
 <td><a href="#patch-livednsdomainsfqdn"><code>/livedns/domains/{fqdn}</code></a></td>
 <td><code>update</code></td>
 <td>OK</td>
-</tr>
-<tr>
-<td><code>PUT</code></td>
-<td><a href="#put-livednsdomainsfqdnrecords"><code>/livedns/domains/{fqdn}/records</code></a></td>
-<td><code>update</code></td>
-<td>Created</td>
 </tr>
 </tbody>
 </table>
@@ -167,11 +154,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(updated)
-removed, err := client.LivednsDomain(nil).Remove(map[string]any{&quot;fqdn&quot;: &quot;example&quot;}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(removed)
 </code></pre>
 <h3 id="lua">Lua</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
@@ -179,7 +161,6 @@ fmt.Println(removed)
 local livedns_domain, err = client:LivednsDomain():load({ fqdn = &quot;example&quot; })
 local created, err = client:LivednsDomain():create({ fqdn = &quot;example&quot; })
 local updated, err = client:LivednsDomain():update({ fqdn = &quot;example&quot;, automatic_snapshots = true })
-local removed, err = client:LivednsDomain():remove({ fqdn = &quot;example&quot; })
 </code></pre>
 <h3 id="php">PHP</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
@@ -187,7 +168,6 @@ local removed, err = client:LivednsDomain():remove({ fqdn = &quot;example&quot; 
 $livedns_domain = $client-&gt;LivednsDomain()-&gt;load([&quot;fqdn&quot; =&gt; &quot;example&quot;]);
 $created = $client-&gt;LivednsDomain()-&gt;create([&quot;fqdn&quot; =&gt; &quot;example&quot;]);
 $updated = $client-&gt;LivednsDomain()-&gt;update([&quot;fqdn&quot; =&gt; &quot;example&quot;, &quot;automatic_snapshots&quot; =&gt; true]);
-$client-&gt;LivednsDomain()-&gt;remove([&quot;fqdn&quot; =&gt; &quot;example&quot;]);
 </code></pre>
 <h3 id="python">Python</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
@@ -195,7 +175,6 @@ $client-&gt;LivednsDomain()-&gt;remove([&quot;fqdn&quot; =&gt; &quot;example&quo
 livedns_domain = client.LivednsDomain().load({&quot;fqdn&quot;: &quot;example&quot;})
 created = client.LivednsDomain().create({ &quot;fqdn&quot;: &quot;example&quot; })
 updated = client.LivednsDomain().update({&quot;fqdn&quot;: &quot;example&quot;, &quot;automatic_snapshots&quot;: True})
-client.LivednsDomain().remove({&quot;fqdn&quot;: &quot;example&quot;})
 </code></pre>
 <h3 id="ruby">Ruby</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/rb.html#set-up-the-client">Ruby setup</a>, then call the operations:</p>
@@ -203,7 +182,6 @@ client.LivednsDomain().remove({&quot;fqdn&quot;: &quot;example&quot;})
 livedns_domain = client.LivednsDomain.load({ &quot;fqdn&quot; =&gt; &quot;example&quot; })
 created = client.LivednsDomain.create({ &quot;fqdn&quot; =&gt; &quot;example&quot; })
 updated = client.LivednsDomain.update({ &quot;fqdn&quot; =&gt; &quot;example&quot;, &quot;automatic_snapshots&quot; =&gt; true })
-client.LivednsDomain.remove({ &quot;fqdn&quot; =&gt; &quot;example&quot; })
 </code></pre>
 <h3 id="typescript">TypeScript</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
@@ -211,7 +189,6 @@ client.LivednsDomain.remove({ &quot;fqdn&quot; =&gt; &quot;example&quot; })
 const livedns_domain = await client.LivednsDomain().load({ fqdn: &quot;example&quot; })
 const created = await client.LivednsDomain().create({ fqdn: &quot;example&quot; })
 const updated = await client.LivednsDomain().update({ fqdn: &quot;example&quot;, automatic_snapshots: true })
-await client.LivednsDomain().remove({ fqdn: &quot;example&quot; })
 </code></pre>
 <h2 id="fields">Fields</h2>
 <table>
@@ -746,114 +723,11 @@ await client.LivednsDomain().remove({ fqdn: &quot;example&quot; })
 </tr>
 </tbody>
 </table>
-<h2 id="remove">remove</h2>
-<h3 id="delete-livednsdomainsfqdnrecords" class="operation" data-method="delete"><code>DELETE</code> /livedns/domains/{fqdn}/records</h3>
-<p>Operation ID: <code>deleteLivednsDomainsFqdnRecords</code>.</p>
-<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-3">Parameters</h4>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>fqdn</code></td>
-<td><code>path</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="responses-3">Responses</h4>
-<h5 id="204-no-content" class="status" data-status="2xx">204: No Content</h5>
-<h5 id="401-unauthorized-3" class="status" data-status="4xx">401: Unauthorized</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>cause</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>code</code></td>
-<td><code>integer</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>object</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h5 id="403-forbidden-3" class="status" data-status="4xx">403: Forbidden</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>cause</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>code</code></td>
-<td><code>integer</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>object</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h2 id="update">update</h2>
 <h3 id="patch-livednsdomainsfqdn" class="operation" data-method="patch"><code>PATCH</code> /livedns/domains/{fqdn}</h3>
 <p>Operation ID: <code>patchLivednsDomainsFqdn</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-4">Parameters</h4>
+<h4 id="parameters-3">Parameters</h4>
 <table>
 <thead>
 <tr>
@@ -894,7 +768,7 @@ await client.LivednsDomain().remove({ fqdn: &quot;example&quot; })
 </tr>
 </tbody>
 </table>
-<h4 id="responses-4">Responses</h4>
+<h4 id="responses-3">Responses</h4>
 <h5 id="200-ok-2" class="status" data-status="2xx">200: OK</h5>
 <p><code>application/json</code></p>
 <table>
@@ -915,7 +789,7 @@ await client.LivednsDomain().remove({ fqdn: &quot;example&quot; })
 </tr>
 </tbody>
 </table>
-<h5 id="401-unauthorized-4" class="status" data-status="4xx">401: Unauthorized</h5>
+<h5 id="401-unauthorized-3" class="status" data-status="4xx">401: Unauthorized</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -953,178 +827,7 @@ await client.LivednsDomain().remove({ fqdn: &quot;example&quot; })
 </tr>
 </tbody>
 </table>
-<h5 id="403-forbidden-4" class="status" data-status="4xx">403: Forbidden</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>cause</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>code</code></td>
-<td><code>integer</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>object</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="put-livednsdomainsfqdnrecords" class="operation" data-method="put"><code>PUT</code> /livedns/domains/{fqdn}/records</h3>
-<p>Operation ID: <code>putLivednsDomainsFqdnRecords</code>.</p>
-<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-5">Parameters</h4>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>fqdn</code></td>
-<td><code>path</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="request-body-2">Request body</h4>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>items</code></td>
-<td><code>array of object</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>items[].rrset_name</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>items[].rrset_ttl</code></td>
-<td><code>integer</code></td>
-<td>No</td>
-<td></td>
-</tr>
-<tr>
-<td><code>items[].rrset_type</code></td>
-<td><code>enum: A, AAAA, ALIAS, CAA, CDS, CNAME, ...</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>items[].rrset_values</code></td>
-<td><code>array of string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>remove_apex_ns</code></td>
-<td><code>boolean</code></td>
-<td>No</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="responses-5">Responses</h4>
-<h5 id="201-created-1" class="status" data-status="2xx">201: Created</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>message</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h5 id="401-unauthorized-5" class="status" data-status="4xx">401: Unauthorized</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>cause</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>code</code></td>
-<td><code>integer</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><code>object</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h5 id="403-forbidden-5" class="status" data-status="4xx">403: Forbidden</h5>
+<h5 id="403-forbidden-3" class="status" data-status="4xx">403: Forbidden</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>

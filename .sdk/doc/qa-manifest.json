@@ -50,6 +50,7 @@
     "docs/api/livedns_rrtype.html",
     "docs/api/livedns_snapshot.html",
     "docs/api/livedns_tsig_key.html",
+    "docs/api/livedns_zone.html",
     "docs/api/mailbox.html",
     "docs/api/mailbox_domain.html",
     "docs/api/mailbox_forward.html",
@@ -98,7 +99,7 @@
       "A certificate&#39;s tags: list, add, replace, change or remove them.",
       "A change of a domain&#39;s owner: start it, follow it, or resend its emails (`foa`).",
       "A configuration template: list, create, get, update or delete one.",
-      "A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`).",
+      "A domain on LiveDNS, by fqdn: list, add, get or update one.",
       "A domain&#39;s DNSSEC keys at the registry: list, add or delete one, or replace them all (update).",
       "A domain&#39;s LiveDNS status, and switching the domain to LiveDNS (create).",
       "A domain&#39;s contacts: get or update them, or change its owner (`owner`).",
@@ -121,6 +122,7 @@
       "A zone&#39;s nameservers, or the generic nameservers LiveDNS would give it (`generic`).",
       "A zone&#39;s secondary servers, by IP address: list, add or remove one.",
       "A zone&#39;s snapshots: list, take, get, rename or delete one.",
+      "A zone&#39;s whole record set, by fqdn: replace every record (update) or delete every record (remove).",
       "ACME catalog prices, and a quote for a list of domains (create).",
       "Accepted",
       "An ACME subscription: list, create, get, rename or delete one, or change its domains (`domains`).",
@@ -454,10 +456,9 @@
       "Unauthorized"
     ],
     "docs/api/livedns_domain.html": [
-      "A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`).",
+      "A domain on LiveDNS, by fqdn: list, add, get or update one.",
       "Created",
       "Forbidden",
-      "No Content",
       "OK",
       "Unauthorized"
     ],
@@ -504,6 +505,13 @@
       "Created",
       "Forbidden",
       "OK",
+      "Unauthorized"
+    ],
+    "docs/api/livedns_zone.html": [
+      "A zone&#39;s whole record set, by fqdn: replace every record (update) or delete every record (remove).",
+      "Created",
+      "Forbidden",
+      "No Content",
       "Unauthorized"
     ],
     "docs/api/mailbox.html": [

@@ -83,6 +83,7 @@ const LivednsRecordEntity_1 = require("./entity/LivednsRecordEntity");
 const LivednsRrtypeEntity_1 = require("./entity/LivednsRrtypeEntity");
 const LivednsSnapshotEntity_1 = require("./entity/LivednsSnapshotEntity");
 const LivednsTsigKeyEntity_1 = require("./entity/LivednsTsigKeyEntity");
+const LivednsZoneEntity_1 = require("./entity/LivednsZoneEntity");
 const MailboxEntity_1 = require("./entity/MailboxEntity");
 const MailboxDomainEntity_1 = require("./entity/MailboxDomainEntity");
 const MailboxForwardEntity_1 = require("./entity/MailboxForwardEntity");
@@ -685,6 +686,13 @@ class GandiSDK {
     LivednsTsigKey(entopts) {
         const self = this;
         return new LivednsTsigKeyEntity_1.LivednsTsigKeyEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsZone().list()` / `client.LivednsZone().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsZone(entopts) {
+        const self = this;
+        return new LivednsZoneEntity_1.LivednsZoneEntity(self, entopts);
     }
     // Entity access: `client.Mailbox().list()` / `client.Mailbox().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

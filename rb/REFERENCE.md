@@ -234,6 +234,10 @@ Create a new `LivednsSnapshot` entity instance. Pass `nil` for no initial data.
 
 Create a new `LivednsTsigKey` entity instance. Pass `nil` for no initial data.
 
+#### `LivednsZone(data = nil)`
+
+Create a new `LivednsZone` entity instance. Pass `nil` for no initial data.
+
 #### `Mailbox(data = nil)`
 
 Create a new `Mailbox` entity instance. Pass `nil` for no initial data.
@@ -3904,15 +3908,15 @@ livedns_domain = client.LivednsDomain
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `automatic_snapshots` | - | - | - | Yes | - |
-| `domain_href` | - | - | - | - | - |
-| `domain_keys_href` | - | - | - | - | - |
-| `domain_records_href` | - | - | - | - | - |
-| `fqdn` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `zone` | - | - | - | - | - |
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `automatic_snapshots` | - | - | - | Yes |
+| `domain_href` | - | - | - | - |
+| `domain_keys_href` | - | - | - | - |
+| `domain_records_href` | - | - | - | - |
+| `fqdn` | - | - | - | - |
+| `message` | - | - | - | - |
+| `zone` | - | - | - | - |
 
 ### Operations
 
@@ -3941,14 +3945,6 @@ Load a single entity matching the given criteria. Returns the entity, whose reco
 
 ```ruby
 result = client.LivednsDomain.load({ "fqdn" => "fqdn" })
-```
-
-#### `remove(reqmatch, ctrl = nil) -> result`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
-
-```ruby
-result = client.LivednsDomain.remove({ "fqdn" => "fqdn" })
 ```
 
 #### `update(reqdata, ctrl = nil) -> result`
@@ -4483,6 +4479,71 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `LivednsTsigKeyEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## LivednsZoneEntity
+
+```ruby
+livedns_zone = client.LivednsZone
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `items` | `Array` | Yes |  |
+| `message` | `String` | Yes |  |
+| `remove_apex_ns` | `Boolean` | No |  |
+
+### Operations
+
+#### `remove(reqmatch, ctrl = nil) -> result`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
+
+```ruby
+result = client.LivednsZone.remove({ "fqdn" => "fqdn" })
+```
+
+#### `update(reqdata, ctrl = nil) -> result`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```ruby
+result = client.LivednsZone.update({
+  "fqdn" => "fqdn",
+  # Fields to update
+})
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `LivednsZoneEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

@@ -1557,22 +1557,6 @@ export interface LivednsDomainCreateData {
 export interface LivednsDomainUpdateData {
   fqdn: string
   automatic_snapshots?: boolean
-
-  // Selects a custom action instead of the plain update:
-  //   'records'
-  // The remaining keys are that action's own payload.
-  $action?: string
-  [action: string]: any
-}
-
-export interface LivednsDomainRemoveMatch {
-  fqdn: string
-
-  // Selects a custom action instead of the plain remove:
-  //   'records'
-  // The remaining keys are that action's own payload.
-  $action?: string
-  [action: string]: any
 }
 
 export interface LivednsKey {
@@ -1785,6 +1769,22 @@ export interface LivednsTsigKeyCreateData {
   id: string
   key_name: string
   secret: string
+}
+
+export interface LivednsZone {
+  items: any[]
+  message: string
+  remove_apex_ns?: boolean
+}
+
+export interface LivednsZoneUpdateData {
+  fqdn: string
+  items?: any[]
+  remove_apex_ns?: boolean
+}
+
+export interface LivednsZoneRemoveMatch {
+  fqdn: string
 }
 
 export interface Mailbox {

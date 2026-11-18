@@ -1217,11 +1217,6 @@ type LivednsDomainUpdateData struct {
 	AutomaticSnapshots *bool `json:"automatic_snapshots,omitempty"`
 }
 
-// LivednsDomainRemoveMatch is the typed request payload for LivednsDomain.RemoveTyped.
-type LivednsDomainRemoveMatch struct {
-	Fqdn string `json:"fqdn"`
-}
-
 // LivednsKey is the typed data model for the livedns_key entity.
 type LivednsKey struct {
 }
@@ -1389,6 +1384,22 @@ type LivednsTsigKeyCreateData struct {
 	Id string `json:"id"`
 	KeyName string `json:"key_name"`
 	Secret string `json:"secret"`
+}
+
+// LivednsZone is the typed data model for the livedns_zone entity.
+type LivednsZone struct {
+}
+
+// LivednsZoneUpdateData is the typed request payload for LivednsZone.UpdateTyped.
+type LivednsZoneUpdateData struct {
+	Fqdn string `json:"fqdn"`
+	Items *[]any `json:"items,omitempty"`
+	RemoveApexNs *bool `json:"remove_apex_ns,omitempty"`
+}
+
+// LivednsZoneRemoveMatch is the typed request payload for LivednsZone.RemoveTyped.
+type LivednsZoneRemoveMatch struct {
+	Fqdn string `json:"fqdn"`
 }
 
 // Mailbox is the typed data model for the mailbox entity.

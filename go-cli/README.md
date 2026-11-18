@@ -95,7 +95,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 60 entities.
+below — this SDK exposes 61 entities.
 
 ## Reference
 
@@ -150,9 +150,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 60 entities this SDK exposes (any is valid as `<entity>`):
+The 61 entities this SDK exposes (any is valid as `<entity>`):
 
-access_token acme_account acme_domain acme_price acme_subscription billing_info billing_price certificate_dcv certificate_package certificate_pem certificate_renewal certificate_tag comment domain domain_availability domain_change_owner domain_claim domain_contact domain_dnskey domain_dnssec domain_host domain_livedns domain_nameserver domain_tag domain_transfer domain_webredir email_forward email_mailbox email_migration email_offer email_slot hosting_application hosting_instance hosting_vhost issued_certificate linked_zone linked_zone_deployment linked_zone_domain linked_zone_task livedns_axfr_slave livedns_axfr_tsig livedns_domain livedns_key livedns_nameserver livedns_record livedns_rrtype livedns_snapshot livedns_tsig_key mailbox mailbox_domain mailbox_forward mailbox_product mailbox_quota mailbox_slot organization organization_customer template template_dispatch tld user
+access_token acme_account acme_domain acme_price acme_subscription billing_info billing_price certificate_dcv certificate_package certificate_pem certificate_renewal certificate_tag comment domain domain_availability domain_change_owner domain_claim domain_contact domain_dnskey domain_dnssec domain_host domain_livedns domain_nameserver domain_tag domain_transfer domain_webredir email_forward email_mailbox email_migration email_offer email_slot hosting_application hosting_instance hosting_vhost issued_certificate linked_zone linked_zone_deployment linked_zone_domain linked_zone_task livedns_axfr_slave livedns_axfr_tsig livedns_domain livedns_key livedns_nameserver livedns_record livedns_rrtype livedns_snapshot livedns_tsig_key livedns_zone mailbox mailbox_domain mailbox_forward mailbox_product mailbox_quota mailbox_slot organization organization_customer template template_dispatch tld user
 
 ## Explanation
 

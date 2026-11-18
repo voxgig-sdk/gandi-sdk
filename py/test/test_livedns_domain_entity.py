@@ -129,7 +129,7 @@ class TestLivednsDomainEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["create", "list", "update", "load", "remove"]:
+        for _op in ["create", "list", "update", "load"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "livedns_domain." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -137,7 +137,6 @@ class TestLivednsDomainEntity:
         if setup["live"] and os.environ.get("VOXGIG_GETONLY_GUARD") == "TRUE":
             print("LIVE STEP {\"id\":\"livedns_domain.create.0\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs POST /livedns/domains\"}")
             print("LIVE STEP {\"id\":\"livedns_domain.update.2\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs PATCH /livedns/domains/{fqdn}\"}")
-            print("LIVE STEP {\"id\":\"livedns_domain.remove.4\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs DELETE /livedns/domains/{fqdn}/records\"}")
             return self._run_get_only_flow(setup)
 
         client = setup["client"]
@@ -180,17 +179,6 @@ class TestLivednsDomainEntity:
         livedns_domain_ref01_match_dt0 = {}
         livedns_domain_ref01_data_dt0_loaded = livedns_domain_ref01_ent.load(livedns_domain_ref01_match_dt0, None)
         assert livedns_domain_ref01_data_dt0_loaded is not None
-
-        if setup["live"]:
-            runner.live_pace()
-
-        if setup["live"]:
-            runner.live_pace()
-        # LIST
-        livedns_domain_ref01_match_rt0 = {}
-
-        livedns_domain_ref01_list_rt0_result = livedns_domain_ref01_ent.list(livedns_domain_ref01_match_rt0, None)
-        assert isinstance(livedns_domain_ref01_list_rt0_result, list)
 
 
     def _run_get_only_flow(self, setup):

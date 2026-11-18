@@ -292,6 +292,7 @@ new GandiSDK(options?: {
 | `LivednsRrtype(data?)` | `LivednsRrtypeEntity` | Create a LivednsRrtype entity instance. |
 | `LivednsSnapshot(data?)` | `LivednsSnapshotEntity` | Create a LivednsSnapshot entity instance. |
 | `LivednsTsigKey(data?)` | `LivednsTsigKeyEntity` | Create a LivednsTsigKey entity instance. |
+| `LivednsZone(data?)` | `LivednsZoneEntity` | Create a LivednsZone entity instance. |
 | `Mailbox(data?)` | `MailboxEntity` | Create a Mailbox entity instance. |
 | `MailboxDomain(data?)` | `MailboxDomainEntity` | Create a MailboxDomain entity instance. |
 | `MailboxForward(data?)` | `MailboxForwardEntity` | Create a MailboxForward entity instance. |
@@ -1169,7 +1170,7 @@ API path: `/livedns/domains/{fqdn}/axfr/tsig`
 | `message` |  |
 | `zone` |  |
 
-Operations: create, list, load, remove, update.
+Operations: create, list, load, update.
 
 API path: `/livedns/domains`
 
@@ -1260,6 +1261,18 @@ API path: `/livedns/domains/{fqdn}/snapshots`
 Operations: create, list, load.
 
 API path: `/livedns/axfr/tsig`
+
+#### LivednsZone
+
+| Field | Description |
+| --- | --- |
+| `items` |  |
+| `message` |  |
+| `remove_apex_ns` |  |
+
+Operations: remove, update.
+
+API path: `/livedns/domains/{fqdn}/records`
 
 #### Mailbox
 
@@ -3271,7 +3284,6 @@ Create an instance: `const livedns_domain = client.LivednsDomain()`
 | `create(data)` | Create a new entity with the given data. |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
-| `remove(match)` | Remove the matching entity. |
 | `update(data)` | Update an existing entity. |
 
 #### Fields
@@ -3538,6 +3550,26 @@ const livedns_tsig_key = await client.LivednsTsigKey().create({
   secret: 'example_secret',
 })
 ```
+
+
+### LivednsZone
+
+Create an instance: `const livedns_zone = client.LivednsZone()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `remove(match)` | Remove the matching entity. |
+| `update(data)` | Update an existing entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `items` | `any[]` |  |
+| `message` | `string` |  |
+| `remove_apex_ns` | `boolean` |  |
 
 
 ### Mailbox

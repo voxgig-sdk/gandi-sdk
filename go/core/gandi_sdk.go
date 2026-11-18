@@ -770,6 +770,14 @@ func (sdk *GandiSDK) LivednsTsigKey(data map[string]any) GandiEntityBase {
 }
 
 
+// LivednsZone returns a LivednsZone entity bound to this client.
+// Idiomatic usage: client.LivednsZone(nil).List(nil, nil) or
+// client.LivednsZone(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *GandiSDK) LivednsZone(data map[string]any) GandiEntityBase {
+	return NewLivednsZoneEntityFunc(sdk, data)
+}
+
+
 // Mailbox returns a Mailbox entity bound to this client.
 // Idiomatic usage: client.Mailbox(nil).List(nil, nil) or
 // client.Mailbox(nil).Load(map[string]any{"id": ...}, nil).

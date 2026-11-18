@@ -4677,15 +4677,6 @@ LivednsDomainUpdateData = Struct.new(
   keyword_init: true
 )
 
-# Request payload for LivednsDomain#remove.
-#
-# @!attribute [rw] fqdn
-#   @return [String]
-LivednsDomainRemoveMatch = Struct.new(
-  :fqdn,
-  keyword_init: true
-)
-
 # LivednsKey entity data model.
 #
 # @!attribute [rw] algorithm
@@ -5195,6 +5186,49 @@ LivednsTsigKeyCreateData = Struct.new(
   :id,
   :key_name,
   :secret,
+  keyword_init: true
+)
+
+# LivednsZone entity data model.
+#
+# @!attribute [rw] items
+#   @return [Array]
+#
+# @!attribute [rw] message
+#   @return [String]
+#
+# @!attribute [rw] remove_apex_ns
+#   @return [Boolean, nil]
+LivednsZone = Struct.new(
+  :items,
+  :message,
+  :remove_apex_ns,
+  keyword_init: true
+)
+
+# Request payload for LivednsZone#update.
+#
+# @!attribute [rw] fqdn
+#   @return [String]
+#
+# @!attribute [rw] items
+#   @return [Array, nil]
+#
+# @!attribute [rw] remove_apex_ns
+#   @return [Boolean, nil]
+LivednsZoneUpdateData = Struct.new(
+  :fqdn,
+  :items,
+  :remove_apex_ns,
+  keyword_init: true
+)
+
+# Request payload for LivednsZone#remove.
+#
+# @!attribute [rw] fqdn
+#   @return [String]
+LivednsZoneRemoveMatch = Struct.new(
+  :fqdn,
   keyword_init: true
 )
 

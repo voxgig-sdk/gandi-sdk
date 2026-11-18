@@ -14568,60 +14568,6 @@
                 }
               ]
             },
-            "remove": {
-              "input": "data",
-              "name": "remove",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "DELETE /livedns/domains/{fqdn}/records",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "fqdn",
-                        "or": "fqdn",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "DELETE",
-                  "o": "/livedns/domains/{fqdn}/records",
-                  "q": {
-                    "$action": "records",
-                    "exist": [
-                      "fqdn"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "livedns"
-                    },
-                    {
-                      "lit": "domains"
-                    },
-                    {
-                      "var": "fqdn"
-                    },
-                    {
-                      "lit": "records"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            },
             "update": {
               "input": "data",
               "name": "update",
@@ -14670,62 +14616,6 @@
                     },
                     {
                       "var": "fqdn"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "bf": [
-                    "items",
-                    "remove_apex_ns"
-                  ],
-                  "co": {
-                    "id": "PUT /livedns/domains/{fqdn}/records",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "fqdn",
-                        "or": "fqdn",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "PUT",
-                  "o": "/livedns/domains/{fqdn}/records",
-                  "q": {
-                    "$action": "records",
-                    "exist": [
-                      "fqdn"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "livedns"
-                    },
-                    {
-                      "lit": "domains"
-                    },
-                    {
-                      "var": "fqdn"
-                    },
-                    {
-                      "lit": "records"
                     }
                   ],
                   "t": {
@@ -17114,6 +17004,159 @@
           },
           "relations": {
             "ancestors": []
+          }
+        },
+        "livedns_zone": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "items": {
+              "a": true,
+              "h": "Items",
+              "n": "items",
+              "r": true,
+              "t": "`$ARRAY`"
+            },
+            "message": {
+              "a": true,
+              "h": "Message",
+              "n": "message",
+              "r": true,
+              "t": "`$STRING`"
+            },
+            "remove_apex_ns": {
+              "a": true,
+              "h": "Remove Apex Ns",
+              "n": "remove_apex_ns",
+              "r": false,
+              "t": "`$BOOLEAN`"
+            }
+          },
+          "name": "livedns_zone",
+          "op": {
+            "remove": {
+              "input": "data",
+              "name": "remove",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "DELETE /livedns/domains/{fqdn}/records",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "fqdn",
+                        "or": "fqdn",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "DELETE",
+                  "o": "/livedns/domains/{fqdn}/records",
+                  "q": {
+                    "exist": [
+                      "fqdn"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "livedns"
+                    },
+                    {
+                      "lit": "domains"
+                    },
+                    {
+                      "var": "fqdn"
+                    },
+                    {
+                      "lit": "records"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "update": {
+              "input": "data",
+              "name": "update",
+              "points": [
+                {
+                  "a": true,
+                  "bf": [
+                    "items",
+                    "remove_apex_ns"
+                  ],
+                  "co": {
+                    "id": "PUT /livedns/domains/{fqdn}/records",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "fqdn",
+                        "or": "fqdn",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "PUT",
+                  "o": "/livedns/domains/{fqdn}/records",
+                  "q": {
+                    "exist": [
+                      "fqdn"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "livedns"
+                    },
+                    {
+                      "lit": "domains"
+                    },
+                    {
+                      "var": "fqdn"
+                    },
+                    {
+                      "lit": "records"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "$.main.kit.entity.domain"
+              ]
+            ]
           }
         },
         "mailbox": {
@@ -25827,38 +25870,6 @@
                   }
                 }
               ]
-            },
-            {
-              "a": true,
-              "d": {},
-              "i": {
-                "ref": "livedns_domain_ref01",
-                "suffix": "_rm0"
-              },
-              "m": {
-                "id": "livedns_domain01"
-              },
-              "o": "remove",
-              "s": [],
-              "v": []
-            },
-            {
-              "a": true,
-              "d": {},
-              "i": {
-                "suffix": "_rt0"
-              },
-              "m": {},
-              "o": "list",
-              "s": [],
-              "v": [
-                {
-                  "apply": "ItemNotExists",
-                  "def": {
-                    "ref": "livedns_domain_ref01"
-                  }
-                }
-              ]
             }
           ]
         },
@@ -26340,6 +26351,37 @@
                   }
                 }
               ]
+            }
+          ]
+        },
+        "BasicLivednsZoneFlow": {
+          "active": true,
+          "entity": "livedns_zone",
+          "key$": "BasicLivednsZoneFlow",
+          "kind": "basic",
+          "name": "BasicLivednsZoneFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "livedns_zone_ref01",
+                "srcdatavar": "livedns_zone_ref01_data",
+                "suffix": "_up0",
+                "textfield": "message"
+              },
+              "m": {},
+              "o": "update",
+              "s": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-livedns_zone_ref01"
+                  }
+                }
+              ],
+              "v": []
             }
           ]
         },
@@ -27890,7 +27932,7 @@
         }
       },
       "text": {
-        "about_md": "**Credentials.** Every call takes a Gandi Personal Access Token, which starts `pat_`.\nCreate one in the Organizations section of Gandi's admin site (admin.gandi.net). Pass it as\nthe `apikey` option and the SDK sends it as `Authorization: Bearer <token>`. The base URL\nis `https://api.gandi.net/v5`; to work against Gandi's sandbox, which has its own accounts\nand tokens, pass `base: 'https://api.sandbox.gandi.net/v5'`. The CLI and the MCP server read\nthe token from `GANDI_APIKEY`, so an agent's MCP config sets it under `env`:\n`\"env\": { \"GANDI_APIKEY\": \"pat_...\" }`.\n\n```ts\nimport { GandiSDK } from '@voxgig-sdk/gandi-sdk'\n\nconst client = new GandiSDK({ apikey: process.env.GANDI_APIKEY ?? '' })\n\n// Your domains.\nconst domains = await client.Domain().list()\nfor (const domain of domains) {\n  console.log(domain.data().fqdn)\n}\n\n// The DNS records of one of them, on LiveDNS.\nconst records = await client.LivednsRecord().list({ fqdn: 'example.com' })\nconsole.log(records.length)\n\n// A new A record for www.\nawait client.LivednsRecord().create({\n  fqdn: 'example.com',\n  rrset_name: 'www',\n  rrset_type: 'A',\n  rrset_ttl: 300,\n  rrset_values: ['192.0.2.1'],\n})\n```\n\n**Names.** A domain is named by its `fqdn` throughout: `Domain().load({ fqdn })`,\n`LivednsDomain().load({ fqdn })`. The resources below a domain at the registry take\nGandi's own `domain` parameter, as in `DomainHost().list({ domain })`. A DNS record is\nnamed by `fqdn`, `rrset_name` and `rrset_type`, a mailbox by its `address`.\n\n**Actions.** A verb on a resource is an action, selected with `$action` in the request data.\nResetting a domain's authorization code is `$action: 'authinfo'` on a `Domain` update, and\n`autorenew`, `status` (the transfer lock), `reachability`, `renew`, `restore` and\n`transferout` work the same way. Operations on a whole collection are always actions, so that\nleaving a parameter out can never select them: replacing or deleting every record of a zone is\n`$action: 'records'` on `LivednsDomain`, every record of one name is `$action: 'name'` on\n`LivednsRecord`, and renewing every mailbox of a domain in the Email API is\n`$action: 'renew_all'`.\n\n**Scope.** Every one of the 221 operations in the twelve sections of Gandi's v5 documentation\nis here, as 60 entities named after Gandi's own resources. The Email API, which Gandi marks\ndeprecated, is included as `Email*`; its replacement is `Mailbox*`. Some operations cost\nmoney (registering, renewing or transferring a domain, buying a mailbox or a certificate), as\nGandi's documentation warns. For what each field means, follow the links to Gandi's\ndocumentation.\n\n**Not yet run against Gandi.** Gandi publishes no OpenAPI definition, so this SDK's was\nconstructed from Gandi's API documentation (`.sdk/def/README.md`). Every example in that\ndocumentation was checked against it, but no request has yet been sent to Gandi's API.",
+        "about_md": "**Credentials.** Every call takes a Gandi Personal Access Token, which starts `pat_`.\nCreate one in the Organizations section of Gandi's admin site (admin.gandi.net). Pass it as\nthe `apikey` option and the SDK sends it as `Authorization: Bearer <token>`. The base URL\nis `https://api.gandi.net/v5`; to work against Gandi's sandbox, which has its own accounts\nand tokens, pass `base: 'https://api.sandbox.gandi.net/v5'`. The CLI and the MCP server read\nthe token from `GANDI_APIKEY`, so an agent's MCP config sets it under `env`:\n`\"env\": { \"GANDI_APIKEY\": \"pat_...\" }`.\n\n```ts\nimport { GandiSDK } from '@voxgig-sdk/gandi-sdk'\n\nconst client = new GandiSDK({ apikey: process.env.GANDI_APIKEY ?? '' })\n\n// Your domains.\nconst domains = await client.Domain().list()\nfor (const domain of domains) {\n  console.log(domain.data().fqdn)\n}\n\n// The DNS records of one of them, on LiveDNS.\nconst records = await client.LivednsRecord().list({ fqdn: 'example.com' })\nconsole.log(records.length)\n\n// A new A record for www.\nawait client.LivednsRecord().create({\n  fqdn: 'example.com',\n  rrset_name: 'www',\n  rrset_type: 'A',\n  rrset_ttl: 300,\n  rrset_values: ['192.0.2.1'],\n})\n```\n\n**Names.** A domain is named by its `fqdn` throughout: `Domain().load({ fqdn })`,\n`LivednsDomain().load({ fqdn })`. The resources below a domain at the registry take\nGandi's own `domain` parameter, as in `DomainHost().list({ domain })`. A DNS record is\nnamed by `fqdn`, `rrset_name` and `rrset_type`, a mailbox by its `address`.\n\n**Actions.** A verb on a resource is an action, selected with `$action` in the request data.\nResetting a domain's authorization code is `$action: 'authinfo'` on a `Domain` update, and\n`autorenew`, `status` (the transfer lock), `reachability`, `renew`, `restore` and\n`transferout` work the same way. An operation on a whole collection is never chosen by leaving\na parameter out: every record of one name is `$action: 'name'` on `LivednsRecord`, renewing\nevery mailbox of a domain in the Email API is `$action: 'renew_all'`, and replacing or deleting\nevery record of a zone is `LivednsZone().update()` or `.remove()`, an entity of its own.\n\n**Scope.** Every one of the 221 operations in the twelve sections of Gandi's v5 documentation\nis here, as 61 entities named after Gandi's own resources. The Email API, which Gandi marks\ndeprecated, is included as `Email*`; its replacement is `Mailbox*`. Some operations cost\nmoney (registering, renewing or transferring a domain, buying a mailbox or a certificate), as\nGandi's documentation warns. For what each field means, follow the links to Gandi's\ndocumentation.\n\n**Not yet run against Gandi.** Gandi publishes no OpenAPI definition, so this SDK's was\nconstructed from Gandi's API documentation (`.sdk/def/README.md`). Every example in that\ndocumentation was checked against it, but no request has yet been sent to Gandi's API.",
         "docs_url": "https://api.gandi.net/docs/",
         "entity_desc": {
           "access_token": "Renew the Personal Access Token the call is made with.",
@@ -27934,13 +27976,14 @@
           "linked_zone_task": "Linked zone tasks: list them or get one.",
           "livedns_axfr_slave": "A zone's secondary servers, by IP address: list, add or remove one.",
           "livedns_axfr_tsig": "The TSIG keys a zone uses for transfers: list them, associate one or remove one.",
-          "livedns_domain": "A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`).",
+          "livedns_domain": "A domain on LiveDNS, by fqdn: list, add, get or update one.",
           "livedns_key": "A zone's DNSSEC keys on LiveDNS: list, create, get, undelete (update) or delete one.",
           "livedns_nameserver": "A zone's nameservers, or the generic nameservers LiveDNS would give it (`generic`).",
           "livedns_record": "A DNS record set, by fqdn, rrset_name and rrset_type: list, create, get, replace, update or delete one; every record of one name (`name`); or a verification record (`verification`).",
           "livedns_rrtype": "The DNS record types LiveDNS supports.",
           "livedns_snapshot": "A zone's snapshots: list, take, get, rename or delete one.",
           "livedns_tsig_key": "A TSIG key for zone transfers: list, create or get one, or its configuration for a DNS server (`config`).",
+          "livedns_zone": "A zone's whole record set, by fqdn: replace every record (update) or delete every record (remove).",
           "mailbox": "A mailbox, by address: list, create, get, update or delete one, or renew it (`renew`).",
           "mailbox_domain": "The domains used for mail: list them, get one's DNS configuration, or check it (`validate`).",
           "mailbox_forward": "A forwarding address: list, create, update or delete one.",

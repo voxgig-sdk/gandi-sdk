@@ -191,7 +191,7 @@ func TestLivednsDomainEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "list", "update", "load", "remove"} {
+		for _, _op := range []string{"create", "list", "update", "load"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "livedns_domain." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -203,7 +203,6 @@ func TestLivednsDomainEntity(t *testing.T) {
 		if setup.live && os.Getenv("VOXGIG_GETONLY_GUARD") == "TRUE" {
 			t.Log("LIVE STEP {\"id\":\"livedns_domain.create.0\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs POST /livedns/domains\"}")
 			t.Log("LIVE STEP {\"id\":\"livedns_domain.update.2\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs PATCH /livedns/domains/{fqdn}\"}")
-			t.Log("LIVE STEP {\"id\":\"livedns_domain.remove.4\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs DELETE /livedns/domains/{fqdn}/records\"}")
 		client := setup.client
 		_ = client
 
@@ -318,25 +317,6 @@ func TestLivednsDomainEntity(t *testing.T) {
 		}
 		if livednsDomainRef01DataDt0Loaded == nil {
 			t.Fatal("expected load result to be non-nil")
-		}
-
-		if setup.live {
-			livePace()
-		}
-
-		if setup.live {
-			livePace()
-		}
-		// LIST
-		livednsDomainRef01MatchRt0 := map[string]any{}
-
-		livednsDomainRef01ListRt0Result, err := livednsDomainRef01Ent.List(livednsDomainRef01MatchRt0, nil)
-		if err != nil {
-			t.Fatalf("list failed: %v", err)
-		}
-		_, livednsDomainRef01ListRt0Ok := livednsDomainRef01ListRt0Result.([]any)
-		if !livednsDomainRef01ListRt0Ok {
-			t.Fatalf("expected list result to be an array, got %T", livednsDomainRef01ListRt0Result)
 		}
 
 	})

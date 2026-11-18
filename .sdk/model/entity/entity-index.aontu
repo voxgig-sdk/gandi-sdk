@@ -48,6 +48,7 @@
 @"./livedns_rrtype.aontu"
 @"./livedns_snapshot.aontu"
 @"./livedns_tsig_key.aontu"
+@"./livedns_zone.aontu"
 @"./mailbox.aontu"
 @"./mailbox_domain.aontu"
 @"./mailbox_forward.aontu"

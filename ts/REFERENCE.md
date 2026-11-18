@@ -625,6 +625,18 @@ Create a new `LivednsTsigKey` entity instance.
 
 **Returns:** `LivednsTsigKeyEntity` instance.
 
+#### `LivednsZone(data?: object)`
+
+Create a new `LivednsZone` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `LivednsZoneEntity` instance.
+
 #### `Mailbox(data?: object)`
 
 Create a new `Mailbox` entity instance.
@@ -4521,36 +4533,15 @@ const livedns_domain = client.LivednsDomain()
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `automatic_snapshots` | - | - | - | Yes | - |
-| `domain_href` | - | - | - | - | - |
-| `domain_keys_href` | - | - | - | - | - |
-| `domain_records_href` | - | - | - | - | - |
-| `fqdn` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `zone` | - | - | - | - | - |
-
-### Actions
-
-This entity exposes custom API actions in addition to the standard
-operations. Select one with `$action` in the call's argument; the
-remaining keys are sent as that action's payload.
-
-| Action | Route | Call |
-| --- | --- | --- |
-| `records` | `/livedns/domains/{fqdn}/records` | `client.LivednsDomain().remove({ $action: 'records', ... })` |
-| `records` | `/livedns/domains/{fqdn}/records` | `client.LivednsDomain().update({ $action: 'records', ... })` |
-
-An action returns that action's OWN response, which is not necessarily a
-LivednsDomain record — check the API definition for its shape.
-
-```ts
-const result = await client.LivednsDomain().remove({
-  $action: 'records',
-  /* ...the action's own arguments */
-})
-```
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `automatic_snapshots` | - | - | - | Yes |
+| `domain_href` | - | - | - | - |
+| `domain_keys_href` | - | - | - | - |
+| `domain_records_href` | - | - | - | - |
+| `fqdn` | - | - | - | - |
+| `message` | - | - | - | - |
+| `zone` | - | - | - | - |
 
 ### Operations
 
@@ -4578,14 +4569,6 @@ Load a single entity matching the given criteria. Resolves to the entity, whose 
 
 ```ts
 const result = await client.LivednsDomain().load({ fqdn: 'fqdn' })
-```
-
-#### `remove(match: object, ctrl?: object)`
-
-Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
-
-```ts
-const result = await client.LivednsDomain().remove({ fqdn: 'fqdn' })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -5160,6 +5143,69 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `LivednsTsigKeyEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `GandiSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## LivednsZoneEntity
+
+```ts
+const livedns_zone = client.LivednsZone()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `items` | `any[]` | Yes |  |
+| `message` | `string` | Yes |  |
+| `remove_apex_ns` | `boolean` | No |  |
+
+### Operations
+
+#### `remove(match: object, ctrl?: object)`
+
+Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
+
+```ts
+const result = await client.LivednsZone().remove({ fqdn: 'fqdn' })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.LivednsZone().update({
+  fqdn: 'fqdn',
+  // Fields to update
+})
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `LivednsZoneEntity` instance with the same client and
 options.
 
 #### `client()`

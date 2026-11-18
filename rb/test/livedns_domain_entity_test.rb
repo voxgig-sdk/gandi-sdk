@@ -150,7 +150,7 @@ class LivednsDomainEntityTest < Minitest::Test
     setup = livedns_domain_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["create", "list", "update", "load", "remove"].each do |_op|
+    ["create", "list", "update", "load"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "livedns_domain." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
@@ -160,7 +160,6 @@ class LivednsDomainEntityTest < Minitest::Test
     if setup[:live] && ENV["VOXGIG_GETONLY_GUARD"] == "TRUE"
       puts "LIVE STEP {\"id\":\"livedns_domain.create.0\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs POST /livedns/domains\"}"
       puts "LIVE STEP {\"id\":\"livedns_domain.update.2\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs PATCH /livedns/domains/{fqdn}\"}"
-      puts "LIVE STEP {\"id\":\"livedns_domain.remove.4\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs DELETE /livedns/domains/{fqdn}/records\"}"
     client = setup[:client]
 
     # Bootstrap entity data from existing test data.
@@ -226,15 +225,6 @@ class LivednsDomainEntityTest < Minitest::Test
     livedns_domain_ref01_match_dt0 = {}
     livedns_domain_ref01_data_dt0_loaded = livedns_domain_ref01_ent.load(livedns_domain_ref01_match_dt0, nil)
     assert !livedns_domain_ref01_data_dt0_loaded.nil?
-
-    Runner.live_pace if setup[:live]
-
-    Runner.live_pace if setup[:live]
-    # LIST
-    livedns_domain_ref01_match_rt0 = {}
-
-    livedns_domain_ref01_list_rt0_result = livedns_domain_ref01_ent.list(livedns_domain_ref01_match_rt0, nil)
-    assert livedns_domain_ref01_list_rt0_result.is_a?(Array)
 
   end
 end

@@ -1109,6 +1109,20 @@ function GandiSDK:LivednsTsigKey(data)
 end
 
 
+-- Idiomatic facade: client:LivednsZone():list() / client:LivednsZone():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GandiSDK:LivednsZone(data)
+  local EntityMod = require("entity.livedns_zone_entity")
+  if data == nil then
+    if self._livedns_zone == nil then
+      self._livedns_zone = EntityMod.new(self, nil)
+    end
+    return self._livedns_zone
+  end
+  return EntityMod.new(self, data)
+end
+
+
 -- Idiomatic facade: client:Mailbox():list() / client:Mailbox():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function GandiSDK:Mailbox(data)

@@ -275,6 +275,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `LivednsRrtype` | `(data map[string]any) GandiEntityBase` | Create a LivednsRrtype entity instance. |
 | `LivednsSnapshot` | `(data map[string]any) GandiEntityBase` | Create a LivednsSnapshot entity instance. |
 | `LivednsTsigKey` | `(data map[string]any) GandiEntityBase` | Create a LivednsTsigKey entity instance. |
+| `LivednsZone` | `(data map[string]any) GandiEntityBase` | Create a LivednsZone entity instance. |
 | `Mailbox` | `(data map[string]any) GandiEntityBase` | Create a Mailbox entity instance. |
 | `MailboxDomain` | `(data map[string]any) GandiEntityBase` | Create a MailboxDomain entity instance. |
 | `MailboxForward` | `(data map[string]any) GandiEntityBase` | Create a MailboxForward entity instance. |
@@ -1121,7 +1122,7 @@ API path: `/livedns/domains/{fqdn}/axfr/tsig`
 | `"message"` |  |
 | `"zone"` |  |
 
-Operations: Create, List, Load, Remove, Update.
+Operations: Create, List, Load, Update.
 
 API path: `/livedns/domains`
 
@@ -1212,6 +1213,18 @@ API path: `/livedns/domains/{fqdn}/snapshots`
 Operations: Create, List, Load.
 
 API path: `/livedns/axfr/tsig`
+
+#### LivednsZone
+
+| Field | Description |
+| --- | --- |
+| `"items"` |  |
+| `"message"` |  |
+| `"remove_apex_ns"` |  |
+
+Operations: Remove, Update.
+
+API path: `/livedns/domains/{fqdn}/records`
 
 #### Mailbox
 
@@ -3606,7 +3619,6 @@ Create an instance: `livednsDomain := client.LivednsDomain(nil)`
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Update(data, ctrl)` | Update an existing entity. |
-| `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
 
@@ -3961,6 +3973,26 @@ if err != nil {
 }
 fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
+
+
+### LivednsZone
+
+Create an instance: `livednsZone := client.LivednsZone(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `Update(data, ctrl)` | Update an existing entity. |
+| `Remove(match, ctrl)` | Remove the matching entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `items` | `[]any` |  |
+| `message` | `string` |  |
+| `remove_apex_ns` | `bool` |  |
 
 
 ### Mailbox

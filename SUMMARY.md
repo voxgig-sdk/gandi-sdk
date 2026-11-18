@@ -6,7 +6,7 @@ Gandi&#39;s v5 API manages domain names, LiveDNS zones, SSL certificates, ACME s
 
 This guide introduces the API, the client libraries, and the companion tools in this repository. Start with the API capabilities, choose a client for your application, and use the linked reference when you need exact request and response details.
 
-The selected API surface contains 60 entities and 221 HTTP routes. There are 6 SDK targets and 2 companion tools.
+The selected API surface contains 61 entities and 221 HTTP routes. There are 6 SDK targets and 2 companion tools.
 
 An entity groups related API operations. An operation can have several routes with different inputs or authentication requirements. The SDK exposes the entity and its operations using the conventions of the selected language.
 
@@ -342,11 +342,11 @@ SDK operations: `list`, `remove`, `update`.
 
 ### [LivednsDomain](docs/api/livedns_domain.html)
 
-A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`).
+A domain on LiveDNS, by fqdn: list, add, get or update one.
 
-Results: Created; OK; No Content.
+Results: Created; OK.
 
-SDK operations: `create`, `list`, `load`, `remove`, `update`.
+SDK operations: `create`, `list`, `load`, `update`.
 
 ### [LivednsKey](docs/api/livedns_key.html)
 
@@ -395,6 +395,14 @@ A TSIG key for zone transfers: list, create or get one, or its configuration for
 Results: Created; OK.
 
 SDK operations: `create`, `list`, `load`.
+
+### [LivednsZone](docs/api/livedns_zone.html)
+
+A zone&#39;s whole record set, by fqdn: replace every record (update) or delete every record (remove).
+
+Results: No Content; Created.
+
+SDK operations: `remove`, `update`.
 
 ### [Mailbox](docs/api/mailbox.html)
 
@@ -648,9 +656,7 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | [LivednsDomain](docs/api/livedns_domain.html) | `create` | `POST /livedns/domains` | Required |
 | [LivednsDomain](docs/api/livedns_domain.html) | `list` | `GET /livedns/domains` | Required |
 | [LivednsDomain](docs/api/livedns_domain.html) | `load` | `GET /livedns/domains/{fqdn}` | Required |
-| [LivednsDomain](docs/api/livedns_domain.html) | `remove` | `DELETE /livedns/domains/{fqdn}/records` | Required |
 | [LivednsDomain](docs/api/livedns_domain.html) | `update` | `PATCH /livedns/domains/{fqdn}` | Required |
-| [LivednsDomain](docs/api/livedns_domain.html) | `update` | `PUT /livedns/domains/{fqdn}/records` | Required |
 | [LivednsKey](docs/api/livedns_key.html) | `create` | `POST /livedns/domains/{fqdn}/keys` | Required |
 | [LivednsKey](docs/api/livedns_key.html) | `list` | `GET /livedns/domains/{fqdn}/keys` | Required |
 | [LivednsKey](docs/api/livedns_key.html) | `load` | `GET /livedns/domains/{fqdn}/keys/{id}` | Required |
@@ -680,6 +686,8 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | [LivednsTsigKey](docs/api/livedns_tsig_key.html) | `list` | `GET /livedns/axfr/tsig` | Required |
 | [LivednsTsigKey](docs/api/livedns_tsig_key.html) | `load` | `GET /livedns/axfr/tsig/{id}/config/{software}` | Required |
 | [LivednsTsigKey](docs/api/livedns_tsig_key.html) | `load` | `GET /livedns/axfr/tsig/{id}` | Required |
+| [LivednsZone](docs/api/livedns_zone.html) | `remove` | `DELETE /livedns/domains/{fqdn}/records` | Required |
+| [LivednsZone](docs/api/livedns_zone.html) | `update` | `PUT /livedns/domains/{fqdn}/records` | Required |
 | [Mailbox](docs/api/mailbox.html) | `create` | `POST /mailbox/mailboxes/{email}/renew` | Required |
 | [Mailbox](docs/api/mailbox.html) | `create` | `POST /mailbox/mailboxes` | Required |
 | [Mailbox](docs/api/mailbox.html) | `list` | `GET /mailbox/mailboxes` | Required |

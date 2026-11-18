@@ -1298,9 +1298,6 @@
 ---@field fqdn string
 ---@field automatic_snapshots? boolean
 
----@class LivednsDomainRemoveMatch
----@field fqdn string
-
 ---@class LivednsKey
 ---@field algorithm number
 ---@field algorithm_name string
@@ -1449,6 +1446,19 @@
 ---@field id string
 ---@field key_name string
 ---@field secret string
+
+---@class LivednsZone
+---@field items table
+---@field message string
+---@field remove_apex_ns? boolean
+
+---@class LivednsZoneUpdateData
+---@field fqdn string
+---@field items? table
+---@field remove_apex_ns? boolean
+
+---@class LivednsZoneRemoveMatch
+---@field fqdn string
 
 ---@class Mailbox
 ---@field address string

@@ -72,6 +72,7 @@
     "docs/api/livedns_rrtype.html",
     "docs/api/livedns_snapshot.html",
     "docs/api/livedns_tsig_key.html",
+    "docs/api/livedns_zone.html",
     "docs/api/mailbox.html",
     "docs/api/mailbox_domain.html",
     "docs/api/mailbox_forward.html",

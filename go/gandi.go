@@ -205,6 +205,9 @@ func init() {
 	core.NewLivednsTsigKeyEntityFunc = func(client *core.GandiSDK, entopts map[string]any) core.GandiEntityBase {
 		return entity.NewLivednsTsigKeyEntity(client, entopts)
 	}
+	core.NewLivednsZoneEntityFunc = func(client *core.GandiSDK, entopts map[string]any) core.GandiEntityBase {
+		return entity.NewLivednsZoneEntity(client, entopts)
+	}
 	core.NewMailboxEntityFunc = func(client *core.GandiSDK, entopts map[string]any) core.GandiEntityBase {
 		return entity.NewMailboxEntity(client, entopts)
 	}

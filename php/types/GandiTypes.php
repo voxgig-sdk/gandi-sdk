@@ -1800,12 +1800,6 @@ class LivednsDomainUpdateData
     public ?bool $automatic_snapshots = null;
 }
 
-/** Request payload for LivednsDomain#remove. */
-class LivednsDomainRemoveMatch
-{
-    public string $fqdn;
-}
-
 /** LivednsKey entity data model. */
 class LivednsKey
 {
@@ -2034,6 +2028,28 @@ class LivednsTsigKeyCreateData
     public string $id;
     public string $key_name;
     public string $secret;
+}
+
+/** LivednsZone entity data model. */
+class LivednsZone
+{
+    public array $items;
+    public string $message;
+    public ?bool $remove_apex_ns = null;
+}
+
+/** Request payload for LivednsZone#update. */
+class LivednsZoneUpdateData
+{
+    public string $fqdn;
+    public ?array $items = null;
+    public ?bool $remove_apex_ns = null;
+}
+
+/** Request payload for LivednsZone#remove. */
+class LivednsZoneRemoveMatch
+{
+    public string $fqdn;
 }
 
 /** Mailbox entity data model. */

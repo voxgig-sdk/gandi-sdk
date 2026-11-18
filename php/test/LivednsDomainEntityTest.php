@@ -194,7 +194,7 @@ class LivednsDomainEntityTest extends TestCase
         $setup = livedns_domain_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach (["create", "list", "update", "load", "remove"] as $_op) {
+        foreach (["create", "list", "update", "load"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "livedns_domain." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
@@ -204,7 +204,6 @@ class LivednsDomainEntityTest extends TestCase
         if (!empty($setup["live"]) && getenv('VOXGIG_GETONLY_GUARD') === "TRUE") {
             fwrite(STDOUT, 'LIVE STEP {"id":"livedns_domain.create.0","state":"excluded","attempted":false,"reason":"GET-only live run: needs POST /livedns/domains"}' . "\n");
             fwrite(STDOUT, 'LIVE STEP {"id":"livedns_domain.update.2","state":"excluded","attempted":false,"reason":"GET-only live run: needs PATCH /livedns/domains/{fqdn}"}' . "\n");
-            fwrite(STDOUT, 'LIVE STEP {"id":"livedns_domain.remove.4","state":"excluded","attempted":false,"reason":"GET-only live run: needs DELETE /livedns/domains/{fqdn}/records"}' . "\n");
         $client = $setup["client"];
 
         // Bootstrap entity data from existing test data.
@@ -282,19 +281,6 @@ class LivednsDomainEntityTest extends TestCase
         $livedns_domain_ref01_match_dt0 = [];
         $livedns_domain_ref01_data_dt0_loaded = $livedns_domain_ref01_ent->load($livedns_domain_ref01_match_dt0, null);
         $this->assertNotNull($livedns_domain_ref01_data_dt0_loaded);
-
-        if (!empty($setup["live"])) {
-            Runner::live_pace();
-        }
-
-        if (!empty($setup["live"])) {
-            Runner::live_pace();
-        }
-        // LIST
-        $livedns_domain_ref01_match_rt0 = [];
-
-        $livedns_domain_ref01_list_rt0_result = $livedns_domain_ref01_ent->list($livedns_domain_ref01_match_rt0, null);
-        $this->assertIsArray($livedns_domain_ref01_list_rt0_result);
 
     }
 }

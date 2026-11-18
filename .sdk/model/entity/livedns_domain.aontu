@@ -215,55 +215,6 @@ main: kit: entity: livedns_domain: {
         }
       ]
     }
-    remove: {
-      name: "remove"
-      points: [
-        {
-          co: {
-            id: "DELETE /livedns/domains/{fqdn}/records"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "fqdn"
-                or: "fqdn"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "DELETE"
-          o: "/livedns/domains/{fqdn}/records"
-          q: {
-            "$action": "records"
-            exist: [
-              "fqdn"
-            ]
-          }
-          s: [
-            {
-              lit: "livedns"
-            }
-            {
-              lit: "domains"
-            }
-            {
-              var: "fqdn"
-            }
-            {
-              lit: "records"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-      ]
-    }
     update: {
       name: "update"
       points: [
@@ -307,58 +258,6 @@ main: kit: entity: livedns_domain: {
             }
             {
               var: "fqdn"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          bf: [
-            "items"
-            "remove_apex_ns"
-          ]
-          co: {
-            id: "PUT /livedns/domains/{fqdn}/records"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "fqdn"
-                or: "fqdn"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "PUT"
-          o: "/livedns/domains/{fqdn}/records"
-          q: {
-            "$action": "records"
-            exist: [
-              "fqdn"
-            ]
-          }
-          rs: {
-            kind: "json"
-            media: "application/json"
-          }
-          s: [
-            {
-              lit: "livedns"
-            }
-            {
-              lit: "domains"
-            }
-            {
-              var: "fqdn"
-            }
-            {
-              lit: "records"
             }
           ]
           t: {

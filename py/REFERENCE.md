@@ -234,6 +234,10 @@ Create a new `LivednsSnapshotEntity` instance. Pass `None` for no initial data.
 
 Create a new `LivednsTsigKeyEntity` instance. Pass `None` for no initial data.
 
+#### `LivednsZone(data=None)`
+
+Create a new `LivednsZoneEntity` instance. Pass `None` for no initial data.
+
 #### `Mailbox(data=None)`
 
 Create a new `MailboxEntity` instance. Pass `None` for no initial data.
@@ -3881,15 +3885,15 @@ livedns_domain = client.LivednsDomain()
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `automatic_snapshots` | - | - | - | Yes | - |
-| `domain_href` | - | - | - | - | - |
-| `domain_keys_href` | - | - | - | - | - |
-| `domain_records_href` | - | - | - | - | - |
-| `fqdn` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `zone` | - | - | - | - | - |
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `automatic_snapshots` | - | - | - | Yes |
+| `domain_href` | - | - | - | - |
+| `domain_keys_href` | - | - | - | - |
+| `domain_records_href` | - | - | - | - |
+| `fqdn` | - | - | - | - |
+| `message` | - | - | - | - |
+| `zone` | - | - | - | - |
 
 ### Operations
 
@@ -3919,14 +3923,6 @@ Load a single entity matching the given criteria. Returns the entity, whose reco
 
 ```python
 result = client.LivednsDomain().load({"fqdn": "fqdn"})
-```
-
-#### `remove(reqmatch, ctrl=None) -> LivednsDomainEntity`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
-
-```python
-result = client.LivednsDomain().remove({"fqdn": "fqdn"})
 ```
 
 #### `update(reqdata, ctrl=None) -> LivednsDomainEntity`
@@ -4461,6 +4457,70 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `LivednsTsigKeyEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## LivednsZoneEntity
+
+```python
+livedns_zone = client.LivednsZone()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `items` | `list` | Yes |  |
+| `message` | `str` | Yes |  |
+| `remove_apex_ns` | `bool` | No |  |
+
+### Operations
+
+#### `remove(reqmatch, ctrl=None) -> LivednsZoneEntity`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
+
+```python
+result = client.LivednsZone().remove({"fqdn": "fqdn"})
+```
+
+#### `update(reqdata, ctrl=None) -> LivednsZoneEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.LivednsZone().update({
+    "fqdn": "fqdn",
+    # Fields to update
+})
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `LivednsZoneEntity` instance with the same options.
 
 #### `get_name() -> str`
 

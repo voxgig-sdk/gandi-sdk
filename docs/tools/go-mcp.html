@@ -54,6 +54,7 @@
 <a href="../api/livedns_rrtype.html">LivednsRrtype</a>
 <a href="../api/livedns_snapshot.html">LivednsSnapshot</a>
 <a href="../api/livedns_tsig_key.html">LivednsTsigKey</a>
+<a href="../api/livedns_zone.html">LivednsZone</a>
 <a href="../api/mailbox.html">Mailbox</a>
 <a href="../api/mailbox_domain.html">MailboxDomain</a>
 <a href="../api/mailbox_forward.html">MailboxForward</a>
@@ -268,7 +269,7 @@
 </tr>
 <tr>
 <td><a href="../api/livedns_domain.html">LivednsDomain</a></td>
-<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>update</code></td>
 </tr>
 <tr>
 <td><a href="../api/livedns_key.html">LivednsKey</a></td>
@@ -293,6 +294,10 @@
 <tr>
 <td><a href="../api/livedns_tsig_key.html">LivednsTsigKey</a></td>
 <td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/livedns_zone.html">LivednsZone</a></td>
+<td><code>remove</code>, <code>update</code></td>
 </tr>
 <tr>
 <td><a href="../api/mailbox.html">Mailbox</a></td>
@@ -368,7 +373,7 @@
   &quot;properties&quot;: {
     &quot;entity&quot;: {
       &quot;type&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;access_token | acme_account | acme_domain | acme_price | acme_subscription | billing_info | billing_price | certificate_dcv | certificate_package | certificate_pem | certificate_renewal | certificate_tag | comment | domain | domain_availability | domain_change_owner | domain_claim | domain_contact | domain_dnskey | domain_dnssec | domain_host | domain_livedns | domain_nameserver | domain_tag | domain_transfer | domain_webredir | email_forward | email_mailbox | email_migration | email_offer | email_slot | hosting_application | hosting_instance | hosting_vhost | issued_certificate | linked_zone | linked_zone_deployment | linked_zone_domain | linked_zone_task | livedns_axfr_slave | livedns_axfr_tsig | livedns_domain | livedns_key | livedns_nameserver | livedns_record | livedns_rrtype | livedns_snapshot | livedns_tsig_key | mailbox | mailbox_domain | mailbox_forward | mailbox_product | mailbox_quota | mailbox_slot | organization | organization_customer | template | template_dispatch | tld | user&quot;
+      &quot;description&quot;: &quot;access_token | acme_account | acme_domain | acme_price | acme_subscription | billing_info | billing_price | certificate_dcv | certificate_package | certificate_pem | certificate_renewal | certificate_tag | comment | domain | domain_availability | domain_change_owner | domain_claim | domain_contact | domain_dnskey | domain_dnssec | domain_host | domain_livedns | domain_nameserver | domain_tag | domain_transfer | domain_webredir | email_forward | email_mailbox | email_migration | email_offer | email_slot | hosting_application | hosting_instance | hosting_vhost | issued_certificate | linked_zone | linked_zone_deployment | linked_zone_domain | linked_zone_task | livedns_axfr_slave | livedns_axfr_tsig | livedns_domain | livedns_key | livedns_nameserver | livedns_record | livedns_rrtype | livedns_snapshot | livedns_tsig_key | livedns_zone | mailbox | mailbox_domain | mailbox_forward | mailbox_product | mailbox_quota | mailbox_slot | organization | organization_customer | template | template_dispatch | tld | user&quot;
     },
     &quot;query&quot;: {
       &quot;type&quot;: &quot;object&quot;,
@@ -388,7 +393,7 @@
   &quot;properties&quot;: {
     &quot;entity&quot;: {
       &quot;type&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;access_token | acme_account | acme_domain | acme_price | acme_subscription | billing_info | billing_price | certificate_dcv | certificate_package | certificate_pem | certificate_renewal | certificate_tag | comment | domain | domain_availability | domain_change_owner | domain_claim | domain_contact | domain_dnskey | domain_dnssec | domain_host | domain_livedns | domain_nameserver | domain_tag | domain_transfer | domain_webredir | email_forward | email_mailbox | email_migration | email_offer | email_slot | hosting_application | hosting_instance | hosting_vhost | issued_certificate | linked_zone | linked_zone_deployment | linked_zone_domain | linked_zone_task | livedns_axfr_slave | livedns_axfr_tsig | livedns_domain | livedns_key | livedns_nameserver | livedns_record | livedns_rrtype | livedns_snapshot | livedns_tsig_key | mailbox | mailbox_domain | mailbox_forward | mailbox_product | mailbox_quota | mailbox_slot | organization | organization_customer | template | template_dispatch | tld | user&quot;
+      &quot;description&quot;: &quot;access_token | acme_account | acme_domain | acme_price | acme_subscription | billing_info | billing_price | certificate_dcv | certificate_package | certificate_pem | certificate_renewal | certificate_tag | comment | domain | domain_availability | domain_change_owner | domain_claim | domain_contact | domain_dnskey | domain_dnssec | domain_host | domain_livedns | domain_nameserver | domain_tag | domain_transfer | domain_webredir | email_forward | email_mailbox | email_migration | email_offer | email_slot | hosting_application | hosting_instance | hosting_vhost | issued_certificate | linked_zone | linked_zone_deployment | linked_zone_domain | linked_zone_task | livedns_axfr_slave | livedns_axfr_tsig | livedns_domain | livedns_key | livedns_nameserver | livedns_record | livedns_rrtype | livedns_snapshot | livedns_tsig_key | livedns_zone | mailbox | mailbox_domain | mailbox_forward | mailbox_product | mailbox_quota | mailbox_slot | organization | organization_customer | template | template_dispatch | tld | user&quot;
     },
     &quot;query&quot;: {
       &quot;type&quot;: &quot;object&quot;,

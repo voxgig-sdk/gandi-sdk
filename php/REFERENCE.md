@@ -234,6 +234,10 @@ Create a new `LivednsSnapshotEntity` instance. Pass `null` for no initial data.
 
 Create a new `LivednsTsigKeyEntity` instance. Pass `null` for no initial data.
 
+#### `LivednsZone($data = null)`
+
+Create a new `LivednsZoneEntity` instance. Pass `null` for no initial data.
+
 #### `Mailbox($data = null)`
 
 Create a new `MailboxEntity` instance. Pass `null` for no initial data.
@@ -3879,15 +3883,15 @@ $livedns_domain = $client->LivednsDomain();
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `automatic_snapshots` | - | - | - | Yes | - |
-| `domain_href` | - | - | - | - | - |
-| `domain_keys_href` | - | - | - | - | - |
-| `domain_records_href` | - | - | - | - | - |
-| `fqdn` | - | - | - | - | - |
-| `message` | - | - | - | - | - |
-| `zone` | - | - | - | - | - |
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `automatic_snapshots` | - | - | - | Yes |
+| `domain_href` | - | - | - | - |
+| `domain_keys_href` | - | - | - | - |
+| `domain_records_href` | - | - | - | - |
+| `fqdn` | - | - | - | - |
+| `message` | - | - | - | - |
+| `zone` | - | - | - | - |
 
 ### Operations
 
@@ -3915,14 +3919,6 @@ Load a single entity matching the given criteria. Returns the entity, whose reco
 
 ```php
 $result = $client->LivednsDomain()->load(["fqdn" => "fqdn"]);
-```
-
-#### `remove(array $reqmatch, ?array $ctrl = null): mixed`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted, and throws on error.
-
-```php
-$result = $client->LivednsDomain()->remove(["fqdn" => "fqdn"]);
 ```
 
 #### `update(array $reqdata, ?array $ctrl = null): mixed`
@@ -4451,6 +4447,71 @@ Set the entity match criteria.
 #### `make(): LivednsTsigKeyEntity`
 
 Create a new `LivednsTsigKeyEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## LivednsZoneEntity
+
+```php
+$livedns_zone = $client->LivednsZone();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `items` | `array` | Yes |  |
+| `message` | `string` | Yes |  |
+| `remove_apex_ns` | `bool` | No |  |
+
+### Operations
+
+#### `remove(array $reqmatch, ?array $ctrl = null): mixed`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and throws on error.
+
+```php
+$result = $client->LivednsZone()->remove(["fqdn" => "fqdn"]);
+```
+
+#### `update(array $reqdata, ?array $ctrl = null): mixed`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and throws on error.
+
+```php
+$result = $client->LivednsZone()->update([
+  "fqdn" => "fqdn",
+  // Fields to update
+]);
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): LivednsZoneEntity`
+
+Create a new `LivednsZoneEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

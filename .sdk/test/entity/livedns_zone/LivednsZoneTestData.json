@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "livedns_zone": {
+      "LIVEDNS_ZONE00": {
+        "items": [],
+        "message": "s1f",
+        "remove_apex_ns": true,
+        "fqdn": "FQDN01",
+        "id": "LIVEDNS_ZONE00"
+      },
+      "LIVEDNS_ZONE01": {
+        "items": [],
+        "message": "s3d",
+        "remove_apex_ns": true,
+        "fqdn": "FQDN01",
+        "id": "LIVEDNS_ZONE01"
+      },
+      "LIVEDNS_ZONE02": {
+        "items": [],
+        "message": "s5b",
+        "remove_apex_ns": true,
+        "fqdn": "FQDN01",
+        "id": "LIVEDNS_ZONE02"
+      }
+    }
+  },
+  "new": {
+    "livedns_zone": {
+      "livedns_zone_ref01": {
+        "items": [],
+        "message": "s79",
+        "remove_apex_ns": true
+      }
+    }
+  },
+  "requests": {
+    "DELETE /livedns/domains/{fqdn}/records": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PUT /livedns/domains/{fqdn}/records": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1253,6 +1253,24 @@ class GandiSDK implements \JsonSerializable
     }
 
 
+    private $_livedns_zone = null;
+
+    // Canonical facade: $client->LivednsZone()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->livedns_zone()
+    // resolves here too.
+    public function LivednsZone($data = null)
+    {
+        require_once __DIR__ . '/entity/livedns_zone_entity.php';
+        if ($data === null) {
+            if ($this->_livedns_zone === null) {
+                $this->_livedns_zone = new LivednsZoneEntity($this, null);
+            }
+            return $this->_livedns_zone;
+        }
+        return new LivednsZoneEntity($this, $data);
+    }
+
+
     private $_mailbox = null;
 
     // Canonical facade: $client->Mailbox()->list() / ->load(["id" => ...]).

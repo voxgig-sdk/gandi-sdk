@@ -1,0 +1,29 @@
+# BasicLivednsZoneFlow
+
+main: kit: flow: BasicLivednsZoneFlow:
+{
+  entity: "livedns_zone",
+  kind: "basic",
+  name: "BasicLivednsZoneFlow",
+  step: [
+    {
+      i: {
+        ref: "livedns_zone_ref01",
+        srcdatavar: "livedns_zone_ref01_data",
+        suffix: "_up0",
+        textfield: "message"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-livedns_zone_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLivednsZoneFlow"
+}

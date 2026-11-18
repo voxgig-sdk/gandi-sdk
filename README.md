@@ -61,14 +61,13 @@ named by `fqdn`, `rrset_name` and `rrset_type`, a mailbox by its `address`.
 **Actions.** A verb on a resource is an action, selected with `$action` in the request data.
 Resetting a domain's authorization code is `$action: 'authinfo'` on a `Domain` update, and
 `autorenew`, `status` (the transfer lock), `reachability`, `renew`, `restore` and
-`transferout` work the same way. Operations on a whole collection are always actions, so that
-leaving a parameter out can never select them: replacing or deleting every record of a zone is
-`$action: 'records'` on `LivednsDomain`, every record of one name is `$action: 'name'` on
-`LivednsRecord`, and renewing every mailbox of a domain in the Email API is
-`$action: 'renew_all'`.
+`transferout` work the same way. An operation on a whole collection is never chosen by leaving
+a parameter out: every record of one name is `$action: 'name'` on `LivednsRecord`, renewing
+every mailbox of a domain in the Email API is `$action: 'renew_all'`, and replacing or deleting
+every record of a zone is `LivednsZone().update()` or `.remove()`, an entity of its own.
 
 **Scope.** Every one of the 221 operations in the twelve sections of Gandi's v5 documentation
-is here, as 60 entities named after Gandi's own resources. The Email API, which Gandi marks
+is here, as 61 entities named after Gandi's own resources. The Email API, which Gandi marks
 deprecated, is included as `Email*`; its replacement is `Mailbox*`. Some operations cost
 money (registering, renewing or transferring a domain, buying a mailbox or a certificate), as
 Gandi's documentation warns. For what each field means, follow the links to Gandi's
@@ -80,7 +79,7 @@ documentation was checked against it, but no request has yet been sent to Gandi'
 
 ## Entities, not endpoints
 
-This SDK exposes the API as **60 semantic entities** that you
+This SDK exposes the API as **61 semantic entities** that you
 call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`, `create`, `update`, `patch`, `remove`):
@@ -232,7 +231,7 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 60 entities:
+The API exposes 61 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
@@ -277,13 +276,14 @@ The API exposes 60 entities:
 | **LinkedZoneTask** | Linked zone tasks: list them or get one. | `/linkedzone/tasks` |
 | **LivednsAxfrSlave** | A zone's secondary servers, by IP address: list, add or remove one. | `/livedns/domains/{fqdn}/axfr/slaves` |
 | **LivednsAxfrTsig** | The TSIG keys a zone uses for transfers: list them, associate one or remove one. | `/livedns/domains/{fqdn}/axfr/tsig` |
-| **LivednsDomain** | A domain on LiveDNS, by fqdn: list, add, get or update one, or replace or delete every record of its zone (`records`). | `/livedns/domains` |
+| **LivednsDomain** | A domain on LiveDNS, by fqdn: list, add, get or update one. | `/livedns/domains` |
 | **LivednsKey** | A zone's DNSSEC keys on LiveDNS: list, create, get, undelete (update) or delete one. | `/livedns/domains/{fqdn}/keys` |
 | **LivednsNameserver** | A zone's nameservers, or the generic nameservers LiveDNS would give it (`generic`). | `/livedns/domains/{fqdn}/nameservers` |
 | **LivednsRecord** | A DNS record set, by fqdn, rrset_name and rrset_type: list, create, get, replace, update or delete one; every record of one name (`name`); or a verification record (`verification`). | `/livedns/domains/{fqdn}/records` |
 | **LivednsRrtype** | The DNS record types LiveDNS supports. | `/livedns/dns/rrtypes` |
 | **LivednsSnapshot** | A zone's snapshots: list, take, get, rename or delete one. | `/livedns/domains/{fqdn}/snapshots` |
 | **LivednsTsigKey** | A TSIG key for zone transfers: list, create or get one, or its configuration for a DNS server (`config`). | `/livedns/axfr/tsig` |
+| **LivednsZone** | A zone's whole record set, by fqdn: replace every record (update) or delete every record (remove). | `/livedns/domains/{fqdn}/records` |
 | **Mailbox** | A mailbox, by address: list, create, get, update or delete one, or renew it (`renew`). | `/mailbox/mailboxes` |
 | **MailboxDomain** | The domains used for mail: list them, get one's DNS configuration, or check it (`validate`). | `/mailbox/domains` |
 | **MailboxForward** | A forwarding address: list, create, update or delete one. | `/mailbox/forwards` |
