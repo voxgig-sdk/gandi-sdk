@@ -34,7 +34,7 @@ const utility_1 = require("../../utility");
         const query = {};
         if (setup.live) {
             const listResult = await client.direct({
-                path: 'linkedzone/domains',
+                path: 'linkedzone/zones',
                 method: 'GET',
                 params: {},
             });
@@ -48,17 +48,17 @@ const utility_1 = require("../../utility");
             if (0 === listArr.length) {
                 return void (0, utility_1.liveEmpty)(t, 'The account has no linked_zone record to load');
             }
-            const candidateId = listArr[0]?.domain;
+            const candidateId = listArr[0]?.id;
             if (null == candidateId) {
                 return void (0, utility_1.liveMiss)(t, LIVE_STRICT, 'Live load blocked: discovery returned no usable identity');
             }
-            params.domain = candidateId;
+            params.id = candidateId;
         }
         else {
-            params.domain = 'direct01';
+            params.id = 'direct01';
         }
         const result = await client.direct({
-            path: 'linkedzone/domains/{domain}',
+            path: 'linkedzone/zones/{id}',
             method: 'GET',
             params,
             query,
@@ -93,7 +93,7 @@ const utility_1 = require("../../utility");
         const params = {};
         const query = {};
         const result = await client.direct({
-            path: 'linkedzone/domains',
+            path: 'linkedzone/zones',
             method: 'GET',
             params,
             query,

@@ -147,29 +147,100 @@ declare class Config {
             "content-type": string;
         };
         entity: {
-            acme: {};
-            billing: {};
-            certificate: {};
+            access_token: {};
+            acme_account: {};
+            acme_domain: {};
+            acme_price: {};
+            acme_subscription: {};
+            billing_info: {};
+            billing_price: {};
+            certificate_dcv: {};
+            certificate_package: {};
+            certificate_pem: {};
+            certificate_renewal: {};
+            certificate_tag: {};
             comment: {};
             domain: {};
-            email: {};
+            domain_availability: {};
+            domain_change_owner: {};
+            domain_claim: {};
+            domain_contact: {};
+            domain_dnskey: {};
+            domain_dnssec: {};
+            domain_host: {};
+            domain_livedns: {};
+            domain_nameserver: {};
+            domain_tag: {};
+            domain_transfer: {};
+            domain_webredir: {};
+            email_forward: {};
+            email_mailbox: {};
+            email_migration: {};
+            email_offer: {};
+            email_slot: {};
+            hosting_application: {};
+            hosting_instance: {};
+            hosting_vhost: {};
+            issued_certificate: {};
             linked_zone: {};
-            live_dn: {};
+            linked_zone_deployment: {};
+            linked_zone_domain: {};
+            linked_zone_task: {};
+            livedns_axfr_slave: {};
+            livedns_axfr_tsig: {};
+            livedns_domain: {};
+            livedns_key: {};
+            livedns_nameserver: {};
+            livedns_record: {};
+            livedns_rrtype: {};
+            livedns_snapshot: {};
+            livedns_tsig_key: {};
             mailbox: {};
-            nt: {};
+            mailbox_domain: {};
+            mailbox_forward: {};
+            mailbox_product: {};
+            mailbox_quota: {};
+            mailbox_slot: {};
             organization: {};
+            organization_customer: {};
             template: {};
-            web_hosting: {};
+            template_dispatch: {};
+            tld: {};
+            user: {};
         };
     };
     entity: {
-        acme: {
-            fields: {
+        access_token: {
+            fields: ({
                 name: string;
                 title: string;
                 type: string;
                 req: boolean;
-            }[];
+                op?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                };
+                format: string;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                };
+                format?: undefined;
+            })[];
             id: {
                 field: string;
                 name: string;
@@ -192,68 +263,36 @@ declare class Config {
                             req: string;
                             res: string;
                         };
-                        args: {
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
+                        args: {};
+                        select: {};
                         response: {
                             kind: string;
                             media: string;
                         };
                     }[];
                 };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        acme_account: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
                 list: {
                     input: string;
                     name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                                field: boolean;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                                field?: undefined;
-                            })[];
-                            params?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -288,13 +327,12 @@ declare class Config {
                         };
                         select: {
                             exist: string[];
-                            $action?: undefined;
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
                 };
                 load: {
                     input: string;
@@ -311,7 +349,11 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {};
+                        rename: {
+                            param: {
+                                account_id: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -341,7 +383,21 @@ declare class Config {
                         };
                     }[];
                 };
-                remove: {
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        acme_domain: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                list: {
                     input: string;
                     name: string;
                     points: {
@@ -386,7 +442,7 @@ declare class Config {
                         };
                     }[];
                 };
-                update: {
+                load: {
                     input: string;
                     name: string;
                     points: {
@@ -436,126 +492,19 @@ declare class Config {
                 ancestors: string[][];
             };
         };
-        billing: {
-            fields: ({
+        acme_price: {
+            fields: {
                 name: string;
                 title: string;
                 type: string;
                 req: boolean;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req?: undefined;
-            })[];
+            }[];
             name: string;
             op: {
-                load: {
+                create: {
                     input: string;
                     name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field?: undefined;
-                                reqd?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                                reqd?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                                field?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                                field?: undefined;
-                                reqd?: undefined;
-                            })[];
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -569,190 +518,83 @@ declare class Config {
                             res: string;
                         };
                         args: {
-                            params?: undefined;
-                            query?: undefined;
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
                         };
                         select: {
-                            $action: string;
-                            exist?: undefined;
+                            exist: string[];
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                                field: boolean;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
                 };
             };
             relations: {
                 ancestors: never[];
             };
         };
-        certificate: {
-            fields: ({
+        acme_subscription: {
+            fields: {
                 name: string;
                 title: string;
                 type: string;
                 req: boolean;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    patch: {
-                        type: string;
-                    };
-                    load?: undefined;
-                    create?: undefined;
-                    update?: undefined;
-                };
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req?: undefined;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    load: {
-                        req: boolean;
-                        type: string;
-                    };
-                    patch?: undefined;
-                    create?: undefined;
-                    update?: undefined;
-                };
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                    };
-                    patch?: undefined;
-                    load?: undefined;
-                    update?: undefined;
-                };
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    update: {
-                        req: boolean;
-                        type: string;
-                    };
-                    patch?: undefined;
-                    load?: undefined;
-                    create?: undefined;
-                };
-                req?: undefined;
-            })[];
-            id: {
-                field: string;
-                name: string;
-            };
+            }[];
             name: string;
             op: {
                 create: {
                     input: string;
                     name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            header: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            header?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -760,109 +602,33 @@ declare class Config {
                             lit: string;
                         }[];
                         parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
                         args: {
-                            header?: undefined;
-                            params?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            header: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
                             query: {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
+                                reqd: boolean;
                             }[];
-                            params?: undefined;
                         };
                         select: {
-                            $action: string;
-                            exist?: undefined;
+                            exist: string[];
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
                 };
                 list: {
                     input: string;
                     name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -870,9 +636,7 @@ declare class Config {
                             lit: string;
                         }[];
                         parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -883,46 +647,30 @@ declare class Config {
                                 orig: string;
                                 type: string;
                                 kind: string;
+                                reqd: boolean;
                                 field: boolean;
-                                example?: undefined;
                             } | {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
-                                field?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                                field?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: string;
+                                reqd: boolean;
                                 field?: undefined;
                             })[];
-                            params?: undefined;
                         };
                         select: {
-                            $action: string;
-                            exist?: undefined;
+                            exist: string[];
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
                 };
                 load: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -934,83 +682,7 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -1028,160 +700,22 @@ declare class Config {
                                 orig: string;
                                 type: string;
                                 kind: string;
-                                field: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
-                };
-                patch: {
-                    input: string;
-                    name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            header: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
                                 reqd: boolean;
                             }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
                         };
                         select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            header?: undefined;
-                        };
-                        select: {
-                            $action: string;
                             exist: string[];
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            header?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
+                    }[];
                 };
                 remove: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -1193,9 +727,7 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -1213,43 +745,8 @@ declare class Config {
                                 orig: string;
                                 type: string;
                                 kind: string;
-                                field: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response?: undefined;
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
                         };
                         select: {
                             exist: string[];
@@ -1258,7 +755,7 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
                 };
                 update: {
                     input: string;
@@ -1275,11 +772,7 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -1297,7 +790,48 @@ declare class Config {
                                 orig: string;
                                 type: string;
                                 kind: string;
-                                field: boolean;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                            $action?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
                             }[];
                         };
                         select: {
@@ -1308,7 +842,191 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
+                    })[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        billing_info: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+            })[];
+            name: string;
+            op: {
+                load: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
                     } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params?: undefined;
+                        };
+                        select: {
+                            exist?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        billing_price: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                reqd?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                reqd?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                                reqd?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        certificate_dcv: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                patch: {
+                    input: string;
+                    name: string;
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -1337,17 +1055,552 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        certificate_package: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        certificate_pem: {
+            fields: never[];
+            name: string;
+            op: {
+                load: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
                             query?: undefined;
                         };
                         select: {
                             exist: string[];
-                            $action?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
                     })[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        certificate_renewal: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            })[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            header: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        certificate_tag: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                patch: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
                 };
             };
             relations: {
@@ -1395,7 +1648,11 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {};
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -1439,7 +1696,11 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {};
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -1477,7 +1738,11 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {};
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -1508,30 +1773,12 @@ declare class Config {
                 type: string;
                 req: boolean;
                 op?: undefined;
-                format?: undefined;
             } | {
                 name: string;
                 title: string;
                 type: string;
                 req?: undefined;
                 op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    load: {
-                        req: boolean;
-                        type: string;
-                    };
-                    list?: undefined;
-                    create?: undefined;
-                    update?: undefined;
-                    patch?: undefined;
-                };
-                format: string;
-                req?: undefined;
             } | {
                 name: string;
                 title: string;
@@ -1541,13 +1788,9 @@ declare class Config {
                         req: boolean;
                         type: string;
                     };
-                    load?: undefined;
                     create?: undefined;
-                    update?: undefined;
-                    patch?: undefined;
                 };
                 req?: undefined;
-                format?: undefined;
             } | {
                 name: string;
                 title: string;
@@ -1557,42 +1800,8 @@ declare class Config {
                     create: {
                         type: string;
                     };
-                    load?: undefined;
                     list?: undefined;
-                    update?: undefined;
-                    patch?: undefined;
                 };
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    update: {
-                        type: string;
-                    };
-                    load?: undefined;
-                    list?: undefined;
-                    create?: undefined;
-                    patch?: undefined;
-                };
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    patch: {
-                        type: string;
-                    };
-                    load?: undefined;
-                    list?: undefined;
-                    create?: undefined;
-                    update?: undefined;
-                };
-                format?: undefined;
             })[];
             id: {
                 field: string;
@@ -1616,7 +1825,9 @@ declare class Config {
                         })[];
                         parts: string[];
                         rename: {
-                            param?: undefined;
+                            param: {
+                                domain: string;
+                            };
                         };
                         transform: {
                             req: string;
@@ -1644,8 +1855,53 @@ declare class Config {
                             }[];
                         };
                         select: {
+                            $action: string;
                             exist: string[];
-                            $action?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                domain: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            header?: undefined;
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
                         };
                         response: {
                             kind: string;
@@ -1695,154 +1951,6 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example?: undefined;
-                            })[];
-                            header?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                            }[];
-                            header?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            header: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
                         segments: {
                             lit: string;
                         }[];
@@ -1870,45 +1978,7 @@ declare class Config {
                             params?: undefined;
                         };
                         select: {
-                            exist?: undefined;
                             $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            header: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            params?: undefined;
-                        };
-                        select: {
-                            $action: string;
                             exist?: undefined;
                         };
                         response: {
@@ -1920,7 +1990,7 @@ declare class Config {
                 list: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -1928,158 +1998,7 @@ declare class Config {
                             lit: string;
                         }[];
                         parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                                reqd?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field?: undefined;
-                                reqd?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                                field: boolean;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: string[];
-                                field?: undefined;
-                                reqd?: undefined;
-                            })[];
-                            params?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example?: undefined;
-                            })[];
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -2114,65 +2033,13 @@ declare class Config {
                                 example: string;
                                 field?: undefined;
                             })[];
-                            params?: undefined;
                         };
-                        select: {
-                            $action?: undefined;
-                            exist?: undefined;
-                        };
+                        select: {};
                         response: {
                             kind: string;
                             media: string;
                         };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                                field?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field?: undefined;
-                                example?: undefined;
-                            })[];
-                            params?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
+                    }[];
                 };
                 load: {
                     input: string;
@@ -2206,87 +2073,6 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
                         };
                         select: {
                             exist: string[];
@@ -2325,7 +2111,6 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
                         };
                         select: {
                             $action: string;
@@ -2337,10 +2122,10 @@ declare class Config {
                         };
                     })[];
                 };
-                patch: {
+                remove: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -2372,13 +2157,17 @@ declare class Config {
                         };
                         select: {
                             exist: string[];
-                            $action?: undefined;
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    } | {
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: ({
                         kind: string;
                         method: string;
                         orig: string;
@@ -2453,438 +2242,91 @@ declare class Config {
                         response?: undefined;
                     })[];
                 };
-                remove: {
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        domain_availability: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                load: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
-                        segments: ({
+                        segments: {
                             lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
+                        }[];
                         parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
                         args: {
-                            params: {
+                            query: ({
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
+                                field?: undefined;
+                                reqd?: undefined;
+                                example?: undefined;
+                            } | {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
                                 field: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
+                                reqd?: undefined;
+                                example?: undefined;
+                            } | {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
                                 reqd: boolean;
-                            }[];
-                            query?: undefined;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string[];
+                                field?: undefined;
+                                reqd?: undefined;
+                            })[];
                         };
                         select: {
-                            $action: string;
                             exist: string[];
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    })[];
-                };
-                update: {
-                    input: string;
-                    name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            header?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            header?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            header?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            header: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                domain: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            header?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
+                    }[];
                 };
             };
             relations: {
                 ancestors: never[];
             };
         };
-        email: {
+        domain_change_owner: {
             fields: ({
                 name: string;
                 title: string;
                 type: string;
                 req: boolean;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    list: {
-                        req: boolean;
-                        type: string;
-                    };
-                    create?: undefined;
-                    patch?: undefined;
-                };
-                req?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                    };
-                    patch: {
-                        type: string;
-                    };
-                    list?: undefined;
-                };
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                    };
-                    list?: undefined;
-                    patch?: undefined;
-                };
                 format?: undefined;
             } | {
                 name: string;
@@ -2892,37 +2334,13 @@ declare class Config {
                 type: string;
                 req: boolean;
                 format: string;
-                op?: undefined;
             } | {
                 name: string;
                 title: string;
                 type: string;
                 req?: undefined;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    patch: {
-                        type: string;
-                    };
-                    list?: undefined;
-                    create?: undefined;
-                };
                 format?: undefined;
             })[];
-            id: {
-                field: string;
-                from: {
-                    domain: string;
-                };
-                name: string;
-                parts: string[];
-                sep: string;
-            };
             name: string;
             op: {
                 create: {
@@ -2967,8 +2385,8 @@ declare class Config {
                             }[];
                         };
                         select: {
-                            $action: string;
                             exist: string[];
+                            $action?: undefined;
                         };
                         response: {
                             kind: string;
@@ -3003,6 +2421,232 @@ declare class Config {
                             query?: undefined;
                         };
                         select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        domain_claim: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        domain_contact: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            header?: undefined;
+                        };
+                        select: {
                             exist: string[];
                             $action?: undefined;
                         };
@@ -3034,6 +2678,1137 @@ declare class Config {
                                 type: string;
                                 kind: string;
                             }[];
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        domain_dnskey: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    list: {
+                        type: string;
+                    };
+                };
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        domain_dnssec: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            })[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        domain_host: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        domain_livedns: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+            })[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        domain_nameserver: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        domain_tag: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                patch: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        domain_transfer: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+            })[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            header?: undefined;
+                            query?: undefined;
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            header: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            params?: undefined;
+                        };
+                        select: {
+                            $action?: undefined;
+                            exist?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
                             params: {
                                 name: string;
                                 orig: string;
@@ -3082,11 +3857,10 @@ declare class Config {
                                 type: string;
                                 kind: string;
                             }[];
-                            header?: undefined;
                         };
                         select: {
+                            $action: string;
                             exist: string[];
-                            $action?: undefined;
                         };
                         response: {
                             kind: string;
@@ -3094,10 +3868,336 @@ declare class Config {
                         };
                     })[];
                 };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        domain_webredir: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    update: {
+                        type: string;
+                    };
+                    create?: undefined;
+                };
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                op: {
+                    create: {
+                        req: boolean;
+                        type: string;
+                    };
+                    update?: undefined;
+                };
+                req?: undefined;
+            })[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
                 list: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        email_forward: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+            })[];
+            id: {
+                field: string;
+                from: {
+                    source: string;
+                };
+                name: string;
+                parts: string[];
+                sep: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -3159,7 +4259,819 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        email_mailbox: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                op: {
+                    list: {
+                        req: boolean;
+                        type: string;
+                    };
+                    create?: undefined;
+                    update?: undefined;
+                };
+                req?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                    update: {
+                        type: string;
+                    };
+                    list?: undefined;
+                };
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                op?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format: string;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    update: {
+                        type: string;
+                    };
+                    list?: undefined;
+                    create?: undefined;
+                };
+                format?: undefined;
+            })[];
+            id: {
+                field: string;
+                from: {
+                    domain: string;
+                    id: string;
+                };
+                name: string;
+                parts: string[];
+                sep: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                email: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            header: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
                     } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param?: undefined;
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            header: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query?: undefined;
+                        };
+                        select: {
+                            exist: string[];
+                            $action?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param?: undefined;
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            header: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                mailbox_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                mailbox_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                            $action?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                mailbox_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                mailbox_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        email_migration: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        email_offer: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        email_slot: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format: string;
+            })[];
+            id: {
+                field: string;
+                from: {
+                    id: string;
+                };
+                name: string;
+                parts: string[];
+                sep: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -3199,7 +5111,432 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                slot_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                slot_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        hosting_application: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                application_name: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        hosting_instance: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                        req?: undefined;
+                    };
+                    update?: undefined;
+                };
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                op?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format: string;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                op: {
+                    create: {
+                        req: boolean;
+                        type: string;
+                    };
+                    update?: undefined;
+                };
+                req?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                        req?: undefined;
+                    };
+                    update: {
+                        type: string;
+                    };
+                };
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                format: string;
+                req?: undefined;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    update: {
+                        type: string;
+                    };
+                    create?: undefined;
+                };
+                format?: undefined;
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                instance_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            header?: undefined;
+                            query?: undefined;
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {
+                            param?: undefined;
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            header: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            params?: undefined;
+                        };
+                        select: {
+                            $action?: undefined;
+                            exist?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
                     })[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
                 };
                 load: {
                     input: string;
@@ -3216,7 +5553,11 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {};
+                        rename: {
+                            param: {
+                                instance_id: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -3229,10 +5570,10 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
                         };
                         select: {
                             exist: string[];
+                            $action?: undefined;
                         };
                         response: {
                             kind: string;
@@ -3250,7 +5591,11 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {};
+                        rename: {
+                            param: {
+                                instance_id: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -3263,92 +5608,9 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
                         };
                         select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
-                };
-                patch: {
-                    input: string;
-                    name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
+                            $action: string;
                             exist: string[];
                         };
                         response: {
@@ -3358,6 +5620,128 @@ declare class Config {
                     })[];
                 };
                 remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                instance_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                instance_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        hosting_vhost: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format?: undefined;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format: string;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                op: {
+                    create: {
+                        req: boolean;
+                        type: string;
+                    };
+                };
+                req?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                format: string;
+                req?: undefined;
+                op?: undefined;
+            })[];
+            name: string;
+            op: {
+                create: {
                     input: string;
                     name: string;
                     points: {
@@ -3395,7 +5779,872 @@ declare class Config {
                         };
                     }[];
                 };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                vhost_fqdn: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                vhost_fqdn: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                            $action?: undefined;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                vhost_fqdn: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                    })[];
+                };
                 update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                vhost_fqdn: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        issued_certificate: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                    update: {
+                        type: string;
+                    };
+                };
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                    update?: undefined;
+                };
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            header?: undefined;
+                            query?: undefined;
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params?: undefined;
+                            header?: undefined;
+                            query?: undefined;
+                        };
+                        select: {
+                            $action: string;
+                            exist?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            header: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            params?: undefined;
+                        };
+                        select: {
+                            $action?: undefined;
+                            exist?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                            $action?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            header: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        linked_zone: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format: string;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                    update: {
+                        type: string;
+                    };
+                };
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format?: undefined;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                format?: undefined;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    update: {
+                        type: string;
+                    };
+                    create?: undefined;
+                };
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                format: string;
+                req?: undefined;
+                op?: undefined;
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {};
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                zone_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                zone_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                zone_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        linked_zone_deployment: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                create: {
                     input: string;
                     name: string;
                     points: {
@@ -3435,153 +6684,22 @@ declare class Config {
                 };
             };
             relations: {
-                ancestors: string[][];
+                ancestors: never[];
             };
         };
-        linked_zone: {
-            fields: ({
+        linked_zone_domain: {
+            fields: {
                 name: string;
                 title: string;
                 type: string;
                 req: boolean;
-                format: string;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                    };
-                    update: {
-                        type: string;
-                        req?: undefined;
-                    };
-                };
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                format?: undefined;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    update: {
-                        req: boolean;
-                        type: string;
-                    };
-                    create?: undefined;
-                };
-                req?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                format: string;
-                req?: undefined;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    update: {
-                        type: string;
-                        req?: undefined;
-                    };
-                    create?: undefined;
-                };
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req?: undefined;
-                format?: undefined;
-                op?: undefined;
-            })[];
+            }[];
             id: {
                 field: string;
                 name: string;
             };
             name: string;
             op: {
-                create: {
-                    input: string;
-                    name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                zone_id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params?: undefined;
-                        };
-                        select: {
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
-                };
                 list: {
                     input: string;
                     name: string;
@@ -3632,43 +6750,7 @@ declare class Config {
                 load: {
                     input: string;
                     name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -3682,9 +6764,441 @@ declare class Config {
                         parts: string[];
                         rename: {
                             param: {
-                                zone_id: string;
+                                domain: string;
                             };
                         };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params?: undefined;
+                        };
+                        select: {
+                            $action: string;
+                            exist?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        linked_zone_task: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format: string;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                format: string;
+                req?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format?: undefined;
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                task_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        livedns_axfr_slave: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        livedns_axfr_tsig: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -3711,7 +7225,145 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        livedns_domain: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    update: {
+                        type: string;
+                    };
+                };
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                op?: undefined;
+            })[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
                 };
                 remove: {
                     input: string;
@@ -3728,11 +7380,247 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {
-                            param: {
-                                zone_id: string;
-                            };
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
                         };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                            $action?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        livedns_key: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -3754,6 +7642,53 @@ declare class Config {
                 update: {
                     input: string;
                     name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        livedns_nameserver: {
+            fields: never[];
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
                     points: ({
                         kind: string;
                         method: string;
@@ -3766,11 +7701,7 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {
-                            param: {
-                                zone_id: string;
-                            };
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -3786,6 +7717,7 @@ declare class Config {
                         };
                         select: {
                             exist: string[];
+                            $action?: undefined;
                         };
                         response: {
                             kind: string;
@@ -3803,9 +7735,7 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -3820,32 +7750,8 @@ declare class Config {
                             }[];
                         };
                         select: {
+                            $action: string;
                             exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params?: undefined;
-                        };
-                        select: {
-                            exist?: undefined;
                         };
                         response: {
                             kind: string;
@@ -3858,58 +7764,27 @@ declare class Config {
                 ancestors: string[][];
             };
         };
-        live_dn: {
+        livedns_record: {
             fields: ({
                 name: string;
                 title: string;
                 type: string;
                 req?: undefined;
-                op?: undefined;
             } | {
                 name: string;
                 title: string;
                 type: string;
                 req: boolean;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    patch: {
-                        type: string;
-                    };
-                    create?: undefined;
-                };
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                        req?: undefined;
-                    };
-                    patch?: undefined;
-                };
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    create: {
-                        req: boolean;
-                        type: string;
-                    };
-                    patch?: undefined;
-                };
-                req?: undefined;
             })[];
             id: {
                 field: string;
+                from: {
+                    rrset_name: string;
+                    rrset_type: string;
+                };
                 name: string;
+                parts: string[];
+                sep: string;
             };
             name: string;
             op: {
@@ -3941,10 +7816,10 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
                         };
                         select: {
                             exist: string[];
+                            $action?: undefined;
                         };
                         response: {
                             kind: string;
@@ -3954,9 +7829,13 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        segments: {
+                        segments: ({
                             lit: string;
-                        }[];
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
                         parts: string[];
                         rename: {};
                         transform: {
@@ -3964,16 +7843,17 @@ declare class Config {
                             res: string;
                         };
                         args: {
-                            query: {
+                            params: {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
+                                reqd: boolean;
                             }[];
-                            params?: undefined;
                         };
                         select: {
-                            exist?: undefined;
+                            $action: string;
+                            exist: string[];
                         };
                         response: {
                             kind: string;
@@ -4012,6 +7892,7 @@ declare class Config {
                             query?: undefined;
                         };
                         select: {
+                            $action: string;
                             exist: string[];
                         };
                         response: {
@@ -4075,66 +7956,7 @@ declare class Config {
                         };
                         select: {
                             exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example?: undefined;
-                            })[];
-                            params?: undefined;
-                        };
-                        select: {
-                            exist?: undefined;
+                            $action?: undefined;
                         };
                         response: {
                             kind: string;
@@ -4145,7 +7967,7 @@ declare class Config {
                 load: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -4157,9 +7979,7 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -4172,7 +7992,6 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
                         };
                         select: {
                             exist: string[];
@@ -4181,91 +8000,7 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
+                    }[];
                 };
                 patch: {
                     input: string;
@@ -4333,10 +8068,10 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
                         };
                         select: {
                             exist: string[];
+                            $action?: undefined;
                         };
                     } | {
                         kind: string;
@@ -4363,14 +8098,9 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
                         };
                         select: {
+                            $action: string;
                             exist: string[];
                         };
                     })[];
@@ -4403,9 +8133,445 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
                         };
                         select: {
+                            exist: string[];
+                            $action?: undefined;
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    } | {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    })[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        livedns_rrtype: {
+            fields: never[];
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {};
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        livedns_snapshot: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                };
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        livedns_tsig_key: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            $action: string;
                             exist: string[];
                         };
                         response: {
@@ -4446,6 +8612,7 @@ declare class Config {
                         };
                         select: {
                             exist: string[];
+                            $action?: undefined;
                         };
                         response: {
                             kind: string;
@@ -4455,7 +8622,7 @@ declare class Config {
                 };
             };
             relations: {
-                ancestors: string[][];
+                ancestors: never[];
             };
         };
         mailbox: {
@@ -4479,10 +8646,9 @@ declare class Config {
                 type: string;
                 req: boolean;
                 op: {
-                    patch: {
+                    update: {
                         type: string;
                     };
-                    load?: undefined;
                 };
                 format?: undefined;
             } | {
@@ -4492,42 +8658,7 @@ declare class Config {
                 req: boolean;
                 format: string;
                 op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                format: string;
-                req?: undefined;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    load: {
-                        type: string;
-                    };
-                    patch?: undefined;
-                };
-                format: string;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    load: {
-                        type: string;
-                    };
-                    patch?: undefined;
-                };
-                format?: undefined;
             })[];
-            id: {
-                field: string;
-                name: string;
-            };
             name: string;
             op: {
                 create: {
@@ -4545,7 +8676,11 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {};
+                        rename: {
+                            param: {
+                                email: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -4583,73 +8718,13 @@ declare class Config {
                         kind: string;
                         method: string;
                         orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            header?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
                         segments: {
                             lit: string;
                         }[];
                         parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
+                        rename: {
+                            param?: undefined;
                         };
-                        args: {
-                            header?: undefined;
-                            params?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -4666,37 +8741,6 @@ declare class Config {
                         };
                         select: {
                             $action?: undefined;
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            header?: undefined;
-                            params?: undefined;
-                        };
-                        select: {
-                            $action: string;
                             exist?: undefined;
                         };
                         response: {
@@ -4708,7 +8752,7 @@ declare class Config {
                 list: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -4752,106 +8796,17 @@ declare class Config {
                                 field?: undefined;
                             })[];
                         };
-                        select: {
-                            $action?: undefined;
-                        };
+                        select: {};
                         response: {
                             kind: string;
                             media: string;
                         };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                                field?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: string;
-                                field?: undefined;
-                            })[];
-                        };
-                        select: {
-                            $action: string;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
+                    }[];
                 };
                 load: {
                     input: string;
                     name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -4894,9 +8849,53 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
                 };
-                patch: {
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                email: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
                     input: string;
                     name: string;
                     points: {
@@ -4934,10 +8933,31 @@ declare class Config {
                         };
                     }[];
                 };
-                remove: {
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        mailbox_domain: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                format: string;
+                req?: undefined;
+            })[];
+            name: string;
+            op: {
+                create: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -4949,11 +8969,7 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {
-                            param: {
-                                email: string;
-                            };
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -4966,56 +8982,56 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
                         };
                         select: {
-                            exist: string[];
-                        };
-                        response?: undefined;
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query?: undefined;
-                        };
-                        select: {
+                            $action: string;
                             exist: string[];
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
                 };
-                update: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
                     input: string;
                     name: string;
                     points: {
@@ -5058,11 +9074,84 @@ declare class Config {
                 ancestors: string[][];
             };
         };
-        nt: {
-            fields: never[];
+        mailbox_forward: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
             name: string;
             op: {
-                load: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {};
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
                     input: string;
                     name: string;
                     points: {
@@ -5078,6 +9167,293 @@ declare class Config {
                         })[];
                         parts: string[];
                         rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        mailbox_product: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            })[];
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        mailbox_quota: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                            }[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        mailbox_slot: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                format: string;
+                req?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                format?: undefined;
+            })[];
+            name: string;
+            op: {
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                field?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                slot_id: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -5117,7 +9493,6 @@ declare class Config {
                     };
                     list?: undefined;
                     create?: undefined;
-                    load?: undefined;
                 };
             } | {
                 name: string;
@@ -5130,7 +9505,6 @@ declare class Config {
                     };
                     update?: undefined;
                     create?: undefined;
-                    load?: undefined;
                 };
             } | {
                 name: string;
@@ -5146,7 +9520,6 @@ declare class Config {
                         type: string;
                     };
                     list?: undefined;
-                    load?: undefined;
                 };
             } | {
                 name: string;
@@ -5161,7 +9534,6 @@ declare class Config {
                         type: string;
                     };
                     create?: undefined;
-                    load?: undefined;
                 };
             } | {
                 name: string;
@@ -5186,7 +9558,6 @@ declare class Config {
                     };
                     update?: undefined;
                     list?: undefined;
-                    load?: undefined;
                 };
                 req?: undefined;
             } | {
@@ -5205,22 +9576,7 @@ declare class Config {
                     update: {
                         type: string;
                     };
-                    load?: undefined;
                 };
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    load: {
-                        req: boolean;
-                        type: string;
-                    };
-                    update?: undefined;
-                    list?: undefined;
-                    create?: undefined;
-                };
-                req?: undefined;
             })[];
             id: {
                 field: string;
@@ -5288,32 +9644,6 @@ declare class Config {
                             params?: undefined;
                         };
                         select: {
-                            $action: string;
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params?: undefined;
-                        };
-                        select: {
                             $action?: undefined;
                             exist?: undefined;
                         };
@@ -5326,7 +9656,54 @@ declare class Config {
                 list: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field: boolean;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                                field?: undefined;
+                            })[];
+                        };
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -5343,6 +9720,210 @@ declare class Config {
                                 org_id: string;
                             };
                         };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                org_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                org_id: string;
+                            };
+                        };
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        organization_customer: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    update: {
+                        type: string;
+                    };
+                    create?: undefined;
+                };
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                op: {
+                    create: {
+                        req: boolean;
+                        type: string;
+                    };
+                    update?: undefined;
+                };
+                req?: undefined;
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+                list: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -5386,367 +9967,18 @@ declare class Config {
                             })[];
                         };
                         select: {
-                            $action: string;
                             exist: string[];
                         };
                         response: {
                             kind: string;
                             media: string;
                         };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: string;
-                                field?: undefined;
-                            })[];
-                            params?: undefined;
-                        };
-                        select: {
-                            $action?: undefined;
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
+                    }[];
                 };
                 load: {
                     input: string;
                     name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                org_id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
-                };
-                remove: {
-                    input: string;
-                    name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                org_id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                    })[];
-                };
-                update: {
-                    input: string;
-                    name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param?: undefined;
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {
-                            param: {
-                                org_id: string;
-                            };
-                        };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
-                };
-            };
-            relations: {
-                ancestors: never[];
-            };
-        };
-        template: {
-            fields: ({
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                    };
-                    update: {
-                        type: string;
-                    };
-                };
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    update: {
-                        type: string;
-                    };
-                    create?: undefined;
-                };
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req?: undefined;
-                op?: undefined;
-            })[];
-            id: {
-                field: string;
-                name: string;
-            };
-            name: string;
-            op: {
-                create: {
-                    input: string;
-                    name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -5771,7 +10003,6 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            query?: undefined;
                         };
                         select: {
                             exist: string[];
@@ -5780,7 +10011,127 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
-                    } | {
+                    }[];
+                };
+                remove: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                    }[];
+                };
+                update: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        template: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    create: {
+                        type: string;
+                    };
+                    update: {
+                        type: string;
+                    };
+                };
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+                op: {
+                    update: {
+                        type: string;
+                    };
+                    create?: undefined;
+                };
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                create: {
+                    input: string;
+                    name: string;
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -5800,16 +10151,13 @@ declare class Config {
                                 type: string;
                                 kind: string;
                             }[];
-                            params?: undefined;
                         };
-                        select: {
-                            exist?: undefined;
-                        };
+                        select: {};
                         response: {
                             kind: string;
                             media: string;
                         };
-                    })[];
+                    }[];
                 };
                 list: {
                     input: string;
@@ -5960,88 +10308,17 @@ declare class Config {
                 ancestors: never[];
             };
         };
-        web_hosting: {
+        template_dispatch: {
             fields: ({
                 name: string;
                 title: string;
                 type: string;
                 req: boolean;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                        req?: undefined;
-                    };
-                    update?: undefined;
-                };
-                format?: undefined;
             } | {
                 name: string;
                 title: string;
                 type: string;
                 req?: undefined;
-                op?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                format: string;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    create: {
-                        req: boolean;
-                        type: string;
-                    };
-                    update?: undefined;
-                };
-                req?: undefined;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                        req?: undefined;
-                    };
-                    update: {
-                        type: string;
-                    };
-                };
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                format: string;
-                req?: undefined;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                req: boolean;
-                op: {
-                    update: {
-                        type: string;
-                    };
-                    create?: undefined;
-                };
-                format?: undefined;
             })[];
             id: {
                 field: string;
@@ -6052,7 +10329,7 @@ declare class Config {
                 create: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
@@ -6064,7 +10341,11 @@ declare class Config {
                             lit?: undefined;
                         })[];
                         parts: string[];
-                        rename: {};
+                        rename: {
+                            param: {
+                                id: string;
+                            };
+                        };
                         transform: {
                             req: string;
                             res: string;
@@ -6077,148 +10358,6 @@ declare class Config {
                                 kind: string;
                                 reqd: boolean;
                             }[];
-                            header?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            header?: undefined;
-                            query?: undefined;
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            header: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            query: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                            }[];
-                            params?: undefined;
-                        };
-                        select: {
-                            $action?: undefined;
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
-                };
-                list: {
-                    input: string;
-                    name: string;
-                    points: ({
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                reqd: boolean;
-                            }[];
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                                field?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: string;
-                                field?: undefined;
-                            })[];
                         };
                         select: {
                             exist: string[];
@@ -6227,59 +10366,7 @@ declare class Config {
                             kind: string;
                             media: string;
                         };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            query: ({
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field: boolean;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: number;
-                                field?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                field?: undefined;
-                                example?: undefined;
-                            } | {
-                                name: string;
-                                orig: string;
-                                type: string;
-                                kind: string;
-                                example: string;
-                                field?: undefined;
-                            })[];
-                            params?: undefined;
-                        };
-                        select: {
-                            exist?: undefined;
-                        };
-                        response: {
-                            kind: string;
-                            media: string;
-                        };
-                    })[];
+                    }[];
                 };
                 load: {
                     input: string;
@@ -6319,20 +10406,30 @@ declare class Config {
                         };
                     }[];
                 };
-                remove: {
+            };
+            relations: {
+                ancestors: string[][];
+            };
+        };
+        tld: {
+            fields: {
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            }[];
+            name: string;
+            op: {
+                list: {
                     input: string;
                     name: string;
-                    points: ({
+                    points: {
                         kind: string;
                         method: string;
                         orig: string;
-                        segments: ({
+                        segments: {
                             lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
+                        }[];
                         parts: string[];
                         rename: {};
                         transform: {
@@ -6340,51 +10437,37 @@ declare class Config {
                             res: string;
                         };
                         args: {
-                            params: {
+                            query: ({
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
-                                reqd: boolean;
-                            }[];
-                        };
-                        select: {
-                            exist: string[];
-                            $action?: undefined;
-                        };
-                    } | {
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        parts: string[];
-                        rename: {};
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        args: {
-                            params: {
+                                field: boolean;
+                                example?: undefined;
+                            } | {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
-                                reqd: boolean;
-                            }[];
+                                example: number;
+                                field?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                field?: undefined;
+                                example?: undefined;
+                            })[];
                         };
-                        select: {
-                            $action: string;
-                            exist: string[];
+                        select: {};
+                        response: {
+                            kind: string;
+                            media: string;
                         };
-                    })[];
+                    }[];
                 };
-                update: {
+                load: {
                     input: string;
                     name: string;
                     points: {
@@ -6416,6 +10499,53 @@ declare class Config {
                         select: {
                             exist: string[];
                         };
+                        response: {
+                            kind: string;
+                            media: string;
+                        };
+                    }[];
+                };
+            };
+            relations: {
+                ancestors: never[];
+            };
+        };
+        user: {
+            fields: ({
+                name: string;
+                title: string;
+                type: string;
+                req: boolean;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+            })[];
+            id: {
+                field: string;
+                name: string;
+            };
+            name: string;
+            op: {
+                load: {
+                    input: string;
+                    name: string;
+                    points: {
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
+                        args: {};
+                        select: {};
                         response: {
                             kind: string;
                             media: string;

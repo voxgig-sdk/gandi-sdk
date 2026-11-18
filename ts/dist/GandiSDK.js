@@ -35,19 +35,66 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SDK = exports.GandiSDK = exports.GandiEntityBase = exports.BaseFeature = exports.sekreto = exports.config = exports.stdutil = void 0;
-const AcmeEntity_1 = require("./entity/AcmeEntity");
-const BillingEntity_1 = require("./entity/BillingEntity");
-const CertificateEntity_1 = require("./entity/CertificateEntity");
+const AccessTokenEntity_1 = require("./entity/AccessTokenEntity");
+const AcmeAccountEntity_1 = require("./entity/AcmeAccountEntity");
+const AcmeDomainEntity_1 = require("./entity/AcmeDomainEntity");
+const AcmePriceEntity_1 = require("./entity/AcmePriceEntity");
+const AcmeSubscriptionEntity_1 = require("./entity/AcmeSubscriptionEntity");
+const BillingInfoEntity_1 = require("./entity/BillingInfoEntity");
+const BillingPriceEntity_1 = require("./entity/BillingPriceEntity");
+const CertificateDcvEntity_1 = require("./entity/CertificateDcvEntity");
+const CertificatePackageEntity_1 = require("./entity/CertificatePackageEntity");
+const CertificatePemEntity_1 = require("./entity/CertificatePemEntity");
+const CertificateRenewalEntity_1 = require("./entity/CertificateRenewalEntity");
+const CertificateTagEntity_1 = require("./entity/CertificateTagEntity");
 const CommentEntity_1 = require("./entity/CommentEntity");
 const DomainEntity_1 = require("./entity/DomainEntity");
-const EmailEntity_1 = require("./entity/EmailEntity");
+const DomainAvailabilityEntity_1 = require("./entity/DomainAvailabilityEntity");
+const DomainChangeOwnerEntity_1 = require("./entity/DomainChangeOwnerEntity");
+const DomainClaimEntity_1 = require("./entity/DomainClaimEntity");
+const DomainContactEntity_1 = require("./entity/DomainContactEntity");
+const DomainDnskeyEntity_1 = require("./entity/DomainDnskeyEntity");
+const DomainDnssecEntity_1 = require("./entity/DomainDnssecEntity");
+const DomainHostEntity_1 = require("./entity/DomainHostEntity");
+const DomainLivednsEntity_1 = require("./entity/DomainLivednsEntity");
+const DomainNameserverEntity_1 = require("./entity/DomainNameserverEntity");
+const DomainTagEntity_1 = require("./entity/DomainTagEntity");
+const DomainTransferEntity_1 = require("./entity/DomainTransferEntity");
+const DomainWebredirEntity_1 = require("./entity/DomainWebredirEntity");
+const EmailForwardEntity_1 = require("./entity/EmailForwardEntity");
+const EmailMailboxEntity_1 = require("./entity/EmailMailboxEntity");
+const EmailMigrationEntity_1 = require("./entity/EmailMigrationEntity");
+const EmailOfferEntity_1 = require("./entity/EmailOfferEntity");
+const EmailSlotEntity_1 = require("./entity/EmailSlotEntity");
+const HostingApplicationEntity_1 = require("./entity/HostingApplicationEntity");
+const HostingInstanceEntity_1 = require("./entity/HostingInstanceEntity");
+const HostingVhostEntity_1 = require("./entity/HostingVhostEntity");
+const IssuedCertificateEntity_1 = require("./entity/IssuedCertificateEntity");
 const LinkedZoneEntity_1 = require("./entity/LinkedZoneEntity");
-const LiveDnEntity_1 = require("./entity/LiveDnEntity");
+const LinkedZoneDeploymentEntity_1 = require("./entity/LinkedZoneDeploymentEntity");
+const LinkedZoneDomainEntity_1 = require("./entity/LinkedZoneDomainEntity");
+const LinkedZoneTaskEntity_1 = require("./entity/LinkedZoneTaskEntity");
+const LivednsAxfrSlaveEntity_1 = require("./entity/LivednsAxfrSlaveEntity");
+const LivednsAxfrTsigEntity_1 = require("./entity/LivednsAxfrTsigEntity");
+const LivednsDomainEntity_1 = require("./entity/LivednsDomainEntity");
+const LivednsKeyEntity_1 = require("./entity/LivednsKeyEntity");
+const LivednsNameserverEntity_1 = require("./entity/LivednsNameserverEntity");
+const LivednsRecordEntity_1 = require("./entity/LivednsRecordEntity");
+const LivednsRrtypeEntity_1 = require("./entity/LivednsRrtypeEntity");
+const LivednsSnapshotEntity_1 = require("./entity/LivednsSnapshotEntity");
+const LivednsTsigKeyEntity_1 = require("./entity/LivednsTsigKeyEntity");
 const MailboxEntity_1 = require("./entity/MailboxEntity");
-const NtEntity_1 = require("./entity/NtEntity");
+const MailboxDomainEntity_1 = require("./entity/MailboxDomainEntity");
+const MailboxForwardEntity_1 = require("./entity/MailboxForwardEntity");
+const MailboxProductEntity_1 = require("./entity/MailboxProductEntity");
+const MailboxQuotaEntity_1 = require("./entity/MailboxQuotaEntity");
+const MailboxSlotEntity_1 = require("./entity/MailboxSlotEntity");
 const OrganizationEntity_1 = require("./entity/OrganizationEntity");
+const OrganizationCustomerEntity_1 = require("./entity/OrganizationCustomerEntity");
 const TemplateEntity_1 = require("./entity/TemplateEntity");
-const WebHostingEntity_1 = require("./entity/WebHostingEntity");
+const TemplateDispatchEntity_1 = require("./entity/TemplateDispatchEntity");
+const TldEntity_1 = require("./entity/TldEntity");
+const UserEntity_1 = require("./entity/UserEntity");
 const node_util_1 = require("node:util");
 const Config_1 = require("./Config");
 Object.defineProperty(exports, "config", { enumerable: true, get: function () { return Config_1.config; } });
@@ -303,26 +350,89 @@ class GandiSDK {
         }
         return res;
     }
-    // Entity access: `client.Acme().list()` / `client.Acme().load({ id })`.
+    // Entity access: `client.AccessToken().list()` / `client.AccessToken().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Acme(entopts) {
+    AccessToken(entopts) {
         const self = this;
-        return new AcmeEntity_1.AcmeEntity(self, entopts);
+        return new AccessTokenEntity_1.AccessTokenEntity(self, entopts);
     }
-    // Entity access: `client.Billing().list()` / `client.Billing().load({ id })`.
+    // Entity access: `client.AcmeAccount().list()` / `client.AcmeAccount().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Billing(entopts) {
+    AcmeAccount(entopts) {
         const self = this;
-        return new BillingEntity_1.BillingEntity(self, entopts);
+        return new AcmeAccountEntity_1.AcmeAccountEntity(self, entopts);
     }
-    // Entity access: `client.Certificate().list()` / `client.Certificate().load({ id })`.
+    // Entity access: `client.AcmeDomain().list()` / `client.AcmeDomain().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Certificate(entopts) {
+    AcmeDomain(entopts) {
         const self = this;
-        return new CertificateEntity_1.CertificateEntity(self, entopts);
+        return new AcmeDomainEntity_1.AcmeDomainEntity(self, entopts);
+    }
+    // Entity access: `client.AcmePrice().list()` / `client.AcmePrice().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    AcmePrice(entopts) {
+        const self = this;
+        return new AcmePriceEntity_1.AcmePriceEntity(self, entopts);
+    }
+    // Entity access: `client.AcmeSubscription().list()` / `client.AcmeSubscription().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    AcmeSubscription(entopts) {
+        const self = this;
+        return new AcmeSubscriptionEntity_1.AcmeSubscriptionEntity(self, entopts);
+    }
+    // Entity access: `client.BillingInfo().list()` / `client.BillingInfo().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    BillingInfo(entopts) {
+        const self = this;
+        return new BillingInfoEntity_1.BillingInfoEntity(self, entopts);
+    }
+    // Entity access: `client.BillingPrice().list()` / `client.BillingPrice().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    BillingPrice(entopts) {
+        const self = this;
+        return new BillingPriceEntity_1.BillingPriceEntity(self, entopts);
+    }
+    // Entity access: `client.CertificateDcv().list()` / `client.CertificateDcv().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    CertificateDcv(entopts) {
+        const self = this;
+        return new CertificateDcvEntity_1.CertificateDcvEntity(self, entopts);
+    }
+    // Entity access: `client.CertificatePackage().list()` / `client.CertificatePackage().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    CertificatePackage(entopts) {
+        const self = this;
+        return new CertificatePackageEntity_1.CertificatePackageEntity(self, entopts);
+    }
+    // Entity access: `client.CertificatePem().list()` / `client.CertificatePem().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    CertificatePem(entopts) {
+        const self = this;
+        return new CertificatePemEntity_1.CertificatePemEntity(self, entopts);
+    }
+    // Entity access: `client.CertificateRenewal().list()` / `client.CertificateRenewal().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    CertificateRenewal(entopts) {
+        const self = this;
+        return new CertificateRenewalEntity_1.CertificateRenewalEntity(self, entopts);
+    }
+    // Entity access: `client.CertificateTag().list()` / `client.CertificateTag().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    CertificateTag(entopts) {
+        const self = this;
+        return new CertificateTagEntity_1.CertificateTagEntity(self, entopts);
     }
     // Entity access: `client.Comment().list()` / `client.Comment().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -338,12 +448,152 @@ class GandiSDK {
         const self = this;
         return new DomainEntity_1.DomainEntity(self, entopts);
     }
-    // Entity access: `client.Email().list()` / `client.Email().load({ id })`.
+    // Entity access: `client.DomainAvailability().list()` / `client.DomainAvailability().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Email(entopts) {
+    DomainAvailability(entopts) {
         const self = this;
-        return new EmailEntity_1.EmailEntity(self, entopts);
+        return new DomainAvailabilityEntity_1.DomainAvailabilityEntity(self, entopts);
+    }
+    // Entity access: `client.DomainChangeOwner().list()` / `client.DomainChangeOwner().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainChangeOwner(entopts) {
+        const self = this;
+        return new DomainChangeOwnerEntity_1.DomainChangeOwnerEntity(self, entopts);
+    }
+    // Entity access: `client.DomainClaim().list()` / `client.DomainClaim().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainClaim(entopts) {
+        const self = this;
+        return new DomainClaimEntity_1.DomainClaimEntity(self, entopts);
+    }
+    // Entity access: `client.DomainContact().list()` / `client.DomainContact().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainContact(entopts) {
+        const self = this;
+        return new DomainContactEntity_1.DomainContactEntity(self, entopts);
+    }
+    // Entity access: `client.DomainDnskey().list()` / `client.DomainDnskey().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainDnskey(entopts) {
+        const self = this;
+        return new DomainDnskeyEntity_1.DomainDnskeyEntity(self, entopts);
+    }
+    // Entity access: `client.DomainDnssec().list()` / `client.DomainDnssec().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainDnssec(entopts) {
+        const self = this;
+        return new DomainDnssecEntity_1.DomainDnssecEntity(self, entopts);
+    }
+    // Entity access: `client.DomainHost().list()` / `client.DomainHost().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainHost(entopts) {
+        const self = this;
+        return new DomainHostEntity_1.DomainHostEntity(self, entopts);
+    }
+    // Entity access: `client.DomainLivedns().list()` / `client.DomainLivedns().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainLivedns(entopts) {
+        const self = this;
+        return new DomainLivednsEntity_1.DomainLivednsEntity(self, entopts);
+    }
+    // Entity access: `client.DomainNameserver().list()` / `client.DomainNameserver().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainNameserver(entopts) {
+        const self = this;
+        return new DomainNameserverEntity_1.DomainNameserverEntity(self, entopts);
+    }
+    // Entity access: `client.DomainTag().list()` / `client.DomainTag().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainTag(entopts) {
+        const self = this;
+        return new DomainTagEntity_1.DomainTagEntity(self, entopts);
+    }
+    // Entity access: `client.DomainTransfer().list()` / `client.DomainTransfer().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainTransfer(entopts) {
+        const self = this;
+        return new DomainTransferEntity_1.DomainTransferEntity(self, entopts);
+    }
+    // Entity access: `client.DomainWebredir().list()` / `client.DomainWebredir().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    DomainWebredir(entopts) {
+        const self = this;
+        return new DomainWebredirEntity_1.DomainWebredirEntity(self, entopts);
+    }
+    // Entity access: `client.EmailForward().list()` / `client.EmailForward().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    EmailForward(entopts) {
+        const self = this;
+        return new EmailForwardEntity_1.EmailForwardEntity(self, entopts);
+    }
+    // Entity access: `client.EmailMailbox().list()` / `client.EmailMailbox().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    EmailMailbox(entopts) {
+        const self = this;
+        return new EmailMailboxEntity_1.EmailMailboxEntity(self, entopts);
+    }
+    // Entity access: `client.EmailMigration().list()` / `client.EmailMigration().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    EmailMigration(entopts) {
+        const self = this;
+        return new EmailMigrationEntity_1.EmailMigrationEntity(self, entopts);
+    }
+    // Entity access: `client.EmailOffer().list()` / `client.EmailOffer().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    EmailOffer(entopts) {
+        const self = this;
+        return new EmailOfferEntity_1.EmailOfferEntity(self, entopts);
+    }
+    // Entity access: `client.EmailSlot().list()` / `client.EmailSlot().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    EmailSlot(entopts) {
+        const self = this;
+        return new EmailSlotEntity_1.EmailSlotEntity(self, entopts);
+    }
+    // Entity access: `client.HostingApplication().list()` / `client.HostingApplication().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    HostingApplication(entopts) {
+        const self = this;
+        return new HostingApplicationEntity_1.HostingApplicationEntity(self, entopts);
+    }
+    // Entity access: `client.HostingInstance().list()` / `client.HostingInstance().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    HostingInstance(entopts) {
+        const self = this;
+        return new HostingInstanceEntity_1.HostingInstanceEntity(self, entopts);
+    }
+    // Entity access: `client.HostingVhost().list()` / `client.HostingVhost().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    HostingVhost(entopts) {
+        const self = this;
+        return new HostingVhostEntity_1.HostingVhostEntity(self, entopts);
+    }
+    // Entity access: `client.IssuedCertificate().list()` / `client.IssuedCertificate().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    IssuedCertificate(entopts) {
+        const self = this;
+        return new IssuedCertificateEntity_1.IssuedCertificateEntity(self, entopts);
     }
     // Entity access: `client.LinkedZone().list()` / `client.LinkedZone().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -352,12 +602,89 @@ class GandiSDK {
         const self = this;
         return new LinkedZoneEntity_1.LinkedZoneEntity(self, entopts);
     }
-    // Entity access: `client.LiveDn().list()` / `client.LiveDn().load({ id })`.
+    // Entity access: `client.LinkedZoneDeployment().list()` / `client.LinkedZoneDeployment().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    LiveDn(entopts) {
+    LinkedZoneDeployment(entopts) {
         const self = this;
-        return new LiveDnEntity_1.LiveDnEntity(self, entopts);
+        return new LinkedZoneDeploymentEntity_1.LinkedZoneDeploymentEntity(self, entopts);
+    }
+    // Entity access: `client.LinkedZoneDomain().list()` / `client.LinkedZoneDomain().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LinkedZoneDomain(entopts) {
+        const self = this;
+        return new LinkedZoneDomainEntity_1.LinkedZoneDomainEntity(self, entopts);
+    }
+    // Entity access: `client.LinkedZoneTask().list()` / `client.LinkedZoneTask().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LinkedZoneTask(entopts) {
+        const self = this;
+        return new LinkedZoneTaskEntity_1.LinkedZoneTaskEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsAxfrSlave().list()` / `client.LivednsAxfrSlave().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsAxfrSlave(entopts) {
+        const self = this;
+        return new LivednsAxfrSlaveEntity_1.LivednsAxfrSlaveEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsAxfrTsig().list()` / `client.LivednsAxfrTsig().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsAxfrTsig(entopts) {
+        const self = this;
+        return new LivednsAxfrTsigEntity_1.LivednsAxfrTsigEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsDomain().list()` / `client.LivednsDomain().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsDomain(entopts) {
+        const self = this;
+        return new LivednsDomainEntity_1.LivednsDomainEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsKey().list()` / `client.LivednsKey().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsKey(entopts) {
+        const self = this;
+        return new LivednsKeyEntity_1.LivednsKeyEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsNameserver().list()` / `client.LivednsNameserver().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsNameserver(entopts) {
+        const self = this;
+        return new LivednsNameserverEntity_1.LivednsNameserverEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsRecord().list()` / `client.LivednsRecord().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsRecord(entopts) {
+        const self = this;
+        return new LivednsRecordEntity_1.LivednsRecordEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsRrtype().list()` / `client.LivednsRrtype().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsRrtype(entopts) {
+        const self = this;
+        return new LivednsRrtypeEntity_1.LivednsRrtypeEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsSnapshot().list()` / `client.LivednsSnapshot().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsSnapshot(entopts) {
+        const self = this;
+        return new LivednsSnapshotEntity_1.LivednsSnapshotEntity(self, entopts);
+    }
+    // Entity access: `client.LivednsTsigKey().list()` / `client.LivednsTsigKey().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    LivednsTsigKey(entopts) {
+        const self = this;
+        return new LivednsTsigKeyEntity_1.LivednsTsigKeyEntity(self, entopts);
     }
     // Entity access: `client.Mailbox().list()` / `client.Mailbox().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -366,12 +693,40 @@ class GandiSDK {
         const self = this;
         return new MailboxEntity_1.MailboxEntity(self, entopts);
     }
-    // Entity access: `client.Nt().list()` / `client.Nt().load({ id })`.
+    // Entity access: `client.MailboxDomain().list()` / `client.MailboxDomain().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Nt(entopts) {
+    MailboxDomain(entopts) {
         const self = this;
-        return new NtEntity_1.NtEntity(self, entopts);
+        return new MailboxDomainEntity_1.MailboxDomainEntity(self, entopts);
+    }
+    // Entity access: `client.MailboxForward().list()` / `client.MailboxForward().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    MailboxForward(entopts) {
+        const self = this;
+        return new MailboxForwardEntity_1.MailboxForwardEntity(self, entopts);
+    }
+    // Entity access: `client.MailboxProduct().list()` / `client.MailboxProduct().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    MailboxProduct(entopts) {
+        const self = this;
+        return new MailboxProductEntity_1.MailboxProductEntity(self, entopts);
+    }
+    // Entity access: `client.MailboxQuota().list()` / `client.MailboxQuota().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    MailboxQuota(entopts) {
+        const self = this;
+        return new MailboxQuotaEntity_1.MailboxQuotaEntity(self, entopts);
+    }
+    // Entity access: `client.MailboxSlot().list()` / `client.MailboxSlot().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    MailboxSlot(entopts) {
+        const self = this;
+        return new MailboxSlotEntity_1.MailboxSlotEntity(self, entopts);
     }
     // Entity access: `client.Organization().list()` / `client.Organization().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -380,6 +735,13 @@ class GandiSDK {
         const self = this;
         return new OrganizationEntity_1.OrganizationEntity(self, entopts);
     }
+    // Entity access: `client.OrganizationCustomer().list()` / `client.OrganizationCustomer().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    OrganizationCustomer(entopts) {
+        const self = this;
+        return new OrganizationCustomerEntity_1.OrganizationCustomerEntity(self, entopts);
+    }
     // Entity access: `client.Template().list()` / `client.Template().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
@@ -387,12 +749,26 @@ class GandiSDK {
         const self = this;
         return new TemplateEntity_1.TemplateEntity(self, entopts);
     }
-    // Entity access: `client.WebHosting().list()` / `client.WebHosting().load({ id })`.
+    // Entity access: `client.TemplateDispatch().list()` / `client.TemplateDispatch().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    WebHosting(entopts) {
+    TemplateDispatch(entopts) {
         const self = this;
-        return new WebHostingEntity_1.WebHostingEntity(self, entopts);
+        return new TemplateDispatchEntity_1.TemplateDispatchEntity(self, entopts);
+    }
+    // Entity access: `client.Tld().list()` / `client.Tld().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    Tld(entopts) {
+        const self = this;
+        return new TldEntity_1.TldEntity(self, entopts);
+    }
+    // Entity access: `client.User().list()` / `client.User().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    User(entopts) {
+        const self = this;
+        return new UserEntity_1.UserEntity(self, entopts);
     }
     static test(testoptsarg, sdkoptsarg) {
         const struct = stdutil.struct;

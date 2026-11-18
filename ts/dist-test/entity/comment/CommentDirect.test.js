@@ -29,24 +29,19 @@ const utility_1 = require("../../utility");
         const setup = directSetup({ id: 'direct01' });
         if ((0, utility_1.maybeSkipControl)(t, 'direct', 'direct-load-comment', setup.live))
             return;
-        if (setup.live && 'TRUE' === process.env.VOXGIG_GETONLY_GUARD && null == setup.idmap?.["comment01"]) {
-            console.log("LIVE STEP {\"id\":\"direct-load-comment\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs comment01, which only POST /comment/comments/{id} gives\"}");
-            t.skip("Live coverage incomplete: direct-load-comment excluded (GET-only live run: needs comment01, which only POST /comment/comments/{id} gives)");
-            return;
-        }
-        if ((0, utility_1.skipIfMissingIds)(t, setup, ["comment01"], LIVE_STRICT))
+        if ((0, utility_1.skipIfMissingIds)(t, setup, ["entity01"], LIVE_STRICT))
             return;
         const { client, calls } = setup;
         const params = {};
         const query = {};
         if (setup.live) {
-            params.id = setup.idmap['comment01'];
+            params.entity_id = setup.idmap['entity01'];
         }
         else {
-            params.id = 'direct01';
+            params.entity_id = 'direct01';
         }
         const result = await client.direct({
-            path: 'comment/comments/{id}',
+            path: 'comment/comments/{entity_id}',
             method: 'GET',
             params,
             query,

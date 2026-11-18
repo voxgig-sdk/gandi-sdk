@@ -58,7 +58,7 @@ const utility_1 = require("../../utility");
             params.id = 'direct01';
         }
         const result = await client.direct({
-            path: 'template/dispatch/{id}',
+            path: 'template/templates/{id}',
             method: 'GET',
             params,
             query,
