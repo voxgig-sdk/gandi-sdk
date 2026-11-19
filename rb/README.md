@@ -3723,14 +3723,6 @@ mailbox_domains = client.MailboxDomain.list
 mailbox_domains.each { |item| puts item.data_get }
 ```
 
-#### Example: Create
-
-```ruby
-mailbox_domain = client.MailboxDomain.create({
-  "domain" => "example_domain", # String
-})
-```
-
 
 ### MailboxForward
 

@@ -65,6 +65,9 @@ Resetting a domain's authorization code is `$action: 'authinfo'` on a `Domain` u
 a parameter out: every record of one name is `$action: 'name'` on `LivednsRecord`, renewing
 every mailbox of a domain in the Email API is `$action: 'renew_all'`, and replacing or deleting
 every record of a zone is `LivednsZone().update()` or `.remove()`, an entity of its own.
+An operation that is only an action needs the action too: checking a mail domain's DNS is
+`MailboxDomain().create({ domain, $action: 'validate' })`, and the same call without
+`$action` is refused rather than sent.
 
 **Scope.** Every one of the 221 operations in the twelve sections of Gandi's v5 documentation
 is here, as 61 entities named after Gandi's own resources. The Email API, which Gandi marks

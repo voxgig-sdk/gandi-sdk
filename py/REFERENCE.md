@@ -4701,12 +4701,6 @@ mailbox_domain = client.MailboxDomain()
 
 Create a new entity with the given data. Returns the created entity and raises on error.
 
-```python
-result = client.MailboxDomain().create({
-    "domain": "example_domain",  # str
-})
-```
-
 #### `list(reqmatch=None, ctrl=None) -> list[MailboxDomainEntity]`
 
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.

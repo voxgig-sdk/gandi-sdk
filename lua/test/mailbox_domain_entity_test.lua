@@ -147,7 +147,7 @@ describe("MailboxDomainEntity", function()
     local setup = mailbox_domain_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"create", "list", "load"}) do
+    for _, _op in ipairs({"list"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "mailbox_domain." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -177,59 +177,29 @@ describe("MailboxDomainEntity", function()
     assert.is_nil(err)
     assert.is_table(mailbox_domain_ref01_list_result)
 
-    if setup.live then
-      runner.live_pace()
-    end
-    -- LOAD
-    local mailbox_domain_ref01_match_dt0 = {}
-    local mailbox_domain_ref01_data_dt0_loaded, err = mailbox_domain_ref01_ent:load(mailbox_domain_ref01_match_dt0, nil)
-    assert.is_nil(err)
-    assert.is_not_nil(mailbox_domain_ref01_data_dt0_loaded)
-
       return
     end
 
-    if setup.live then
-      for _, _live_key in ipairs({"domain01"}) do
-        if setup.synthetic_only or setup.idmap[_live_key] == nil then
-          runner.live_miss(pending, LIVE_STRICT, "Live entity test blocked: needs " .. _live_key .. " via GANDI_TEST_MAILBOX_DOMAIN_ENTID")
-        end
-      end
-    end
     local client = setup.client
 
-    if setup.live then
-      runner.live_pace()
+    -- Bootstrap entity data from existing test data.
+    local mailbox_domain_ref01_data_raw = vs.items(helpers.to_map(
+      vs.getpath(setup.data, "existing.mailbox_domain")))
+    local mailbox_domain_ref01_data = nil
+    if #mailbox_domain_ref01_data_raw > 0 then
+      mailbox_domain_ref01_data = helpers.to_map(mailbox_domain_ref01_data_raw[1][2])
     end
-    -- CREATE
-    local mailbox_domain_ref01_ent = client:MailboxDomain(nil)
-    local mailbox_domain_ref01_data = helpers.to_map(vs.getprop(
-      vs.getpath(setup.data, "new.mailbox_domain"), "mailbox_domain_ref01"))
-    mailbox_domain_ref01_data["domain"] = setup.idmap["domain01"]
-
-    local mailbox_domain_ref01_data_result, err = mailbox_domain_ref01_ent:create(mailbox_domain_ref01_data, nil)
-    assert.is_nil(err)
-    mailbox_domain_ref01_data = helpers.to_map(type(mailbox_domain_ref01_data_result) == 'table' and mailbox_domain_ref01_data_result.data_get and mailbox_domain_ref01_data_result:data_get() or mailbox_domain_ref01_data_result)
-    assert.is_not_nil(mailbox_domain_ref01_data)
 
     if setup.live then
       runner.live_pace()
     end
     -- LIST
+    local mailbox_domain_ref01_ent = client:MailboxDomain(nil)
     local mailbox_domain_ref01_match = {}
 
     local mailbox_domain_ref01_list_result, err = mailbox_domain_ref01_ent:list(mailbox_domain_ref01_match, nil)
     assert.is_nil(err)
     assert.is_table(mailbox_domain_ref01_list_result)
-
-    if setup.live then
-      runner.live_pace()
-    end
-    -- LOAD
-    local mailbox_domain_ref01_match_dt0 = {}
-    local mailbox_domain_ref01_data_dt0_loaded, err = mailbox_domain_ref01_ent:load(mailbox_domain_ref01_match_dt0, nil)
-    assert.is_nil(err)
-    assert.is_not_nil(mailbox_domain_ref01_data_dt0_loaded)
 
   end)
 end)

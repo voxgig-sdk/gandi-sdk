@@ -3617,14 +3617,6 @@ local mailbox_domain, err = client:MailboxDomain():load({ domain = "domain" })
 local mailbox_domains, err = client:MailboxDomain():list()
 ```
 
-#### Example: Create
-
-```lua
-local mailbox_domain, err = client:MailboxDomain():create({
-  domain = "example_domain", -- string
-})
-```
-
 
 ### MailboxForward
 

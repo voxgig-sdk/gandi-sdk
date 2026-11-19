@@ -5526,20 +5526,6 @@ if err != nil {
 fmt.Println(result.(sdk.Entity).Data())
 ```
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.MailboxDomain(nil).Create(map[string]any{
-    "domain": "example_domain",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
 ### Common Methods
 
 #### `Data(args ...any) any`

@@ -4692,12 +4692,6 @@ $mailbox_domain = $client->MailboxDomain();
 
 Create a new entity with the given data. Returns the created entity and throws on error.
 
-```php
-$result = $client->MailboxDomain()->create([
-  "domain" => null, // string
-]);
-```
-
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
 List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.

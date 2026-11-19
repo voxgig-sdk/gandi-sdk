@@ -4690,12 +4690,6 @@ local mailbox_domain = client:MailboxDomain(nil)
 
 Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
-```lua
-local result, err = client:MailboxDomain():create({
-  domain = --[[ string ]],
-})
-```
-
 #### `list(reqmatch, ctrl) -> any, err`
 
 List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.

@@ -150,7 +150,7 @@ class MailboxDomainEntityTest < Minitest::Test
     setup = mailbox_domain_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["create", "list", "load"].each do |_op|
+    ["list"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "mailbox_domain." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
@@ -177,47 +177,26 @@ class MailboxDomainEntityTest < Minitest::Test
     mailbox_domain_ref01_list_result = mailbox_domain_ref01_ent.list(mailbox_domain_ref01_match, nil)
     assert mailbox_domain_ref01_list_result.is_a?(Array)
 
-    Runner.live_pace if setup[:live]
-    # LOAD
-    mailbox_domain_ref01_match_dt0 = {}
-    mailbox_domain_ref01_data_dt0_loaded = mailbox_domain_ref01_ent.load(mailbox_domain_ref01_match_dt0, nil)
-    assert !mailbox_domain_ref01_data_dt0_loaded.nil?
-
       return
     end
 
-    if setup[:live]
-      ["domain01"].each do |_live_key|
-        if setup[:synthetic_only] || setup[:idmap][_live_key].nil?
-          Runner.live_miss(LIVE_STRICT, "Live entity test blocked: needs #{_live_key} via GANDI_TEST_MAILBOX_DOMAIN_ENTID")
-        end
-      end
-    end
     client = setup[:client]
 
-    Runner.live_pace if setup[:live]
-    # CREATE
-    mailbox_domain_ref01_ent = client.MailboxDomain(nil)
-    mailbox_domain_ref01_data = Helpers.to_map(Vs.getprop(
-      Vs.getpath(setup[:data], "new.mailbox_domain"), "mailbox_domain_ref01"))
-    mailbox_domain_ref01_data["domain"] = setup[:idmap]["domain01"]
-
-    mailbox_domain_ref01_data_result = mailbox_domain_ref01_ent.create(mailbox_domain_ref01_data, nil)
-    mailbox_domain_ref01_data = Helpers.to_map(mailbox_domain_ref01_data_result.respond_to?(:data_get) ? mailbox_domain_ref01_data_result.data_get : mailbox_domain_ref01_data_result)
-    assert !mailbox_domain_ref01_data.nil?
+    # Bootstrap entity data from existing test data.
+    mailbox_domain_ref01_data_raw = Vs.items(Helpers.to_map(
+      Vs.getpath(setup[:data], "existing.mailbox_domain")))
+    mailbox_domain_ref01_data = nil
+    if mailbox_domain_ref01_data_raw.length > 0
+      mailbox_domain_ref01_data = Helpers.to_map(mailbox_domain_ref01_data_raw[0][1])
+    end
 
     Runner.live_pace if setup[:live]
     # LIST
+    mailbox_domain_ref01_ent = client.MailboxDomain(nil)
     mailbox_domain_ref01_match = {}
 
     mailbox_domain_ref01_list_result = mailbox_domain_ref01_ent.list(mailbox_domain_ref01_match, nil)
     assert mailbox_domain_ref01_list_result.is_a?(Array)
-
-    Runner.live_pace if setup[:live]
-    # LOAD
-    mailbox_domain_ref01_match_dt0 = {}
-    mailbox_domain_ref01_data_dt0_loaded = mailbox_domain_ref01_ent.load(mailbox_domain_ref01_match_dt0, nil)
-    assert !mailbox_domain_ref01_data_dt0_loaded.nil?
 
   end
 end

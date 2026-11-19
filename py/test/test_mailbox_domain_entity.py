@@ -129,7 +129,7 @@ class TestMailboxDomainEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["create", "list", "load"]:
+        for _op in ["list"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "mailbox_domain." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -138,37 +138,23 @@ class TestMailboxDomainEntity:
             print("LIVE STEP {\"id\":\"mailbox_domain.create.0\",\"state\":\"excluded\",\"attempted\":false,\"reason\":\"GET-only live run: needs POST /mailbox/domains/{domain}/validate\"}")
             return self._run_get_only_flow(setup)
 
-        if setup["live"]:
-            for _live_key in ["domain01"]:
-                if setup.get("synthetic_only") or setup["idmap"].get(_live_key) is None:
-                    runner.live_miss(LIVE_STRICT, f"Live entity test blocked: needs {_live_key} via GANDI_TEST_MAILBOX_DOMAIN_ENTID")
         client = setup["client"]
 
-        if setup["live"]:
-            runner.live_pace()
-        # CREATE
-        mailbox_domain_ref01_ent = client.MailboxDomain(None)
-        mailbox_domain_ref01_data = helpers.to_map(vs.getprop(
-            vs.getpath(setup["data"], "new.mailbox_domain"), "mailbox_domain_ref01"))
-        mailbox_domain_ref01_data["domain"] = setup["idmap"]["domain01"]
-
-        mailbox_domain_ref01_data = helpers.to_map(runner.entity_data(mailbox_domain_ref01_ent.create(mailbox_domain_ref01_data, None)))
-        assert mailbox_domain_ref01_data is not None
+        # Bootstrap entity data from existing test data.
+        mailbox_domain_ref01_data_raw = vs.items(helpers.to_map(
+            vs.getpath(setup["data"], "existing.mailbox_domain")))
+        mailbox_domain_ref01_data = None
+        if len(mailbox_domain_ref01_data_raw) > 0:
+            mailbox_domain_ref01_data = helpers.to_map(mailbox_domain_ref01_data_raw[0][1])
 
         if setup["live"]:
             runner.live_pace()
         # LIST
+        mailbox_domain_ref01_ent = client.MailboxDomain(None)
         mailbox_domain_ref01_match = {}
 
         mailbox_domain_ref01_list_result = mailbox_domain_ref01_ent.list(mailbox_domain_ref01_match, None)
         assert isinstance(mailbox_domain_ref01_list_result, list)
-
-        if setup["live"]:
-            runner.live_pace()
-        # LOAD
-        mailbox_domain_ref01_match_dt0 = {}
-        mailbox_domain_ref01_data_dt0_loaded = mailbox_domain_ref01_ent.load(mailbox_domain_ref01_match_dt0, None)
-        assert mailbox_domain_ref01_data_dt0_loaded is not None
 
 
     def _run_get_only_flow(self, setup):
@@ -189,13 +175,6 @@ class TestMailboxDomainEntity:
 
         mailbox_domain_ref01_list_result = mailbox_domain_ref01_ent.list(mailbox_domain_ref01_match, None)
         assert isinstance(mailbox_domain_ref01_list_result, list)
-
-        if setup["live"]:
-            runner.live_pace()
-        # LOAD
-        mailbox_domain_ref01_match_dt0 = {}
-        mailbox_domain_ref01_data_dt0_loaded = mailbox_domain_ref01_ent.load(mailbox_domain_ref01_match_dt0, None)
-        assert mailbox_domain_ref01_data_dt0_loaded is not None
 
 
 

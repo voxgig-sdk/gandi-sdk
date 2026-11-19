@@ -137,41 +137,31 @@ if err != nil {
     panic(err)
 }
 fmt.Println(mailbox_domain)
-created, err := client.MailboxDomain(nil).Create(map[string]any{&quot;domain&quot;: &quot;example&quot;}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(created)
 </code></pre>
 <h3 id="lua">Lua</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
 <pre><code class="language-lua">local mailbox_domains, err = client:MailboxDomain():list()
 local mailbox_domain, err = client:MailboxDomain():load({ domain = &quot;example&quot; })
-local created, err = client:MailboxDomain():create({ domain = &quot;example&quot; })
 </code></pre>
 <h3 id="php">PHP</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
 <pre><code class="language-php">$mailbox_domains = $client-&gt;MailboxDomain()-&gt;list();
 $mailbox_domain = $client-&gt;MailboxDomain()-&gt;load([&quot;domain&quot; =&gt; &quot;example&quot;]);
-$created = $client-&gt;MailboxDomain()-&gt;create([&quot;domain&quot; =&gt; &quot;example&quot;]);
 </code></pre>
 <h3 id="python">Python</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
 <pre><code class="language-py">mailbox_domains = client.MailboxDomain().list()
 mailbox_domain = client.MailboxDomain().load({&quot;domain&quot;: &quot;example&quot;})
-created = client.MailboxDomain().create({ &quot;domain&quot;: &quot;example&quot; })
 </code></pre>
 <h3 id="ruby">Ruby</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/rb.html#set-up-the-client">Ruby setup</a>, then call the operations:</p>
 <pre><code class="language-rb">mailbox_domains = client.MailboxDomain.list()
 mailbox_domain = client.MailboxDomain.load({ &quot;domain&quot; =&gt; &quot;example&quot; })
-created = client.MailboxDomain.create({ &quot;domain&quot; =&gt; &quot;example&quot; })
 </code></pre>
 <h3 id="typescript">TypeScript</h3>
 <p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
 <pre><code class="language-ts">const mailbox_domains = await client.MailboxDomain().list()
 const mailbox_domain = await client.MailboxDomain().load({ domain: &quot;example&quot; })
-const created = await client.MailboxDomain().create({ domain: &quot;example&quot; })
 </code></pre>
 <h2 id="fields">Fields</h2>
 <table>

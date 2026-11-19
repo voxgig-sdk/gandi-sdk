@@ -5428,12 +5428,6 @@ const result = await client.MailboxDomain().create({
 
 Create a new entity with the given data. Resolves to the created entity.
 
-```ts
-const result = await client.MailboxDomain().create({
-  domain: 'example_domain',
-})
-```
-
 #### `list(match: object, ctrl?: object)`
 
 List entities matching the given criteria. Resolves to an array of entities, one per record.

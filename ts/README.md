@@ -3678,14 +3678,6 @@ const mailbox_domain = await client.MailboxDomain().load({ domain: 'domain' })
 const mailbox_domains = await client.MailboxDomain().list()
 ```
 
-#### Example: Create
-
-```ts
-const mailbox_domain = await client.MailboxDomain().create({
-  domain: 'example_domain',
-})
-```
-
 
 ### MailboxForward
 

@@ -4725,12 +4725,6 @@ mailbox_domain = client.MailboxDomain
 
 Create a new entity with the given data. Returns the created entity and raises on error.
 
-```ruby
-result = client.MailboxDomain.create({
-  "domain" => "example_domain", # String
-})
-```
-
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
 List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.

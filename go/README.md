@@ -4086,7 +4086,6 @@ Create an instance: `mailboxDomain := client.MailboxDomain(nil)`
 | --- | --- |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -4125,18 +4124,6 @@ if err != nil {
 for _, item := range mailboxDomains.([]any) {
     fmt.Println(item.(sdk.Entity).Data())
 }
-```
-
-#### Example: Create
-
-```go
-result, err := client.MailboxDomain(nil).Create(map[string]any{
-    "domain": "example_domain",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 

@@ -3698,14 +3698,6 @@ $mailbox_domain = $client->MailboxDomain()->load(["domain" => "domain"]);
 $mailbox_domains = $client->MailboxDomain()->list();
 ```
 
-#### Example: Create
-
-```php
-$mailbox_domain = $client->MailboxDomain()->create([
-    "domain" => null, // string
-]);
-```
-
 
 ### MailboxForward
 

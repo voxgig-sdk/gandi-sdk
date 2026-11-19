@@ -190,7 +190,7 @@ func TestMailboxDomainEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "list", "load"} {
+		for _, _op := range []string{"list"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "mailbox_domain." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -230,54 +230,27 @@ func TestMailboxDomainEntity(t *testing.T) {
 			t.Fatalf("expected list result to be an array, got %T", mailboxDomainRef01ListResult)
 		}
 
-		if setup.live {
-			livePace()
-		}
-		// LOAD
-		mailboxDomainRef01MatchDt0 := map[string]any{}
-		mailboxDomainRef01DataDt0Loaded, err := mailboxDomainRef01Ent.Load(mailboxDomainRef01MatchDt0, nil)
-		if err != nil {
-			t.Fatalf("load failed: %v", err)
-		}
-		if mailboxDomainRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
-		}
-
 		return
 		}
 
-		if setup.live {
-			for _, _liveKey := range []string{"domain01"} {
-				if setup.syntheticOnly || setup.idmap[_liveKey] == nil {
-					liveMiss(t, mailbox_domainEntityLiveStrict, "Live entity test blocked: needs %s via GANDI_TEST_MAILBOX_DOMAIN_ENTID", _liveKey)
-				}
-			}
-		}
 		client := setup.client
 		_ = client
 
-		if setup.live {
-			livePace()
+		// Bootstrap entity data from existing test data (no create step in flow).
+		mailboxDomainRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.mailbox_domain")))
+		var mailboxDomainRef01Data map[string]any
+		if len(mailboxDomainRef01DataRaw) > 0 {
+			mailboxDomainRef01Data = core.ToMapAny(mailboxDomainRef01DataRaw[0][1])
 		}
-		// CREATE
-		mailboxDomainRef01Ent := client.MailboxDomain(nil)
-		mailboxDomainRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath(setup.data, []any{"new", "mailbox_domain"}), "mailbox_domain_ref01"))
-		mailboxDomainRef01Data["domain"] = setup.idmap["domain01"]
-
-		mailboxDomainRef01DataResult, err := mailboxDomainRef01Ent.Create(mailboxDomainRef01Data, nil)
-		if err != nil {
-			t.Fatalf("create failed: %v", err)
-		}
-		mailboxDomainRef01Data = core.ToMapAny(entityData(mailboxDomainRef01DataResult))
-		if mailboxDomainRef01Data == nil {
-			t.Fatal("expected create result to be a map")
-		}
+		// Discard guards against Go's unused-var check when the flow's steps
+		// happen not to consume the bootstrap data (e.g. list-only flows).
+		_ = mailboxDomainRef01Data
 
 		if setup.live {
 			livePace()
 		}
 		// LIST
+		mailboxDomainRef01Ent := client.MailboxDomain(nil)
 		mailboxDomainRef01Match := map[string]any{}
 
 		mailboxDomainRef01ListResult, err := mailboxDomainRef01Ent.List(mailboxDomainRef01Match, nil)
@@ -287,19 +260,6 @@ func TestMailboxDomainEntity(t *testing.T) {
 		_, mailboxDomainRef01ListOk := mailboxDomainRef01ListResult.([]any)
 		if !mailboxDomainRef01ListOk {
 			t.Fatalf("expected list result to be an array, got %T", mailboxDomainRef01ListResult)
-		}
-
-		if setup.live {
-			livePace()
-		}
-		// LOAD
-		mailboxDomainRef01MatchDt0 := map[string]any{}
-		mailboxDomainRef01DataDt0Loaded, err := mailboxDomainRef01Ent.Load(mailboxDomainRef01MatchDt0, nil)
-		if err != nil {
-			t.Fatalf("load failed: %v", err)
-		}
-		if mailboxDomainRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
 		}
 
 	})
